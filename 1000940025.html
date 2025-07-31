@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>100 Gold St, New York, NY 10038 - ODCV Analysis (v1754002405)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rzero-primary: #007acc;
+            --rzero-secondary: #005ca3;
+            --text-light: #6b7280;
+            --background: #f4fbfd;
+            --card-bg: white;
+            --border: #e5e7eb;
+        }
+        
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background: var(--background); 
+            color: #1a202c;
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        .header {
+            background: white;
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
+        }
+        
+        .logo-header {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .rzero-logo {
+            width: 200px;
+            height: 50px;
+        }
+        
+        h1 {
+            color: var(--rzero-primary);
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+        
+        /* Building Identity Bar */
+        .building-identity {
+            padding: 15px 20px;
+            background: #f8f8f8;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .neighborhood-badge {
+            font-size: 1.4em;
+            color: var(--rzero-primary);
+            font-weight: 600;
+        }
+
+        .building-stats {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .stat-item {
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        /* Green Rating Badges */
+        .green-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-left: 10px;
+        }
+
+        .green-badge.platinum {
+            background: #e5e4e2;
+            color: #333;
+            border: 1px solid #999;
+        }
+
+        .green-badge.gold {
+            background: #ffd700;
+            color: #333;
+        }
+
+        .green-badge.silver {
+            background: #c0c0c0;
+            color: #333;
+        }
+
+        .green-badge.certified {
+            background: #28a745;
+            color: white;
+        }
+
+        .green-badge:not(.platinum):not(.gold):not(.silver):not(.certified) {
+            background: #17a2b8;
+            color: white;
+        }
+        
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 20px; 
+        }
+        
+        .back { 
+            margin: 20px 0; 
+            padding: 0 20px;
+        }
+        .back a { color: var(--rzero-primary); text-decoration: none; font-weight: 500; }
+        .back a:hover { text-decoration: underline; }
+        
+        /* Main Content Structure */
+        .main-content {
+            background: white;
+            margin: 0;
+        }
+        
+        /* Section Headers */
+        .section-header {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 1.5em;
+            font-weight: 600;
+            color: var(--rzero-primary);
+        }
+        
+        /* Pages within sections */
+        .page {
+            padding: 40px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .page:last-child {
+            border-bottom: none;
+        }
+        
+        .page-title {
+            color: var(--rzero-primary);
+            font-size: 1.3em;
+            font-weight: 600;
+            margin: 0 0 30px 0;
+        }
+        
+        /* Stats Grid */
+        .stats { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 20px; 
+            margin: 20px 0; 
+        }
+        
+        /* Enhanced Stats from Prospector */
+        .stat { 
+            margin: 15px 0; 
+            display: flex; 
+            align-items: baseline;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 118, 157, 0.08);
+        }
+        
+        .stat:last-child { border-bottom: none; }
+        
+        .stat-label { 
+            font-weight: 500; 
+            color: var(--text-light); 
+            min-width: 200px; 
+        }
+        
+        .stat-value { 
+            font-size: 1.1em; 
+            color: var(--text-dark); 
+        }
+        
+        .stat-value.large { 
+            font-size: 1.5em; 
+            font-weight: 600; 
+            color: var(--rzero-primary); 
+        }
+        
+        .stat-value.large.below-target {
+            color: #c41e3a;
+        }
+        
+        /* Legacy stats for grid layout */
+        .stats .stat { 
+            background: #f8f9fa; 
+            padding: 20px; 
+            border-radius: 8px; 
+            text-align: center;
+            border: 1px solid var(--border);
+            display: block;
+            margin: 0;
+        }
+        
+        .stats .stat .label { 
+            color: var(--text-light); 
+            font-size: 0.9em; 
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .stats .stat .value { 
+            font-weight: 600; 
+            font-size: 1.4em; 
+            margin-top: 5px;
+            color: #1a202c;
+        }
+        
+        .penalty { color: #c41e3a; }
+        .savings { color: #38a169; }
+        
+        /* Highlight boxes */
+        .highlight-box { 
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); 
+            padding: 40px; 
+            border-radius: 12px; 
+            text-align: center; 
+            margin: 20px 0;
+            border: 1px solid #2196f3;
+        }
+        
+        .highlight-box h4 { 
+            margin: 0 0 15px 0; 
+            color: var(--rzero-primary); 
+            font-size: 1.4em; 
+        }
+        
+        .highlight-box div { 
+            margin: 8px 0; 
+            font-size: 1.1em; 
+        }
+        
+        .highlight-score { 
+            font-size: 3.5em; 
+            font-weight: 700; 
+            color: var(--rzero-primary); 
+            margin: 10px 0; 
+        }
+        
+        /* Carousel styles */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 675px;
+            overflow: hidden;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        
+        .carousel-track {
+            display: flex;
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+        
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #f0f0f0;
+        }
+        
+        /* Carousel Navigation */
+        .fullscreen-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 20px;
+            z-index: 10;
+            transition: background 0.3s ease;
+        }
+        
+        .fullscreen-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 20px;
+            cursor: pointer;
+            font-size: 24px;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+            z-index: 5;
+        }
+        
+        .carousel-btn:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .carousel-prev { left: 20px; }
+        .carousel-next { right: 20px; }
+        
+        .carousel-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 5;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .dot.active {
+            background: white;
+        }
+        
+        .dot:hover {
+            background: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Professional Class Badge from Prospector */
+        .class-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.8em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), transparent);
+        }
+
+        .class-badge::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .class-A { 
+            background-color: #FFD700;
+            background-image: linear-gradient(135deg, #FFED4E 0%, #FFD700 50%, #B8860B 100%);
+            color: #6B4423;
+            border: 2px solid #B8860B;
+        }
+
+        .class-B { 
+            background-color: #C0C0C0;
+            background-image: linear-gradient(135deg, #E8E8E8 0%, #C0C0C0 50%, #8B8B8B 100%);
+            color: #2C2C2C;
+            border: 2px solid #8B8B8B;
+        }
+
+        .class-C { 
+            background-color: #CD7F32;
+            background-image: linear-gradient(135deg, #E89658 0%, #CD7F32 50%, #8B4513 100%);
+            color: #4A2511;
+            border: 2px solid #8B4513;
+        }
+
+        .class-D, .class-E, .class-F { 
+            background-color: #8B7355;
+            background-image: linear-gradient(135deg, #A0826D 0%, #8B7355 50%, #6B4423 100%);
+            color: #FFFFFF;
+            border: 2px solid #6B4423;
+        }
+        
+        /* Energy Grade Styling from Prospector */
+        .energy-grade {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .grade-A { background: #d4f1d4; color: #1e7e1e; }
+        .grade-B { background: #e6f3d5; color: #5d7e1e; }
+        .grade-C { background: #fff3cd; color: #856404; }
+        .grade-D { background: #f8d7da; color: #721c24; }
+        .grade-F { background: #f5c6cb; color: #721c24; }
+        .grade-NA { background: #e9ecef; color: #6c757d; }
+        
+        /* Carousel Loading Animation */
+        .carousel-slide iframe,
+        .carousel-slide video {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .carousel-slide iframe.loaded,
+        .carousel-slide video.loaded {
+            opacity: 1;
+        }
+        
+        /* Slide Counter */
+        .slide-counter {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 10;
+        }
+        
+        /* Chart Controls from Prospector */
+        .chart-carousel { position: relative; }
+        .chart-toggle { 
+            display: flex; 
+            justify-content: center; 
+            gap: 10px; 
+            margin-bottom: 20px;
+        }
+        .toggle-btn {
+            padding: 8px 20px;
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            font-size: 14px;
+        }
+        .toggle-btn.active {
+            background: var(--rzero-primary);
+            color: white;
+            border-color: var(--rzero-primary);
+        }
+        .toggle-btn:hover {
+            opacity: 0.8;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+        }
+        .dot.active {
+            background: white;
+        }
+        
+        .fullscreen-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 20px;
+            z-index: 10;
+            transition: background 0.3s ease;
+        }
+
+        .fullscreen-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        
+        .class-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.8em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .class-A { 
+            background: linear-gradient(135deg, #FFED4E 0%, #FFD700 50%, #B8860B 100%);
+            color: #6B4423;
+            border: 2px solid #B8860B;
+        }
+        
+        .class-B { 
+            background: linear-gradient(135deg, #E8E8E8 0%, #C0C0C0 50%, #8B8B8B 100%);
+            color: #2C2C2C;
+            border: 2px solid #8B8B8B;
+        }
+        
+        .class-C { 
+            background: linear-gradient(135deg, #E89658 0%, #CD7F32 50%, #8B4513 100%);
+            color: #4A2511;
+            border: 2px solid #8B4513;
+        }
+        
+        .grade-A { background: #d4f1d4; color: #1e7e1e; padding: 4px 12px; border-radius: 4px; font-weight: bold; }
+        .grade-B { background: #e6f3d5; color: #5d7e1e; padding: 4px 12px; border-radius: 4px; font-weight: bold; }
+        .grade-C { background: #fff3cd; color: #856404; padding: 4px 12px; border-radius: 4px; font-weight: bold; }
+        .grade-D { background: #f8d7da; color: #721c24; padding: 4px 12px; border-radius: 4px; font-weight: bold; }
+        
+        .yes { color: #38a169; font-weight: bold; }
+        .no { color: #c41e3a; font-weight: bold; }
+        .urgent { color: #c41e3a; font-weight: bold; }
+        .bas { color: #38a169; font-weight: 600; }
+        .no-bas { color: #c41e3a; font-weight: 600; }
+    </style>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
+    <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+</head>
+<body>
+    <div style="background: linear-gradient(to right, #0066cc, #0052a3); padding: 0; margin: 0; width: 100%; position: relative;">
+        <a href="index.html" style="text-decoration: none; display: block;">
+            <div style="padding: 15px 40px; display: flex; align-items: center; gap: 10px; color: white; cursor: pointer; transition: all 0.3s ease;"
+                 onmouseover="this.style.background='rgba(255,255,255,0.1)'" 
+                 onmouseout="this.style.background='transparent'">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                <span style="font-size: 16px; font-weight: 500;">Back to Rankings</span>
+            </div>
+        </a>
+    </div>
+    
+    <!-- Header -->
+    <div class="header">
+        <div class="logo-header">
+            <a href="https://rzero.com" target="_blank" style="display: inline-block;">
+                <img src="https://rzero.com/wp-content/uploads/2021/10/rzero-logo-pad.svg" alt="R-Zero Logo" class="rzero-logo">
+            </a>
+            <h1>Building Analysis: NYC</h1>
+        </div>
+    </div>
+    
+    <!-- Building Identity Bar -->
+    <div class="building-identity">
+        <div class="neighborhood-badge">
+            Midtown
+        </div>
+        <div class="building-stats">
+            <div class="stat-item">#2.0 Rank</div>
+            <div class="stat-item">10.0 floors</div>
+            <div class="stat-item">655,775 sq ft</div>
+            <div class="stat-item">Class A</div>
+        </div>
+    </div>
+    
+    <div class="back">
+        <a href="index.html">← Back to All Buildings</a>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        
+        <!-- Building Information Header -->
+        <div style="background: linear-gradient(to right, var(--rzero-primary), var(--rzero-secondary)); color: white; padding: 40px; text-align: center;">
+            <h1 style="margin: 0; color: white; font-size: 2.8em;">100 Gold St, New York, NY 10038</h1>
+            <p style="margin: 15px 0 0 0; font-size: 1.3em; opacity: 0.9;">City of New York</p>
+            <div style="margin-top: 20px;">
+                <div style="font-size: 1.1em; opacity: 0.8;">2026 ODCV Savings</div>
+                <div style="font-size: 3em; font-weight: 700; margin: 10px 0;">$181,235</div>
+                
+            </div>
+        </div>
+    
+        
+        
+        <!-- Building Overview Section -->
+        <h2 class="section-header">Building Overview</h2>
+        
+        <div class="page">
+            <h3 class="page-title">Building Information</h3>
+        <div class="stats">
+            <div class="stat">
+                <div class="label">Owner</div>
+                <div class="value">City of New York</div>
+            </div>
+            <div class="stat">
+                <div class="label">Last Renovated</div>
+                <div class="value">2019</div>
+            </div>
+            <div class="stat">
+                <div class="label">Units</div>
+                <div class="value">1</div>
+            </div>
+            <div class="stat">
+                <div class="label">Office Floor Area</div>
+                <div class="value">594,000 sq ft (90%)</div>
+            </div>
+            <div class="stat">
+                <div class="label">Manager</div>
+                <div class="value">DCAS</div>
+            </div>
+            <div class="stat">
+                <div class="label">Owner Contact</div>
+                <div class="value">Unavailable</div>
+            </div>
+            <div class="stat">
+                <div class="label">% Leased</div>
+                <div class="value">100%</div>
+            </div>
+            <div class="stat">
+                <div class="label">Floors</div>
+                <div class="value">10.0</div>
+            </div>
+            <div class="stat">
+                <div class="label">Last Renovated</div>
+                <div class="value">2019</div>
+            </div>
+            <div class="stat">
+                <div class="label">Building Automation (BAS)</div>
+                <div class="value"><span class="bas">Present (General & Heating/Cooling)</span></div>
+            </div>
+            <div class="stat">
+                <div class="label">Heating System</div>
+                <div class="value">Boiler (Gas)</div>
+            </div>
+            <div class="stat">
+                <div class="label">Cooling System</div>
+                <div class="value">Plant</div>
+            </div>
+            <div class="stat">
+                <span class="stat-label">ENERGY STAR Score:</span>
+                <div style="display: flex; align-items: center; gap: 30px;">
+                    <svg viewBox="0 0 200 120" style="width: 200px; height: 120px;">
+                        <path d="M 20 100 A 80 80 0 0 1 73 30" fill="none" stroke="#c41e3a" stroke-width="20"/>
+                        <path d="M 73 30 A 80 80 0 0 1 127 30" fill="none" stroke="#ffc107" stroke-width="20"/>
+                        <path d="M 127 30 A 80 80 0 0 1 180 100" fill="none" stroke="#38a169" stroke-width="20"/>
+                        <text x="100" y="85" text-anchor="middle" font-size="36" font-weight="bold" fill="#38a169">84</text>
+                        <text x="20" y="115" text-anchor="middle" font-size="12" fill="#666">0</text>
+                        <text x="180" y="115" text-anchor="middle" font-size="12" fill="#666">100</text>
+                    </svg>
+                    <div>
+                        <div style="font-size: 1.2em; color: #666;">Target: 75.0</div>
+                        <div style="color: #38a169;">✓ Exceeds target by 9 points</div>
+                    </div>
+                </div>
+            </div>
+            <div class="stat">
+                <div class="label">LL33 Grade</div>
+                <div class="value"><span class="energy-grade grade-B">B</span></div>
+            </div>
+        </div>
+        </div>
+        
+        <div class="page">
+            <h3 class="page-title">Property Details</h3>
+        <div class="stats">
+            <div class="stat">
+                <div class="label">Building Class</div>
+                <div class="value"><span class="class-badge class-A">A</span></div>
+            </div>
+            <div class="stat">
+                <div class="label">Total Area</div>
+                <div class="value">655,775 sq ft</div>
+            </div>
+            <div class="stat">
+                <div class="label">Office Space</div>
+                <div class="value">594,000 sq ft (90%)</div>
+            </div>
+            <div class="stat">
+                <div class="label">Green Certification</div>
+                <div class="value">None</div>
+            </div>
+        </div>
+        </div>
+        
+        <!-- Energy Efficiency Section -->
+        <h2 class="section-header">Energy Efficiency</h2>
+        
+        <div class="page">
+            <h3 class="page-title">LL97 Compliance</h3>
+        <div class="stats">
+            <div class="stat">
+                <div class="label">2026 Penalty</div>
+                <div class="value penalty">$0</div>
+            </div>
+            <div class="stat">
+                <div class="label">2030 Penalty</div>
+                <div class="value penalty">$383,646</div>
+            </div>
+            <div class="stat">
+                <div class="label">Total Benefit with ODCV</div>
+                <div class="value savings">$181,235</div>
+            </div>
+            <div class="stat">
+                <div class="label">Current Emissions</div>
+                <div class="value">3,182 tCO2e</div>
+            </div>
+            <div class="stat">
+                <div class="label">2024-2029 Limit</div>
+                <div class="value">4,426 tCO2e</div>
+            </div>
+            <div class="stat">
+                <div class="label">2030-2034 Limit</div>
+                <div class="value">1,751 tCO2e</div>
+            </div>
+        </div>
+        </div>
+        </div>
+        
+        <div class="page">
+            <h3 class="page-title">Financial Impact</h3>
+        <div class="stats">
+            <div class="stat">
+                <div class="label">Annual ODCV Savings</div>
+                <div class="value savings">$181,235</div>
+            </div>
+            <div class="stat">
+                <div class="label">2026 LL97 Penalty</div>
+                <div class="value penalty">$0</div>
+            </div>
+            <div class="stat">
+                <div class="label">2030 LL97 Penalty</div>
+                <div class="value penalty">$383,646</div>
+            </div>
+            <div class="stat">
+                <div class="label">Total 2026 Benefit</div>
+                <div class="value savings">$181,235</div>
+            </div>
+        </div>
+        </div>
+        </div>
+        
+        <div class="page">
+            <h3 class="page-title">ODCV Readiness Score</h3>
+        <div class="highlight-box">
+            <h4>Total Score: 97/110</h4>
+            <div>Financial Impact: 7/40</div>
+            <div>BAS Ready: 30/30</div>
+            <div>Portfolio Size: 20/20</div>
+            <div>Implementation Ease: 10/10</div>
+        </div>
+        </div>
+        
+        <!-- Energy Consumption Section -->
+        <h2 class="section-header">Energy Consumption</h2>
+        
+        <div class="page">
+            <h3 class="page-title">Energy Usage</h3>
+            <div class="chart-carousel">
+                <div class="chart-toggle">
+                    <button class="toggle-btn active" onclick="showChart('usage', 'building')">Building</button>
+                    <button class="toggle-btn" onclick="showChart('usage', 'office')">Office</button>
+                </div>
+                <div id="building_usage_container" class="chart-container">
+                    <div id="energy_chart" style="width: 100%; height: 400px;"></div>
+                </div>
+                <div id="office_usage_container" class="chart-container" style="display: none;">
+                    <div id="office_energy_chart" style="width: 100%; height: 400px;"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="page">
+            <h3 class="page-title">Energy Cost</h3>
+            <div class="chart-carousel">
+                <div class="chart-toggle">
+                    <button class="toggle-btn active" onclick="showChart('cost', 'building')">Building</button>
+                    <button class="toggle-btn" onclick="showChart('cost', 'office')">Office</button>
+                </div>
+                <div id="building_cost_container" class="chart-container">
+                    <div id="energy_cost_chart" style="width: 100%; height: 400px;"></div>
+                </div>
+                <div id="office_cost_container" class="chart-container" style="display: none;">
+                    <div id="office_cost_chart" style="width: 100%; height: 400px;"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ODCV Section -->  
+        <h2 class="section-header">ODCV</h2>
+        
+        <div class="page">
+            <h3 class="page-title">HVAC Electricity Usage (% of Total)</h3>
+        <div id="hvac_pct_chart" style="width: 100%; height: 400px;"></div>
+        </div>
+        
+        <div class="page">
+            <h3 class="page-title">Image Gallery</h3>
+        <div style="position: relative; width: 100%; height: 500px; overflow: hidden; border-radius: 12px; background: #f0f0f0;">
+            <div id="carousel-1000940025" style="display: flex; transition: transform 0.3s ease;">
+                <div class="carousel-slide" style="min-width: 100%; height: 500px; position: relative;">
+                    <img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1000940025/1000940025_hero.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+                    <button class="fullscreen-btn" onclick="toggleFullscreen(this)" title="Fullscreen">⛶</button>
+                </div>
+                <div class="carousel-slide" style="min-width: 100%; height: 500px; position: relative;">
+                    <img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1000940025/1000940025_street.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+                    <button class="fullscreen-btn" onclick="toggleFullscreen(this)" title="Fullscreen">⛶</button>
+                </div>
+                <div class="carousel-slide" style="min-width: 100%; height: 500px; position: relative;">
+                    <img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1000940025/1000940025_satellite.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+                    <button class="fullscreen-btn" onclick="toggleFullscreen(this)" title="Fullscreen">⛶</button>
+                </div>
+                <div class="carousel-slide" style="min-width: 100%; height: 500px; position: relative;">
+                    <img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1000940025/1000940025_roadview.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+                    <button class="fullscreen-btn" onclick="toggleFullscreen(this)" title="Fullscreen">⛶</button>
+                </div>
+            </div>
+            <button onclick="moveCarousel('1000940025', -1)" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; padding: 20px; cursor: pointer; font-size: 24px; border-radius: 8px;">❮</button>
+            <button onclick="moveCarousel('1000940025', 1)" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; padding: 20px; cursor: pointer; font-size: 24px; border-radius: 8px;">❯</button>
+            <div class="carousel-dots" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px;">
+                <span class="dot active" onclick="goToSlide('1000940025', 0)"></span>
+                <span class="dot" onclick="goToSlide('1000940025', 1)"></span>
+                <span class="dot" onclick="goToSlide('1000940025', 2)"></span>
+                <span class="dot" onclick="goToSlide('1000940025', 3)"></span>
+            </div>
+        </div>
+        </div>
+        
+        <div class="page">
+            <h3 class="page-title">ODCV Savings Potential</h3>
+        <div id="odcv_savings_chart" style="width: 100%; height: 400px;"></div>
+        </div>
+        
+        <!-- Outdoor Air Quality Section -->
+        <h2 class="section-header">Outdoor Air Quality</h2>
+        
+        <div class="page">
+            <h3 class="page-title">Last 30 Days</h3>
+        <div id="pm25_chart" style="width: 100%; height: 400px;"></div>
+        </div>
+        
+        <div class="page">
+            <h3 class="page-title">Interactive Views</h3>
+            <div class="carousel-container">
+                <div class="carousel-track" id="interactive-carousel-1000940025">
+                    <div class="carousel-slide">
+                        <div id="aerial-1000940025" style="width: 100%; height: 100%; background: #000; display: flex; align-items: center; justify-content: center; position: relative;">
+                    <div style="color: white; text-align: center;">
+                        <h3>Loading Aerial View...</h3>
+                        <p>Fetching video from Google Maps</p>
+                    </div>
+                    <button class="fullscreen-btn" onclick="toggleFullscreen(this)" title="Fullscreen">⛶</button>
+                </div>
+                <script>
+                    setTimeout(() => loadAerialVideo('1000940025', 'dhptyJliZjNOlARj4bcISP'), 500);
+                </script>
+                    </div>
+                    <div class="carousel-slide">
+                        <div id="panorama-1000940025" style="width: 100%; height: 100%; background: #000; display: flex; align-items: center; justify-content: center; position: relative;">
+                            <iframe src="https://panoraven.com/slice/embed/1000940025" 
+                                    style="width: 100%; height: 100%; border: none;" 
+                                    allowfullscreen
+                                    title="360° Virtual Tour"
+                                    onload="this.classList.add('loaded')">
+                            </iframe>
+                            <button class="fullscreen-btn" onclick="toggleFullscreen(this)" title="Fullscreen">⛶</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide Counter -->
+                <div class="slide-counter" id="counter-1000940025">1 / 2</div>
+                
+                <!-- Navigation Controls -->
+                <button class="carousel-btn carousel-prev" onclick="moveInteractiveCarousel('1000940025', -1)" title="Previous">❮</button>
+                <button class="carousel-btn carousel-next" onclick="moveInteractiveCarousel('1000940025', 1)" title="Next">❯</button>
+                
+                <!-- Dot Navigation with Labels -->
+                <div class="carousel-dots">
+                    <span class="dot active" onclick="goToInteractiveSlide('1000940025', 0)" title="Aerial Video"></span>
+                    <span class="dot" onclick="goToInteractiveSlide('1000940025', 1)" title="360° Virtual Tour"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+    // Unit conversion functions
+    function kBtuToKwh(kbtu) { return kbtu / 3.412; }
+    function kBtuToTherms(kbtu) { return kbtu / 100; }
+    function kBtuToLbs(kbtu) { return kbtu / 1.194; }
+    
+    // Toggle chart function
+    function showChart(type, view) {
+        let buildingContainer, officeContainer;
+        
+        if (type === 'usage') {
+            buildingContainer = document.getElementById('building_usage_container');
+            officeContainer = document.getElementById('office_usage_container');
+        } else if (type === 'cost') {
+            buildingContainer = document.getElementById('building_cost_container');
+            officeContainer = document.getElementById('office_cost_container');
+        }
+        
+        const buttons = event.target.parentElement.querySelectorAll('.toggle-btn');
+        
+        buttons.forEach(btn => {
+            btn.style.background = '#f0f0f0';
+            btn.style.color = '#333';
+            btn.style.border = '1px solid #ddd';
+            btn.classList.remove('active');
+        });
+        
+        event.target.classList.add('active');
+        event.target.style.background = '#0066cc';
+        event.target.style.color = 'white';
+        event.target.style.border = 'none';
+        
+        if (view === 'building') {
+            buildingContainer.style.display = 'block';
+            officeContainer.style.display = 'none';
+        } else {
+            buildingContainer.style.display = 'none';
+            officeContainer.style.display = 'block';
+            
+            // Resize the office chart after making it visible
+            // This fixes the "squished" chart issue
+            setTimeout(() => {
+                if (type === 'usage' && window.Plotly) {
+                    Plotly.Plots.resize('office_energy_chart');
+                } else if (type === 'cost' && window.Plotly) {
+                    Plotly.Plots.resize('office_cost_chart');
+                }
+            }, 10);  // Small delay to ensure DOM update
+        }
+    }
+    
+    let carouselIndex = {};
+    
+    function moveCarousel(bbl, direction) {
+        const track = document.getElementById(bbl.includes('carousel') ? bbl : `carousel-${bbl}`);
+        const slides = track.querySelectorAll('.carousel-slide');
+        const dots = track.parentElement.querySelectorAll('.dot');
+        
+        if (!carouselIndex[bbl]) carouselIndex[bbl] = 0;
+        
+        carouselIndex[bbl] += direction;
+        if (carouselIndex[bbl] < 0) carouselIndex[bbl] = slides.length - 1;
+        if (carouselIndex[bbl] >= slides.length) carouselIndex[bbl] = 0;
+        
+        track.style.transform = `translateX(-${carouselIndex[bbl] * 100}%)`;
+        
+        // Update dots
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === carouselIndex[bbl]);
+        });
+    }
+    
+    function goToSlide(bbl, index) {
+        carouselIndex[bbl] = index;
+        moveCarousel(bbl, 0);
+    }
+    
+    function toggleFullscreen(button) {
+        const container = button.parentElement;
+        const img = container.querySelector('img');
+        
+        if (!document.fullscreenElement) {
+            if (container.requestFullscreen) {
+                container.requestFullscreen();
+            } else if (container.webkitRequestFullscreen) {
+                container.webkitRequestFullscreen();
+            }
+            button.innerHTML = '✕';
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+            button.innerHTML = '⛶';
+        }
+    }
+    
+    // Enhanced Interactive carousel with smooth transitions
+    let interactiveIndex = 0;
+    
+    function moveInteractiveCarousel(bbl, direction) {
+        const carousel = document.getElementById('interactive-carousel-' + bbl);
+        const dots = carousel.parentElement.querySelectorAll('.dot');
+        const counter = document.getElementById('counter-' + bbl);
+        const totalViews = 2;
+        
+        interactiveIndex += direction;
+        
+        // Handle wrap-around
+        if (interactiveIndex < 0) interactiveIndex = totalViews - 1;
+        if (interactiveIndex >= totalViews) interactiveIndex = 0;
+        
+        // Smooth transition with enhanced transform
+        carousel.style.transform = `translateX(-${interactiveIndex * 100}%)`;
+        
+        // Update counter
+        if (counter) {
+            counter.textContent = `${interactiveIndex + 1} / ${totalViews}`;
+        }
+        
+        // Update dot indicators with smooth animation
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === interactiveIndex);
+        });
+        
+        // Add subtle button feedback animation
+        const buttons = carousel.parentElement.querySelectorAll('.carousel-btn');
+        buttons.forEach(btn => {
+            btn.style.transform = 'scale(0.95)';
+            setTimeout(() => btn.style.transform = 'scale(1)', 100);
+        });
+        
+        // Trigger loading animation for iframes
+        const currentSlide = carousel.children[interactiveIndex];
+        const iframe = currentSlide.querySelector('iframe');
+        if (iframe && !iframe.classList.contains('loaded')) {
+            setTimeout(() => iframe.classList.add('loaded'), 500);
+        }
+    }
+    
+    function goToInteractiveSlide(bbl, index) {
+        const direction = index - interactiveIndex;
+        interactiveIndex = index;
+        moveInteractiveCarousel(bbl, 0);
+    }
+    
+    // Enhanced fullscreen functionality
+    function toggleFullscreen(button) {
+        const container = button.closest('.carousel-slide, .carousel-container');
+        const iframe = container.querySelector('iframe, video');
+        
+        if (!document.fullscreenElement) {
+            if (iframe && iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (container.requestFullscreen) {
+                container.requestFullscreen();
+            }
+            button.textContent = '⛷';
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+                button.textContent = '⛶';
+            }
+        }
+    }
+    
+    // Energy chart
+    const elecData = {
+        x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        y: [769565.795, 651406.8987, 689807.095, 705043.2629, 855353.295, 1152357.363, 1993583.395, 1585980.795, 1213134.363, 684133.195, 730358.7629, 273574.095],
+        name: 'Electricity',
+        type: 'scatter',
+        mode: 'lines+markers',
+        line: {color: '#0066cc', width: 3},
+        marker: {size: 8},
+        hovertemplate: '%{x}<br>Elec: %{y:,.0f} kBtu<br>(%{customdata:,.0f} kWh)<extra></extra>',
+        customdata: [769565.795, 651406.8987, 689807.095, 705043.2629, 855353.295, 1152357.363, 1993583.395, 1585980.795, 1213134.363, 684133.195, 730358.7629, 273574.095].map(v => kBtuToKwh(v))
+    };
+    
+    const gasData = {
+        x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        y: [1730855.1, 1604136.8, 1610444.1, 891097.6, 679231.4, 619551.0, 673390.6, 641667.2, 605040.3, 735737.0, 1353426.0, 1646553.0],
+        name: 'Gas',
+        type: 'scatter',
+        mode: 'lines+markers',
+        line: {color: '#ff6600', width: 3},
+        marker: {size: 8},
+        hovertemplate: '%{x}<br>Gas: %{y:,.0f} kBtu<br>(%{customdata:,.0f} Therms)<extra></extra>',
+        customdata: [1730855.1, 1604136.8, 1610444.1, 891097.6, 679231.4, 619551.0, 673390.6, 641667.2, 605040.3, 735737.0, 1353426.0, 1646553.0].map(v => kBtuToTherms(v))
+    };
+    
+    const steamData = {
+        x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        y: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+        name: 'Steam',
+        type: 'scatter',
+        mode: 'lines+markers',
+        line: {color: '#ffc107', width: 3},
+        marker: {size: 8},
+        hovertemplate: '%{x}<br>Steam: %{y:,.0f} kBtu<br>(%{customdata:,.0f} lbs)<extra></extra>',
+        customdata: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0].map(v => kBtuToLbs(v))
+    };
+    
+    const layout = {
+        title: {
+            text: 'Monthly Energy Usage (2023)',
+            font: {size: 20}
+        },
+        yaxis: {
+            title: 'Energy Usage (kBtu)',
+            gridcolor: '#e0e0e0'
+        },
+        xaxis: {
+            gridcolor: '#e0e0e0'
+        },
+        font: {family: 'Arial, sans-serif'},
+        plot_bgcolor: '#fafafa',
+        paper_bgcolor: 'white',
+        hovermode: 'x unified'
+    };
+    
+    Plotly.newPlot('energy_chart', [elecData, gasData, steamData], layout);
+    
+    // Office Energy Chart
+    const officeElecData = {
+        x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        y: [2101756.0, 1858782.0, 2029495.0, 1997991.0, 2179479.0, 2403258.0, 3210716.0, 2841428.0, 2458322.0, 2024354.0, 2020927.0, 1652388.0],
+        name: 'Electricity',
+        type: 'bar',
+        marker: {color: '#0066cc'}
+    };
+    
+    const officeGasData = {
+        x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        y: [1568155.0, 1453348.0, 1459062.0, 807334.0, 615384.0, 561313.0, 610092.0, 581350.0, 548167.0, 666578.0, 1226204.0, 1491777.0],
+        name: 'Gas',
+        type: 'bar',
+        marker: {color: '#ff6600'}
+    };
+    
+    const officeSteamData = {
+        x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        y: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+        name: 'Steam',
+        type: 'bar',
+        marker: {color: '#ffc107'}
+    };
+    
+    const officeLayout = {
+        title: {
+            text: 'Monthly Office Energy Usage (2023)',
+            font: {size: 20}
+        },
+        yaxis: {
+            title: 'Energy Usage (kBtu)',
+            gridcolor: '#e0e0e0'
+        },
+        xaxis: {
+            gridcolor: '#e0e0e0',
+            range: [-0.5, 11.5],  // Force x-axis to show all 12 months with padding
+            fixedrange: true
+        },
+        barmode: 'group',
+        font: {family: 'Arial, sans-serif'},
+        plot_bgcolor: '#fafafa',
+        paper_bgcolor: 'white',
+        hovermode: 'x unified'
+    };
+    
+    Plotly.newPlot('office_energy_chart', [officeElecData, officeGasData, officeSteamData], officeLayout);
+    
+    // Energy Cost Chart
+    const elecCost = {
+        x: months, 
+        y: [139353.67, 144247.44, 133400.14, 124217.70000000001, 165528.53001, 323613.83999999997, 435967.62, 388151.82999999996, 321823.45999999996, 153529.97998, 141654.63, 104907.79], 
+        name: 'Electricity', 
+        type: 'scatter', 
+        mode: 'lines+markers', 
+        line: {color: '#0066cc', width: 3},
+        marker: {size: 8}
+    };
+    
+    const gasCost = {
+        x: months, 
+        y: [30289.96, 28072.39, 28182.77, 15594.21, 11886.55, 10842.14, 11784.34, 11229.18, 10588.21, 12875.4, 23684.96, 28814.68], 
+        name: 'Gas', 
+        type: 'scatter', 
+        mode: 'lines+markers', 
+        line: {color: '#ff6600', width: 3},
+        marker: {size: 8}
+    };
+    
+    const steamCostData = {
+        x: months, 
+        y: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 
+        name: 'Steam', 
+        type: 'scatter', 
+        mode: 'lines+markers', 
+        line: {color: '#ffc107', width: 3},
+        marker: {size: 8}
+    };
+    
+    const costLayout = {
+        title: {
+            text: 'Monthly Energy Cost (2023)',
+            font: {size: 20}
+        },
+        yaxis: {
+            title: 'Cost ($)',
+            tickformat: '$,.0f',
+            gridcolor: '#e0e0e0'
+        },
+        xaxis: {
+            gridcolor: '#e0e0e0'
+        },
+        font: {family: 'Inter, sans-serif'},
+        plot_bgcolor: '#fafafa',
+        paper_bgcolor: 'white',
+        hovermode: 'x unified'
+    };
+
+    Plotly.newPlot('energy_cost_chart', [elecCost, gasCost, steamCostData], costLayout);
+    
+    // Office Cost Chart
+    const officeElecCost = {
+        x: months, 
+        y: [68741.66, 63812.31, 62833.88, 62465.39, 72587.33, 92273.15, 124224.22, 112907.41, 96745.2, 65394.63, 67169.9, 51356.16], 
+        name: 'Electricity', 
+        type: 'bar', 
+        marker: {color: '#0066cc'}
+    };
+    
+    const officeGasCost = {
+        x: months, 
+        y: [32180.51, 29826.97, 29944.1, 16583.68, 12648.71, 11540.25, 12540.22, 11951.01, 11270.76, 13698.18, 25170.52, 30614.76], 
+        name: 'Gas', 
+        type: 'bar', 
+        marker: {color: '#ff6600'}
+    };
+    
+    const officeSteamCostData = {
+        x: months, 
+        y: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan], 
+        name: 'Steam', 
+        type: 'bar', 
+        marker: {color: '#ffc107'}
+    };
+    
+    const officeCostLayout = {
+        title: {
+            text: 'Office Space Monthly Cost (2023)',
+            font: {size: 20}
+        },
+        yaxis: {
+            title: 'Cost ($)',
+            tickformat: '$,.0f',
+            gridcolor: '#e0e0e0'
+        },
+        xaxis: {
+            gridcolor: '#e0e0e0',
+            range: [-0.5, 11.5],  // Force x-axis to show all 12 months with padding
+            fixedrange: true
+        },
+        barmode: 'group',
+        font: {family: 'Inter, sans-serif'},
+        plot_bgcolor: '#fafafa',
+        paper_bgcolor: 'white',
+        hovermode: 'x unified'
+    };
+
+    Plotly.newPlot('office_cost_chart', [officeElecCost, officeGasCost, officeSteamCostData], officeCostLayout);
+    
+    // HVAC Percentage Chart
+    const hvacData = {
+        x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        y: [0.33173527546761195, 0.3175061393920304, 0.307941306312156, 0.3197057105558355, 0.35556658788542517, 0.43442521314163024, 0.5625494682796606, 0.5056959381857349, 0.4470935258814156, 0.3061839236937711, 0.32742648556984555, 0.15],
+        type: 'scatter',
+        mode: 'lines+markers',
+        fill: 'tozeroy',
+        line: {color: '#0066cc', width: 3},
+        fillcolor: 'rgba(0, 102, 204, 0.2)',
+        marker: {size: 8},
+        name: 'HVAC %'
+    };
+    
+    const hvacLayout = {
+        title: {
+            text: 'HVAC as % of Total Electricity Usage',
+            font: {size: 20}
+        },
+        yaxis: {
+            title: 'Percentage',
+            tickformat: '.0%',
+            gridcolor: '#e0e0e0',
+            range: [0, 1]
+        },
+        xaxis: {
+            gridcolor: '#e0e0e0'
+        },
+        font: {family: 'Arial, sans-serif'},
+        plot_bgcolor: '#fafafa',
+        paper_bgcolor: 'white',
+        hovermode: 'x unified'
+    };
+    
+    Plotly.newPlot('hvac_pct_chart', [hvacData], hvacLayout);
+    
+    // ODCV Savings Chart
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const odcvElecSave = {x: months, y: [6796.720000000001, 6039.860000000001, 5759.509999999995, 5948.529999999999, 7698.770000000004, 11948.669999999998, 20896.770000000004, 17063.210000000006, 12906.28, 5957.189999999995, 6540.169999999991, 2288.4600000000064], name: 'Elec', type: 'bar', marker: {color: '#0066cc'}};
+    const odcvGasSave = {x: months, y: [9654.15, 8948.09, 8983.23, 4975.1, 3794.61, 3462.07, 3762.07, 3585.3, 3381.23, 4109.45, 7551.15, 9184.43], name: 'Gas', type: 'bar', marker: {color: '#ff6600'}};
+    const odcvSteamSave = {x: months, y: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan], name: 'Steam', type: 'bar', marker: {color: '#ffc107'}};
+    
+    const totalSavings = [6796.720000000001, 6039.860000000001, 5759.509999999995, 5948.529999999999, 7698.770000000004, 11948.669999999998, 20896.770000000004, 17063.210000000006, 12906.28, 5957.189999999995, 6540.169999999991, 2288.4600000000064].reduce((a,b)=>a+b,0) + [9654.15, 8948.09, 8983.23, 4975.1, 3794.61, 3462.07, 3762.07, 3585.3, 3381.23, 4109.45, 7551.15, 9184.43].reduce((a,b)=>a+b,0) + [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan].reduce((a,b)=>a+b,0);
+    
+    Plotly.newPlot('odcv_savings_chart', [odcvElecSave, odcvGasSave, odcvSteamSave], {
+        title: {
+            text: 'Monthly ODCV Savings (Total: $' + totalSavings.toFixed(0) + ')',
+            font: {size: 20}
+        },
+        yaxis: {
+            title: 'Savings ($)',
+            tickformat: '$,.0f',
+            gridcolor: '#e0e0e0'
+        },
+        xaxis: {
+            gridcolor: '#e0e0e0'
+        },
+        barmode: 'stack',
+        font: {family: 'Arial, sans-serif'},
+        plot_bgcolor: '#fafafa',
+        paper_bgcolor: 'white',
+        hovermode: 'x unified'
+    });
+    
+    // PM2.5 Chart - Business Hours Only
+    const pm25Data = {
+        x: [],
+        y: [],
+        type: 'scatter',
+        mode: 'lines',
+        line: {color: '#0066cc', width: 2},
+        name: 'PM2.5 (Business Hours)'
+    };
+
+    Plotly.newPlot('pm25_chart', [pm25Data], {
+        title: 'PM2.5 Levels During Business Hours (M-F 8am-6pm)',
+        yaxis: {title: 'PM2.5 (μg/m³)'},
+        xaxis: {title: 'Date'},
+        annotations: [{
+            x: 0.5,
+            y: 1.05,
+            xref: 'paper',
+            yref: 'paper',
+            text: 'Average: 0.0 μg/m³ | Max: 0.0 μg/m³',
+            showarrow: false,
+            font: {size: 14, color: '#666'}
+        }]
+    });
+    
+    // Initialize 360° panorama
+    const buildingHeight = 132.3753837;
+    const pitch = -Math.min(Math.max(10 + (buildingHeight / 10), 15), 60);  // -15° to -60°
+
+    pannellum.viewer('panorama-1000940025', {
+        "type": "equirectangular",
+        "panorama": "https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1000940025/1000940025_360.jpg",
+        "autoLoad": true,
+        "autoRotate": -2,
+        "pitch": pitch,  // Look up based on height
+        "showZoomCtrl": true,
+        "showFullscreenCtrl": true
+    });
+    
+    // Aerial Video Loading
+    const API_KEY = 'AIzaSyDQdR4xY0a_qmEsYairsp6r6tXwh5qx_ho';
+
+    async function loadAerialVideo(bbl, videoId) {
+        const container = document.getElementById(`aerial-${bbl}`);
+        if (!container) return;
+        
+        // Check if video is already loaded
+        if (container.querySelector('video')) {
+            return; // Video already available, no need to fetch
+        }
+        
+        try {
+            // Show loading state
+            container.innerHTML = `
+                <div style="color: white; text-align: center;">
+                    <h3>Loading Aerial View...</h3>
+                    <div style="margin: 20px 0;">
+                        <div style="display: inline-block; width: 40px; height: 40px; border: 3px solid #333; border-top: 3px solid #007acc; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                    </div>
+                    <p>Fetching video from Google Maps</p>
+                </div>
+                <button class="fullscreen-btn" onclick="toggleFullscreen(this)" title="Fullscreen">⛶</button>
+                <style>
+                    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+                </style>`;
+            
+            const response = await fetch(`https://aerialview.googleapis.com/v1/videos:lookupVideo?key=${API_KEY}&videoId=${videoId}`);
+            const data = await response.json();
+            
+            if (data.state === 'ACTIVE' && data.uris) {
+                const videoUri = data.uris.MP4_HIGH?.landscapeUri || data.uris.MP4_HIGH?.portraitUri;
+                
+                if (videoUri) {
+                    container.innerHTML = `
+                        <video controls autoplay loop muted style="width: 100%; height: 100%; object-fit: contain;" onloadstart="this.style.opacity='0'" oncanplay="this.style.opacity='1'; this.style.transition='opacity 0.5s ease';">
+                            <source src="${videoUri}" type="video/mp4">
+                        </video>
+                        <button class="fullscreen-btn" onclick="toggleFullscreen(this)" title="Fullscreen">⛶</button>`;
+                } else {
+                    container.innerHTML = `
+                        <div style="color: white; text-align: center;">
+                            <h3>⚠️ Video Not Available</h3>
+                            <p>Aerial view could not be loaded</p>
+                        </div>
+                        <button class="fullscreen-btn" onclick="toggleFullscreen(this)" title="Fullscreen">⛶</button>`;
+                }
+            } else if (data.state === 'PROCESSING') {
+                // Show processing message and retry
+                container.innerHTML = `
+                    <div style="color: white; text-align: center;">
+                        <h3>📹 Processing Aerial View...</h3>
+                        <p>Video is being prepared by Google Maps</p>
+                        <p style="opacity: 0.7; font-size: 0.9em;">Retrying in 3 seconds...</p>
+                    </div>
+                    <button class="fullscreen-btn" onclick="toggleFullscreen(this)" title="Fullscreen">⛶</button>`;
+                setTimeout(() => loadAerialVideo(bbl, videoId), 3000);
+            } else {
+                // Unknown state, show fallback
+                container.innerHTML = `
+                    <div style="color: white; text-align: center;">
+                        <h3>🚁 Aerial View Coming Soon</h3>
+                        <p>Video status: ${data.state || 'Unknown'}</p>
+                    </div>
+                    <button class="fullscreen-btn" onclick="toggleFullscreen(this)" title="Fullscreen">⛶</button>`;
+            }
+        } catch (error) {
+            console.error('Error loading aerial video:', error);
+            container.innerHTML = `
+                <div style="color: white; text-align: center;">
+                    <h3>❌ Connection Error</h3>
+                    <p>Could not connect to Google Maps</p>
+                    <button onclick="loadAerialVideo('${bbl}', '${videoId}')" style="margin-top: 15px; padding: 8px 16px; background: #007acc; color: white; border: none; border-radius: 4px; cursor: pointer;">Retry</button>
+                </div>
+                <button class="fullscreen-btn" onclick="toggleFullscreen(this)" title="Fullscreen">⛶</button>`;
+        }
+    }
+    </script>
+    </div>
+    
+    <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif;">
+        Build: 04:53:25 PM CST | Owner
+    </div>
+</body>
+</html>
