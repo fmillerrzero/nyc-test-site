@@ -71,9 +71,9 @@
         
         .clickable-link { color: var(--rzero-primary); text-decoration: none; cursor: pointer; }
         .clickable-link:hover { text-decoration: underline; }
-        .portfolio-tile { cursor: pointer; transition: all 0.3s ease; }
-        .portfolio-tile:hover { background-color: rgba(0, 118, 157, 0.08) !important; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0, 118, 157, 0.2); }
-        .portfolio-tile.selected { background-color: rgba(0, 118, 157, 0.15) !important; border: 3px solid var(--rzero-primary) !important; }
+        .portfolio-tile { cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .portfolio-tile:not(.selected):hover { background-color: rgba(0, 118, 157, 0.08) !important; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0, 118, 157, 0.2); }
+        .portfolio-tile.selected { background-color: rgba(0, 118, 157, 0.15) !important; border: 3px solid var(--rzero-primary) !important; box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.3), 0 8px 20px rgba(0, 118, 157, 0.4) !important; }
         
         /* Enhanced Savings Styling from Prospector */
         .savings-high {
@@ -137,12 +137,12 @@
             display: none;
         }
 
-        details[open] summary span {
+        details[open] summary span:last-child {
             transform: rotate(180deg);
             display: inline-block;
         }
 
-        details summary span {
+        details summary span:last-child {
             transition: transform 0.3s ease;
             display: inline-block;
         }
@@ -263,10 +263,10 @@
         </div>
         
 
-        <div class="portfolio-box"><h2>Top Portfolios</h2><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;"><div class="portfolio-tile" onclick="window.filterByOwner('Vornado Realty Trust')" style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid rgba(0, 118, 157, 0.2); position: relative; min-height: 100px;"><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-odcv-prospector/main/Logos/Vornado_Realty_Trust.png" alt="Vornado Realty Trust" style="max-height:80px;max-width:200px;margin-left:15px;vertical-align:middle;opacity:0.8;position:absolute;top:10px;right:15px;"><strong style="color: var(--rzero-primary);">Vornado Realty Trust</strong><br><span style="color: #666;">42 buildings • $1.1M savings</span></div><div class="portfolio-tile" onclick="window.filterByOwner('SL Green Realty')" style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid rgba(0, 118, 157, 0.2); position: relative; min-height: 100px;"><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-odcv-prospector/main/Logos/SL_Green_Realty.png" alt="SL Green Realty" style="max-height:80px;max-width:200px;margin-left:15px;vertical-align:middle;opacity:0.8;position:absolute;top:10px;right:15px;"><strong style="color: var(--rzero-primary);">SL Green Realty</strong><br><span style="color: #666;">26 buildings • $1.7M savings</span></div><div class="portfolio-tile" onclick="window.filterByOwner('Kaufman Organization')" style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid rgba(0, 118, 157, 0.2); position: relative; min-height: 100px;"><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-odcv-prospector/main/Logos/Kaufman_Organization.png" alt="Kaufman Organization" style="max-height:80px;max-width:200px;margin-left:15px;vertical-align:middle;opacity:0.8;position:absolute;top:10px;right:15px;"><strong style="color: var(--rzero-primary);">Kaufman Organization</strong><br><span style="color: #666;">23 buildings • $0.0M savings</span></div></div></div>
+        <div class="portfolio-box"><h2>Top Portfolios</h2><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;"><div class="portfolio-tile" onclick="filterByOwner('Vornado Realty Trust')" style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid rgba(0, 118, 157, 0.2); cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; min-height: 100px;"><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-odcv-prospector/main/Logos/Vornado_Realty_Trust.png" alt="Vornado Realty Trust" style="max-height:80px;max-width:200px;margin-left:15px;vertical-align:middle;opacity:0.8;position:absolute;top:10px;right:15px;"><strong style="color: var(--rzero-primary); display: block; margin-bottom: 5px;">Vornado Realty Trust</strong><span style="color: #666;">42 buildings • $1.1M savings</span></div><div class="portfolio-tile" onclick="filterByOwner('SL Green Realty')" style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid rgba(0, 118, 157, 0.2); cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; min-height: 100px;"><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-odcv-prospector/main/Logos/SL_Green_Realty.png" alt="SL Green Realty" style="max-height:80px;max-width:200px;margin-left:15px;vertical-align:middle;opacity:0.8;position:absolute;top:10px;right:15px;"><strong style="color: var(--rzero-primary); display: block; margin-bottom: 5px;">SL Green Realty</strong><span style="color: #666;">26 buildings • $1.7M savings</span></div><div class="portfolio-tile" onclick="filterByOwner('Kaufman Organization')" style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid rgba(0, 118, 157, 0.2); cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; min-height: 100px;"><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-odcv-prospector/main/Logos/Kaufman_Organization.png" alt="Kaufman Organization" style="max-height:80px;max-width:200px;margin-left:15px;vertical-align:middle;opacity:0.8;position:absolute;top:10px;right:15px;"><strong style="color: var(--rzero-primary); display: block; margin-bottom: 5px;">Kaufman Organization</strong><span style="color: #666;">23 buildings • $0.0M savings</span></div></div></div>
         
         <div style="background: #f8f8f8; border: 1px solid #ddd; padding: 15px; margin-bottom: 20px;">
-            <details>
+            <details open>
                 <summary style="cursor: pointer; font-size: 1.5em; color: var(--rzero-primary); font-weight: 600; padding: 10px 0; list-style: none;">
                     NYC Office Occupancy Recovery <span style="font-size: 0.8em; transition: transform 0.3s;">▼</span>
                 </summary>
@@ -281,7 +281,7 @@
         <div style="background: #f8f8f8; border: 1px solid #ddd; padding: 15px; margin-bottom: 20px;">
             <details>
                 <summary style="cursor: pointer; font-size: 1.5em; color: var(--rzero-primary); font-weight: 600; padding: 10px 0;">
-                    Behind the Rankings <span style="font-size: 0.8em;">▼</span>
+                    Behind the Rankings <span style="font-size: 0.8em; transition: transform 0.3s; display: inline-block;">▼</span>
                 </summary>
                 <div style="margin-top: 15px;">
                     <p>Buildings are ranked by <strong>SALES READINESS</strong>, not just savings amount. The scoring system (110 points total):</p>
@@ -300,8 +300,8 @@
         </div>
         
         <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-            <input type="text" id="search" onkeyup="window.filterTable()" placeholder="Search by address, owner, property manager" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
-            <button id="clearFilterBtn" onclick="window.clearAllFilters()" style="background: #e0e0e0; color: #999; border: none; padding: 10px 25px; border-radius: 8px; cursor: not-allowed; font-size: 16px; font-weight: 600; transition: all 0.2s;" disabled>
+            <input type="text" id="search" onkeyup="filterTable()" placeholder="Search by address, owner, property manager" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+            <button id="clearFilterBtn" onclick="clearAllFilters()" style="background: #e0e0e0; color: #999; border: none; padding: 10px 25px; border-radius: 8px; cursor: not-allowed; font-size: 16px; font-weight: 600; transition: all 0.2s;" disabled>
                 Clear Filter
             </button>
         </div>
@@ -311,12 +311,12 @@
         <thead style="position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
         <tr>
             <th class="thumb-cell">Image</th>
-            <th onclick="window.sortTable(1)" style="cursor: pointer;">Rank <span class="sort-indicator">↕</span></th>
-            <th onclick="window.sortTable(2)" style="cursor: pointer;">Building <span class="sort-indicator">↕</span></th>
-            <th onclick="window.sortTable(3)" style="cursor: pointer;">Owner <span class="sort-indicator">↕</span></th>
-            <th onclick="window.sortTable(4)" style="cursor: pointer;">Manager <span class="sort-indicator">↕</span></th>
-            <th onclick="window.sortTable(5)" style="cursor: pointer;">Annual ODCV Savings <span class="sort-indicator">↕</span></th>
-            <th onclick="window.sortTable(6)" style="cursor: pointer;">Score <span class="sort-indicator">↕</span></th>
+            <th onclick="sortTable(1)" style="cursor: pointer;">Rank <span class="sort-indicator">↕</span></th>
+            <th onclick="sortTable(2)" style="cursor: pointer;">Building <span class="sort-indicator">↕</span></th>
+            <th onclick="sortTable(3)" style="cursor: pointer;">Owner <span class="sort-indicator">↕</span></th>
+            <th onclick="sortTable(4)" style="cursor: pointer;">Manager <span class="sort-indicator">↕</span></th>
+            <th onclick="sortTable(5)" style="cursor: pointer;">Annual ODCV Savings <span class="sort-indicator">↕</span></th>
+            <th onclick="sortTable(6)" style="cursor: pointer;">Score <span class="sort-indicator">↕</span></th>
             <th>Details</th>
         </tr>
         </thead>
@@ -329,10 +329,10 @@
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                      onclick="window.location.href='1009950005.html'">
                 <div class="no-thumb" style="display:none;" onclick="window.location.href='1009950005.html'">No image</div></td>
-            <td><span class="rzero-badge">#1.0</span></td>
+            <td><span class="rzero-badge">#1</span></td>
             <td>1472 Broadway</td>
-            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); window.filterByOwner('Durst Organization')" class="clickable-link">Durst Organization</a></td>
-            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); window.filterByManager('Durst Organization')" class="clickable-link">Durst Organization</a></td>
+            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByOwner('Durst Organization')" class="clickable-link">Durst Organization</a></td>
+            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByManager('Durst Organization')" class="clickable-link">Durst Organization</a></td>
             <td class="savings-high" data-value="539290.0599999999">$539,290</td>
             <td>98.0</td>
             <td><a href="1009950005.html" onclick="event.stopPropagation();">View Details →</a></td>
@@ -345,10 +345,10 @@
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                      onclick="window.location.href='1000940025.html'">
                 <div class="no-thumb" style="display:none;" onclick="window.location.href='1000940025.html'">No image</div></td>
-            <td><span class="rzero-badge">#2.0</span></td>
+            <td><span class="rzero-badge">#2</span></td>
             <td>100 Gold St</td>
-            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); window.filterByOwner('City of New York')" class="clickable-link">City of New York</a></td>
-            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); window.filterByManager('DCAS')" class="clickable-link">DCAS</a></td>
+            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByOwner('City of New York')" class="clickable-link">City of New York</a></td>
+            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByManager('DCAS')" class="clickable-link">DCAS</a></td>
             <td class="savings-medium" data-value="181235.01999999996">$181,235</td>
             <td>97.0</td>
             <td><a href="1000940025.html" onclick="event.stopPropagation();">View Details →</a></td>
@@ -361,10 +361,10 @@
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                      onclick="window.location.href='1010160036.html'">
                 <div class="no-thumb" style="display:none;" onclick="window.location.href='1010160036.html'">No image</div></td>
-            <td><span class="rzero-badge">#3.0</span></td>
+            <td><span class="rzero-badge">#3</span></td>
             <td>1515 Broadway</td>
-            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); window.filterByOwner('SL Green Realty')" class="clickable-link">SL Green Realty</a></td>
-            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); window.filterByManager('SL Green Realty')" class="clickable-link">SL Green Realty</a></td>
+            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByOwner('SL Green Realty')" class="clickable-link">SL Green Realty</a></td>
+            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByManager('SL Green Realty')" class="clickable-link">SL Green Realty</a></td>
             <td class="savings-high" data-value="651112.0099999999">$651,112</td>
             <td>96.7</td>
             <td><a href="1010160036.html" onclick="event.stopPropagation();">View Details →</a></td>
@@ -377,10 +377,10 @@
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                      onclick="window.location.href='1012670001.html'">
                 <div class="no-thumb" style="display:none;" onclick="window.location.href='1012670001.html'">No image</div></td>
-            <td><span class="rzero-badge">#4.0</span></td>
+            <td><span class="rzero-badge">#4</span></td>
             <td>1290 Ave Of The Americas</td>
-            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); window.filterByOwner('Vornado Realty Trust')" class="clickable-link">Vornado Realty Trust</a></td>
-            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); window.filterByManager('Cushman & Wakefield')" class="clickable-link">Cushman & Wakefield</a></td>
+            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByOwner('Vornado Realty Trust')" class="clickable-link">Vornado Realty Trust</a></td>
+            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByManager('Cushman & Wakefield')" class="clickable-link">Cushman & Wakefield</a></td>
             <td class="savings-high" data-value="1090509.21">$1,090,509</td>
             <td>96.6</td>
             <td><a href="1012670001.html" onclick="event.stopPropagation();">View Details →</a></td>
@@ -393,10 +393,10 @@
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                      onclick="window.location.href='1013010001.html'">
                 <div class="no-thumb" style="display:none;" onclick="window.location.href='1013010001.html'">No image</div></td>
-            <td><span class="rzero-badge">#5.0</span></td>
+            <td><span class="rzero-badge">#5</span></td>
             <td>245 Park Ave</td>
-            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); window.filterByOwner('SL Green Realty')" class="clickable-link">SL Green Realty</a></td>
-            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); window.filterByManager('SL Green Realty')" class="clickable-link">SL Green Realty</a></td>
+            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByOwner('SL Green Realty')" class="clickable-link">SL Green Realty</a></td>
+            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByManager('SL Green Realty')" class="clickable-link">SL Green Realty</a></td>
             <td class="savings-high" data-value="782678.02">$782,678</td>
             <td>95.9</td>
             <td><a href="1013010001.html" onclick="event.stopPropagation();">View Details →</a></td>
@@ -412,72 +412,125 @@
     var activeOwnerFilter = null;
     
     // Define filter functions early so they're available for onclick handlers
-    window.filterByOwner = function(ownerName) {
-        try {
-            // Set the search box value
-            document.getElementById('search').value = ownerName;
+    function filterByOwner(ownerName) {
+        // Check if this owner is already selected
+        const isAlreadySelected = activeOwnerFilter === ownerName;
+        
+        if (isAlreadySelected) {
+            // Unselect: clear filter and show all buildings
+            activeOwnerFilter = null;
             
-            // Filter the table
-            window.filterTable();
+            // Clear search bar
+            document.getElementById('search').value = '';
+            
+            // Remove selection styling
+            document.querySelectorAll('.portfolio-tile').forEach(tile => {
+                tile.classList.remove('selected');
+            });
+            
+            // Show all rows
+            const rows = document.querySelectorAll('#buildingTable tbody tr');
+            rows.forEach(row => {
+                row.style.display = '';
+            });
+        } else {
+            // Select: apply filter
+            activeOwnerFilter = ownerName;
+            
+            // Populate search bar with owner name
+            document.getElementById('search').value = ownerName;
             
             // Update portfolio tile selection
             document.querySelectorAll('.portfolio-tile').forEach(tile => {
                 tile.classList.remove('selected');
                 const tileOwner = tile.querySelector('strong');
-                if (tileOwner && tileOwner.textContent.trim() === ownerName.trim()) {
+                if (tileOwner && tileOwner.textContent.trim() === ownerName) {
                     tile.classList.add('selected');
                 }
             });
             
-            // Track active filter
-            activeOwnerFilter = ownerName;
-        } catch (error) {
-            console.error('Error in filterByOwner:', error);
+            // Filter rows
+            const rows = document.querySelectorAll('#buildingTable tbody tr');
+            rows.forEach(row => {
+                const ownerCell = row.cells[3];
+                const isMatch = ownerCell && ownerCell.textContent.trim() === ownerName;
+                row.style.display = isMatch ? '' : 'none';
+            });
         }
+        
+        updateClearButtonState();
     }
     
-    window.filterByManager = function(managerName) {
+    function filterByManager(managerName) {
+        // Update active filter to track manager filters too
+        activeOwnerFilter = managerName;
+        
+        // Populate search bar with manager name
         document.getElementById('search').value = managerName;
-        window.filterTable();
+        
+        const rows = document.querySelectorAll('#buildingTable tbody tr');
+        rows.forEach(row => {
+            const managerCell = row.cells[4];
+            const isMatch = managerCell && managerCell.textContent.trim() === managerName;
+            row.style.display = isMatch ? '' : 'none';
+        });
+        
+        updateClearButtonState();
     }
     
     // Search functionality
-    window.filterTable = function() {
+    function filterTable() {
         const input = document.getElementById('search').value.toLowerCase();
         const rows = document.querySelectorAll('#buildingTable tbody tr');
         rows.forEach(row => {
             const searchText = row.getAttribute('data-search');
             row.style.display = searchText && searchText.includes(input) ? '' : 'none';
         });
-        window.updateClearButtonState();
+        updateClearButtonState();
     }
     
-    window.updateClearButtonState = function() {
+    function updateClearButtonState() {
         const btn = document.getElementById('clearFilterBtn');
         const searchBox = document.getElementById('search');
-        const hasActiveFilter = searchBox.value.trim() !== '';
+        const hasActiveFilter = (searchBox.value.trim() !== '') || (activeOwnerFilter !== null);
         
         if (hasActiveFilter) {
             btn.disabled = false;
             btn.style.background = '#c41e3a';
             btn.style.color = 'white';
             btn.style.cursor = 'pointer';
+            btn.onmouseover = function() { this.style.background='#a01729'; };
+            btn.onmouseout = function() { this.style.background='#c41e3a'; };
         } else {
             btn.disabled = true;
             btn.style.background = '#e0e0e0';
             btn.style.color = '#999';
             btn.style.cursor = 'not-allowed';
+            btn.onmouseover = null;
+            btn.onmouseout = null;
         }
     }
     
-    window.clearAllFilters = function() {
+    function clearAllFilters() {
+        // Clear search box
         document.getElementById('search').value = '';
+        
+        // Reset active filter
         activeOwnerFilter = null;
-        window.filterTable();
+        
+        // Show all rows
+        const rows = document.querySelectorAll('#buildingTable tbody tr');
+        rows.forEach(row => {
+            row.style.display = '';
+        });
+        
+        // Remove selection from portfolio tiles
         document.querySelectorAll('.portfolio-tile').forEach(tile => {
             tile.classList.remove('selected');
         });
-        window.updateClearButtonState();
+        
+        // Update button state
+        updateClearButtonState();
     }
     // NYC Occupancy Chart - Initialize after DOM loads to ensure canvas exists
     document.addEventListener("DOMContentLoaded", function() {
@@ -570,7 +623,7 @@
     
     // Sortable table functionality
     let sortDir = {};
-    window.sortTable = function(col) {
+    function sortTable(col) {
         const tbody = document.querySelector('#buildingTable tbody');
         const rows = Array.from(tbody.querySelectorAll('tr'));
         sortDir[col] = !sortDir[col];
@@ -612,18 +665,18 @@
     
     // Initialize on page load
     window.addEventListener('load', function() {
-        window.updateClearButtonState();
+        updateClearButtonState();
         
         // Initialize any portfolio tiles that might be pre-selected
         const urlParams = new URLSearchParams(window.location.search);
         const ownerParam = urlParams.get('owner');
         if (ownerParam) {
-            window.filterByOwner(ownerParam);
+            filterByOwner(ownerParam);
         }
     });
     
     // Back to top functionality
-    window.scrollToTop = function() {
+    function scrollToTop() {
         window.scrollTo({top: 0, behavior: 'smooth'});
     }
     
@@ -676,7 +729,7 @@
     </script>
     
     <!-- Back to Top Button -->
-    <button id="backToTop" onclick="window.scrollToTop()" style="
+    <button id="backToTop" onclick="scrollToTop()" style="
         position: fixed;
         bottom: 80px;
         right: 30px;
@@ -694,7 +747,7 @@
     ">↑</button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: {datetime.now(pytz.timezone('America/Mexico_City')).strftime('%I:%M:%S %p CST')} | first fix{' | ' + sys.argv[1] if len(sys.argv) > 1 else ''}
+        Build: {datetime.now(pytz.timezone('America/Mexico_City')).strftime('%I:%M:%S %p CST')} | Aug 1{' | ' + sys.argv[1] if len(sys.argv) > 1 else ''}
     </div>
 </body>
 </html>
