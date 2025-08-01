@@ -144,6 +144,7 @@
 
         details summary span {
             transition: transform 0.3s ease;
+            display: inline-block;
         }
         
         .portfolio-box { 
@@ -217,7 +218,7 @@
         
         @media print {
             .header { background: white !important; box-shadow: none !important; }
-            .portfolio-box, #occupancyChart, #backToTop, button { display: none !important; }
+            .portfolio-box, #occupancyChartSlim, #backToTop, button { display: none !important; }
             .table-wrapper { max-height: none !important; overflow: visible !important; }
             table { box-shadow: none !important; }
             th { background: #f0f0f0 !important; color: black !important; }
@@ -262,7 +263,20 @@
         </div>
         
 
-        <div class="portfolio-box"><h2>Top Portfolios</h2><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;"><div class="portfolio-tile" onclick="filterByOwner('Vornado Realty Trust');" style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid rgba(0, 118, 157, 0.2); position: relative; min-height: 100px;"><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/Logos/Vornado_Realty_Trust.png" alt="Vornado Realty Trust" style="max-height:80px;max-width:200px;margin-left:15px;vertical-align:middle;opacity:0.8;position:absolute;top:10px;right:15px;"><strong style="color: var(--rzero-primary);">Vornado Realty Trust</strong><br><span style="color: #666;">42 buildings • $1.1M savings</span></div><div class="portfolio-tile" onclick="filterByOwner('SL Green Realty');" style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid rgba(0, 118, 157, 0.2); position: relative; min-height: 100px;"><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/Logos/SL_Green_Realty.png" alt="SL Green Realty" style="max-height:50px;max-width:150px;margin-left:15px;vertical-align:middle;opacity:0.8;position:absolute;top:15px;right:15px;"><strong style="color: var(--rzero-primary);">SL Green Realty</strong><br><span style="color: #666;">26 buildings • $1.7M savings</span></div><div class="portfolio-tile" onclick="filterByOwner('Kaufman Organization');" style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid rgba(0, 118, 157, 0.2); position: relative; min-height: 100px;"><strong style="color: var(--rzero-primary);">Kaufman Organization</strong><br><span style="color: #666;">23 buildings • $0.0M savings</span></div></div></div>
+        <div class="portfolio-box"><h2>Top Portfolios</h2><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;"><div class="portfolio-tile" onclick="window.filterByOwner('Vornado Realty Trust')" style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid rgba(0, 118, 157, 0.2); position: relative; min-height: 100px;"><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-odcv-prospector/main/Logos/Vornado_Realty_Trust.png" alt="Vornado Realty Trust" style="max-height:80px;max-width:200px;margin-left:15px;vertical-align:middle;opacity:0.8;position:absolute;top:10px;right:15px;"><strong style="color: var(--rzero-primary);">Vornado Realty Trust</strong><br><span style="color: #666;">42 buildings • $1.1M savings</span></div><div class="portfolio-tile" onclick="window.filterByOwner('SL Green Realty')" style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid rgba(0, 118, 157, 0.2); position: relative; min-height: 100px;"><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-odcv-prospector/main/Logos/SL_Green_Realty.png" alt="SL Green Realty" style="max-height:80px;max-width:200px;margin-left:15px;vertical-align:middle;opacity:0.8;position:absolute;top:10px;right:15px;"><strong style="color: var(--rzero-primary);">SL Green Realty</strong><br><span style="color: #666;">26 buildings • $1.7M savings</span></div><div class="portfolio-tile" onclick="window.filterByOwner('Kaufman Organization')" style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid rgba(0, 118, 157, 0.2); position: relative; min-height: 100px;"><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-odcv-prospector/main/Logos/Kaufman_Organization.png" alt="Kaufman Organization" style="max-height:80px;max-width:200px;margin-left:15px;vertical-align:middle;opacity:0.8;position:absolute;top:10px;right:15px;"><strong style="color: var(--rzero-primary);">Kaufman Organization</strong><br><span style="color: #666;">23 buildings • $0.0M savings</span></div></div></div>
+        
+        <div style="background: #f8f8f8; border: 1px solid #ddd; padding: 15px; margin-bottom: 20px;">
+            <details>
+                <summary style="cursor: pointer; font-size: 1.5em; color: var(--rzero-primary); font-weight: 600; padding: 10px 0; list-style: none;">
+                    NYC Office Occupancy Recovery <span style="font-size: 0.8em; transition: transform 0.3s;">▼</span>
+                </summary>
+                <div style="margin-top: 15px;">
+                    <div style="height: 250px;">
+                        <canvas id="occupancyChartSlim"></canvas>
+                    </div>
+                </div>
+            </details>
+        </div>
         
         <div style="background: #f8f8f8; border: 1px solid #ddd; padding: 15px; margin-bottom: 20px;">
             <details>
@@ -285,47 +299,24 @@
             </details>
         </div>
         
-        <div style="background: white; padding: 20px 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 118, 157, 0.08); margin-bottom: 30px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <h3 style="color: var(--rzero-primary); margin: 0;">NYC Office Occupancy Recovery</h3>
-                <div style="display: flex; gap: 25px; font-size: 0.95em;">
-                    <div style="display: flex; align-items: center; gap: 6px;">
-                        <div style="width: 20px; height: 3px; background: #5B6FED; border-radius: 2px;"></div>
-                        <span>NYC: <strong>76%</strong></span>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 6px;">
-                        <div style="width: 20px; height: 3px; background: #FF6B6B; border-radius: 2px;"></div>
-                        <span>US Avg: <strong>66%</strong></span>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 6px;">
-                        <div style="width: 20px; height: 3px; background: #4ECDC4; border-radius: 2px;"></div>
-                        <span>SF: <strong>47%</strong></span>
-                    </div>
-                </div>
-            </div>
-            <div style="height: 220px;">
-                <canvas id="occupancyChart"></canvas>
-            </div>
-        </div>
-        
         <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-            <input type="text" id="search" onkeyup="filterTable()" placeholder="Search by address, owner, property manager" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
-            <button id="clearFilterBtn" onclick="clearAllFilters()" style="background: #e0e0e0; color: #999; border: none; padding: 10px 25px; border-radius: 8px; cursor: not-allowed; font-size: 16px; font-weight: 600; transition: all 0.2s;" disabled>
+            <input type="text" id="search" onkeyup="window.filterTable()" placeholder="Search by address, owner, property manager" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+            <button id="clearFilterBtn" onclick="window.clearAllFilters()" style="background: #e0e0e0; color: #999; border: none; padding: 10px 25px; border-radius: 8px; cursor: not-allowed; font-size: 16px; font-weight: 600; transition: all 0.2s;" disabled>
                 Clear Filter
             </button>
         </div>
         
         <div class="table-wrapper" style="overflow-x: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 118, 157, 0.08); position: relative; max-height: calc(100vh - 200px); overflow-y: auto;">
-        <table style="width: 100%; background: white; border-collapse: collapse; min-width: 900px;">
+        <table id="buildingTable" style="width: 100%; background: white; border-collapse: collapse; min-width: 900px;">
         <thead style="position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
         <tr>
             <th class="thumb-cell">Image</th>
-            <th onclick="sortTable(1)" style="cursor: pointer;">Rank <span class="sort-indicator">↕</span></th>
-            <th onclick="sortTable(2)" style="cursor: pointer;">Building <span class="sort-indicator">↕</span></th>
-            <th onclick="sortTable(3)" style="cursor: pointer;">Owner <span class="sort-indicator">↕</span></th>
-            <th onclick="sortTable(4)" style="cursor: pointer;">Manager <span class="sort-indicator">↕</span></th>
-            <th onclick="sortTable(5)" style="cursor: pointer;">Annual ODCV Savings <span class="sort-indicator">↕</span></th>
-            <th onclick="sortTable(6)" style="cursor: pointer;">Score <span class="sort-indicator">↕</span></th>
+            <th onclick="window.sortTable(1)" style="cursor: pointer;">Rank <span class="sort-indicator">↕</span></th>
+            <th onclick="window.sortTable(2)" style="cursor: pointer;">Building <span class="sort-indicator">↕</span></th>
+            <th onclick="window.sortTable(3)" style="cursor: pointer;">Owner <span class="sort-indicator">↕</span></th>
+            <th onclick="window.sortTable(4)" style="cursor: pointer;">Manager <span class="sort-indicator">↕</span></th>
+            <th onclick="window.sortTable(5)" style="cursor: pointer;">Annual ODCV Savings <span class="sort-indicator">↕</span></th>
+            <th onclick="window.sortTable(6)" style="cursor: pointer;">Score <span class="sort-indicator">↕</span></th>
             <th>Details</th>
         </tr>
         </thead>
@@ -340,9 +331,9 @@
                 <div class="no-thumb" style="display:none;" onclick="window.location.href='1009950005.html'">No image</div></td>
             <td><span class="rzero-badge">#1.0</span></td>
             <td>1472 Broadway</td>
-            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByOwner('Durst Organization')" class="clickable-link">Durst Organization</a></td>
-            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByManager('Durst Organization')" class="clickable-link">Durst Organization</a></td>
-            <td class="savings-high">$539,290</td>
+            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); window.filterByOwner('Durst Organization')" class="clickable-link">Durst Organization</a></td>
+            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); window.filterByManager('Durst Organization')" class="clickable-link">Durst Organization</a></td>
+            <td class="savings-high" data-value="539290.0599999999">$539,290</td>
             <td>98.0</td>
             <td><a href="1009950005.html" onclick="event.stopPropagation();">View Details →</a></td>
         </tr>
@@ -356,9 +347,9 @@
                 <div class="no-thumb" style="display:none;" onclick="window.location.href='1000940025.html'">No image</div></td>
             <td><span class="rzero-badge">#2.0</span></td>
             <td>100 Gold St</td>
-            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByOwner('City of New York')" class="clickable-link">City of New York</a></td>
-            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByManager('DCAS')" class="clickable-link">DCAS</a></td>
-            <td class="savings-medium">$181,235</td>
+            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); window.filterByOwner('City of New York')" class="clickable-link">City of New York</a></td>
+            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); window.filterByManager('DCAS')" class="clickable-link">DCAS</a></td>
+            <td class="savings-medium" data-value="181235.01999999996">$181,235</td>
             <td>97.0</td>
             <td><a href="1000940025.html" onclick="event.stopPropagation();">View Details →</a></td>
         </tr>
@@ -372,9 +363,9 @@
                 <div class="no-thumb" style="display:none;" onclick="window.location.href='1010160036.html'">No image</div></td>
             <td><span class="rzero-badge">#3.0</span></td>
             <td>1515 Broadway</td>
-            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByOwner('SL Green Realty')" class="clickable-link">SL Green Realty</a></td>
-            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByManager('SL Green Realty')" class="clickable-link">SL Green Realty</a></td>
-            <td class="savings-high">$651,112</td>
+            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); window.filterByOwner('SL Green Realty')" class="clickable-link">SL Green Realty</a></td>
+            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); window.filterByManager('SL Green Realty')" class="clickable-link">SL Green Realty</a></td>
+            <td class="savings-high" data-value="651112.0099999999">$651,112</td>
             <td>96.7</td>
             <td><a href="1010160036.html" onclick="event.stopPropagation();">View Details →</a></td>
         </tr>
@@ -388,9 +379,9 @@
                 <div class="no-thumb" style="display:none;" onclick="window.location.href='1012670001.html'">No image</div></td>
             <td><span class="rzero-badge">#4.0</span></td>
             <td>1290 Ave Of The Americas</td>
-            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByOwner('Vornado Realty Trust')" class="clickable-link">Vornado Realty Trust</a></td>
-            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByManager('Cushman & Wakefield')" class="clickable-link">Cushman & Wakefield</a></td>
-            <td class="savings-high">$1,090,509</td>
+            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); window.filterByOwner('Vornado Realty Trust')" class="clickable-link">Vornado Realty Trust</a></td>
+            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); window.filterByManager('Cushman & Wakefield')" class="clickable-link">Cushman & Wakefield</a></td>
+            <td class="savings-high" data-value="1090509.21">$1,090,509</td>
             <td>96.6</td>
             <td><a href="1012670001.html" onclick="event.stopPropagation();">View Details →</a></td>
         </tr>
@@ -404,9 +395,9 @@
                 <div class="no-thumb" style="display:none;" onclick="window.location.href='1013010001.html'">No image</div></td>
             <td><span class="rzero-badge">#5.0</span></td>
             <td>245 Park Ave</td>
-            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByOwner('SL Green Realty')" class="clickable-link">SL Green Realty</a></td>
-            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByManager('SL Green Realty')" class="clickable-link">SL Green Realty</a></td>
-            <td class="savings-high">$782,678</td>
+            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); window.filterByOwner('SL Green Realty')" class="clickable-link">SL Green Realty</a></td>
+            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); window.filterByManager('SL Green Realty')" class="clickable-link">SL Green Realty</a></td>
+            <td class="savings-high" data-value="782678.02">$782,678</td>
             <td>95.9</td>
             <td><a href="1013010001.html" onclick="event.stopPropagation();">View Details →</a></td>
         </tr>
@@ -417,170 +408,51 @@
     </div>
     
     <script>
-    // NYC Occupancy Chart
-    const ctx = document.getElementById('occupancyChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-            datasets: [{
-                label: 'NYC',
-                data: [68, 70, 72, 73, 74, 75, 74, 73, 75, 76, 76, 76],
-                borderColor: '#5B6FED',
-                backgroundColor: 'rgba(91, 111, 237, 0.1)',
-                tension: 0.3,
-                borderWidth: 3
-            }, {
-                label: 'US Average',
-                data: [58, 60, 62, 63, 64, 65, 64, 63, 65, 66, 66, 66],
-                borderColor: '#FF6B6B',
-                backgroundColor: 'rgba(255, 107, 107, 0.1)',
-                tension: 0.3,
-                borderWidth: 2
-            }, {
-                label: 'San Francisco',
-                data: [42, 43, 44, 45, 46, 47, 46, 45, 46, 47, 47, 47],
-                borderColor: '#4ECDC4',
-                backgroundColor: 'rgba(78, 205, 196, 0.1)',
-                tension: 0.3,
-                borderWidth: 2
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false  // Hide legend since we show it in header
-                },
-                tooltip: {
-                    mode: 'index',
-                    intersect: false,
-                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                    titleColor: '#fff',
-                    bodyColor: '#fff',
-                    borderColor: '#ddd',
-                    borderWidth: 1,
-                    cornerRadius: 4,
-                    padding: 8,
-                    displayColors: true,
-                    callbacks: {
-                        label: function(context) {
-                            return context.dataset.label + ': ' + context.parsed.y + '%';
-                        }
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    grid: {
-                        display: false
-                    },
-                    ticks: {
-                        font: {
-                            size: 11
-                        }
-                    }
-                },
-                y: {
-                    min: 40,
-                    max: 80,
-                    ticks: {
-                        stepSize: 10,
-                        callback: function(value) {
-                            return value + '%';
-                        },
-                        font: {
-                            size: 11
-                        }
-                    },
-                    grid: {
-                        color: 'rgba(0, 0, 0, 0.05)'
-                    }
-                }
-            },
-            interaction: {
-                mode: 'nearest',
-                axis: 'x',
-                intersect: false
-            }
-        }
-    });
+    // Global variable to track filter state
+    var activeOwnerFilter = null;
     
-    // Helper to escape quotes in JavaScript strings
-    function jsEscape(str) {
-        return str.replace(/\/g, '\\').replace(/'/g, "\'").replace(/"/g, '\"');
+    // Define filter functions early so they're available for onclick handlers
+    window.filterByOwner = function(ownerName) {
+        try {
+            // Set the search box value
+            document.getElementById('search').value = ownerName;
+            
+            // Filter the table
+            window.filterTable();
+            
+            // Update portfolio tile selection
+            document.querySelectorAll('.portfolio-tile').forEach(tile => {
+                tile.classList.remove('selected');
+                const tileOwner = tile.querySelector('strong');
+                if (tileOwner && tileOwner.textContent.trim() === ownerName.trim()) {
+                    tile.classList.add('selected');
+                }
+            });
+            
+            // Track active filter
+            activeOwnerFilter = ownerName;
+        } catch (error) {
+            console.error('Error in filterByOwner:', error);
+        }
     }
     
-    // Sortable table functionality
-    let sortDir = {};
-    function sortTable(col) {
-        const tbody = document.querySelector('tbody');
-        const rows = Array.from(tbody.querySelectorAll('tr'));
-        sortDir[col] = !sortDir[col];
-        
-        rows.sort((a, b) => {
-            let aVal = a.cells[col].textContent.replace(/[#$,]/g, '');
-            let bVal = b.cells[col].textContent.replace(/[#$,]/g, '');
-            
-            // Numeric columns
-            if (col === 1 || col === 5 || col === 6) {
-                aVal = parseFloat(aVal) || 0;
-                bVal = parseFloat(bVal) || 0;
-            }
-            
-            if (sortDir[col]) {
-                return aVal > bVal ? 1 : -1;
-            } else {
-                return aVal < bVal ? 1 : -1;
-            }
-        });
-        
-        rows.forEach(row => tbody.appendChild(row));
-        
-        // Update header arrows
-        document.querySelectorAll('th').forEach((th, idx) => {
-            if (idx > 0 && idx < 7) {
-                th.innerHTML = th.innerHTML.replace(/[↑↓↕]/g, idx === col ? (sortDir[col] ? '↑' : '↓') : '↕');
-            }
-        });
+    window.filterByManager = function(managerName) {
+        document.getElementById('search').value = managerName;
+        window.filterTable();
     }
     
     // Search functionality
-    function filterTable() {
+    window.filterTable = function() {
         const input = document.getElementById('search').value.toLowerCase();
-        const rows = document.querySelectorAll('tbody tr');
+        const rows = document.querySelectorAll('#buildingTable tbody tr');
         rows.forEach(row => {
             const searchText = row.getAttribute('data-search');
-            row.style.display = searchText.includes(input) ? '' : 'none';
+            row.style.display = searchText && searchText.includes(input) ? '' : 'none';
         });
-        updateClearButtonState();
+        window.updateClearButtonState();
     }
     
-    let activeOwnerFilter = null;
-    
-    function filterByOwner(ownerName) {
-        // Escape special regex characters
-        const escapedOwner = ownerName.replace(/[.*+?^${}()|[\]\]/g, '\$&');
-        document.getElementById('search').value = ownerName;
-        filterTable();
-        
-        // Update portfolio tile selection
-        document.querySelectorAll('.portfolio-tile').forEach(tile => {
-            tile.classList.remove('selected');
-            const tileOwner = tile.querySelector('strong');
-            if (tileOwner && tileOwner.textContent === ownerName) {
-                tile.classList.add('selected');
-            }
-        });
-    }
-    
-    function filterByManager(managerName) {
-        document.getElementById('search').value = managerName;
-        filterTable();
-    }
-    
-    function updateClearButtonState() {
+    window.updateClearButtonState = function() {
         const btn = document.getElementById('clearFilterBtn');
         const searchBox = document.getElementById('search');
         const hasActiveFilter = searchBox.value.trim() !== '';
@@ -598,17 +470,160 @@
         }
     }
     
-    function clearAllFilters() {
+    window.clearAllFilters = function() {
         document.getElementById('search').value = '';
-        filterTable();
+        activeOwnerFilter = null;
+        window.filterTable();
         document.querySelectorAll('.portfolio-tile').forEach(tile => {
             tile.classList.remove('selected');
         });
-        updateClearButtonState();
+        window.updateClearButtonState();
+    }
+    // NYC Occupancy Chart - Initialize after DOM loads to ensure canvas exists
+    document.addEventListener("DOMContentLoaded", function() {
+        const ctx = document.getElementById('occupancyChartSlim').getContext('2d');
+        new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ["Jan 2020", "Jul 2020", "Jan 2021", "Jul 2021", "Jan 2022", "Jul 2022", "Jan 2023", "Jul 2023", "Jan 2024", "Jul 2024", "Jan 2025"],
+            datasets: [
+                {
+                    label: 'New York, NY',
+                    data: [95, 10, 20, 35, 50, 55, 60, 62, 65, 67, 70],
+                    borderColor: '#5B6FED',
+                    backgroundColor: 'rgba(91, 111, 237, 0.1)',
+                    tension: 0.3,
+                    borderWidth: 2,
+                    pointRadius: 3,
+                    pointHoverRadius: 5,
+                    fill: false
+                },
+                {
+                    label: 'Nationwide',
+                    data: [95, 8, 18, 32, 47, 53, 58, 60, 63, 64, 66],
+                    borderColor: '#FF6B6B',
+                    backgroundColor: 'rgba(255, 107, 107, 0.1)',
+                    tension: 0.3,
+                    borderWidth: 2,
+                    pointRadius: 3,
+                    pointHoverRadius: 5,
+                    fill: false
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        font: { size: 12 }
+                    }
+                },
+                tooltip: {
+                    mode: 'index',
+                    intersect: false,
+                    backgroundColor: 'rgba(0,0,0,0.8)',
+                    titleColor: '#fff',
+                    bodyColor: '#fff',
+                    borderColor: '#ddd',
+                    borderWidth: 1,
+                    cornerRadius: 4,
+                    padding: 8,
+                    displayColors: true,
+                    callbacks: {
+                        label: (context) => `${context.dataset.label}: ${context.parsed.y}%`
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    grid: { display: false },
+                    ticks: { font: { size: 11 } }
+                },
+                y: {
+                    min: 0,
+                    max: 100,
+                    ticks: {
+                        stepSize: 30,
+                        callback: (value) => `${value}%`,
+                        font: { size: 11 }
+                    },
+                    grid: { color: 'rgba(0,0,0,0.05)' }
+                }
+            },
+            interaction: {
+                mode: 'nearest',
+                axis: 'x',
+                intersect: false
+            }
+        }
+    });
+    }); // End of DOMContentLoaded for chart initialization
+    
+    // Helper to escape quotes in JavaScript strings
+    function jsEscape(str) {
+        return str.replace(/\/g, '\\').replace(/'/g, "\'").replace(/"/g, '\"');
     }
     
+    // Sortable table functionality
+    let sortDir = {};
+    window.sortTable = function(col) {
+        const tbody = document.querySelector('#buildingTable tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        sortDir[col] = !sortDir[col];
+        
+        rows.sort((a, b) => {
+            let aVal, bVal;
+            
+            // Use data-value for savings column
+            if (col === 5) {
+                aVal = parseFloat(a.cells[col].getAttribute('data-value') || 0);
+                bVal = parseFloat(b.cells[col].getAttribute('data-value') || 0);
+            } else if (col === 1 || col === 6) {
+                // Numeric columns
+                aVal = parseFloat(a.cells[col].textContent.replace(/[#$,]/g, '') || 0);
+                bVal = parseFloat(b.cells[col].textContent.replace(/[#$,]/g, '') || 0);
+            } else {
+                // Text columns
+                aVal = (a.cells[col].textContent || '').toLowerCase();
+                bVal = (b.cells[col].textContent || '').toLowerCase();
+            }
+            
+            if (sortDir[col]) {
+                return aVal > bVal ? 1 : -1;
+            } else {
+                return aVal < bVal ? 1 : -1;
+            }
+        });
+        
+        tbody.innerHTML = '';
+        rows.forEach(row => tbody.appendChild(row));
+        
+        // Update header arrows
+        document.querySelectorAll('th').forEach((th, idx) => {
+            if (idx > 0 && idx < 7) {
+                th.innerHTML = th.innerHTML.replace(/[↑↓↕]/g, idx === col ? (sortDir[col] ? '↑' : '↓') : '↕');
+            }
+        });
+    }
+    
+    // Initialize on page load
+    window.addEventListener('load', function() {
+        window.updateClearButtonState();
+        
+        // Initialize any portfolio tiles that might be pre-selected
+        const urlParams = new URLSearchParams(window.location.search);
+        const ownerParam = urlParams.get('owner');
+        if (ownerParam) {
+            window.filterByOwner(ownerParam);
+        }
+    });
+    
     // Back to top functionality
-    function scrollToTop() {
+    window.scrollToTop = function() {
         window.scrollTo({top: 0, behavior: 'smooth'});
     }
     
@@ -622,17 +637,6 @@
         }
     };
     
-    // Initialize on page load
-    document.addEventListener('DOMContentLoaded', function() {
-        updateClearButtonState();
-        
-        // Initialize any portfolio tiles that might be pre-selected
-        const urlParams = new URLSearchParams(window.location.search);
-        const ownerParam = urlParams.get('owner');
-        if (ownerParam) {
-            filterByOwner(ownerParam);
-        }
-    });
     
     // Preload aerial videos for top 10 buildings
     async function preloadAerialVideos() {
@@ -672,7 +676,7 @@
     </script>
     
     <!-- Back to Top Button -->
-    <button id="backToTop" onclick="scrollToTop()" style="
+    <button id="backToTop" onclick="window.scrollToTop()" style="
         position: fixed;
         bottom: 80px;
         right: 30px;
@@ -690,7 +694,7 @@
     ">↑</button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: {datetime.now(pytz.timezone('America/Mexico_City')).strftime('%I:%M:%S %p CST')} | Owner{' | ' + sys.argv[1] if len(sys.argv) > 1 else ''}
+        Build: {datetime.now(pytz.timezone('America/Mexico_City')).strftime('%I:%M:%S %p CST')} | first fix{' | ' + sys.argv[1] if len(sys.argv) > 1 else ''}
     </div>
 </body>
 </html>
