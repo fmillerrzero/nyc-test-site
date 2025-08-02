@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>1290 Ave Of The Americas, New York, NY 10104 - ODCV Analysis (v1754122230)</title>
+    <title>1290 Ave Of The Americas, New York, NY 10104 - ODCV Analysis (v1754122487)</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -1161,8 +1161,9 @@
     }
     
     // Energy chart
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const elecData = {
-        x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        x: months,
         y: [3213957.885, 3282588.554, 2308617.685, 1577044.308, 950607.285, 2029714.408, 2761287.785, 2761287.785, 2029714.408, 1403277.385, 2029714.408, 2761287.785],
         name: 'Electricity',
         type: 'scatter',
@@ -1174,7 +1175,7 @@
     };
     
     const gasData = {
-        x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        x: months,
         y: [101484.9, 94055.1, 94424.9, 52247.6, 39825.2, 36326.0, 39482.8, 37622.8, 35475.2, 43138.3, 79355.2, 96542.0],
         name: 'Gas',
         type: 'scatter',
@@ -1186,7 +1187,7 @@
     };
     
     const steamData = {
-        x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        x: months,
         y: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
         name: 'Steam',
         type: 'scatter',
@@ -1219,7 +1220,7 @@
     
     // Office Energy Chart
     const officeElecData = {
-        x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        x: months,
         y: [7233216.0, 6852520.0, 6471825.0, 5710434.0, 5329738.0, 6091129.0, 6852520.0, 6852520.0, 6091129.0, 5710434.0, 6091129.0, 6852520.0],
         name: 'Electricity',
         type: 'bar',
@@ -1227,7 +1228,7 @@
     };
     
     const officeGasData = {
-        x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        x: months,
         y: [85349.0, 79100.0, 79411.0, 43940.0, 33493.0, 30550.0, 33205.0, 31641.0, 29835.0, 36279.0, 66738.0, 81192.0],
         name: 'Gas',
         type: 'bar',
@@ -1235,7 +1236,7 @@
     };
     
     const officeSteamData = {
-        x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        x: months,
         y: [8176767.0, 8139100.0, 5823848.0, 3595641.0, 4837629.0, 7619258.0, 10042083.0, 8805382.0, 6347781.0, 3913329.0, 4665029.0, 7196876.0],
         name: 'Steam',
         type: 'bar',
@@ -1368,7 +1369,7 @@
     
     // HVAC Percentage Chart
     const hvacData = {
-        x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        x: months,
         y: [0.37368420480464887, 0.40286738034799535, 0.2999999993502605, 0.23225806046846179, 0.15, 0.28024192837662515, 0.3388888854115796, 0.3388888854115796, 0.28024192837662515, 0.20666666249389548, 0.28024192837662515, 0.3388888854115796],
         type: 'scatter',
         mode: 'lines+markers',
@@ -1402,7 +1403,6 @@
     Plotly.newPlot('hvac_pct_chart', [hvacData], hvacLayout);
     
     // ODCV Savings Chart
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const odcvElecSave = {x: months, y: [26350.089999999997, 28217.98999999999, 17889.359999999986, 12326.03, 7932.599999999977, 19538.23999999999, 26854.599999999977, 27569.170000000013, 20031.369999999995, 11367.709999999992, 16879.0, 21448.160000000003], name: 'Elec', type: 'bar', marker: {color: '#0066cc'}};
     const odcvGasSave = {x: months, y: [648.55, 601.12, 603.48, 334.25, 254.96, 232.62, 252.78, 240.91, 227.2, 276.11, 507.29, 617.0], name: 'Gas', type: 'bar', marker: {color: '#ff6600'}};
     const odcvSteamSave = {x: months, y: [87725.62, 87321.5, 62481.99, 38576.35, 51901.2, 81744.3, 107737.93, 94469.8, 68103.08, 41984.71, 50049.43, 77212.71], name: 'Steam', type: 'bar', marker: {color: '#ffc107'}};
@@ -1586,7 +1586,7 @@
     </div>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif;">
-        Build: 02:10:33 AM CST | fixed
+        Build: 02:14:49 AM CST | JS fixes
     </div>
 </body>
 </html>

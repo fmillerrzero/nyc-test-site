@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>100 Gold St, New York, NY 10038 - ODCV Analysis (v1754122230)</title>
+    <title>100 Gold St, New York, NY 10038 - ODCV Analysis (v1754122487)</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -1161,8 +1161,9 @@
     }
     
     // Energy chart
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const elecData = {
-        x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        x: months,
         y: [769565.795, 651406.8987, 689807.095, 705043.2629, 855353.295, 1152357.363, 1993583.395, 1585980.795, 1213134.363, 684133.195, 730358.7629, 273574.095],
         name: 'Electricity',
         type: 'scatter',
@@ -1174,7 +1175,7 @@
     };
     
     const gasData = {
-        x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        x: months,
         y: [1730855.1, 1604136.8, 1610444.1, 891097.6, 679231.4, 619551.0, 673390.6, 641667.2, 605040.3, 735737.0, 1353426.0, 1646553.0],
         name: 'Gas',
         type: 'scatter',
@@ -1186,7 +1187,7 @@
     };
     
     const steamData = {
-        x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        x: months,
         y: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
         name: 'Steam',
         type: 'scatter',
@@ -1219,7 +1220,7 @@
     
     // Office Energy Chart
     const officeElecData = {
-        x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        x: months,
         y: [2101756.0, 1858782.0, 2029495.0, 1997991.0, 2179479.0, 2403258.0, 3210716.0, 2841428.0, 2458322.0, 2024354.0, 2020927.0, 1652388.0],
         name: 'Electricity',
         type: 'bar',
@@ -1227,7 +1228,7 @@
     };
     
     const officeGasData = {
-        x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        x: months,
         y: [1568155.0, 1453348.0, 1459062.0, 807334.0, 615384.0, 561313.0, 610092.0, 581350.0, 548167.0, 666578.0, 1226204.0, 1491777.0],
         name: 'Gas',
         type: 'bar',
@@ -1235,7 +1236,7 @@
     };
     
     const officeSteamData = {
-        x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        x: months,
         y: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
         name: 'Steam',
         type: 'bar',
@@ -1368,7 +1369,7 @@
     
     // HVAC Percentage Chart
     const hvacData = {
-        x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        x: months,
         y: [0.33173527546761195, 0.3175061393920304, 0.307941306312156, 0.3197057105558355, 0.35556658788542517, 0.43442521314163024, 0.5625494682796606, 0.5056959381857349, 0.4470935258814156, 0.3061839236937711, 0.32742648556984555, 0.15],
         type: 'scatter',
         mode: 'lines+markers',
@@ -1402,7 +1403,6 @@
     Plotly.newPlot('hvac_pct_chart', [hvacData], hvacLayout);
     
     // ODCV Savings Chart
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const odcvElecSave = {x: months, y: [6796.720000000001, 6039.860000000001, 5759.509999999995, 5948.529999999999, 7698.770000000004, 11948.669999999998, 20896.770000000004, 17063.210000000006, 12906.28, 5957.189999999995, 6540.169999999991, 2288.4600000000064], name: 'Elec', type: 'bar', marker: {color: '#0066cc'}};
     const odcvGasSave = {x: months, y: [9654.15, 8948.09, 8983.23, 4975.1, 3794.61, 3462.07, 3762.07, 3585.3, 3381.23, 4109.45, 7551.15, 9184.43], name: 'Gas', type: 'bar', marker: {color: '#ff6600'}};
     const odcvSteamSave = {x: months, y: [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan], name: 'Steam', type: 'bar', marker: {color: '#ffc107'}};
@@ -1586,7 +1586,7 @@
     </div>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif;">
-        Build: 02:10:31 AM CST | fixed
+        Build: 02:14:48 AM CST | JS fixes
     </div>
 </body>
 </html>
