@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>100 Gold St, New York, NY 10038 - ODCV Analysis (v1754112411)</title>
+    <title>100 Gold St, New York, NY 10038 - ODCV Analysis (v1754114071)</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --rzero-primary: #007acc;
-            --rzero-secondary: #005ca3;
+            --rzero-primary: #0066cc;
+            --rzero-secondary: #0052a3;
             --text-light: #6b7280;
             --background: #f4fbfd;
             --card-bg: white;
@@ -52,12 +52,14 @@
         
         /* Building Identity Bar */
         .building-identity {
-            padding: 15px 20px;
+            padding: 15px 40px;
             background: #f8f8f8;
             border-bottom: 1px solid #ddd;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .neighborhood-badge {
@@ -159,69 +161,27 @@
             margin: 0 0 30px 0;
         }
         
-        /* Stats Grid */
-        .stats { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-            gap: 20px; 
-            margin: 20px 0; 
-        }
-        
-        /* Enhanced Stats from Prospector */
+        /* Stats - Prospector Style */
         .stat { 
             margin: 15px 0; 
             display: flex; 
             align-items: baseline;
             padding: 10px 0;
-            border-bottom: 1px solid rgba(0, 118, 157, 0.08);
+            border-bottom: 1px solid rgba(0, 102, 204, 0.08);
         }
         
         .stat:last-child { border-bottom: none; }
         
         .stat-label { 
             font-weight: 500; 
-            color: var(--text-light); 
+            color: #6b7280; 
             min-width: 200px; 
+            font-size: 1em;
         }
         
         .stat-value { 
             font-size: 1.1em; 
-            color: var(--text-dark); 
-        }
-        
-        .stat-value.large { 
-            font-size: 1.5em; 
-            font-weight: 600; 
-            color: var(--rzero-primary); 
-        }
-        
-        .stat-value.large.below-target {
-            color: #c41e3a;
-        }
-        
-        /* Legacy stats for grid layout */
-        .stats .stat { 
-            background: #f8f9fa; 
-            padding: 20px; 
-            border-radius: 8px; 
-            text-align: center;
-            border: 1px solid var(--border);
-            display: block;
-            margin: 0;
-        }
-        
-        .stats .stat .label { 
-            color: var(--text-light); 
-            font-size: 0.9em; 
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-        
-        .stats .stat .value { 
-            font-weight: 600; 
-            font-size: 1.4em; 
-            margin-top: 5px;
-            color: #1a202c;
+            color: #1a202c; 
         }
         
         .penalty { color: #c41e3a; }
@@ -554,15 +514,18 @@
     <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
 </head>
 <body>
+    <!-- Navigation Bar -->
     <div style="background: linear-gradient(to right, #0066cc, #0052a3); padding: 0; margin: 0; width: 100%; position: relative;">
         <a href="index.html" style="text-decoration: none; display: block;">
             <div style="padding: 15px 40px; display: flex; align-items: center; gap: 10px; color: white; cursor: pointer; transition: all 0.3s ease;"
                  onmouseover="this.style.background='rgba(255,255,255,0.1)'" 
                  onmouseout="this.style.background='transparent'">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition: transform 0.3s ease;"
+                     onmouseover="this.style.transform='translateX(-5px)'" 
+                     onmouseout="this.style.transform='translateX(0)'">
                     <path d="M19 12H5M12 19l-7-7 7-7"/>
                 </svg>
-                <span style="font-size: 16px; font-weight: 500;">Back to Rankings</span>
+                <span style="font-size: 16px; font-weight: 500; opacity: 0.9;">Back to Rankings</span>
             </div>
         </a>
     </div>
@@ -578,33 +541,40 @@
     </div>
     
     <!-- Building Identity Bar -->
-    <div class="building-identity">
-        <div class="neighborhood-badge">
-            Midtown
+    <div style="background: #f8f8f8; border-bottom: 1px solid #ddd;">
+        <div class="building-identity">
+            <div class="neighborhood-badge">
+                Midtown
+            </div>
+            <div class="building-stats">
+                <div class="stat-item">#2.0 Rank</div>
+                <div class="stat-item">10.0 floors</div>
+                <div class="stat-item">655,775 sq ft</div>
+                <div class="stat-item">Class A</div>
+            </div>
         </div>
-        <div class="building-stats">
-            <div class="stat-item">#2.0 Rank</div>
-            <div class="stat-item">10.0 floors</div>
-            <div class="stat-item">655,775 sq ft</div>
-            <div class="stat-item">Class A</div>
-        </div>
-    </div>
-    
-    <div class="back">
-        <a href="index.html">← Back to All Buildings</a>
     </div>
     
     <!-- Main Content -->
     <div class="main-content">
         
         <!-- Building Information Header -->
-        <div style="background: linear-gradient(to right, var(--rzero-primary), var(--rzero-secondary)); color: white; padding: 40px; text-align: center;">
-            <h1 style="margin: 0; color: white; font-size: 2.8em;">100 Gold St, New York, NY 10038</h1>
-            <p style="margin: 15px 0 0 0; font-size: 1.3em; opacity: 0.9;">City of New York</p>
-            <div style="margin-top: 20px;">
-                <div style="font-size: 1.1em; opacity: 0.8;">2026 ODCV Savings</div>
-                <div style="font-size: 3em; font-weight: 700; margin: 10px 0;">$181,235</div>
-                
+        <div style="background: linear-gradient(to right, #0066cc, #0052a3); color: white; padding: 30px 15%;">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 3rem;">
+                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                    <h1 style="margin: 0; color: white; font-size: 2.5em; font-weight: 700;">
+                        <span style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 25px; font-size: 0.8em; margin-right: 10px;">#2.0</span>
+                        100 Gold St, New York, NY 10038
+                    </h1>
+                    <p style="margin: 0; opacity: 0.9; font-size: 1.1em; padding-left: 0.5rem;">
+                        City of New York
+                    </p>
+                </div>
+                <div style="text-align: center; min-width: 200px;">
+                    <div style="font-size: 0.9em; opacity: 0.8; margin-bottom: 8px;">2026 ODCV Savings</div>
+                    <div style="font-size: 2.5em; font-weight: 700; line-height: 1;">$181,235</div>
+                    
+                </div>
             </div>
         </div>
     
@@ -615,57 +585,52 @@
         
         <div class="page">
             <h3 class="page-title">Building Information</h3>
-        <div class="stats">
             <div class="stat">
-                <div class="label">Owner</div>
-                <div class="value">City of New York</div>
+                <span class="stat-label">Owner: </span>
+                <span class="stat-value">City of New York</span>
             </div>
             <div class="stat">
-                <div class="label">Last Renovated</div>
-                <div class="value">2019</div>
+                <span class="stat-label">Last Renovated: </span>
+                <span class="stat-value">2019</span>
             </div>
             <div class="stat">
-                <div class="label">Units</div>
-                <div class="value">1</div>
+                <span class="stat-label">Units: </span>
+                <span class="stat-value">1</span>
             </div>
             <div class="stat">
-                <div class="label">Office Floor Area</div>
-                <div class="value">594,000 sq ft (90%)</div>
+                <span class="stat-label">Office Floor Area: </span>
+                <span class="stat-value">594,000 sq ft (90%)</span>
             </div>
             <div class="stat">
-                <div class="label">Manager</div>
-                <div class="value">DCAS</div>
+                <span class="stat-label">Manager: </span>
+                <span class="stat-value">DCAS</span>
             </div>
             <div class="stat">
-                <div class="label">Owner Contact</div>
-                <div class="value">Unavailable</div>
+                <span class="stat-label">Owner Contact: </span>
+                <span class="stat-value">Unavailable</span>
             </div>
             <div class="stat">
-                <div class="label">% Leased</div>
-                <div class="value">100%</div>
+                <span class="stat-label">% Leased: </span>
+                <span class="stat-value">100%</span>
             </div>
             <div class="stat">
-                <div class="label">Floors</div>
-                <div class="value">10.0</div>
+                <span class="stat-label">Floors: </span>
+                <span class="stat-value">10.0</span>
             </div>
             <div class="stat">
-                <div class="label">Last Renovated</div>
-                <div class="value">2019</div>
+                <span class="stat-label">Building Automation (BAS): </span>
+                <span class="stat-value"><span class="bas">Present (General & Heating/Cooling)</span></span>
             </div>
             <div class="stat">
-                <div class="label">Building Automation (BAS)</div>
-                <div class="value"><span class="bas">Present (General & Heating/Cooling)</span></div>
+                <span class="stat-label">Heating System: </span>
+                <span class="stat-value">Boiler (Gas)</span>
             </div>
             <div class="stat">
-                <div class="label">Heating System</div>
-                <div class="value">Boiler (Gas)</div>
+                <span class="stat-label">Cooling System: </span>
+                <span class="stat-value">Plant</span>
             </div>
             <div class="stat">
-                <div class="label">Cooling System</div>
-                <div class="value">Plant</div>
-            </div>
-            <div class="stat">
-                <span class="stat-label">ENERGY STAR Score:</span>
+                <span class="stat-label">ENERGY STAR Score: </span>
                 <div style="display: flex; align-items: center; gap: 30px;">
                     <svg viewBox="0 0 200 120" style="width: 200px; height: 120px;">
                         <path d="M 20 100 A 80 80 0 0 1 73 30" fill="none" stroke="#c41e3a" stroke-width="20"/>
@@ -676,16 +641,15 @@
                         <text x="180" y="115" text-anchor="middle" font-size="12" fill="#666">100</text>
                     </svg>
                     <div>
-                        <div style="font-size: 1.2em; color: #666;">Target: 75.0</div>
+                        <div style="font-size: 1.2em; color: #666; font-weight: 500;">Target: 75.0</div>
                         <div style="color: #38a169;">✓ Exceeds target by 9 points</div>
                     </div>
                 </div>
             </div>
             <div class="stat">
-                <div class="label">LL33 Grade</div>
-                <div class="value"><span class="energy-grade grade-B">B</span></div>
+                <span class="stat-label">LL33 Grade: </span>
+                <span class="stat-value"><span class="energy-grade grade-B">B</span></span>
             </div>
-        </div>
         </div>
         
         <div class="page">
@@ -1465,7 +1429,7 @@
     </div>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif;">
-        Build: 11:26:53 PM CST | TRAP
+        Build: 11:54:33 PM CST | tt
     </div>
 </body>
 </html>
