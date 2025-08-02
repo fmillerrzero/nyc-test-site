@@ -324,7 +324,7 @@
         <div style="background: #f8f8f8; border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
             <details>
                 <summary style="cursor: pointer; font-size: 1.5em; color: var(--rzero-primary); font-weight: 600; padding: 10px 0; list-style: none;">
-                    NYC Office Occupancy Recovery <span style="font-size: 0.8em; transition: transform 0.3s; display: inline-block;">▼</span>
+                    NYC Office Occupancy <span style="font-size: 0.8em; transition: transform 0.3s; display: inline-block;">▼</span>
                 </summary>
                 <div style="margin-top: 15px;">
                     <div style="display: flex; gap: 25px; font-size: 0.95em; margin-bottom: 20px; justify-content: center;">
@@ -583,15 +583,14 @@
     function filterTable() {
         const input = document.getElementById('search').value.toLowerCase();
         const rows = document.querySelectorAll('#buildingTable tbody tr');
-        let visibleCount = 0;
+        
         rows.forEach(row => {
             const searchText = row.getAttribute('data-search');
-            const isVisible = searchText && searchText.includes(input);
-            row.style.display = isVisible ? '' : 'none';
-            if (isVisible) visibleCount++;
+            const matchesSearch = searchText && searchText.includes(input);
+            row.style.display = matchesSearch ? '' : 'none';
         });
+        
         updateClearButtonState();
-        updateResultCounter(visibleCount);
     }
     
     // Update result counter
@@ -737,33 +736,33 @@
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                labels: ['Jan 20', 'Jul 20', 'Jan 21', 'Jul 21', 'Jan 22', 'Jul 22', 'Jan 23', 'Jul 23', 'Jan 24', 'Jul 24', 'Jan 25', 'Jun 25'],
                 datasets: [{
                     label: 'NYC',
-                    data: [68, 70, 72, 73, 74, 75, 74, 73, 75, 76, 76, 76],
+                    data: [100, 17, 18, 31, 30, 53, 55, 64, 66, 74, 75, 76],
                     borderColor: '#5B6FED',
-                    backgroundColor: 'rgba(91, 111, 237, 0.1)',
-                    tension: 0.3,
-                    borderWidth: 2,
-                    pointRadius: 3,
+                    backgroundColor: '#5B6FED',
+                    borderWidth: 3,
+                    tension: 0.4,
+                    pointRadius: 0,
                     pointHoverRadius: 5
                 }, {
-                    label: 'US Average',
-                    data: [58, 60, 62, 63, 64, 65, 64, 63, 65, 66, 66, 66],
+                    label: 'National',
+                    data: [100, 18, 18, 32, 32, 49, 51, 60, 62, 69, 70, 66],
                     borderColor: '#FF6B6B',
-                    backgroundColor: 'rgba(255, 107, 107, 0.1)',
-                    tension: 0.3,
+                    backgroundColor: '#FF6B6B',
                     borderWidth: 2,
-                    pointRadius: 3,
+                    tension: 0.4,
+                    pointRadius: 0,
                     pointHoverRadius: 5
                 }, {
-                    label: 'San Francisco',
-                    data: [42, 43, 44, 45, 46, 47, 46, 45, 46, 47, 47, 47],
+                    label: 'SF',
+                    data: [100, 13, 10, 18, 20, 32, 34, 42, 44, 48, 49, 47],
                     borderColor: '#4ECDC4',
-                    backgroundColor: 'rgba(78, 205, 196, 0.1)',
-                    tension: 0.3,
+                    backgroundColor: '#4ECDC4',
                     borderWidth: 2,
-                    pointRadius: 3,
+                    tension: 0.4,
+                    pointRadius: 0,
                     pointHoverRadius: 5
                 }]
             },
@@ -804,16 +803,17 @@
                         }
                     },
                     y: {
-                        min: 40,
-                        max: 80,
+                        min: 0,
+                        max: 100,
                         ticks: {
-                            stepSize: 10,
+                            stepSize: 25,
                             callback: function(value) {
                                 return value + '%';
                             },
                             font: {
                                 size: 11
-                            }
+                            },
+                            color: '#666'
                         },
                         grid: {
                             color: 'rgba(0, 0, 0, 0.05)'
@@ -913,7 +913,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: {datetime.now(pytz.timezone('America/Mexico_City')).strftime('%I:%M:%S %p CST')} | pop{' | ' + sys.argv[1] if len(sys.argv) > 1 else ''}
+        Build: {datetime.now(pytz.timezone('America/Mexico_City')).strftime('%I:%M:%S %p CST')} | graph{' | ' + sys.argv[1] if len(sys.argv) > 1 else ''}
     </div>
 </body>
 </html>
