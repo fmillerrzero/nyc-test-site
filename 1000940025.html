@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>100 Gold St, New York, NY 10038 - ODCV Analysis (v1754114992)</title>
+    <title>100 Gold St, New York, NY 10038 - ODCV Analysis (v1754115550)</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -140,38 +140,59 @@
         .back a { color: var(--rzero-primary); text-decoration: none; font-weight: 500; }
         .back a:hover { text-decoration: underline; }
         
-        /* Main Content Structure */
-        .main-content {
+        /* Section styling */
+        .section { 
+            padding: 40px 15%; 
+            border-bottom: 3px solid var(--rzero-primary); 
             background: white;
-            margin: 0;
+            position: relative;
         }
         
-        /* Section Headers */
-        .section-header {
-            background: #f8f9fa;
-            padding: 20px;
-            margin: 0;
-            border-bottom: 1px solid var(--border);
-            font-size: 1.5em;
-            font-weight: 600;
-            color: var(--rzero-primary);
+        .section:nth-child(even) {
+            background: #f8fafb;
         }
         
-        /* Pages within sections */
-        .page {
-            padding: 40px;
-            border-bottom: 1px solid #f0f0f0;
+        .section::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: linear-gradient(to bottom, rgba(0, 118, 157, 0.05), transparent);
         }
         
-        .page:last-child {
-            border-bottom: none;
+        .section-header { 
+            font-size: 2em; 
+            color: var(--rzero-primary); 
+            margin-bottom: 40px; 
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(0, 118, 157, 0.2);
         }
         
-        .page-title {
-            color: var(--rzero-primary);
-            font-size: 1.3em;
-            font-weight: 600;
-            margin: 0 0 30px 0;
+        .section-header::before {
+            content: '';
+            width: 6px;
+            height: 40px;
+            background: var(--rzero-primary);
+            border-radius: 3px;
+        }
+        
+        .page { 
+            margin-bottom: 40px; 
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .page-title { 
+            font-size: 1.3em; 
+            color: var(--text-dark); 
+            margin-bottom: 20px; 
+            font-weight: 500; 
         }
         
         /* Stats - Prospector Style */
@@ -563,11 +584,12 @@
     
         
         
-        <!-- Building Overview Section -->
-        <h2 class="section-header">Building Overview</h2>
-        
-        <div class="page">
-            <h3 class="page-title">Building Information</h3>
+        <!-- Section 1: General -->
+        <div class="section">
+            <h2 class="section-header">Building Overview</h2>
+            
+            <div class="page">
+                <h3 class="page-title">Building Information</h3>
             <div class="stat">
                 <span class="stat-label">Owner: </span>
                 <span class="stat-value">City of New York</span>
@@ -634,9 +656,14 @@
                 <span class="stat-value"><span class="energy-grade grade-B">B</span></span>
             </div>
         </div>
+        </div>
         
-        <div class="page">
-            <h3 class="page-title">Property Details</h3>
+        <!-- Section 2: Building -->
+        <div class="section">
+            <h2 class="section-header">Energy Efficiency</h2>
+            
+            <div class="page">
+                <h3 class="page-title">Property Details</h3>
         <div class="stats">
             <div class="stat">
                 <div class="label">Building Class</div>
@@ -654,14 +681,9 @@
                 <div class="label">Green Certification</div>
                 <div class="value">None</div>
             </div>
-        </div>
-        </div>
         
-        <!-- Energy Efficiency Section -->
-        <h2 class="section-header">Energy Efficiency</h2>
-        
-        <div class="page">
-            <h3 class="page-title">LL97 Compliance</h3>
+            <div class="page">
+                <h3 class="page-title">LL97 Compliance</h3>
         <div class="stats">
             <div class="stat">
                 <div class="label">2026 Penalty</div>
@@ -714,8 +736,12 @@
         </div>
         </div>
         
-        <div class="page">
-            <h3 class="page-title">ODCV Readiness Score</h3>
+        <!-- Section 3: Energy Consumption -->
+        <div class="section">
+            <h2 class="section-header">Energy Consumption</h2>
+            
+            <div class="page">
+                <h3 class="page-title">ODCV Readiness Score</h3>
         <div class="highlight-box">
             <h4>Total Score: 97/110</h4>
             <div>Financial Impact: 7/40</div>
@@ -725,11 +751,8 @@
         </div>
         </div>
         
-        <!-- Energy Consumption Section -->
-        <h2 class="section-header">Energy Consumption</h2>
-        
-        <div class="page">
-            <h3 class="page-title">Energy Usage</h3>
+            <div class="page">
+                <h3 class="page-title">Energy Usage</h3>
             <div class="chart-carousel">
                 <div class="chart-toggle">
                     <button class="toggle-btn active" onclick="showChart('usage', 'building')">Building</button>
@@ -759,9 +782,11 @@
                 </div>
             </div>
         </div>
+        </div>
         
-        <!-- ODCV Section -->  
-        <h2 class="section-header">ODCV</h2>
+        <!-- Section 4: ODCV -->
+        <div class="section">
+            <h2 class="section-header">ODCV</h2>
         
         <div class="page">
             <h3 class="page-title">HVAC Electricity Usage (% of Total)</h3>
@@ -1412,7 +1437,7 @@
     </div>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif;">
-        Build: 12:09:53 AM CST | rop
+        Build: 12:19:11 AM CST | pop
     </div>
 </body>
 </html>
