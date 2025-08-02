@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>1472 Broadway, New York, NY 10036 - ODCV Analysis (v1754168240)</title>
+    <title>1472 Broadway, New York, NY 10036 - ODCV Analysis (v1754175442)</title>
     <link rel="icon" type="image/png" href="https://rzero.com/wp-content/themes/rzero/build/images/favicons/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -151,6 +151,15 @@
         
         .section:nth-child(even) {
             background: #f8fafb;
+        }
+        
+        /* Override backgrounds to ensure proper alternating pattern */
+        .section-white {
+            background: white !important;
+        }
+        
+        .section-gray {
+            background: #f8fafb !important;
         }
         
         .section::after {
@@ -571,7 +580,7 @@
         <!-- Section 0.0 - Title -->
         <div class="title-section">
             <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-                <h1 style="margin: 0; color: white; font-size: 2.5em; font-weight: 700;">
+                <h1 style="margin: 0; color: white; font-size: 2em; font-weight: 700;">
                     <span style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 25px; font-size: 0.8em;">#1.0</span>
                     <span>1472 Broadway, New York, NY 10036</span>
                 </h1>
@@ -585,21 +594,19 @@
                 
             </div>
         </div>
-    
-        
         
         <!-- Section 1: General -->
-        <div class="section">
-            <h2 class="section-header">Building Overview</h2>
+        <div class="section section-white">
+            <h2 class="section-header">Image Gallery</h2>
             
             <div class="page">
-                <h3 class="page-title">Image Gallery</h3>
+                <h3 class="page-title" id="image-gallery-title-1009950005">Static: Marketing</h3>
                 <div class="carousel-container">
                     <div class="carousel-track" id="carousel-1009950005">
                         <div class="carousel-slide active" data-image-type="hero">
                             <div style="position: relative; width: 100%; height: 100%;">
                                 <img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1009950005/1009950005_hero.jpg" 
-                                     style="width: 100%; height: 100%; object-fit: cover;"
+                                     style="width: 100%; height: 100%; object-fit: contain; background: #f0f0f0;"
                                      onerror="handleImageError(this, '1009950005', 'hero')">
                                 <button class="fullscreen-btn" onclick="toggleFullscreen(this)" title="Fullscreen">⛶</button>
                             </div>
@@ -607,7 +614,7 @@
                         <div class="carousel-slide" data-image-type="roadview">
                             <div style="position: relative; width: 100%; height: 100%;">
                                 <img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1009950005/1009950005_roadview.jpg" 
-                                     style="width: 100%; height: 100%; object-fit: cover;"
+                                     style="width: 100%; height: 100%; object-fit: contain; background: #f0f0f0;"
                                      onerror="handleImageError(this, '1009950005', 'roadview')">
                                 <button class="fullscreen-btn" onclick="toggleFullscreen(this)" title="Fullscreen">⛶</button>
                             </div>
@@ -615,7 +622,7 @@
                         <div class="carousel-slide" data-image-type="street">
                             <div style="position: relative; width: 100%; height: 100%;">
                                 <img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1009950005/1009950005_street.jpg" 
-                                     style="width: 100%; height: 100%; object-fit: cover;"
+                                     style="width: 100%; height: 100%; object-fit: contain; background: #f0f0f0;"
                                      onerror="handleImageError(this, '1009950005', 'street')">
                                 <button class="fullscreen-btn" onclick="toggleFullscreen(this)" title="Fullscreen">⛶</button>
                             </div>
@@ -623,7 +630,7 @@
                         <div class="carousel-slide" data-image-type="satellite">
                             <div style="position: relative; width: 100%; height: 100%;">
                                 <img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1009950005/1009950005_satellite.jpg" 
-                                     style="width: 100%; height: 100%; object-fit: cover;"
+                                     style="width: 100%; height: 100%; object-fit: contain; background: #f0f0f0;"
                                      onerror="handleImageError(this, '1009950005', 'satellite')">
                                 <button class="fullscreen-btn" onclick="toggleFullscreen(this)" title="Fullscreen">⛶</button>
                             </div>
@@ -641,10 +648,10 @@
             </div>
             
             <div class="page">
-                <h3 class="page-title">Interactive Views</h3>
+                <h3 class="page-title" id="interactive-views-title-1009950005">Dynamic: Drone Footage</h3>
                 <div class="carousel-container">
                     <div class="carousel-track" id="interactive-carousel-1009950005">
-                        <div class="carousel-slide">
+                        <div class="carousel-slide" data-type="video">
                             <div id="aerial-video-1009950005" style="width: 100%; height: 100%; background: #000; display: flex; align-items: center; justify-content: center;">
                     <div style="color: white; text-align: center;">
                         <h3>Loading Aerial View...</h3>
@@ -694,7 +701,7 @@
                     });
                 </script>
                         </div>
-                        <div class="carousel-slide">
+                        <div class="carousel-slide" data-type="pano">
                             <div id="panorama-1009950005" style="width: 100%; height: 675px; background: #f0f0f0; position: relative;">
                                 <div id="viewer-1009950005" style="width: 100%; height: 100%;"></div>
                             </div>
@@ -740,7 +747,7 @@
                 </div>
                 <div class="stat">
                     <span class="stat-label">BMS: </span>
-                    <span class="stat-value"><span class="bas">Present (General & Heating/Cooling)</span></span>
+                    <span class="stat-value"><span class="bas"><span style="color: black;">Ventilation</span>, <span style="color: #ff6600;">Heating</span>, & <span style="color: #0066cc;">Cooling</span> Controls</span></span>
                 </div>
                 <div class="stat">
                     <span class="stat-label">Heating System: </span>
@@ -765,7 +772,7 @@
                 </div>
                 <div class="stat">
                     <span class="stat-label">Manager: </span>
-                    <span class="stat-value">Durst Organization</span>
+                    <span class="stat-value">Durst Organization <img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/Logos/Durst_Organization.png" style="height:30px;margin-left:10px;vertical-align:middle;"></span>
                 </div>
                 <div class="stat">
                     <span class="stat-label">Owner Contact: </span>
@@ -776,32 +783,21 @@
                     <span class="stat-value">90%</span>
                 </div>
             </div>
-            <div class="stat">
-                <span class="stat-label">ENERGY STAR Score: </span>
-                <div style="display: flex; align-items: center; gap: 30px;">
-                    <svg viewBox="0 0 200 120" style="width: 200px; height: 120px;">
-                        <path d="M 20 100 A 80 80 0 0 1 73 30" fill="none" stroke="#c41e3a" stroke-width="20"/>
-                        <path d="M 73 30 A 80 80 0 0 1 127 30" fill="none" stroke="#ffc107" stroke-width="20"/>
-                        <path d="M 127 30 A 80 80 0 0 1 180 100" fill="none" stroke="#38a169" stroke-width="20"/>
-                        <text x="100" y="85" text-anchor="middle" font-size="36" font-weight="bold" fill="#c41e3a">44</text>
-                        <text x="20" y="115" text-anchor="middle" font-size="12" fill="#666">0</text>
-                        <text x="180" y="115" text-anchor="middle" font-size="12" fill="#666">100</text>
-                    </svg>
-                    <div>
-                        <div style="font-size: 1.2em; color: #666; font-weight: 500;">Target: 75.0</div>
-                        <div style="color: #c41e3a;">↑ 31 points needed</div>
-                    </div>
-                </div>
-            </div>
-            <div class="stat">
-                <span class="stat-label">LL33 Grade: </span>
-                <span class="stat-value"><span class="energy-grade grade-D">D</span></span>
-            </div>
         </div>
         </div>
         
+        <!-- Building Overview Section -->
+        <div class="section section-gray">
+            <h2 class="section-header">Building Overview</h2>
+            
+            <div class="page">
+                <h3 class="page-title">Key Information</h3>
+                <p>Building overview content will be added here.</p>
+            </div>
+        </div>
+        
         <!-- Section 2: Building -->
-        <div class="section">
+        <div class="section section-white">
             <h2 class="section-header">Energy Efficiency</h2>
             
             <!-- Page 2.0 - Efficiency -->
@@ -865,7 +861,7 @@
         </div>
         
         <!-- Section 3: Energy Consumption -->
-        <div class="section">
+        <div class="section section-gray">
             <h2 class="section-header">Energy Consumption</h2>
             
             <div class="page">
@@ -902,8 +898,8 @@
         </div>
         
         <!-- Section 4: ODCV -->
-        <div class="section">
-            <h2 class="section-header">ODCV</h2>
+        <div class="section section-white">
+            <h2 class="section-header">ODCV Savings</h2>
         
         <div class="page">
             <h3 class="page-title">HVAC Electricity Usage (% of Total)</h3>
@@ -916,12 +912,34 @@
         <div id="odcv_savings_chart" style="width: 100%; height: 400px;"></div>
         </div>
         
-        <!-- Outdoor Air Quality Section -->
-        <h2 class="section-header">Outdoor Air Quality</h2>
-        
-        <div class="page">
-            <h3 class="page-title">Last 30 Days</h3>
-        <div id="pm25_chart" style="width: 100%; height: 400px;"></div>
+        <!-- Air Quality Section -->
+        <div class="section section-gray">
+            <h2 class="section-header">Air Quality</h2>
+            
+            <div class="page">
+                <h3 class="page-title">Outdoor Pollution Level</h3>
+            
+            <div class="iaq-summary" style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px solid #e9ecef;">
+                <div class="iaq-stat-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: center;">
+                    <div class="iaq-stat">
+                        <div class="iaq-label" style="font-size: 12px; color: #6c757d; margin-bottom: 4px;">Max</div>
+                        <div class="iaq-value" style="font-size: 24px; font-weight: bold; color: #c41e3a;">23.4 μg/m³</div>
+                        <div class="iaq-category" style="font-size: 11px; color: #6c757d; margin-top: 4px;">Business Hours Maximum</div>
+                    </div>
+                    <div class="iaq-stat">
+                        <div class="iaq-label" style="font-size: 12px; color: #6c757d; margin-bottom: 4px;">Average</div>
+                        <div class="iaq-value" style="font-size: 24px; font-weight: bold; color: #FFB300;">14.4 μg/m³</div>
+                        <div class="iaq-category" style="font-size: 11px; color: #6c757d; margin-top: 4px;">M-F 8am-6pm</div>
+                    </div>
+                    <div class="iaq-stat">
+                        <div class="iaq-label" style="font-size: 12px; color: #6c757d; margin-bottom: 4px;">Good</div>
+                        <div class="iaq-value" style="font-size: 24px; font-weight: bold; color: #00e400;">12 μg/m³</div>
+                        <div class="iaq-category" style="font-size: 11px; color: #6c757d; margin-top: 4px;">EPA Threshold</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="pm25_chart" style="width: 100%; height: 400px;"></div>
         </div>
         
     </div>
@@ -1048,6 +1066,21 @@
         carouselIndex[bbl] = currentIndex;
         track.style.transform = `translateX(-${currentIndex * 100}%)`;
         
+        // Update title based on current slide
+        const currentSlide = slides[currentIndex];
+        const imageType = currentSlide.getAttribute('data-image-type');
+        const actualBbl = bbl.includes('carousel') ? bbl.replace('carousel-', '') : bbl;
+        const titleElement = document.getElementById(`image-gallery-title-${actualBbl}`);
+        if (titleElement) {
+            const imageTypeMap = {
+                'hero': 'Marketing',
+                'roadview': 'Streetview (Cyclopedia)',
+                'street': 'Streetview (Google)',
+                'satellite': 'Satellite'
+            };
+            titleElement.textContent = `Static: ${imageTypeMap[imageType] || 'Unknown'}`;
+        }
+        
         // Update dots for visible slides only
         updateCarouselDots(bbl.includes('carousel') ? bbl.replace('carousel-', '') : bbl);
     }
@@ -1060,6 +1093,21 @@
         if (slides[index] && slides[index].style.display !== 'none') {
             carouselIndex[bbl] = index;
             track.style.transform = `translateX(-${index * 100}%)`;
+            
+            // Update title based on current slide
+            const currentSlide = slides[index];
+            const imageType = currentSlide.getAttribute('data-image-type');
+            const titleElement = document.getElementById(`image-gallery-title-${bbl}`);
+            if (titleElement) {
+                const imageTypeMap = {
+                    'hero': 'Marketing',
+                    'roadview': 'Streetview (Cyclopedia)',
+                    'street': 'Streetview (Google)',
+                    'satellite': 'Satellite'
+                };
+                titleElement.textContent = `Static: ${imageTypeMap[imageType] || 'Unknown'}`;
+            }
+            
             updateCarouselDots(bbl);
         }
     }
@@ -1118,8 +1166,28 @@
             setTimeout(() => btn.style.transform = 'scale(1)', 100);
         });
         
-        // Trigger loading animation for iframes
+        // Update title based on current slide
         const currentSlide = carousel.children[interactiveIndex];
+        const slideType = currentSlide.getAttribute('data-type');
+        const titleElement = document.getElementById(`interactive-views-title-${bbl}`);
+        if (titleElement) {
+            const typeMap = {
+                'video': 'Drone Footage',
+                'pano': '360 Panorama'
+            };
+            titleElement.textContent = `Dynamic: ${typeMap[slideType] || 'Unknown'}`;
+        }
+        
+        // Handle panorama initialization and rotation
+        if (slideType === 'pano') {
+            const viewerEl = document.getElementById(`viewer-${bbl}`);
+            if (viewerEl && viewerEl.pannellumViewer) {
+                // Start auto rotation when user navigates to panorama
+                viewerEl.pannellumViewer.setAutoRotate(-2);
+            }
+        }
+        
+        // Trigger loading animation for iframes
         const iframe = currentSlide.querySelector('iframe');
         if (iframe && !iframe.classList.contains('loaded')) {
             setTimeout(() => iframe.classList.add('loaded'), 500);
@@ -1197,10 +1265,10 @@
         },
         yaxis: {
             title: 'Energy Usage (kBtu)',
-            gridcolor: '#e0e0e0'
+            showgrid: false
         },
         xaxis: {
-            gridcolor: '#e0e0e0'
+            showgrid: false
         },
         font: {family: 'Arial, sans-serif'},
         plot_bgcolor: '#fafafa',
@@ -1208,7 +1276,11 @@
         hovermode: 'x unified'
     };
     
-    Plotly.newPlot('energy_chart', [elecData, gasData, steamData], layout);
+    Plotly.newPlot('energy_chart', [elecData, gasData, steamData], layout, {
+        modeBarButtonsToRemove: ['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'resetScale2d', 'hoverClosestCartesian', 'hoverCompareCartesian'],
+        displaylogo: false,
+        displayModeBar: true
+    });
     
     // Office Energy Chart
     const officeElecData = {
@@ -1242,10 +1314,10 @@
         },
         yaxis: {
             title: 'Energy Usage (kBtu)',
-            gridcolor: '#e0e0e0'
+            showgrid: false
         },
         xaxis: {
-            gridcolor: '#e0e0e0',
+            showgrid: false,
             range: [-0.5, 11.5],  // Force x-axis to show all 12 months with padding
             fixedrange: true
         },
@@ -1256,7 +1328,11 @@
         hovermode: 'x unified'
     };
     
-    Plotly.newPlot('office_energy_chart', [officeElecData, officeGasData, officeSteamData], officeLayout);
+    Plotly.newPlot('office_energy_chart', [officeElecData, officeGasData, officeSteamData], officeLayout, {
+        modeBarButtonsToRemove: ['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'resetScale2d', 'hoverClosestCartesian', 'hoverCompareCartesian'],
+        displaylogo: false,
+        displayModeBar: true
+    });
     
     // Energy Cost Chart
     const elecCost = {
@@ -1297,10 +1373,10 @@
         yaxis: {
             title: 'Cost ($)',
             tickformat: '$,.0f',
-            gridcolor: '#e0e0e0'
+            showgrid: false
         },
         xaxis: {
-            gridcolor: '#e0e0e0'
+            showgrid: false
         },
         font: {family: 'Inter, sans-serif'},
         plot_bgcolor: '#fafafa',
@@ -1308,7 +1384,11 @@
         hovermode: 'x unified'
     };
 
-    Plotly.newPlot('energy_cost_chart', [elecCost, gasCost, steamCostData], costLayout);
+    Plotly.newPlot('energy_cost_chart', [elecCost, gasCost, steamCostData], costLayout, {
+        modeBarButtonsToRemove: ['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'resetScale2d', 'hoverClosestCartesian', 'hoverCompareCartesian'],
+        displaylogo: false,
+        displayModeBar: true
+    });
     
     // Office Cost Chart
     const officeElecCost = {
@@ -1343,10 +1423,10 @@
         yaxis: {
             title: 'Cost ($)',
             tickformat: '$,.0f',
-            gridcolor: '#e0e0e0'
+            showgrid: false
         },
         xaxis: {
-            gridcolor: '#e0e0e0',
+            showgrid: false,
             range: [-0.5, 11.5],  // Force x-axis to show all 12 months with padding
             fixedrange: true
         },
@@ -1357,7 +1437,11 @@
         hovermode: 'x unified'
     };
 
-    Plotly.newPlot('office_cost_chart', [officeElecCost, officeGasCost, officeSteamCostData], officeCostLayout);
+    Plotly.newPlot('office_cost_chart', [officeElecCost, officeGasCost, officeSteamCostData], officeCostLayout, {
+        modeBarButtonsToRemove: ['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'resetScale2d', 'hoverClosestCartesian', 'hoverCompareCartesian'],
+        displaylogo: false,
+        displayModeBar: true
+    });
     
     // HVAC Percentage Chart
     const hvacData = {
@@ -1380,11 +1464,11 @@
         yaxis: {
             title: 'Percentage',
             tickformat: '.0%',
-            gridcolor: '#e0e0e0',
+            showgrid: false,
             range: [0, 1]
         },
         xaxis: {
-            gridcolor: '#e0e0e0'
+            showgrid: false
         },
         font: {family: 'Arial, sans-serif'},
         plot_bgcolor: '#fafafa',
@@ -1392,7 +1476,11 @@
         hovermode: 'x unified'
     };
     
-    Plotly.newPlot('hvac_pct_chart', [hvacData], hvacLayout);
+    Plotly.newPlot('hvac_pct_chart', [hvacData], hvacLayout, {
+        modeBarButtonsToRemove: ['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'resetScale2d', 'hoverClosestCartesian', 'hoverCompareCartesian'],
+        displaylogo: false,
+        displayModeBar: true
+    });
     
     // ODCV Savings Chart
     const odcvElecSave = {x: months, y: [15045.3, 14968.619999999995, 13377.97, 12980.50999999998, 16195.410000000003, 23126.719999999972, 26797.79999999999, 26946.26000000001, 22921.75, 17397.580000000016, 13987.28, 10699.48999999999], name: 'Elec', type: 'bar', marker: {color: '#0066cc'}};
@@ -1409,41 +1497,78 @@
         yaxis: {
             title: 'Savings ($)',
             tickformat: '$,.0f',
-            gridcolor: '#e0e0e0'
+            showgrid: false
         },
         xaxis: {
-            gridcolor: '#e0e0e0'
+            showgrid: false
         },
         barmode: 'stack',
         font: {family: 'Arial, sans-serif'},
         plot_bgcolor: '#fafafa',
         paper_bgcolor: 'white',
         hovermode: 'x unified'
+    }, {
+        modeBarButtonsToRemove: ['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'resetScale2d', 'hoverClosestCartesian', 'hoverCompareCartesian'],
+        displaylogo: false,
+        displayModeBar: true
     });
     
     // PM2.5 Chart - Business Hours Only
     const pm25Data = {
-        x: [],
-        y: [],
+        x: ["2025-08-01T21:00:00Z", "2025-08-01T20:00:00Z", "2025-08-01T19:00:00Z", "2025-08-01T18:00:00Z", "2025-08-01T17:00:00Z", "2025-08-01T16:00:00Z", "2025-08-01T15:00:00Z", "2025-08-01T14:00:00Z", "2025-08-01T13:00:00Z", "2025-08-01T12:00:00Z", "2025-07-31T21:00:00Z", "2025-07-31T20:00:00Z", "2025-07-31T19:00:00Z", "2025-07-31T18:00:00Z", "2025-07-31T17:00:00Z", "2025-07-31T16:00:00Z", "2025-07-31T15:00:00Z", "2025-07-31T14:00:00Z", "2025-07-31T13:00:00Z", "2025-07-31T12:00:00Z"],
+        y: [13.42, 11.45, 9.9, 9.92, 9.85, 8.4, 7.86, 7.8, 7.89, 7, 23.37, 18.37, 19.29, 18.74, 17.37, 17.4, 18.09, 20.41, 21.23, 19.95],
         type: 'scatter',
         mode: 'lines',
-        line: {color: '#0066cc', width: 2},
-        name: 'PM2.5 (Business Hours)'
+        line: {color: '#0066cc', width: 3},
+        name: 'Business Hours PM2.5',
+        hovertemplate: '%{x|%b %d, %Y}<br>PM2.5: %{y:.1f} μg/m³<extra></extra>'
+    };
+    
+    // EPA Good threshold line
+    const goodThreshold = {
+        x: ["2025-08-01T21:00:00Z", "2025-08-01T20:00:00Z", "2025-08-01T19:00:00Z", "2025-08-01T18:00:00Z", "2025-08-01T17:00:00Z", "2025-08-01T16:00:00Z", "2025-08-01T15:00:00Z", "2025-08-01T14:00:00Z", "2025-08-01T13:00:00Z", "2025-08-01T12:00:00Z", "2025-07-31T21:00:00Z", "2025-07-31T20:00:00Z", "2025-07-31T19:00:00Z", "2025-07-31T18:00:00Z", "2025-07-31T17:00:00Z", "2025-07-31T16:00:00Z", "2025-07-31T15:00:00Z", "2025-07-31T14:00:00Z", "2025-07-31T13:00:00Z", "2025-07-31T12:00:00Z"],
+        y: Array(20).fill(12),
+        mode: 'lines',
+        line: {color: '#00e400', dash: 'dash', width: 2},
+        name: 'Good AQ Threshold (EPA)',
+        hoverinfo: 'skip'
     };
 
-    Plotly.newPlot('pm25_chart', [pm25Data], {
-        title: 'PM2.5 Levels During Business Hours (M-F 8am-6pm)',
-        yaxis: {title: 'PM2.5 (μg/m³)'},
-        xaxis: {title: 'Date'},
-        annotations: [{
+    Plotly.newPlot('pm25_chart', [pm25Data, goodThreshold], {
+        title: {
+            text: 'PM2.5 During Business Hours (M-F 8am-6pm)',
+            y: 0.95
+        },
+        yaxis: {
+            title: 'PM2.5 (μg/m³)',
+            showgrid: false,
+            zeroline: false,
+            range: [0, 25.707000000000004]
+        },
+        xaxis: {
+            title: '',
+            showgrid: false,
+            tickformat: '%b %d',
+            dtick: 86400000 * 7  // Weekly ticks
+        },
+        legend: {
+            orientation: 'h',
             x: 0.5,
-            y: 1.05,
-            xref: 'paper',
-            yref: 'paper',
-            text: 'Average: 0.0 μg/m³ | Max: 0.0 μg/m³',
-            showarrow: false,
-            font: {size: 14, color: '#666'}
-        }]
+            xanchor: 'center',
+            y: -0.12,
+            yanchor: 'top',
+            bgcolor: 'transparent',
+            borderwidth: 0
+        },
+        margin: {t: 50, r: 50, b: 80, l: 60},
+        plot_bgcolor: '#ffffff',
+        paper_bgcolor: '#ffffff',
+        font: {family: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'},
+        hovermode: 'x unified'
+    }, {
+        modeBarButtonsToRemove: ['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'resetScale2d', 'hoverClosestCartesian', 'hoverCompareCartesian'],
+        displaylogo: false,
+        displayModeBar: true
     });
     
     // Initialize 360° panorama with Manhattan grid logic
@@ -1493,7 +1618,7 @@
             // We're at street level looking at buildings
             // Based on: 737ft building = 31° pitch (optimal viewing angle)
             // This gives a proportional pitch for all building heights
-            const pitch = Math.min(buildingHeight * (31 / 737), 60);  // Max 60° for very tall buildings
+            const pitch = Math.min(buildingHeight * (31 / 737) * 1.08, 60);  // Max 60° for very tall buildings, 8% increase
             
             console.log(`Panorama 1009950005: Address="${address}", Height=${buildingHeight}ft, Yaw=${yaw}°, Pitch=${pitch}°`);
             
@@ -1502,7 +1627,7 @@
                     "type": "equirectangular",
                     "panorama": "https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1009950005/1009950005_360.jpg",
                     "autoLoad": true,
-                    "autoRotate": -2,
+                    "autoRotate": 0,  // Will be started when user navigates to this slide
                     "pitch": pitch,
                     "yaw": yaw,
                     "hfov": 120,
@@ -1512,7 +1637,7 @@
                     "showFullscreenCtrl": true,
                     "mouseZoom": false,
                     "minPitch": -85,
-                    "maxPitch": 85
+                    "maxPitch": 90
                 });
                 viewerEl._pannellumInitialized = true;
                 viewerEl.pannellumViewer = viewer;  // Store viewer instance
@@ -1523,15 +1648,23 @@
             }
         }
         
-        // Initialize immediately and also when carousel moves to panorama slide
-        initPanorama();
+        // Don't initialize immediately - wait for user to navigate to panorama slide
         
         // Reinitialize when carousel shows panorama
         const originalMoveCarousel = window.moveInteractiveCarousel;
         window.moveInteractiveCarousel = function(bbl, direction) {
             if (originalMoveCarousel) originalMoveCarousel(bbl, direction);
             if (interactiveIndex === 1) {
-                setTimeout(initPanorama, 100);
+                setTimeout(() => {
+                    initPanorama();
+                    // Ensure rotation starts after panorama loads
+                    setTimeout(() => {
+                        const viewerEl = document.getElementById('viewer-1009950005');
+                        if (viewerEl && viewerEl.pannellumViewer) {
+                            viewerEl.pannellumViewer.setAutoRotate(-2);
+                        }
+                    }, 500);
+                }, 100);
             }
         };
     });
@@ -1590,7 +1723,7 @@
     </div>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif;">
-        Build: 02:57:21 PM CST | iaq
+        Build: 04:57:22 PM CST | aug 2
     </div>
 </body>
 </html>
