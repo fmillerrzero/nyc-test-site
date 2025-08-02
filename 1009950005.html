@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>1472 Broadway, New York, NY 10036 - ODCV Analysis (v1754134570)</title>
+    <title>1472 Broadway, New York, NY 10036 - ODCV Analysis (v1754135333)</title>
     <link rel="icon" type="image/png" href="https://rzero.com/wp-content/themes/rzero/build/images/favicons/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -421,14 +421,17 @@
         .grade-NA { background: #e9ecef; color: #6c757d; }
         
         /* Carousel Loading Animation */
-        .carousel-slide iframe,
-        .carousel-slide video {
+        .carousel-slide iframe {
             opacity: 0;
             transition: opacity 0.5s ease;
         }
         
-        .carousel-slide iframe.loaded,
-        .carousel-slide video.loaded {
+        .carousel-slide iframe.loaded {
+            opacity: 1;
+        }
+        
+        /* Videos should be visible immediately */
+        .carousel-slide video {
             opacity: 1;
         }
         
@@ -672,9 +675,12 @@
                                         // Explicitly trigger video playback
                                         const video = container.querySelector('video');
                                         if (video) {
+                                            video.classList.add('loaded'); // Add loaded class for opacity
                                             video.play().catch(e => console.log('Autoplay blocked:', e));
                                         }
                                         return;
+                                    } else {
+                                        console.log('No pre-fetched video URL found for BBL ' + bbl);
                                     }
                                 } catch (e) {
                                     console.log('Error reading sessionStorage:', e);
@@ -689,7 +695,8 @@
                             }
                         }
                         
-                        loadWhenReady(); // Start checking immediately
+                        // Add small delay to ensure DOM is fully ready
+                        setTimeout(loadWhenReady, 100);
                     });
                 </script>
                         </div>
@@ -1574,6 +1581,7 @@
                     // Explicitly trigger video playback
                     const video = container.querySelector('video');
                     if (video) {
+                        video.classList.add('loaded'); // Add loaded class for opacity
                         video.play().catch(e => console.log('Autoplay blocked:', e));
                     }
                 } else {
@@ -1594,7 +1602,7 @@
     </div>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif;">
-        Build: 05:36:10 AM CST | boob
+        Build: 05:48:53 AM CST | FUCK CLAUDE
     </div>
 </body>
 </html>
