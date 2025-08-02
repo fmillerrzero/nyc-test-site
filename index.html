@@ -263,7 +263,7 @@
         </div>
         
 
-        <div class="portfolio-box"><h2>Top Portfolios</h2><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;"><div class="portfolio-tile" onclick="filterByOwner('Vornado Realty Trust')" style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid rgba(0, 118, 157, 0.2); cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; min-height: 100px;"><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-odcv-prospector/main/Logos/Vornado_Realty_Trust.png" alt="Vornado Realty Trust" style="max-height:80px;max-width:200px;margin-left:15px;vertical-align:middle;opacity:0.8;position:absolute;top:10px;right:15px;"><strong style="color: var(--rzero-primary); display: block; margin-bottom: 5px;">Vornado Realty Trust</strong><span style="color: #666;">42 buildings • $1.1M savings</span></div><div class="portfolio-tile" onclick="filterByOwner('SL Green Realty')" style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid rgba(0, 118, 157, 0.2); cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; min-height: 100px;"><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-odcv-prospector/main/Logos/SL_Green_Realty.png" alt="SL Green Realty" style="max-height:80px;max-width:200px;margin-left:15px;vertical-align:middle;opacity:0.8;position:absolute;top:10px;right:15px;"><strong style="color: var(--rzero-primary); display: block; margin-bottom: 5px;">SL Green Realty</strong><span style="color: #666;">26 buildings • $1.7M savings</span></div><div class="portfolio-tile" onclick="filterByOwner('Kaufman Organization')" style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid rgba(0, 118, 157, 0.2); cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; min-height: 100px;"><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-odcv-prospector/main/Logos/Kaufman_Organization.png" alt="Kaufman Organization" style="max-height:80px;max-width:200px;margin-left:15px;vertical-align:middle;opacity:0.8;position:absolute;top:10px;right:15px;"><strong style="color: var(--rzero-primary); display: block; margin-bottom: 5px;">Kaufman Organization</strong><span style="color: #666;">23 buildings • $0.0M savings</span></div></div></div>
+        <div class="portfolio-box"><h2>Top Portfolios</h2><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;"><div class="portfolio-tile" onclick="filterByOwner('Vornado Realty Trust')" style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid rgba(0, 118, 157, 0.2); cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; min-height: 100px;"><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/Logos/Vornado_Realty_Trust.png" alt="Vornado Realty Trust" style="max-height:80px;max-width:200px;margin-left:15px;vertical-align:middle;opacity:0.8;position:absolute;top:10px;right:15px;"><strong style="color: var(--rzero-primary); display: block; margin-bottom: 5px;">Vornado Realty Trust</strong><span style="color: #666;">42 buildings • $1.1M savings</span></div><div class="portfolio-tile" onclick="filterByOwner('SL Green Realty')" style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid rgba(0, 118, 157, 0.2); cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; min-height: 100px;"><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/Logos/SL_Green_Realty.png" alt="SL Green Realty" style="max-height:80px;max-width:200px;margin-left:15px;vertical-align:middle;opacity:0.8;position:absolute;top:10px;right:15px;"><strong style="color: var(--rzero-primary); display: block; margin-bottom: 5px;">SL Green Realty</strong><span style="color: #666;">26 buildings • $1.7M savings</span></div><div class="portfolio-tile" onclick="filterByOwner('Kaufman Organization')" style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid rgba(0, 118, 157, 0.2); cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; min-height: 100px;"><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/Logos/Kaufman_Organization.png" alt="Kaufman Organization" style="max-height:80px;max-width:200px;margin-left:15px;vertical-align:middle;opacity:0.8;position:absolute;top:10px;right:15px;"><strong style="color: var(--rzero-primary); display: block; margin-bottom: 5px;">Kaufman Organization</strong><span style="color: #666;">23 buildings • $0.0M savings</span></div></div></div>
         
         <div style="background: #f8f8f8; border: 1px solid #ddd; padding: 15px; margin-bottom: 20px;">
             <details open>
@@ -299,11 +299,18 @@
             </details>
         </div>
         
-        <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+        <div style="display: flex; gap: 10px; margin-bottom: 20px; align-items: center;">
             <input type="text" id="search" onkeyup="filterTable()" placeholder="Search by address, owner, property manager" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
             <button id="clearFilterBtn" onclick="clearAllFilters()" style="background: #e0e0e0; color: #999; border: none; padding: 10px 25px; border-radius: 8px; cursor: not-allowed; font-size: 16px; font-weight: 600; transition: all 0.2s;" disabled>
                 Clear Filter
             </button>
+            <button onclick="exportToCSV()" style="background: #38a169; color: white; border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: 600;">
+                Export CSV
+            </button>
+        </div>
+        
+        <div id="resultCounter" style="background: #f8f9fa; padding: 10px 15px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; color: #666;">
+            Showing <span id="visibleCount">5</span> of <span id="totalCount">5</span> buildings
         </div>
         
         <div class="table-wrapper" style="overflow-x: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 118, 157, 0.08); position: relative; max-height: calc(100vh - 200px); overflow-y: auto;">
@@ -322,7 +329,7 @@
         </thead>
         <tbody>
 
-        <tr data-search="1472 broadway, new york, ny 10036 | 1472 broadway | 141 w 42 st | 143 w 42 st | 145 w 42 st | 147 w 42 st | 149 w 42 st | 151 w 42 st | 153 w 42 st | 155 w 42 st | 157 w 42 st | 1472 broadway | 1474 broadway | 1476 broadway | 1478 broadway | 1480 broadway | 1482 broadway | 1484 broadway | 1486 broadway | 1488 broadway | 1490 broadway | 4 times sq | 138 w 43 st | 140 w 43 st | 142 w 43 st | 144 w 43 st | 146 w 43 st | 148 w 43 st | 150 w 43 st | 152 w 43 st | 154 w 43 st | 156 w 43 st | 158 w 43 st | durst organization | durst organization | 1009950005 | durst organization" class="clickable-row" onclick="if (!event.target.closest('a')) window.location.href='1009950005.html'">
+        <tr data-search="1472 broadway, new york, ny 10036 | 1472 broadway | 141 w 42 st | 143 w 42 st | 145 w 42 st | 147 w 42 st | 149 w 42 st | 151 w 42 st | 153 w 42 st | 155 w 42 st | 157 w 42 st | 1472 broadway | 1474 broadway | 1476 broadway | 1478 broadway | 1480 broadway | 1482 broadway | 1484 broadway | 1486 broadway | 1488 broadway | 1490 broadway | 4 times sq | 138 w 43 st | 140 w 43 st | 142 w 43 st | 144 w 43 st | 146 w 43 st | 148 w 43 st | 150 w 43 st | 152 w 43 st | 154 w 43 st | 156 w 43 st | 158 w 43 st | durst organization | durst organization | 1009950005 | durst organization" data-occupancy="70" class="clickable-row" onclick="if (!event.target.closest('a')) window.location.href='1009950005.html'">
             <td><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1009950005/1009950005_hero_thumbnail.jpg" 
                      alt="1472 Broadway" 
                      class="building-thumb" 
@@ -335,10 +342,12 @@
             <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByManager('Durst Organization')" class="clickable-link">Durst Organization</a></td>
             <td class="savings-high" data-value="539290.0599999999">$539,290</td>
             <td>98.0</td>
-            <td><a href="1009950005.html" onclick="event.stopPropagation();">View Details →</a></td>
+            <td style="text-align: center;">
+                <span style="color: var(--rzero-primary);">→</span>
+            </td>
         </tr>
     
-        <tr data-search="100 gold st, new york, ny 10038 | 100 gold st | 96 gold st | 98 gold st | 100 gold st | 102 gold st | 96-102 gold st | city of new york | dcas | 1000940025 | city of new york" class="clickable-row" onclick="if (!event.target.closest('a')) window.location.href='1000940025.html'">
+        <tr data-search="100 gold st, new york, ny 10038 | 100 gold st | 96 gold st | 98 gold st | 100 gold st | 102 gold st | 96-102 gold st | city of new york | dcas | 1000940025 | city of new york" data-occupancy="70" class="clickable-row" onclick="if (!event.target.closest('a')) window.location.href='1000940025.html'">
             <td><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1000940025/1000940025_hero_thumbnail.jpg" 
                      alt="100 Gold St" 
                      class="building-thumb" 
@@ -351,10 +360,12 @@
             <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByManager('DCAS')" class="clickable-link">DCAS</a></td>
             <td class="savings-medium" data-value="181235.01999999996">$181,235</td>
             <td>97.0</td>
-            <td><a href="1000940025.html" onclick="event.stopPropagation();">View Details →</a></td>
+            <td style="text-align: center;">
+                <span style="color: var(--rzero-primary);">→</span>
+            </td>
         </tr>
     
-        <tr data-search="1515 broadway, new york, ny 10036 | 1515 broadway | 200 w 45 st | 1507 broadway | 1509 broadway | 1511 broadway | 1513 broadway | 1515 broadway | 1517 broadway | 1519 broadway | 1521 broadway | 201 w 44 st | 203 w 44 st | 205 w 44 st | 207 w 44 st | 209 w 44 st | 211 w 44 st | 213 w 44 st | 215 w 44 st | 217 w 44 st | 219 w 44 st | 1523 broadway | 1525 broadway | 1 astor plaza | sl green realty | sl green realty | 1010160036 | sl green" class="clickable-row" onclick="if (!event.target.closest('a')) window.location.href='1010160036.html'">
+        <tr data-search="1515 broadway, new york, ny 10036 | 1515 broadway | 200 w 45 st | 1507 broadway | 1509 broadway | 1511 broadway | 1513 broadway | 1515 broadway | 1517 broadway | 1519 broadway | 1521 broadway | 201 w 44 st | 203 w 44 st | 205 w 44 st | 207 w 44 st | 209 w 44 st | 211 w 44 st | 213 w 44 st | 215 w 44 st | 217 w 44 st | 219 w 44 st | 1523 broadway | 1525 broadway | 1 astor plaza | sl green realty | sl green realty | 1010160036 | sl green" data-occupancy="70" class="clickable-row" onclick="if (!event.target.closest('a')) window.location.href='1010160036.html'">
             <td><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1010160036/1010160036_hero_thumbnail.jpg" 
                      alt="1515 Broadway" 
                      class="building-thumb" 
@@ -367,10 +378,12 @@
             <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByManager('SL Green Realty')" class="clickable-link">SL Green Realty</a></td>
             <td class="savings-high" data-value="651112.0099999999">$651,112</td>
             <td>96.7</td>
-            <td><a href="1010160036.html" onclick="event.stopPropagation();">View Details →</a></td>
+            <td style="text-align: center;">
+                <span style="color: var(--rzero-primary);">→</span>
+            </td>
         </tr>
     
-        <tr data-search="1290 ave of the americas, new york, ny 10104 | 1290 ave of the americas | 38 w 52 st | 40 w 52 st | 42 w 52 st | 44 w 52 st | 46 w 52 st | 48 w 52 st | 50 w 52 st | 52 w 52 st | 54 w 52 st | 56 w 52 st | 58 w 52 st | 60 w 52 st | 62 w 52 st | 64 w 52 st | 66 w 52 st | 68 w 52 st | 70 w 52 st | 72 w 52 st | 74 w 52 st | 1280 ave of the americas | 1282 ave of the americas | 1284 ave of the americas | 1286 ave of the americas | 1288 ave of the americas | 1290 ave of the americas | 1292 ave of the americas | 1294 ave of the americas | 1296 ave of the americas | 31 w 51 st | 33 w 51 st | 35 w 51 st | 37 w 51 st | 39 w 51 st | 41 w 51 st | 43 w 51 st | 45 w 51 st | 47 w 51 st | 49 w 51 st | 51 w 51 st | 53 w 51 st | 55 w 51 st | 57 w 51 st | 59 w 51 st | 61 w 51 st | 63 w 51 st | 65 w 51 st | 67 w 51 st | 69 w 51 st | 71 w 51 st | 73 w 51 st | vornado realty trust | cushman & wakefield | 1012670001 | vornado" class="clickable-row" onclick="if (!event.target.closest('a')) window.location.href='1012670001.html'">
+        <tr data-search="1290 ave of the americas, new york, ny 10104 | 1290 ave of the americas | 38 w 52 st | 40 w 52 st | 42 w 52 st | 44 w 52 st | 46 w 52 st | 48 w 52 st | 50 w 52 st | 52 w 52 st | 54 w 52 st | 56 w 52 st | 58 w 52 st | 60 w 52 st | 62 w 52 st | 64 w 52 st | 66 w 52 st | 68 w 52 st | 70 w 52 st | 72 w 52 st | 74 w 52 st | 1280 ave of the americas | 1282 ave of the americas | 1284 ave of the americas | 1286 ave of the americas | 1288 ave of the americas | 1290 ave of the americas | 1292 ave of the americas | 1294 ave of the americas | 1296 ave of the americas | 31 w 51 st | 33 w 51 st | 35 w 51 st | 37 w 51 st | 39 w 51 st | 41 w 51 st | 43 w 51 st | 45 w 51 st | 47 w 51 st | 49 w 51 st | 51 w 51 st | 53 w 51 st | 55 w 51 st | 57 w 51 st | 59 w 51 st | 61 w 51 st | 63 w 51 st | 65 w 51 st | 67 w 51 st | 69 w 51 st | 71 w 51 st | 73 w 51 st | vornado realty trust | cushman & wakefield | 1012670001 | vornado" data-occupancy="70" class="clickable-row" onclick="if (!event.target.closest('a')) window.location.href='1012670001.html'">
             <td><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1012670001/1012670001_hero_thumbnail.jpg" 
                      alt="1290 Ave Of The Americas" 
                      class="building-thumb" 
@@ -383,10 +396,12 @@
             <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByManager('Cushman & Wakefield')" class="clickable-link">Cushman & Wakefield</a></td>
             <td class="savings-high" data-value="1090509.21">$1,090,509</td>
             <td>96.6</td>
-            <td><a href="1012670001.html" onclick="event.stopPropagation();">View Details →</a></td>
+            <td style="text-align: center;">
+                <span style="color: var(--rzero-primary);">→</span>
+            </td>
         </tr>
     
-        <tr data-search="245 park ave, new york, ny 10167 | 245 park ave | 482 lexington ave | 484 lexington ave | 486 lexington ave | 488 lexington ave | 490 lexington ave | 492 lexington ave | 494 lexington ave | 496 lexington ave | 121 e 46 st | 480 lexington ave | 101 e 46 st | 103 e 46 st | 105 e 46 st | 107 e 46 st | 109 e 46 st | 111 e 46 st | 113 e 46 st | 115 e 46 st | 117 e 46 st | 119 e 46 st | 125 e 46 st | 108 e 47 st | 245a park ave | 118 e 47 st | 247 park ave | 249 park ave | 251 park ave | 253 park ave | 255 park ave | 257 park ave | 480a lexington ave | 112 e 47 st | 245 park ave | 100 e 47 st | 102 e 47 st | 104 e 47 st | 106 e 47 st | sl green realty | sl green realty | 1013010001 | sl green" class="clickable-row" onclick="if (!event.target.closest('a')) window.location.href='1013010001.html'">
+        <tr data-search="245 park ave, new york, ny 10167 | 245 park ave | 482 lexington ave | 484 lexington ave | 486 lexington ave | 488 lexington ave | 490 lexington ave | 492 lexington ave | 494 lexington ave | 496 lexington ave | 121 e 46 st | 480 lexington ave | 101 e 46 st | 103 e 46 st | 105 e 46 st | 107 e 46 st | 109 e 46 st | 111 e 46 st | 113 e 46 st | 115 e 46 st | 117 e 46 st | 119 e 46 st | 125 e 46 st | 108 e 47 st | 245a park ave | 118 e 47 st | 247 park ave | 249 park ave | 251 park ave | 253 park ave | 255 park ave | 257 park ave | 480a lexington ave | 112 e 47 st | 245 park ave | 100 e 47 st | 102 e 47 st | 104 e 47 st | 106 e 47 st | sl green realty | sl green realty | 1013010001 | sl green" data-occupancy="70" class="clickable-row" onclick="if (!event.target.closest('a')) window.location.href='1013010001.html'">
             <td><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1013010001/1013010001_hero_thumbnail.jpg" 
                      alt="245 Park Ave" 
                      class="building-thumb" 
@@ -399,7 +414,9 @@
             <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByManager('SL Green Realty')" class="clickable-link">SL Green Realty</a></td>
             <td class="savings-high" data-value="782678.02">$782,678</td>
             <td>95.9</td>
-            <td><a href="1013010001.html" onclick="event.stopPropagation();">View Details →</a></td>
+            <td style="text-align: center;">
+                <span style="color: var(--rzero-primary);">→</span>
+            </td>
         </tr>
     
         </tbody>
@@ -433,6 +450,7 @@
             rows.forEach(row => {
                 row.style.display = '';
             });
+            updateResultCounter(rows.length);
         } else {
             // Select: apply filter
             activeOwnerFilter = ownerName;
@@ -451,11 +469,14 @@
             
             // Filter rows
             const rows = document.querySelectorAll('#buildingTable tbody tr');
+            let visibleCount = 0;
             rows.forEach(row => {
                 const ownerCell = row.cells[3];
                 const isMatch = ownerCell && ownerCell.textContent.trim() === ownerName;
                 row.style.display = isMatch ? '' : 'none';
+                if (isMatch) visibleCount++;
             });
+            updateResultCounter(visibleCount);
         }
         
         updateClearButtonState();
@@ -468,13 +489,20 @@
         // Populate search bar with manager name
         document.getElementById('search').value = managerName;
         
+        // Remove selection from portfolio tiles since this is a manager filter
+        document.querySelectorAll('.portfolio-tile').forEach(tile => {
+            tile.classList.remove('selected');
+        });
+        
         const rows = document.querySelectorAll('#buildingTable tbody tr');
+        let visibleCount = 0;
         rows.forEach(row => {
             const managerCell = row.cells[4];
             const isMatch = managerCell && managerCell.textContent.trim() === managerName;
             row.style.display = isMatch ? '' : 'none';
+            if (isMatch) visibleCount++;
         });
-        
+        updateResultCounter(visibleCount);
         updateClearButtonState();
     }
     
@@ -482,11 +510,20 @@
     function filterTable() {
         const input = document.getElementById('search').value.toLowerCase();
         const rows = document.querySelectorAll('#buildingTable tbody tr');
+        let visibleCount = 0;
         rows.forEach(row => {
             const searchText = row.getAttribute('data-search');
-            row.style.display = searchText && searchText.includes(input) ? '' : 'none';
+            const isVisible = searchText && searchText.includes(input);
+            row.style.display = isVisible ? '' : 'none';
+            if (isVisible) visibleCount++;
         });
         updateClearButtonState();
+        updateResultCounter(visibleCount);
+    }
+    
+    // Update result counter
+    function updateResultCounter(count) {
+        document.getElementById('visibleCount').textContent = count;
     }
     
     function updateClearButtonState() {
@@ -538,42 +575,42 @@
         new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ["Jan 2020", "Jul 2020", "Jan 2021", "Jul 2021", "Jan 2022", "Jul 2022", "Jan 2023", "Jul 2023", "Jan 2024", "Jul 2024", "Jan 2025"],
-            datasets: [
-                {
-                    label: 'New York, NY',
-                    data: [95, 10, 20, 35, 50, 55, 60, 62, 65, 67, 70],
-                    borderColor: '#5B6FED',
-                    backgroundColor: 'rgba(91, 111, 237, 0.1)',
-                    tension: 0.3,
-                    borderWidth: 2,
-                    pointRadius: 3,
-                    pointHoverRadius: 5,
-                    fill: false
-                },
-                {
-                    label: 'Nationwide',
-                    data: [95, 8, 18, 32, 47, 53, 58, 60, 63, 64, 66],
-                    borderColor: '#FF6B6B',
-                    backgroundColor: 'rgba(255, 107, 107, 0.1)',
-                    tension: 0.3,
-                    borderWidth: 2,
-                    pointRadius: 3,
-                    pointHoverRadius: 5,
-                    fill: false
-                }
-            ]
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [{
+                label: 'NYC',
+                data: [52, 54, 56, 58, 59, 60, 59, 58, 60, 61, 61, 61],
+                borderColor: '#5B6FED',
+                backgroundColor: 'rgba(91, 111, 237, 0.1)',
+                tension: 0.3,
+                borderWidth: 2,
+                pointRadius: 3,
+                pointHoverRadius: 5
+            }, {
+                label: 'US Average',
+                data: [58, 60, 62, 63, 64, 65, 64, 63, 65, 66, 66, 66],
+                borderColor: '#FF6B6B',
+                backgroundColor: 'rgba(255, 107, 107, 0.1)',
+                tension: 0.3,
+                borderWidth: 2,
+                pointRadius: 3,
+                pointHoverRadius: 5
+            }, {
+                label: 'San Francisco',
+                data: [42, 43, 44, 45, 46, 47, 46, 45, 46, 47, 47, 47],
+                borderColor: '#4ECDC4',
+                backgroundColor: 'rgba(78, 205, 196, 0.1)',
+                tension: 0.3,
+                borderWidth: 2,
+                pointRadius: 3,
+                pointHoverRadius: 5
+            }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
                 legend: {
-                    display: true,
-                    position: 'top',
-                    labels: {
-                        font: { size: 12 }
-                    }
+                    display: false
                 },
                 tooltip: {
                     mode: 'index',
@@ -587,7 +624,9 @@
                     padding: 8,
                     displayColors: true,
                     callbacks: {
-                        label: (context) => `${context.dataset.label}: ${context.parsed.y}%`
+                        label: function(context) {
+                            return context.dataset.label + ': ' + context.parsed.y + '%';
+                        }
                     }
                 }
             },
@@ -597,11 +636,13 @@
                     ticks: { font: { size: 11 } }
                 },
                 y: {
-                    min: 0,
-                    max: 100,
+                    min: 40,
+                    max: 80,
                     ticks: {
-                        stepSize: 30,
-                        callback: (value) => `${value}%`,
+                        stepSize: 10,
+                        callback: function(value) {
+                            return value + '%';
+                        },
                         font: { size: 11 }
                     },
                     grid: { color: 'rgba(0,0,0,0.05)' }
@@ -619,6 +660,38 @@
     // Helper to escape quotes in JavaScript strings
     function jsEscape(str) {
         return str.replace(/\/g, '\\').replace(/'/g, "\'").replace(/"/g, '\"');
+    }
+    
+    // Export to CSV functionality
+    function exportToCSV() {
+        const table = document.getElementById('buildingTable');
+        const rows = Array.from(table.querySelectorAll('tbody tr')).filter(row => row.style.display !== 'none');
+        
+        let csv = 'Rank,Building,Owner,Manager,Annual ODCV Savings,Score
+';
+        
+        rows.forEach(row => {
+            const cells = row.cells;
+            const rank = cells[1].textContent.replace('#', '');
+            const building = cells[2].textContent;
+            const owner = cells[3].textContent;
+            const manager = cells[4].textContent;
+            const savings = cells[5].getAttribute('data-value');
+            const score = cells[6].textContent;
+            
+            csv += `"${rank}","${building}","${owner}","${manager}","${savings}","${score}"
+`;
+        });
+        
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'nyc_odcv_rankings.csv';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
     }
     
     // Sortable table functionality
@@ -696,9 +769,17 @@
         const API_KEY = 'AIzaSyDQdR4xY0a_qmEsYairsp6r6tXwh5qx_ho';
         const rows = document.querySelectorAll('tbody tr');
         const aerialVideos = {
-            // Map of BBL to video IDs - add your actual mappings here
-            1000090014: 'video_id_here',
-            // ... add more from your aerial_videos.csv
+            // Map of BBL to video IDs from aerial_videos.csv
+            1000090014: 'wJql3ZGi_K9jUolEQJ4qPt',
+            1000090029: 'pEmc7uTCM_sx1YCcOewv96',
+            1000100014: 'DcQ6P1JnMl7AUk0A6vV3sv',
+            1000100023: 'yhICKCWVtlmzcRdHYoZU7q',
+            1000130001: '60TirLeoxiynVhDBCglxVv',
+            1000130005: '79zaCfkDMpuFqoacM9DBgc',
+            1000130027: 'D-F-dvcm6Zl6d8qHr700ff',
+            1000160260: 'vp8EaH-CqQj3n_HA47lnbD',
+            1000200004: 'fJeDptncNamObJOYonNjYJ',
+            1000200009: 'hgOQx_tsHZQH8vij_jq98l'
         };
         
         // Preload first 10 buildings only
@@ -744,10 +825,14 @@
         box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         z-index: 1000;
         display: none;
-    ">↑</button>
+    ">
+        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+        </svg>
+    </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: {datetime.now(pytz.timezone('America/Mexico_City')).strftime('%I:%M:%S %p CST')} | Aug 1{' | ' + sys.argv[1] if len(sys.argv) > 1 else ''}
+        Build: {datetime.now(pytz.timezone('America/Mexico_City')).strftime('%I:%M:%S %p CST')} | TRAP{' | ' + sys.argv[1] if len(sys.argv) > 1 else ''}
     </div>
 </body>
 </html>
