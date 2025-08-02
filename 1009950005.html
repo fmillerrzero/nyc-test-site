@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>1472 Broadway, New York, NY 10036 - ODCV Analysis (v1754125096)</title>
+    <title>1472 Broadway, New York, NY 10036 - ODCV Analysis (v1754134570)</title>
+    <link rel="icon" type="image/png" href="https://rzero.com/wp-content/themes/rzero/build/images/favicons/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -663,11 +664,16 @@
                                     if (videoUrl) {
                                         console.log('Using pre-fetched video URL for BBL ' + bbl);
                                         container.innerHTML = `
-                                            <video controls autoplay loop muted style="width: 100%; height: 100%; object-fit: contain;">
+                                            <video controls autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: contain; visibility: visible;">
                                                 <source src="${videoUrl}" type="video/mp4">
                                                 Your browser does not support the video tag.
                                             </video>
                                         `;
+                                        // Explicitly trigger video playback
+                                        const video = container.querySelector('video');
+                                        if (video) {
+                                            video.play().catch(e => console.log('Autoplay blocked:', e));
+                                        }
                                         return;
                                     }
                                 } catch (e) {
@@ -1450,21 +1456,25 @@
             const isEven = buildingNumber % 2 === 0;
             const addressLower = address.toLowerCase();
             
-            // Manhattan grid: Streets at 119°, Avenues at 29°
+            // Manhattan grid with panorama northOffset correction
+            // After fixing even/odd logic: Broadway even (270°) should be -92.45° (~267.55°)
+            // This means we need to subtract ~2.45° from all values
+            const northOffset = -2.45;
+            
             if (addressLower.includes('street') || addressLower.includes(' st')) {
-                // STREETS: Even = South side, Odd = North side
-                return isEven ? 209 : 29;  // Look south : north
+                // STREETS: Even = South side (look north), Odd = North side (look south)
+                return isEven ? (29 + northOffset) : (209 + northOffset);
             } else if (addressLower.includes('avenue') || addressLower.includes(' ave')) {
-                // AVENUES: Even = West side, Odd = East side  
-                return isEven ? 299 : 119;  // Look west : east
+                // AVENUES: Even = West side (look east), Odd = East side (look west)
+                return isEven ? (119 + northOffset) : (299 + northOffset);
             } else if (addressLower.includes('broadway')) {
                 // Broadway runs diagonal NE-SW through Manhattan
-                // Even numbers = west side, odd = east side
-                return isEven ? 90 : 270;  // Look east : west
+                // Even = west side (look west), Odd = east side (look east)
+                return isEven ? (270 + northOffset) : (90 + northOffset);
             }
             
             // Default (assume street)
-            return isEven ? 209 : 29;
+            return isEven ? (29 + northOffset) : (209 + northOffset);
         }
         
         // Function to initialize panorama
@@ -1480,21 +1490,23 @@
             
             // Calculate pitch based on building height
             // We're at street level looking at buildings
-            // Short buildings = look straight ahead (0°)
-            // Tall buildings = look up more (positive pitch)
-            const pitch = Math.min(buildingHeight / 50, 15);  // 500ft = 10°, 750ft = 15°
+            // Based on: 737ft building = 31° pitch (optimal viewing angle)
+            // This gives a proportional pitch for all building heights
+            const pitch = Math.min(buildingHeight * (31 / 737), 60);  // Max 60° for very tall buildings
             
             console.log(`Panorama 1009950005: Address="${address}", Height=${buildingHeight}ft, Yaw=${yaw}°, Pitch=${pitch}°`);
             
             try {
-                pannellum.viewer('viewer-1009950005', {
+                const viewer = pannellum.viewer('viewer-1009950005', {
                     "type": "equirectangular",
                     "panorama": "https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1009950005/1009950005_360.jpg",
                     "autoLoad": true,
                     "autoRotate": -2,
                     "pitch": pitch,
                     "yaw": yaw,
-                    "hfov": 100,
+                    "hfov": 120,
+                    "maxHfov": 120,
+                    "minHfov": 30,
                     "showZoomCtrl": true,
                     "showFullscreenCtrl": true,
                     "mouseZoom": false,
@@ -1502,6 +1514,8 @@
                     "maxPitch": 85
                 });
                 viewerEl._pannellumInitialized = true;
+                viewerEl.pannellumViewer = viewer;  // Store viewer instance
+                window[`panoramaViewer_1009950005`] = viewer;  // Also store globally for easy access
                 console.log('Panorama initialized successfully for BBL 1009950005');
             } catch (e) {
                 console.error('Failed to initialize panorama:', e);
@@ -1552,11 +1566,16 @@
                 
                 if (videoUri) {
                     container.innerHTML = `
-                        <video controls autoplay loop muted style="width: 100%; height: 100%; object-fit: contain;">
+                        <video controls autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: contain; visibility: visible;">
                             <source src="${videoUri}" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     `;
+                    // Explicitly trigger video playback
+                    const video = container.querySelector('video');
+                    if (video) {
+                        video.play().catch(e => console.log('Autoplay blocked:', e));
+                    }
                 } else {
                     container.innerHTML = '<div style="color: white; text-align: center; padding: 20px;">Video format not available</div>';
                 }
@@ -1575,7 +1594,7 @@
     </div>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif;">
-        Build: 02:58:17 AM CST | ff
+        Build: 05:36:10 AM CST | boob
     </div>
 </body>
 </html>
