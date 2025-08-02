@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>1515 Broadway, New York, NY 10036 - ODCV Analysis (v1754122729)</title>
+    <title>1515 Broadway, New York, NY 10036 - ODCV Analysis (v1754124131)</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -1458,8 +1458,9 @@
                 // AVENUES: Even = West side, Odd = East side  
                 return isEven ? 299 : 119;  // Look west : east
             } else if (addressLower.includes('broadway')) {
-                // Broadway diagonal
-                return isEven ? 330 : 150;
+                // Broadway runs diagonal NE-SW through Manhattan
+                // Even numbers = west side, odd = east side
+                return isEven ? 90 : 270;  // Look east : west
             }
             
             // Default (assume street)
@@ -1478,7 +1479,10 @@
             const yaw = getBuildingYaw(address);
             
             // Calculate pitch based on building height
-            const pitch = -Math.min(Math.max(10 + (buildingHeight / 10), 15), 60);
+            // We're at street level looking at buildings
+            // Short buildings = look straight ahead (0°)
+            // Tall buildings = look up more (positive pitch)
+            const pitch = Math.min(buildingHeight / 50, 15);  // 500ft = 10°, 750ft = 15°
             
             console.log(`Panorama 1010160036: Address="${address}", Height=${buildingHeight}ft, Yaw=${yaw}°, Pitch=${pitch}°`);
             
@@ -1571,7 +1575,7 @@
     </div>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif;">
-        Build: 02:18:51 AM CST | template fix
+        Build: 02:42:13 AM CST | pano fix test
     </div>
 </body>
 </html>
