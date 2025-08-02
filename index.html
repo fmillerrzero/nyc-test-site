@@ -642,7 +642,7 @@
     
     // Helper to escape quotes in JavaScript strings
     function jsEscape(str) {
-        return str.replace(/\/g, '\\').replace(/'/g, "\'").replace(/"/g, '\"');
+        return str.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '\\"');
     }
     
     // Export to CSV functionality
@@ -901,7 +901,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: {datetime.now(pytz.timezone('America/Mexico_City')).strftime('%I:%M:%S %p CST')} | y{' | ' + sys.argv[1] if len(sys.argv) > 1 else ''}
+        Build: {datetime.now(pytz.timezone('America/Mexico_City')).strftime('%I:%M:%S %p CST')} | trip{' | ' + sys.argv[1] if len(sys.argv) > 1 else ''}
     </div>
 </body>
 </html>
