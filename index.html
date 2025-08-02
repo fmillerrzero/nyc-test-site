@@ -639,93 +639,6 @@
         // Update button state
         updateClearButtonState();
     }
-    // NYC Occupancy Chart - Initialize after DOM loads to ensure canvas exists
-    document.addEventListener("DOMContentLoaded", function() {
-        const ctx = document.getElementById('occupancyChartSlim').getContext('2d');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                datasets: [{
-                label: 'NYC',
-                data: [68, 70, 72, 73, 74, 75, 74, 73, 75, 76, 76, 76],
-                borderColor: '#5B6FED',
-                backgroundColor: 'rgba(91, 111, 237, 0.1)',
-                tension: 0.3,
-                borderWidth: 2,
-                pointRadius: 3,
-                pointHoverRadius: 5
-            }, {
-                label: 'US Average',
-                data: [58, 60, 62, 63, 64, 65, 64, 63, 65, 66, 66, 66],
-                borderColor: '#FF6B6B',
-                backgroundColor: 'rgba(255, 107, 107, 0.1)',
-                tension: 0.3,
-                borderWidth: 2,
-                pointRadius: 3,
-                pointHoverRadius: 5
-            }, {
-                label: 'San Francisco',
-                data: [42, 43, 44, 45, 46, 47, 46, 45, 46, 47, 47, 47],
-                borderColor: '#4ECDC4',
-                backgroundColor: 'rgba(78, 205, 196, 0.1)',
-                tension: 0.3,
-                borderWidth: 2,
-                pointRadius: 3,
-                pointHoverRadius: 5
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    mode: 'index',
-                    intersect: false,
-                    backgroundColor: 'rgba(0,0,0,0.8)',
-                    titleColor: '#fff',
-                    bodyColor: '#fff',
-                    borderColor: '#ddd',
-                    borderWidth: 1,
-                    cornerRadius: 4,
-                    padding: 8,
-                    displayColors: true,
-                    callbacks: {
-                        label: function(context) {
-                            return context.dataset.label + ': ' + context.parsed.y + '%';
-                        }
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    grid: { display: false },
-                    ticks: { font: { size: 11 } }
-                },
-                y: {
-                    min: 40,
-                    max: 80,
-                    ticks: {
-                        stepSize: 10,
-                        callback: function(value) {
-                            return value + '%';
-                        },
-                        font: { size: 11 }
-                    },
-                    grid: { color: 'rgba(0,0,0,0.05)' }
-                }
-            },
-            interaction: {
-                mode: 'nearest',
-                axis: 'x',
-                intersect: false
-            }
-        }
-    });
-    }); // End of DOMContentLoaded for chart initialization
     
     // Helper to escape quotes in JavaScript strings
     function jsEscape(str) {
@@ -807,7 +720,7 @@
     }
     
     // Initialize on page load
-    window.addEventListener('load', function() {
+    document.addEventListener('DOMContentLoaded', function() {
         updateClearButtonState();
         
         // Initialize any portfolio tiles that might be pre-selected
@@ -816,6 +729,92 @@
         if (ownerParam) {
             filterByOwner(ownerParam);
         }
+        
+        // Initialize occupancy chart
+        const ctx = document.getElementById('occupancyChartSlim').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'NYC',
+                    data: [68, 70, 72, 73, 74, 75, 74, 73, 75, 76, 76, 76],
+                    borderColor: '#5B6FED',
+                    backgroundColor: 'rgba(91, 111, 237, 0.1)',
+                    tension: 0.3,
+                    borderWidth: 2,
+                    pointRadius: 3,
+                    pointHoverRadius: 5
+                }, {
+                    label: 'US Average',
+                    data: [58, 60, 62, 63, 64, 65, 64, 63, 65, 66, 66, 66],
+                    borderColor: '#FF6B6B',
+                    backgroundColor: 'rgba(255, 107, 107, 0.1)',
+                    tension: 0.3,
+                    borderWidth: 2,
+                    pointRadius: 3,
+                    pointHoverRadius: 5
+                }, {
+                    label: 'San Francisco',
+                    data: [42, 43, 44, 45, 46, 47, 46, 45, 46, 47, 47, 47],
+                    borderColor: '#4ECDC4',
+                    backgroundColor: 'rgba(78, 205, 196, 0.1)',
+                    tension: 0.3,
+                    borderWidth: 2,
+                    pointRadius: 3,
+                    pointHoverRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: 'rgba(0,0,0,0.8)',
+                        titleColor: '#fff',
+                        bodyColor: '#fff',
+                        borderColor: '#ddd',
+                        borderWidth: 1,
+                        cornerRadius: 4,
+                        padding: 8,
+                        displayColors: true,
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.parsed.y + '%';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: { font: { size: 11 } }
+                    },
+                    y: {
+                        min: 40,
+                        max: 80,
+                        ticks: {
+                            stepSize: 10,
+                            callback: function(value) {
+                                return value + '%';
+                            },
+                            font: { size: 11 }
+                        },
+                        grid: { color: 'rgba(0,0,0,0.05)' }
+                    }
+                },
+                interaction: {
+                    mode: 'nearest',
+                    axis: 'x',
+                    intersect: false
+                }
+            }
+        });
     });
     
     // Back to top functionality
@@ -902,7 +901,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: {datetime.now(pytz.timezone('America/Mexico_City')).strftime('%I:%M:%S %p CST')} | tt{' | ' + sys.argv[1] if len(sys.argv) > 1 else ''}
+        Build: {datetime.now(pytz.timezone('America/Mexico_City')).strftime('%I:%M:%S %p CST')} | y{' | ' + sys.argv[1] if len(sys.argv) > 1 else ''}
     </div>
 </body>
 </html>
