@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>100 Gold St, New York, NY 10038 - ODCV Analysis (v1754135333)</title>
+    <title>100 Gold St, New York, NY 10038 - ODCV Analysis (v1754135462)</title>
     <link rel="icon" type="image/png" href="https://rzero.com/wp-content/themes/rzero/build/images/favicons/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -667,17 +667,11 @@
                                     if (videoUrl) {
                                         console.log('Using pre-fetched video URL for BBL ' + bbl);
                                         container.innerHTML = `
-                                            <video controls autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: contain; visibility: visible;">
+                                            <video controls autoplay loop muted style="width: 100%; height: 100%; object-fit: contain;">
                                                 <source src="${videoUrl}" type="video/mp4">
                                                 Your browser does not support the video tag.
                                             </video>
                                         `;
-                                        // Explicitly trigger video playback
-                                        const video = container.querySelector('video');
-                                        if (video) {
-                                            video.classList.add('loaded'); // Add loaded class for opacity
-                                            video.play().catch(e => console.log('Autoplay blocked:', e));
-                                        }
                                         return;
                                     } else {
                                         console.log('No pre-fetched video URL found for BBL ' + bbl);
@@ -1588,17 +1582,11 @@
                 
                 if (videoUri) {
                     container.innerHTML = `
-                        <video controls autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: contain; visibility: visible;">
+                        <video controls autoplay loop muted style="width: 100%; height: 100%; object-fit: contain;">
                             <source src="${videoUri}" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     `;
-                    // Explicitly trigger video playback
-                    const video = container.querySelector('video');
-                    if (video) {
-                        video.classList.add('loaded'); // Add loaded class for opacity
-                        video.play().catch(e => console.log('Autoplay blocked:', e));
-                    }
                 } else {
                     container.innerHTML = '<div style="color: white; text-align: center; padding: 20px;">Video format not available</div>';
                 }
@@ -1617,7 +1605,7 @@
     </div>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif;">
-        Build: 05:48:54 AM CST | FUCK CLAUDE
+        Build: 05:51:03 AM CST | D
     </div>
 </body>
 </html>
