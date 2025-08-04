@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>100 Gold St, New York, NY 10038 - ODCV Analysis (v1754177479)</title>
+    <title>100 Gold St, New York, NY 10038 - ODCV Analysis (v1754297626)</title>
     <link rel="icon" type="image/png" href="https://rzero.com/wp-content/themes/rzero/build/images/favicons/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -193,8 +193,8 @@
         }
         
         .page { 
-            margin-bottom: 40px; 
-            max-width: 1200px;
+            margin-bottom: 40px;
+            max-width: 900px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -218,14 +218,15 @@
         
         .stat-label { 
             font-weight: 500; 
-            color: #6b7280; 
+            color: #333; 
             min-width: 200px; 
             font-size: 1em;
         }
         
         .stat-value { 
             font-size: 1.1em; 
-            color: #1a202c; 
+            color: #555; 
+            font-weight: 400;
         }
         
         .penalty { color: #c41e3a; }
@@ -263,6 +264,8 @@
         .carousel-container {
             position: relative;
             width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
             height: 675px;
             overflow: hidden;
             border-radius: 12px;
@@ -444,19 +447,6 @@
             opacity: 1;
         }
         
-        /* Slide Counter */
-        .slide-counter {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: rgba(0, 0, 0, 0.6);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 500;
-            z-index: 10;
-        }
         
         /* Chart Controls from Prospector */
         .chart-carousel { position: relative; }
@@ -581,9 +571,10 @@
         <div class="title-section">
             <div style="display: flex; flex-direction: column; gap: 0.75rem;">
                 <h1 style="margin: 0; color: white; font-size: 2em; font-weight: 700;">
-                    <span style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 25px; font-size: 0.8em;">#2.0</span>
+                    <span style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 25px; font-size: 0.8em;">#2</span>
                     <span>100 Gold St, New York, NY 10038</span>
                 </h1>
+                
                 <p style="margin: 0; opacity: 0.9; font-size: 1.1em; padding-left: 0.5rem;">
                     <span style="margin-right: 1.5rem;">Midtown</span>
                 </p>
@@ -600,7 +591,7 @@
             <h2 class="section-header">Image Gallery</h2>
             
             <div class="page">
-                <h3 class="page-title" id="image-gallery-title-1000940025">Static: Marketing</h3>
+                <h3 class="page-title" id="image-gallery-title-1000940025">Static: <span style="color: #555;">Marketing</span></h3>
                 <div class="carousel-container">
                     <div class="carousel-track" id="carousel-1000940025">
                         <div class="carousel-slide active" data-image-type="hero">
@@ -635,6 +626,30 @@
                                 <button class="fullscreen-btn" onclick="toggleFullscreen(this)" title="Fullscreen">⛶</button>
                             </div>
                         </div>
+                        <div class="carousel-slide" data-image-type="equipment">
+                            <div style="position: relative; width: 100%; height: 100%;">
+                                <img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1000940025/1000940025_equipment.jpg" 
+                                     style="width: 100%; height: 100%; object-fit: contain; background: #f0f0f0;"
+                                     onerror="handleImageError(this, '1000940025', 'equipment')">
+                                <button class="fullscreen-btn" onclick="toggleFullscreen(this)" title="Fullscreen">⛶</button>
+                            </div>
+                        </div>
+                        <div class="carousel-slide" data-image-type="double">
+                            <div style="position: relative; width: 100%; height: 100%;">
+                                <img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1000940025/1000940025_double.jpg" 
+                                     style="width: 100%; height: 100%; object-fit: contain; background: #f0f0f0;"
+                                     onerror="handleImageError(this, '1000940025', 'double')">
+                                <button class="fullscreen-btn" onclick="toggleFullscreen(this)" title="Fullscreen">⛶</button>
+                            </div>
+                        </div>
+                        <div class="carousel-slide" data-image-type="stack">
+                            <div style="position: relative; width: 100%; height: 100%;">
+                                <img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1000940025/1000940025_stack.jpg" 
+                                     style="width: 100%; height: 100%; object-fit: contain; background: #f0f0f0;"
+                                     onerror="handleImageError(this, '1000940025', 'stack')">
+                                <button class="fullscreen-btn" onclick="toggleFullscreen(this)" title="Fullscreen">⛶</button>
+                            </div>
+                        </div>
                     </div>
                     <button class="carousel-btn carousel-prev" onclick="moveCarousel('1000940025', -1)">❮</button>
                     <button class="carousel-btn carousel-next" onclick="moveCarousel('1000940025', 1)">❯</button>
@@ -643,12 +658,14 @@
                         <span class="dot" onclick="goToSlide('1000940025', 1)"></span>
                         <span class="dot" onclick="goToSlide('1000940025', 2)"></span>
                         <span class="dot" onclick="goToSlide('1000940025', 3)"></span>
+                        <span class="dot" onclick="goToSlide('1000940025', 4)"></span>
+                        <span class="dot" onclick="goToSlide('1000940025', 5)"></span>
                     </div>
                 </div>
             </div>
             
             <div class="page">
-                <h3 class="page-title" id="interactive-views-title-1000940025">Dynamic: Drone Footage</h3>
+                <h3 class="page-title" id="interactive-views-title-1000940025">Dynamic: <span style="color: #555;">Drone Footage</span></h3>
                 <div class="carousel-container">
                     <div class="carousel-track" id="interactive-carousel-1000940025">
                         <div class="carousel-slide" data-type="video">
@@ -708,8 +725,6 @@
                         </div>
                     </div>
                     
-                    <!-- Slide Counter -->
-                    <div class="slide-counter" id="counter-1000940025">1 / 2</div>
                     
                     <!-- Navigation Controls -->
                     <button class="carousel-btn carousel-prev" onclick="moveInteractiveCarousel('1000940025', -1)" title="Previous">❮</button>
@@ -720,42 +735,6 @@
                         <span class="dot active" onclick="goToInteractiveSlide('1000940025', 0)" title="Aerial Video"></span>
                         <span class="dot" onclick="goToInteractiveSlide('1000940025', 1)" title="360° Virtual Tour"></span>
                     </div>
-                </div>
-            </div>
-            
-            <div class="page">
-                <h3 class="page-title">Property Details</h3>
-                <div class="stat">
-                    <span class="stat-label">Last Renovated: </span>
-                    <span class="stat-value">2019</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-label">Floors: </span>
-                    <span class="stat-value">10.0</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-label">Units: </span>
-                    <span class="stat-value">1</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-label">Total Gross Floor Area: </span>
-                    <span class="stat-value">655,775 sq ft</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-label">Office Floor Area: </span>
-                    <span class="stat-value">594,000 sq ft (90%)</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-label">BMS: </span>
-                    <span class="stat-value"><span class="bas"><span style="color: black;">Ventilation</span>, <span style="color: #ff6600;">Heating</span>, & <span style="color: #0066cc;">Cooling</span> Controls</span></span>
-                </div>
-                <div class="stat">
-                    <span class="stat-label">Heating System: </span>
-                    <span class="stat-value">Boiler (Gas)</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-label">Cooling System: </span>
-                    <span class="stat-value">Plant</span>
                 </div>
             </div>
             
@@ -774,14 +753,13 @@
                     <span class="stat-label">Manager: </span>
                     <span class="stat-value">DCAS <img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/Logos/DCAS.png" style="height:30px;margin-left:10px;vertical-align:middle;"></span>
                 </div>
-                <div class="stat">
-                    <span class="stat-label">Owner Contact: </span>
-                    <span class="stat-value">Unavailable</span>
-                </div>
+                
+                
                 <div class="stat">
                     <span class="stat-label">% Leased: </span>
                     <span class="stat-value">100%</span>
                 </div>
+                
             </div>
         </div>
         </div>
@@ -798,32 +776,32 @@
                 </div>
                 <div class="stat">
                     <span class="stat-label">Floors: </span>
-                    <span class="stat-value">10.0</span>
+                    <span class="stat-value">10</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Elevator Shafts: </span>
+                    <span class="stat-value">0</span>
                 </div>
                 <div class="stat">
                     <span class="stat-label">Units: </span>
                     <span class="stat-value">1</span>
                 </div>
+                
                 <div class="stat">
                     <span class="stat-label">Total Gross Floor Area: </span>
                     <span class="stat-value">655,775 sq ft</span>
                 </div>
                 <div class="stat">
                     <span class="stat-label">Office Floor Area: </span>
-                    <span class="stat-value">594,000 sq ft (90%)</span>
+                    <span class="stat-value">594,000 sq ft (90% of total)</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-label">BMS: </span>
-                    <span class="stat-value"><span style="color: black;">Ventilation</span>, <span style="color: #ff6600;">Heating</span>, & <span style="color: #0066cc;">Cooling</span> Controls</span>
+                    <span class="stat-label">BMS Controls: </span>
+                    <span class="stat-value"><span style="color: black; font-weight: normal;">Ventilation</span><span style="color: black;">,</span> <span style="color: #ff6600; font-weight: normal;">Heating</span><span style="color: black;">,</span> <span style="color: #0066cc; font-weight: normal;">Cooling</span> <span style="font-weight: normal;">Controls</span></span>
                 </div>
-                <div class="stat">
-                    <span class="stat-label">Heating System: </span>
-                    <span class="stat-value">Boiler (Gas)</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-label">Cooling System: </span>
-                    <span class="stat-value">Plant</span>
-                </div>
+                <div class='stat'><span class='stat-label'>Heating System: </span><span class='stat-value'>Boiler (Gas)</span></div>
+                <div class='stat'><span class='stat-label'>Cooling System: </span><span class='stat-value'>Plant</span></div>
+                <div class='stat'><span class='stat-label'>Equipment Counts: </span><span class='stat-value'>Cooling Towers: 4 | Water Tanks: 0</span></div>
             </div>
             
             <div class="page">
@@ -840,16 +818,17 @@
                     <span class="stat-label">Manager: </span>
                     <span class="stat-value">DCAS <img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/Logos/DCAS.png" style="height:30px;margin-left:10px;vertical-align:middle;"></span>
                 </div>
-                <div class="stat">
-                    <span class="stat-label">Owner Contact: </span>
-                    <span class="stat-value">Unavailable</span>
-                </div>
+                
+                
                 <div class="stat">
                     <span class="stat-label">% Leased: </span>
                     <span class="stat-value">100%</span>
                 </div>
+                
             </div>
         </div>
+        
+        
         
         <!-- Section 2: Building -->
         <div class="section section-white">
@@ -873,7 +852,7 @@
                             <text x="180" y="115" text-anchor="middle" font-size="12" fill="#666">100</text>
                         </svg>
                         <div>
-                            <div style="font-size: 1.2em; color: #666; font-weight: 500;">Target Score: 75.0 (self reported)</div>
+                            <div style="font-size: 1.2em; color: #666; font-weight: 500;">Target Score: 75 (self reported)</div>
                             <div style="font-size: 1.1em; margin-top: 5px;"><div style="color: #38a169;">✓ Exceeds target by 9 points</div></div>
                         </div>
                     </div>
@@ -886,17 +865,15 @@
             
             
                 <div class="page">
-                    <h3 class="page-title">LL97 Compliance Overview</h3>
+                    <h3 class="page-title">LL97 Compliance</h3>
                     <div class="stat">
-                        <span class="stat-label">2024-2029 Compliance: </span>
+                        <span class="stat-label">2024-2029 Status: </span>
                         <span class="stat-value"><span class="yes">Yes</span></span>
                     </div>
                     <div class="stat">
-                        <span class="stat-label">2030-2034 Compliance: </span>
+                        <span class="stat-label">2030-2034 Status: </span>
                         <span class="stat-value"><span class="no">No</span></span>
                     </div>
-                    
-                    <h3 class="page-title" style="margin-top: 30px;">Carbon Emissions</h3>
                     <div class="stat">
                         <span class="stat-label">Current Emissions: </span>
                         <span class="stat-value">3,182 tCO2e</span>
@@ -993,13 +970,13 @@
                 <div class="iaq-stat-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: center;">
                     <div class="iaq-stat">
                         <div class="iaq-label" style="font-size: 12px; color: #6c757d; margin-bottom: 4px;">Max</div>
-                        <div class="iaq-value" style="font-size: 24px; font-weight: bold; color: #c41e3a;">31.1 μg/m³</div>
-                        <div class="iaq-category" style="font-size: 11px; color: #6c757d; margin-top: 4px;">M-F 8am-6pm</div>
+                        <div class="iaq-value" style="font-size: 24px; font-weight: bold; color: #c41e3a;">18.0 μg/m³</div>
+                        <div class="iaq-category" style="font-size: 11px; color: #6c757d; margin-top: 4px;">Daily Average</div>
                     </div>
                     <div class="iaq-stat">
                         <div class="iaq-label" style="font-size: 12px; color: #6c757d; margin-bottom: 4px;">Average</div>
-                        <div class="iaq-value" style="font-size: 24px; font-weight: bold; color: #FFB300;">16.2 μg/m³</div>
-                        <div class="iaq-category" style="font-size: 11px; color: #6c757d; margin-top: 4px;">M-F 8am-6pm</div>
+                        <div class="iaq-value" style="font-size: 24px; font-weight: bold; color: #FFB300;">15.9 μg/m³</div>
+                        <div class="iaq-category" style="font-size: 11px; color: #6c757d; margin-top: 4px;">Daily Average</div>
                     </div>
                     <div class="iaq-stat">
                         <div class="iaq-label" style="font-size: 12px; color: #6c757d; margin-bottom: 4px;">Good</div>
@@ -1145,11 +1122,14 @@
         if (titleElement) {
             const imageTypeMap = {
                 'hero': 'Marketing',
-                'roadview': 'Streetview (Cyclopedia)',
+                'roadview': 'Streetview (Cyclomedia)',
                 'street': 'Streetview (Google)',
-                'satellite': 'Satellite'
+                'satellite': 'Satellite (Unannotated)',
+                'equipment': 'Satellite (Annotated)',
+                'double': 'Side-by-Side',
+                'stack': 'Stacking Diagram'
             };
-            titleElement.textContent = `Static: ${imageTypeMap[imageType] || 'Unknown'}`;
+            titleElement.innerHTML = `Static: <span style="color: #555;">${imageTypeMap[imageType] || 'Unknown'}</span>`;
         }
         
         // Update dots for visible slides only
@@ -1172,11 +1152,14 @@
             if (titleElement) {
                 const imageTypeMap = {
                     'hero': 'Marketing',
-                    'roadview': 'Streetview (Cyclopedia)',
+                    'roadview': 'Streetview (Cyclomedia)',
                     'street': 'Streetview (Google)',
-                    'satellite': 'Satellite'
+                    'satellite': 'Satellite (Unannotated)',
+                    'equipment': 'Satellite (Annotated)',
+                    'double': 'Side-by-Side',
+                    'stack': 'Stacking Diagram'
                 };
-                titleElement.textContent = `Static: ${imageTypeMap[imageType] || 'Unknown'}`;
+                titleElement.innerHTML = `Static: <span style="color: #555;">${imageTypeMap[imageType] || 'Unknown'}</span>`;
             }
             
             updateCarouselDots(bbl);
@@ -1208,7 +1191,6 @@
     function moveInteractiveCarousel(bbl, direction) {
         const carousel = document.getElementById('interactive-carousel-' + bbl);
         const dots = carousel.parentElement.querySelectorAll('.dot');
-        const counter = document.getElementById('counter-' + bbl);
         const totalViews = 2;
         
         interactiveIndex += direction;
@@ -1219,11 +1201,6 @@
         
         // Smooth transition with enhanced transform
         carousel.style.transform = `translateX(-${interactiveIndex * 100}%)`;
-        
-        // Update counter
-        if (counter) {
-            counter.textContent = `${interactiveIndex + 1} / ${totalViews}`;
-        }
         
         // Update dot indicators with smooth animation
         dots.forEach((dot, i) => {
@@ -1246,7 +1223,7 @@
                 'video': 'Drone Footage',
                 'pano': '360 Panorama'
             };
-            titleElement.textContent = `Dynamic: ${typeMap[slideType] || 'Unknown'}`;
+            titleElement.innerHTML = `Dynamic: <span style="color: #555;">${typeMap[slideType] || 'Unknown'}</span>`;
         }
         
         // Handle panorama initialization and rotation
@@ -1254,7 +1231,7 @@
             const viewerEl = document.getElementById(`viewer-${bbl}`);
             if (viewerEl && viewerEl.pannellumViewer) {
                 // Start auto rotation when user navigates to panorama
-                viewerEl.pannellumViewer.setAutoRotate(-2);
+                viewerEl.pannellumViewer.startAutoRotate(-2);
             }
         }
         
@@ -1342,7 +1319,7 @@
             showgrid: false
         },
         font: {family: 'Arial, sans-serif'},
-        plot_bgcolor: '#fafafa',
+        plot_bgcolor: '#ffffff',
         paper_bgcolor: 'white',
         hovermode: 'x unified'
     };
@@ -1394,7 +1371,7 @@
         },
         barmode: 'group',
         font: {family: 'Arial, sans-serif'},
-        plot_bgcolor: '#fafafa',
+        plot_bgcolor: '#ffffff',
         paper_bgcolor: 'white',
         hovermode: 'x unified'
     };
@@ -1450,7 +1427,7 @@
             showgrid: false
         },
         font: {family: 'Inter, sans-serif'},
-        plot_bgcolor: '#fafafa',
+        plot_bgcolor: '#ffffff',
         paper_bgcolor: 'white',
         hovermode: 'x unified'
     };
@@ -1503,7 +1480,7 @@
         },
         barmode: 'group',
         font: {family: 'Inter, sans-serif'},
-        plot_bgcolor: '#fafafa',
+        plot_bgcolor: '#ffffff',
         paper_bgcolor: 'white',
         hovermode: 'x unified'
     };
@@ -1536,13 +1513,13 @@
             title: 'Percentage',
             tickformat: '.0%',
             showgrid: false,
-            range: [0, 1]
+            rangemode: 'tozero'  // Auto-scale but start at 0
         },
         xaxis: {
             showgrid: false
         },
         font: {family: 'Arial, sans-serif'},
-        plot_bgcolor: '#fafafa',
+        plot_bgcolor: '#ffffff',
         paper_bgcolor: 'white',
         hovermode: 'x unified'
     };
@@ -1558,11 +1535,11 @@
     const odcvGasSave = {x: months, y: [9654.15, 8948.09, 8983.23, 4975.1, 3794.61, 3462.07, 3762.07, 3585.3, 3381.23, 4109.45, 7551.15, 9184.43], name: 'Gas', type: 'bar', marker: {color: '#ff6600'}};
     const odcvSteamSave = {x: months, y: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], name: 'Steam', type: 'bar', marker: {color: '#ffc107'}};
     
-    const totalSavings = [6796.720000000001, 6039.860000000001, 5759.509999999995, 5948.529999999999, 7698.770000000004, 11948.669999999998, 20896.770000000004, 17063.210000000006, 12906.28, 5957.189999999995, 6540.169999999991, 2288.4600000000064].reduce((a,b)=>a+b,0) + [9654.15, 8948.09, 8983.23, 4975.1, 3794.61, 3462.07, 3762.07, 3585.3, 3381.23, 4109.45, 7551.15, 9184.43].reduce((a,b)=>a+b,0) + [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0].reduce((a,b)=>a+b,0);
+    const totalSavings = 181235.01999999996;
     
     Plotly.newPlot('odcv_savings_chart', [odcvElecSave, odcvGasSave, odcvSteamSave], {
         title: {
-            text: 'Monthly ODCV Savings (Total: $' + totalSavings.toFixed(0) + ')',
+            text: 'Monthly ODCV Savings (Annual: $' + totalSavings.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ')',
             font: {size: 20}
         },
         yaxis: {
@@ -1575,7 +1552,7 @@
         },
         barmode: 'stack',
         font: {family: 'Arial, sans-serif'},
-        plot_bgcolor: '#fafafa',
+        plot_bgcolor: '#ffffff',
         paper_bgcolor: 'white',
         hovermode: 'x unified'
     }, {
@@ -1586,19 +1563,19 @@
     
     // PM2.5 Chart - Business Hours Only
     const pm25Data = {
-        x: ["2025-08-01T21:00:00Z", "2025-08-01T20:00:00Z", "2025-08-01T19:00:00Z", "2025-08-01T18:00:00Z", "2025-08-01T17:00:00Z", "2025-08-01T16:00:00Z", "2025-08-01T15:00:00Z", "2025-08-01T14:00:00Z", "2025-08-01T13:00:00Z", "2025-08-01T12:00:00Z", "2025-07-31T21:00:00Z", "2025-07-31T20:00:00Z", "2025-07-31T19:00:00Z", "2025-07-31T18:00:00Z", "2025-07-31T17:00:00Z", "2025-07-31T16:00:00Z", "2025-07-31T15:00:00Z", "2025-07-31T14:00:00Z", "2025-07-31T13:00:00Z", "2025-07-31T12:00:00Z"],
-        y: [16.69, 13.71, 12.47, 11.52, 10.38, 9.38, 8.01, 7.02, 6.71, 6.82, 31.15, 19.47, 21.79, 20.94, 20.04, 18.24, 20.65, 23.92, 23.01, 21.4],
+        x: ["2025-08-01", "2025-08-02", "2025-08-03", "2025-08-04"],
+        y: [12.058, 16.502083333333335, 17.952916666666667, 17.15],
         type: 'scatter',
         mode: 'lines',
         line: {color: '#0066cc', width: 3},
-        name: 'Business Hours PM2.5',
+        name: 'Daily Average PM2.5',
         hovertemplate: '%{x|%b %d, %Y}<br>PM2.5: %{y:.1f} μg/m³<extra></extra>'
     };
     
     // EPA Good threshold line
     const goodThreshold = {
-        x: ["2025-08-01T21:00:00Z", "2025-08-01T20:00:00Z", "2025-08-01T19:00:00Z", "2025-08-01T18:00:00Z", "2025-08-01T17:00:00Z", "2025-08-01T16:00:00Z", "2025-08-01T15:00:00Z", "2025-08-01T14:00:00Z", "2025-08-01T13:00:00Z", "2025-08-01T12:00:00Z", "2025-07-31T21:00:00Z", "2025-07-31T20:00:00Z", "2025-07-31T19:00:00Z", "2025-07-31T18:00:00Z", "2025-07-31T17:00:00Z", "2025-07-31T16:00:00Z", "2025-07-31T15:00:00Z", "2025-07-31T14:00:00Z", "2025-07-31T13:00:00Z", "2025-07-31T12:00:00Z"],
-        y: Array(20).fill(12),
+        x: ["2025-08-01", "2025-08-02", "2025-08-03", "2025-08-04"],
+        y: Array(4).fill(12),
         mode: 'lines',
         line: {color: '#00e400', dash: 'dash', width: 2},
         name: 'Good AQ Threshold (EPA)',
@@ -1607,22 +1584,22 @@
 
     Plotly.newPlot('pm25_chart', [pm25Data, goodThreshold], {
         title: {
-            text: 'PM2.5 During Business Hours (M-F 8am-6pm)',
+            text: 'Daily PM2.5 Levels (30-Day History)',
             y: 0.95
         },
         yaxis: {
             title: 'PM2.5 (μg/m³)',
             showgrid: false,
             zeroline: false,
-            range: [0, 34.265]
+            range: [0, 19.748208333333334]
         },
         xaxis: {
             title: '',
             showgrid: false,
+            type: 'date',
             tickformat: '%b %d',
-            dtick: 86400000,  // Daily ticks (86400000 ms = 1 day)
-            tickangle: -45,
-            nticks: 30  // Show up to 30 ticks
+            dtick: 86400000 * 3,  // Show every 3 days to avoid crowding
+            tickangle: -45
         },
         legend: {
             orientation: 'h',
@@ -1689,9 +1666,9 @@
             
             // Calculate pitch based on building height
             // We're at street level looking at buildings
-            // Based on: 995ft building = 40.10665551348826° pitch (optimal viewing angle)
+            // Based on: 737ft building = 40.10665551348826° pitch (optimal viewing angle)
             // This gives a proportional pitch for all building heights
-            const pitch = Math.min(buildingHeight * (40.10665551348826 / 995), 60);  // Max 60° for very tall buildings
+            const pitch = Math.min(buildingHeight * (40.10665551348826 / 737), 60);  // Max 60° for very tall buildings
             
             console.log(`Panorama 1000940025: Address="${address}", Height=${buildingHeight}ft, Yaw=${yaw}°, Pitch=${pitch}°`);
             
@@ -1734,7 +1711,7 @@
                     setTimeout(() => {
                         const viewerEl = document.getElementById('viewer-1000940025');
                         if (viewerEl && viewerEl.pannellumViewer) {
-                            viewerEl.pannellumViewer.setAutoRotate(-2);
+                            viewerEl.pannellumViewer.startAutoRotate(-2);
                         }
                     }, 500);
                 }, 100);
@@ -1796,7 +1773,7 @@
     </div>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif;">
-        Build: 05:31:20 PM CST | aug AFAIN
+        Build: 02:53:47 AM CST | d
     </div>
 </body>
 </html>

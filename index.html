@@ -294,7 +294,7 @@
             </div>
             <div class="stat-card">
                 <div class="stat-value">470</div>
-                <div class="stat-label">Buildings with BAS</div>
+                <div class="stat-label">Buildings with BMS</div>
             </div>
         </div>
         
@@ -393,7 +393,7 @@
             <th onclick="sortTable(2)" style="cursor: pointer;">Building <span class="sort-indicator">↕</span></th>
             <th onclick="sortTable(3)" style="cursor: pointer;">Owner <span class="sort-indicator">↕</span></th>
             <th onclick="sortTable(4)" style="cursor: pointer;">Manager <span class="sort-indicator">↕</span></th>
-            <th onclick="sortTable(5)" style="cursor: pointer;">Annual ODCV Savings <span class="sort-indicator">↕</span></th>
+            <th onclick="sortTable(5)" style="cursor: pointer;">2026 ODCV Savings <span class="sort-indicator">↕</span></th>
             <th onclick="sortTable(6)" style="cursor: pointer;">Score <span class="sort-indicator">↕</span></th>
             <th>Details</th>
         </tr>
@@ -584,13 +584,16 @@
     function filterTable() {
         const input = document.getElementById('search').value.toLowerCase();
         const rows = document.querySelectorAll('#buildingTable tbody tr');
+        let visibleCount = 0;
         
         rows.forEach(row => {
             const searchText = row.getAttribute('data-search');
             const matchesSearch = searchText && searchText.includes(input);
             row.style.display = matchesSearch ? '' : 'none';
+            if (matchesSearch) visibleCount++;
         });
         
+        updateResultCounter(visibleCount);
         updateClearButtonState();
     }
     
@@ -639,6 +642,9 @@
             tile.classList.remove('selected');
         });
         
+        // Update result counter
+        updateResultCounter(rows.length);
+        
         // Update button state
         updateClearButtonState();
     }
@@ -653,7 +659,7 @@
         const table = document.getElementById('buildingTable');
         const rows = Array.from(table.querySelectorAll('tbody tr')).filter(row => row.style.display !== 'none');
         
-        let csv = 'Rank,Building,Owner,Manager,Annual ODCV Savings,Score\n';
+        let csv = 'Rank,Building,Owner,Manager,2026 ODCV Savings,Score\n';
         
         rows.forEach(row => {
             const cells = row.cells;
@@ -1398,7 +1404,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: {datetime.now(pytz.timezone('America/Mexico_City')).strftime('%I:%M:%S %p CST')} | aug AFAIN{' | ' + sys.argv[1] if len(sys.argv) > 1 else ''}
+        Build: {datetime.now(pytz.timezone('America/Mexico_City')).strftime('%I:%M:%S %p CST')} | d{' | ' + sys.argv[1] if len(sys.argv) > 1 else ''}
     </div>
 </body>
 </html>
