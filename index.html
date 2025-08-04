@@ -853,9 +853,8 @@
     
     
     // Fetch ALL aerial video URLs and store in sessionStorage
-    async function fetchAllAerialVideos() {
-        const API_KEY = 'AIzaSyDQdR4xY0a_qmEsYairsp6r6tXwh5qx_ho';
-        console.log('Fetching all aerial video URLs...');
+    function fetchAllAerialVideos() {
+        console.log('Building AWS S3 video URLs...');
         
         // Complete mapping from aerial_videos.csv
         const aerialVideos = {
@@ -1335,49 +1334,20 @@
             1022150824: 'Dv6_YLocuTpAtWJ4bkmmM0'
         };
         
+        // Build AWS S3 URLs for all videos
         const videoUrls = {};
-        const entries = Object.entries(aerialVideos);
-        console.log(`Fetching ${entries.length} video URLs...`);
+        Object.keys(aerialVideos).forEach(bbl => {
+            videoUrls[bbl] = `https://aerial-videos-forrest.s3.us-east-2.amazonaws.com/${bbl}_aerial.mp4`;
+        });
         
-        // Process in batches to avoid overwhelming the API
-        const batchSize = 10;
-        for (let i = 0; i < entries.length; i += batchSize) {
-            const batch = entries.slice(i, i + batchSize);
-            
-            await Promise.all(batch.map(async ([bbl, videoId]) => {
-                try {
-                    const response = await fetch(`https://aerialview.googleapis.com/v1/videos:lookupVideo?key=${API_KEY}&videoId=${videoId}`);
-                    const data = await response.json();
-                    
-                    if (data.state === 'ACTIVE' && data.uris) {
-                        const videoUri = data.uris.MP4_HIGH?.landscapeUri || 
-                                       data.uris.MP4_HIGH?.portraitUri || 
-                                       data.uris.MP4_MEDIUM?.landscapeUri;
-                        
-                        if (videoUri) {
-                            videoUrls[bbl] = videoUri;
-                            console.log(`Fetched video URL for BBL ${bbl}`);
-                        }
-                    }
-                } catch (error) {
-                    console.error(`Failed to fetch video for BBL ${bbl}:`, error);
-                }
-            }));
-            
-            // Small delay between batches
-            if (i + batchSize < entries.length) {
-                await new Promise(resolve => setTimeout(resolve, 500));
-            }
-        }
-        
-        // Store in sessionStorage
+        // Store in sessionStorage for building pages to use
         sessionStorage.setItem('aerialVideoUrls', JSON.stringify(videoUrls));
-        console.log(`Stored ${Object.keys(videoUrls).length} video URLs in sessionStorage`);
+        console.log(`Stored ${Object.keys(videoUrls).length} AWS video URLs in sessionStorage`);
     }
     
     // Call on page load
     document.addEventListener('DOMContentLoaded', () => {
-        setTimeout(fetchAllAerialVideos, 1000);
+        fetchAllAerialVideos();
     });
     </script>
     
@@ -1404,7 +1374,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: {datetime.now(pytz.timezone('America/Mexico_City')).strftime('%I:%M:%S %p CST')} | contacts{' | ' + sys.argv[1] if len(sys.argv) > 1 else ''}
+        Build: {datetime.now(pytz.timezone('America/Mexico_City')).strftime('%I:%M:%S %p CST')} | rtrerer{' | ' + sys.argv[1] if len(sys.argv) > 1 else ''}
     </div>
 </body>
 </html>
