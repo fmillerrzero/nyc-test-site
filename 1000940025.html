@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>100 Gold St, New York, NY 10038 - ODCV Analysis (v1754297626)</title>
+    <title>100 Gold St, New York, NY 10038 - ODCV Analysis (v1754335159)</title>
     <link rel="icon" type="image/png" href="https://rzero.com/wp-content/themes/rzero/build/images/favicons/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -970,12 +970,12 @@
                 <div class="iaq-stat-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: center;">
                     <div class="iaq-stat">
                         <div class="iaq-label" style="font-size: 12px; color: #6c757d; margin-bottom: 4px;">Max</div>
-                        <div class="iaq-value" style="font-size: 24px; font-weight: bold; color: #c41e3a;">18.0 μg/m³</div>
+                        <div class="iaq-value" style="font-size: 24px; font-weight: bold; color: #c41e3a;">19.6 μg/m³</div>
                         <div class="iaq-category" style="font-size: 11px; color: #6c757d; margin-top: 4px;">Daily Average</div>
                     </div>
                     <div class="iaq-stat">
                         <div class="iaq-label" style="font-size: 12px; color: #6c757d; margin-bottom: 4px;">Average</div>
-                        <div class="iaq-value" style="font-size: 24px; font-weight: bold; color: #FFB300;">15.9 μg/m³</div>
+                        <div class="iaq-value" style="font-size: 24px; font-weight: bold; color: #FFB300;">18.0 μg/m³</div>
                         <div class="iaq-category" style="font-size: 11px; color: #6c757d; margin-top: 4px;">Daily Average</div>
                     </div>
                     <div class="iaq-stat">
@@ -1535,7 +1535,7 @@
     const odcvGasSave = {x: months, y: [9654.15, 8948.09, 8983.23, 4975.1, 3794.61, 3462.07, 3762.07, 3585.3, 3381.23, 4109.45, 7551.15, 9184.43], name: 'Gas', type: 'bar', marker: {color: '#ff6600'}};
     const odcvSteamSave = {x: months, y: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], name: 'Steam', type: 'bar', marker: {color: '#ffc107'}};
     
-    const totalSavings = 181235.01999999996;
+    const totalSavings = 181235.02;
     
     Plotly.newPlot('odcv_savings_chart', [odcvElecSave, odcvGasSave, odcvSteamSave], {
         title: {
@@ -1564,7 +1564,7 @@
     // PM2.5 Chart - Business Hours Only
     const pm25Data = {
         x: ["2025-08-01", "2025-08-02", "2025-08-03", "2025-08-04"],
-        y: [12.058, 16.502083333333335, 17.952916666666667, 17.15],
+        y: [17.852222222222224, 16.502083333333335, 17.952916666666667, 19.600666666666665],
         type: 'scatter',
         mode: 'lines',
         line: {color: '#0066cc', width: 3},
@@ -1591,7 +1591,7 @@
             title: 'PM2.5 (μg/m³)',
             showgrid: false,
             zeroline: false,
-            range: [0, 19.748208333333334]
+            range: [0, 21.560733333333335]
         },
         xaxis: {
             title: '',
@@ -1773,7 +1773,7 @@
     </div>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif;">
-        Build: 02:53:47 AM CST | d
+        Build: 01:19:20 PM CST | aug 4
     </div>
 </body>
 </html>
