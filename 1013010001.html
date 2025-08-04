@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>245 Park Ave, New York, NY 10167 - ODCV Analysis (v1754335159)</title>
+    <title>245 Park Ave, New York, NY 10167 - ODCV Analysis (v1754347565)</title>
     <link rel="icon" type="image/png" href="https://rzero.com/wp-content/themes/rzero/build/images/favicons/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -194,9 +194,9 @@
         
         .page { 
             margin-bottom: 40px;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
+            /* max-width: 900px; */
+            /* margin-left: auto; */
+            /* margin-right: auto; */
         }
         .page-title { 
             font-size: 1.3em; 
@@ -264,7 +264,7 @@
         .carousel-container {
             position: relative;
             width: 100%;
-            max-width: 900px;
+            /* max-width: 900px; */
             margin: 0 auto;
             height: 675px;
             overflow: hidden;
@@ -779,10 +779,6 @@
                     <span class="stat-value">45</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-label">Elevator Shafts: </span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat">
                     <span class="stat-label">Units: </span>
                     <span class="stat-value">35</span>
                 </div>
@@ -794,6 +790,14 @@
                 <div class="stat">
                     <span class="stat-label">Office Floor Area: </span>
                     <span class="stat-value">1,573,122 sq ft (98% of total)</span>
+                </div>
+            </div>
+            
+            <div class="page">
+                <h3 class="page-title">Equipment Details</h3>
+                <div class="stat">
+                    <span class="stat-label">Elevator Shafts: </span>
+                    <span class="stat-value">0</span>
                 </div>
                 <div class="stat">
                     <span class="stat-label">BMS Controls: </span>
@@ -872,7 +876,7 @@
                     </div>
                     <div class="stat">
                         <span class="stat-label">2030-2034 Status: </span>
-                        <span class="stat-value"><span class="no">No</span></span>
+                        <span class="stat-value"><span class="no">No</span> ($29,487 in annual penalties)</span>
                     </div>
                     <div class="stat">
                         <span class="stat-label">Current Emissions: </span>
@@ -886,23 +890,6 @@
                         <span class="stat-label">2030-2034 Limit: </span>
                         <span class="stat-value">5,462 tCO2e</span>
                     </div>
-                    
-                    
-                    <h3 class="page-title" style="margin-top: 30px;">Financial Impact</h3>
-                    <div class="highlight-box" style="background: #f8f8f8; padding: 20px; margin: 20px 0;">
-                        <h4 style="margin-top: 0;">Annual Penalties Without ODCV</h4>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                            <div>
-                                <div style="color: #666;">2026-2029</div>
-                                <div style="font-size: 1.5em; font-weight: bold; color: #28a745;">$0</div>
-                            </div>
-                            <div>
-                                <div style="color: #666;">2030-2034</div>
-                                <div style="font-size: 1.5em; font-weight: bold; color: #c41e3a;">$29,487</div>
-                            </div>
-                        </div>
-                    </div>
-                    
                 </div>
             
         </div>
@@ -970,12 +957,12 @@
                 <div class="iaq-stat-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: center;">
                     <div class="iaq-stat">
                         <div class="iaq-label" style="font-size: 12px; color: #6c757d; margin-bottom: 4px;">Max</div>
-                        <div class="iaq-value" style="font-size: 24px; font-weight: bold; color: #c41e3a;">18.3 μg/m³</div>
+                        <div class="iaq-value" style="font-size: 24px; font-weight: bold; color: #c41e3a;">19.9 μg/m³</div>
                         <div class="iaq-category" style="font-size: 11px; color: #6c757d; margin-top: 4px;">Daily Average</div>
                     </div>
                     <div class="iaq-stat">
                         <div class="iaq-label" style="font-size: 12px; color: #6c757d; margin-bottom: 4px;">Average</div>
-                        <div class="iaq-value" style="font-size: 24px; font-weight: bold; color: #FFB300;">16.4 μg/m³</div>
+                        <div class="iaq-value" style="font-size: 24px; font-weight: bold; color: #FFB300;">17.3 μg/m³</div>
                         <div class="iaq-category" style="font-size: 11px; color: #6c757d; margin-top: 4px;">Daily Average</div>
                     </div>
                     <div class="iaq-stat">
@@ -1324,7 +1311,13 @@
         hovermode: 'x unified'
     };
     
-    Plotly.newPlot('energy_chart', [elecData, gasData, steamData], layout, {
+    // Building usage chart - only show fuels with usage
+    const buildingUsageData = [];
+    if ([1642406.04, 1468013.12, 1365873.64, 1163773.2, 1376971.64, 1708999.2, 2300979.34, 2204488.74, 1809694.2, 1342081.14, 1045159.2, 853700.94].some(v => v > 0)) buildingUsageData.push(elecData);
+    if ([30058.0, 26774.0, 29643.0, 28634.0, 28785.0, 52190.0, 161246.0, 173869.0, 158807.0, 159202.0, 155274.0, 173735.0].some(v => v > 0)) buildingUsageData.push(gasData);
+    if ([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0].some(v => v > 0)) buildingUsageData.push(steamData);
+    
+    Plotly.newPlot('energy_chart', buildingUsageData, layout, {
         modeBarButtonsToRemove: ['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'resetScale2d', 'hoverClosestCartesian', 'hoverCompareCartesian'],
         displaylogo: false,
         displayModeBar: true
@@ -1376,7 +1369,13 @@
         hovermode: 'x unified'
     };
     
-    Plotly.newPlot('office_energy_chart', [officeElecData, officeGasData, officeSteamData], officeLayout, {
+    // Office usage chart - only show fuels with usage
+    const officeUsageData = [];
+    if ([6402284.0, 5767443.0, 6129070.0, 5775215.0, 6140035.0, 6313898.0, 7052955.0, 6957622.0, 6413385.0, 6105563.0, 5658024.0, 5623044.0].some(v => v > 0)) officeUsageData.push(officeElecData);
+    if ([29697.0, 26453.0, 29287.0, 28290.0, 28440.0, 51564.0, 159311.0, 171783.0, 156901.0, 157292.0, 153411.0, 171650.0].some(v => v > 0)) officeUsageData.push(officeGasData);
+    if ([7931857.0, 7403066.0, 6345485.0, 4230324.0, 2643952.0, 1057581.0, 528790.0, 528790.0, 1057581.0, 3172743.0, 6345485.0, 11633390.0].some(v => v > 0)) officeUsageData.push(officeSteamData);
+    
+    Plotly.newPlot('office_energy_chart', officeUsageData, officeLayout, {
         modeBarButtonsToRemove: ['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'resetScale2d', 'hoverClosestCartesian', 'hoverCompareCartesian'],
         displaylogo: false,
         displayModeBar: true
@@ -1432,7 +1431,13 @@
         hovermode: 'x unified'
     };
 
-    Plotly.newPlot('energy_cost_chart', [elecCost, gasCost, steamCostData], costLayout, {
+    // Building cost chart - only show fuels with costs
+    const buildingCostData = [];
+    if ([387387.95996, 400287.79000000004, 360813.16002, 334256.46997000003, 414574.06005, 784853.46, 869651.3799999999, 879910.95, 825698.65, 428401.00000999996, 369229.39999999997, 336723.23000000004].some(v => v > 0)) buildingCostData.push(elecCost);
+    if ([526.01, 468.55, 518.75, 501.1, 503.74, 913.32, 2821.81, 3042.71, 2779.12, 2786.03, 2717.3, 3040.36].some(v => v > 0)) buildingCostData.push(gasCost);
+    if ([389447.75, 363484.56, 311558.2, 207705.47, 129815.92, 51926.37, 25963.18, 25963.18, 51926.37, 155779.1, 311558.2, 571190.03].some(v => v > 0)) buildingCostData.push(steamCostData);
+    
+    Plotly.newPlot('energy_cost_chart', buildingCostData, costLayout, {
         modeBarButtonsToRemove: ['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'resetScale2d', 'hoverClosestCartesian', 'hoverCompareCartesian'],
         displaylogo: false,
         displayModeBar: true
@@ -1485,7 +1490,13 @@
         hovermode: 'x unified'
     };
 
-    Plotly.newPlot('office_cost_chart', [officeElecCost, officeGasCost, officeSteamCostData], officeCostLayout, {
+    // Office cost chart - only show fuels with costs
+    const officeCostData = [];
+    if ([208371.92, 196942.75, 188745.14, 179608.8, 203581.93, 241606.22, 272282.24, 275742.63, 251586.56, 196222.75, 187154.18, 173558.92].some(v => v > 0)) officeCostData.push(officeElecCost);
+    if ([753.83, 671.76, 743.46, 718.24, 722.03, 1307.07, 4033.07, 4348.61, 3972.1, 3981.99, 3883.8, 4345.24].some(v => v > 0)) officeCostData.push(officeGasCost);
+    if ([283660.21, 264749.51, 226928.15, 151285.46, 94553.39, 37821.36, 18910.66, 18910.66, 37821.36, 113464.09, 226928.15, 416034.97].some(v => v > 0)) officeCostData.push(officeSteamCostData);
+    
+    Plotly.newPlot('office_cost_chart', officeCostData, officeCostLayout, {
         modeBarButtonsToRemove: ['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'resetScale2d', 'hoverClosestCartesian', 'hoverCompareCartesian'],
         displaylogo: false,
         displayModeBar: true
@@ -1537,7 +1548,13 @@
     
     const totalSavings = 782678.0199999998;
     
-    Plotly.newPlot('odcv_savings_chart', [odcvElecSave, odcvGasSave, odcvSteamSave], {
+    // ODCV savings chart - only show fuels with savings
+    const odcvSavingsData = [];
+    if ([16108.690000000002, 15102.660000000003, 12684.99000000002, 10917.25, 13809.190000000002, 19718.04999999999, 26805.359999999982, 26387.890000000018, 21457.14999999999, 13009.01999999999, 10462.429999999991, 7951.120000000024].some(v => v > 0)) odcvSavingsData.push(odcvElecSave);
+    if ([230.9, 205.76, 227.72, 220.0, 221.16, 400.36, 1235.33, 1331.98, 1216.65, 1219.68, 1189.61, 1330.95].some(v => v > 0)) odcvSavingsData.push(odcvGasSave);
+    if ([86885.12, 81092.78, 69508.09, 46338.74, 28961.7, 11584.68, 5792.34, 5792.34, 11584.68, 34754.05, 69508.09, 127431.51].some(v => v > 0)) odcvSavingsData.push(odcvSteamSave);
+    
+    Plotly.newPlot('odcv_savings_chart', odcvSavingsData, {
         title: {
             text: 'Monthly ODCV Savings (Annual: $' + totalSavings.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ')',
             font: {size: 20}
@@ -1564,7 +1581,7 @@
     // PM2.5 Chart - Business Hours Only
     const pm25Data = {
         x: ["2025-08-01", "2025-08-02", "2025-08-03", "2025-08-04"],
-        y: [15.457777777777778, 14.921666666666667, 16.976666666666667, 18.269333333333336],
+        y: [17.39, 14.921666666666667, 16.976666666666667, 19.941111111111113],
         type: 'scatter',
         mode: 'lines',
         line: {color: '#0066cc', width: 3},
@@ -1591,15 +1608,18 @@
             title: 'PM2.5 (μg/m³)',
             showgrid: false,
             zeroline: false,
-            range: [0, 20.096266666666672]
+            range: [0, 21.935222222222226]
         },
         xaxis: {
             title: '',
             showgrid: false,
             type: 'date',
             tickformat: '%b %d',
-            dtick: 86400000 * 3,  // Show every 3 days to avoid crowding
-            tickangle: -45
+            dtick: 86400000 * 5,  // Show every 5 days for 30-day span
+            tickangle: -45,
+            showticklabels: true,
+            tickmode: 'linear',
+            range: ["2025-08-01", "2025-08-04"]
         },
         legend: {
             orientation: 'h',
@@ -1773,7 +1793,7 @@
     </div>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif;">
-        Build: 01:19:21 PM CST | aug 4
+        Build: 04:46:07 PM CST | tarp
     </div>
 </body>
 </html>

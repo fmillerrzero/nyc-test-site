@@ -290,7 +290,7 @@
             </div>
             <div class="stat-card">
                 <div class="stat-value" style="color: #c41e3a;">32</div>
-                <div class="stat-label">Buildings facing $14.5M 2026 LL97 Penalties</div>
+                <div class="stat-label">Buildings facing 2026 LL97 Penalties</div>
             </div>
             <div class="stat-card">
                 <div class="stat-value">470</div>
@@ -418,24 +418,6 @@
             </td>
         </tr>
     
-        <tr data-search="100 gold st, new york, ny 10038 | 100 gold st | 96 gold st | 98 gold st | 100 gold st | 102 gold st | 96-102 gold st | city of new york | dcas | 1000940025 | city of new york" data-occupancy="70" class="clickable-row" onclick="if (!event.target.closest('a')) window.location.href='1000940025.html'">
-            <td><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1000940025/1000940025_hero_thumbnail.jpg" 
-                     alt="100 Gold St" 
-                     class="building-thumb" 
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                     onclick="window.location.href='1000940025.html'">
-                <div class="no-thumb" style="display:none;" onclick="window.location.href='1000940025.html'">No image</div></td>
-            <td><span class="rzero-badge">#2</span></td>
-            <td>100 Gold St</td>
-            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByOwner('City of New York')" class="clickable-link">City of New York</a></td>
-            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByManager('DCAS')" class="clickable-link">DCAS</a></td>
-            <td class="savings-medium" data-value="181235.02">$181,235</td>
-            <td>97.0</td>
-            <td style="text-align: center;">
-                <span style="color: var(--rzero-primary);">→</span>
-            </td>
-        </tr>
-    
         <tr data-search="1515 broadway, new york, ny 10036 | 1515 broadway | 200 w 45 st | 1507 broadway | 1509 broadway | 1511 broadway | 1513 broadway | 1515 broadway | 1517 broadway | 1519 broadway | 1521 broadway | 201 w 44 st | 203 w 44 st | 205 w 44 st | 207 w 44 st | 209 w 44 st | 211 w 44 st | 213 w 44 st | 215 w 44 st | 217 w 44 st | 219 w 44 st | 1523 broadway | 1525 broadway | 1 astor plaza | sl green realty | sl green realty | 1010160036 | sl green" data-occupancy="70" class="clickable-row" onclick="if (!event.target.closest('a')) window.location.href='1010160036.html'">
             <td><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1010160036/1010160036_hero_thumbnail.jpg" 
                      alt="1515 Broadway" 
@@ -485,6 +467,24 @@
             <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByManager('SL Green Realty')" class="clickable-link">SL Green Realty</a></td>
             <td class="savings-high" data-value="782678.0199999998">$782,678</td>
             <td>95.9</td>
+            <td style="text-align: center;">
+                <span style="color: var(--rzero-primary);">→</span>
+            </td>
+        </tr>
+    
+        <tr data-search="111 e 58th st, new york, ny 10022 | 111 e 58th st | 110 e 59 st | 112 e 59 st | 114 e 59 st | 109 e 58 st | 111 e 58 st | 113 e 58 st | 115 e 58 st | 117 e 58 st | 119 e 58 st | 121 e 58 st | 123 e 58 st | 125 e 58 st | 127 e 58 st | jack resnick & sons | jack resnick & sons | 1013130005 | jack resnick & sons" data-occupancy="70" class="clickable-row" onclick="if (!event.target.closest('a')) window.location.href='1013130005.html'">
+            <td><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1013130005/1013130005_hero_thumbnail.jpg" 
+                     alt="111 E 58th St" 
+                     class="building-thumb" 
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                     onclick="window.location.href='1013130005.html'">
+                <div class="no-thumb" style="display:none;" onclick="window.location.href='1013130005.html'">No image</div></td>
+            <td>121</td>
+            <td>111 E 58th St</td>
+            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByOwner('Jack Resnick & Sons')" class="clickable-link">Jack Resnick & Sons</a></td>
+            <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByManager('Jack Resnick & Sons')" class="clickable-link">Jack Resnick & Sons</a></td>
+            <td class="savings-medium" data-value="169510.63">$169,511</td>
+            <td>75.0</td>
             <td style="text-align: center;">
                 <span style="color: var(--rzero-primary);">→</span>
             </td>
@@ -1404,7 +1404,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: {datetime.now(pytz.timezone('America/Mexico_City')).strftime('%I:%M:%S %p CST')} | aug 4{' | ' + sys.argv[1] if len(sys.argv) > 1 else ''}
+        Build: {datetime.now(pytz.timezone('America/Mexico_City')).strftime('%I:%M:%S %p CST')} | tarp{' | ' + sys.argv[1] if len(sys.argv) > 1 else ''}
     </div>
 </body>
 </html>
