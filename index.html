@@ -4054,9 +4054,6 @@
     }
     
     // Autocomplete functionality
-    let autocompleteService;
-    let sessionToken;
-    let currentSelectedIndex = -1;
     
     // Callback function for Google Maps API
     function initGooglePlaces() {
@@ -4107,62 +4104,13 @@
     function initAutocomplete() {
         const searchInput = document.getElementById('search');
         
-        // Add event listener for manual typing (Google handles its own dropdown)
+        // Add event listener for manual typing (when not using Google autocomplete)
         searchInput.addEventListener('input', debounce(handleSearchInput, 300));
     }
     
     function handleSearchInput(e) {
         // Simply filter the table based on input
         // Google Autocomplete widget handles the dropdown
-        filterTable();
-    }
-    
-    
-    function handleKeyNavigation(e) {
-        const dropdown = document.getElementById('autocomplete-dropdown');
-        const items = dropdown.querySelectorAll('.autocomplete-item');
-        
-        if (dropdown.style.display === 'none' || items.length === 0) {
-            return;
-        }
-        
-        if (e.key === 'ArrowDown') {
-            e.preventDefault();
-            currentSelectedIndex = Math.min(currentSelectedIndex + 1, items.length - 1);
-            updateSelection(items);
-        } else if (e.key === 'ArrowUp') {
-            e.preventDefault();
-            currentSelectedIndex = Math.max(currentSelectedIndex - 1, -1);
-            updateSelection(items);
-        } else if (e.key === 'Enter') {
-            e.preventDefault();
-            if (currentSelectedIndex >= 0 && items[currentSelectedIndex]) {
-                selectAddress(items[currentSelectedIndex].getAttribute('data-address'));
-            }
-        } else if (e.key === 'Escape') {
-            dropdown.style.display = 'none';
-            currentSelectedIndex = -1;
-        }
-    }
-    
-    function updateSelection(items) {
-        items.forEach((item, index) => {
-            if (index === currentSelectedIndex) {
-                item.classList.add('selected');
-            } else {
-                item.classList.remove('selected');
-            }
-        });
-    }
-    
-    function selectAddress(address) {
-        const searchInput = document.getElementById('search');
-        const dropdown = document.getElementById('autocomplete-dropdown');
-        
-        searchInput.value = address;
-        dropdown.style.display = 'none';
-        currentSelectedIndex = -1;
-        
         filterTable();
         updateClearButtonState();
     }
@@ -4434,7 +4382,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         updateClearButtonState();
         
-        // Initialize autocomplete functionality
+        // Initialize search functionality
         initAutocomplete();
         
         // Initialize any portfolio tiles that might be pre-selected
@@ -5111,7 +5059,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: 5 Aug 2025 04:13:10 PM CST | Normalize Google addresses to match CSV
+        Build: 5 Aug 2025 04:54:54 PM CST | Test Build
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
