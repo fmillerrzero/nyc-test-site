@@ -4112,8 +4112,10 @@
         if (autocompleteService) {
             const request = {
                 input: input,
-                componentRestrictions: { country: 'us' },
-                bounds: new google.maps.LatLngBounds(
+                // Remove country restriction to allow worldwide results
+                // componentRestrictions: { country: 'us' },
+                // Use locationBias instead of strict bounds to prefer NYC but allow global
+                locationBias: new google.maps.LatLngBounds(
                     new google.maps.LatLng(40.6, -74.3),  // SW corner of NYC
                     new google.maps.LatLng(40.9, -73.7)   // NE corner of NYC
                 )
@@ -5162,7 +5164,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: 5 Aug 2025 02:47:53 PM CST | Test Build
+        Build: 5 Aug 2025 02:54:14 PM CST | Fix Google autocomplete
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
