@@ -224,7 +224,7 @@
         thead {
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 100;
             background: var(--rzero-primary);
         }
         
@@ -288,6 +288,8 @@
             --gmpx-font-family: 'Inter', sans-serif;
             width: 100%;
             font-family: 'Inter', sans-serif;
+            position: relative;
+            z-index: 1001 !important;
         }
         
         gmp-place-autocomplete input {
@@ -297,6 +299,15 @@
             font-size: 14px !important;
             width: 100% !important;
             box-sizing: border-box !important;
+        }
+        
+        /* Fix dropdown z-index */
+        .gmpx-autocomplete-dropdown {
+            z-index: 10000 !important;
+        }
+        
+        gmp-place-autocomplete::part(dropdown) {
+            z-index: 10000 !important;
         }
         .autocomplete-item {
             padding: 10px 15px;
@@ -433,8 +444,9 @@
         </div>
         
         <div style="display: flex; gap: 10px; margin-bottom: 20px; align-items: center;">
-            <div class="search-container">
-                <gmp-place-autocomplete id="search" placeholder="Search by address, owner, property manager" style="width: 100%; height: 44px;"></gmp-place-autocomplete>
+            <div class="search-container" style="position: relative;">
+                <input type="text" id="search" placeholder="Search by address, owner, property manager" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;" autocomplete="off">
+                <div id="searchResults" style="position: absolute; width: 100%; z-index: 100000; top: 100%; left: 0;"></div>
             </div>
             <button id="clearFilterBtn" onclick="clearAllFilters()" style="background: #e0e0e0; color: #999; border: none; padding: 10px 25px; border-radius: 8px; cursor: not-allowed; font-size: 16px; font-weight: 600; transition: all 0.2s;" disabled>
                 Clear Filter
@@ -450,7 +462,7 @@
         
         <div class="table-wrapper" style="overflow-x: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 118, 157, 0.08); position: relative; max-height: calc(100vh - 200px); overflow-y: auto;">
         <table id="buildingTable" style="width: 100%; background: white; border-collapse: collapse; min-width: 900px;">
-        <thead style="position: sticky; top: 0; z-index: 1000; background: var(--rzero-primary); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+        <thead style="position: sticky; top: 0; z-index: 100; background: var(--rzero-primary); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
         <tr>
             <th class="thumb-cell">Image</th>
             <th onclick="sortTable(1)" style="cursor: pointer;">Rank <span class="sort-indicator">↕</span></th>
@@ -4026,11 +4038,13 @@
         normalized = normalized.replace(/\bFDR\s+drive\b/gi, 'FDR Dr');
         normalized = normalized.replace(/\bFDR\b/gi, 'FDR Dr');
         
-        // Special handling for Avenue of the Americas (various capitalizations)
+        // Special handling for Avenue of the Americas (match CSV format exactly)
         normalized = normalized.replace(/\bavenue\s+of\s+the\s+americas\b/gi, 'Ave Of The Americas');
         normalized = normalized.replace(/\bave\s+of\s+the\s+americas\b/gi, 'Ave Of The Americas');
         normalized = normalized.replace(/\bAve\s+of\s+Americas\b/gi, 'Ave Of The Americas');
         normalized = normalized.replace(/\bave\s+of\s+americas\b/gi, 'Ave Of The Americas');
+        // Also handle "6th Avenue" specifically
+        normalized = normalized.replace(/\b6\s+Ave\b/gi, 'Ave Of The Americas');
         
         // Step 5: General street type normalization (after numbered streets/avenues)
         normalized = normalized.replace(/\b(street|st\.|str)\b/gi, 'St');
@@ -4075,35 +4089,87 @@
                 // Wait for the library to load
                 await google.maps.importLibrary('places');
                 
-                // Get the new PlaceAutocompleteElement
+                // Use AutocompleteService for more control
+                const autocompleteService = new google.maps.places.AutocompleteService();
                 const searchInput = document.getElementById('search');
+                const searchResults = document.getElementById('searchResults');
+                
                 if (searchInput) {
-                    // Configure the autocomplete element
-                    searchInput.setAttribute('location-bias-radius', '10');
-                    searchInput.setAttribute('location-bias-center', '40.7128,-74.0060'); // NYC coordinates
-                    searchInput.setAttribute('country', 'us');
-                    searchInput.setAttribute('type', 'address');
+                    let currentFocus = -1;
                     
-                    // Listen for place selection using the new event
-                    searchInput.addEventListener('gmp-placeselect', (event) => {
-                        const place = event.detail.place;
-                        if (place && place.formattedAddress) {
-                            // Extract just the street address part (before comma)
-                            const fullAddress = place.formattedAddress;
-                            const streetAddress = fullAddress.split(',')[0].trim();
+                    searchInput.addEventListener('input', debounce(function() {
+                        const value = this.value;
+                        if (!value) {
+                            searchResults.innerHTML = '';
+                            filterTableWithValue('');
+                            return;
+                        }
+                        
+                        // NYC bounds - tighter for Manhattan focus
+                        const nycBounds = new google.maps.LatLngBounds(
+                            new google.maps.LatLng(40.70, -74.02),  // Lower Manhattan
+                            new google.maps.LatLng(40.88, -73.93)   // Upper Manhattan
+                        );
+                        
+                        // Request predictions - Manhattan only
+                        autocompleteService.getPlacePredictions({
+                            input: value + ' Manhattan',  // Force Manhattan in search
+                            bounds: nycBounds,
+                            strictBounds: true,  // STRICT bounds enforcement
+                            componentRestrictions: { country: 'us' },
+                            types: ['address']
+                        }, function(predictions, status) {
+                            searchResults.innerHTML = '';
                             
-                            // Normalize the address to match CSV format
-                            const normalized = normalizeAddress(streetAddress);
-                            
-                            // Update the value in the custom element
-                            searchInput.value = normalized;
-                            
-                            // Filter table to show matches
-                            filterTableWithValue(normalized);
+                            if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
+                                const dropdown = document.createElement('div');
+                                dropdown.style.cssText = 'position: absolute; top: 100%; left: 0; right: 0; background: white; border: 1px solid #ddd; border-top: none; max-height: 300px; overflow-y: auto; z-index: 100000; box-shadow: 0 4px 6px rgba(0,0,0,0.1);';
+                                
+                                predictions.forEach((prediction, index) => {
+                                    const item = document.createElement('div');
+                                    item.style.cssText = 'padding: 10px; cursor: pointer; border-bottom: 1px solid #f0f0f0;';
+                                    item.innerHTML = prediction.description;
+                                    
+                                    item.addEventListener('mouseover', () => {
+                                        item.style.background = '#f5f5f5';
+                                    });
+                                    
+                                    item.addEventListener('mouseout', () => {
+                                        item.style.background = 'white';
+                                    });
+                                    
+                                    item.addEventListener('click', () => {
+                                        // Extract street address and normalize
+                                        const streetAddress = prediction.description.split(',')[0].trim();
+                                        const normalized = normalizeAddress(streetAddress);
+                                        
+                                        searchInput.value = normalized;
+                                        searchResults.innerHTML = '';
+                                        
+                                        // Filter the table
+                                        filterTableWithValue(normalized);
+                                        updateClearButtonState();
+                                    });
+                                    
+                                    dropdown.appendChild(item);
+                                });
+                                
+                                searchResults.appendChild(dropdown);
+                            }
+                        });
+                        
+                        // Also filter table with current input
+                        filterTableWithValue(value);
+                    }, 300));
+                    
+                    // Hide dropdown when clicking outside
+                    document.addEventListener('click', function(e) {
+                        if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                            searchResults.innerHTML = '';
                         }
                     });
                     
-                    console.log('Google PlaceAutocompleteElement initialized');
+                    console.log('Google Places AutocompleteService initialized');
                 }
             } catch (error) {
                 console.error('Google Places initialization failed:', error);
@@ -4254,11 +4320,9 @@
     // Helper to normalize for comparison (removes case/spacing differences)
     function normalizeForComparison(text) {
         if (!text) return '';
-        // Normalize common variations for searching
+        // Just lowercase and normalize whitespace for case-insensitive matching
         return text.toLowerCase()
             .replace(/\s+/g, ' ')  // Normalize whitespace
-            .replace(/ave of the americas/gi, 'avenue of the americas')  // Allow both forms
-            .replace(/ave of americas/gi, 'avenue of the americas')
             .trim();
     }
     
@@ -5075,7 +5139,7 @@
         font-size: 20px;
         cursor: pointer;
         box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        z-index: 1000;
+        z-index: 100;
         display: none;
     ">
         <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -5084,7 +5148,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: 5 Aug 2025 05:07:00 PM CST | Test Build
+        Build: 5 Aug 2025 05:25:22 PM CST | Test Build
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
