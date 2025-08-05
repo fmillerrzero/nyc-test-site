@@ -4147,18 +4147,23 @@
     }
     
     function filterTableWithValue(searchValue) {
-        // Normalize 6th Ave to ave of the americas (LOWERCASE for case-insensitive matching)
-        let normalizedSearch = searchValue.toLowerCase();
-        // Handle "1250 6 ave" or "6th avenue" or just "6 ave" etc
-        normalizedSearch = normalizedSearch.replace(/(^|\s)(sixth|6th|6)\s+(avenue|ave\.?|av)(\s|$)/gi, '$1ave of the americas$4');
-        
-        const input = normalizeForComparison(normalizedSearch);
+        const input = normalizeForComparison(searchValue);
         const rows = document.querySelectorAll('#buildingTable tbody tr');
         let visibleCount = 0;
         
         rows.forEach(row => {
             const searchText = normalizeForComparison(row.getAttribute('data-search'));
-            const matchesSearch = searchText && searchText.includes(input);
+            let matchesSearch = false;
+            
+            // Special handling for "#### 6" pattern
+            if (input.includes('|')) {
+                // This means we're searching for "#### 6" which was expanded to "#### 6|#### ave of the americas"
+                const searchTerms = input.split('|');
+                matchesSearch = searchText && searchTerms.some(term => searchText.includes(term.trim()));
+            } else {
+                matchesSearch = searchText && searchText.includes(input);
+            }
+            
             row.style.display = matchesSearch ? '' : 'none';
             if (matchesSearch) visibleCount++;
         });
@@ -4278,8 +4283,22 @@
     // Helper to normalize for comparison (removes case/spacing differences)
     function normalizeForComparison(text) {
         if (!text) return '';
-        // Just lowercase and normalize whitespace for case-insensitive matching
-        return text.toLowerCase()
+        let normalized = text.toLowerCase();
+        
+        // When searching for "#### 6" expand to search for BOTH "#### 6" AND "#### ave of the americas"
+        // This way it finds 6th Ave, 6th St, 6 Circle, whatever exists with that number
+        if (normalized.match(/^\d+\s+6\s*$/)) {
+            // User typed something like "1290 6" - search for both possibilities
+            const buildingNum = normalized.match(/^(\d+)\s+6\s*$/)[1];
+            // Return a pattern that will match either "1290 6" OR "1290 ave of the americas"
+            // We'll handle this specially in the search
+            return normalized + '|' + buildingNum + ' ave of the americas';
+        }
+        
+        // Also handle "6 ave" or "6th avenue" patterns
+        normalized = normalized.replace(/(^|\s)(sixth|6th|6)\s+(avenue|ave\.?|av)(\s|$)/gi, '$1ave of the americas$4');
+        
+        return normalized
             .replace(/\s+/g, ' ')  // Normalize whitespace
             .trim();
     }
@@ -5106,7 +5125,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: 5 Aug 2025 05:53:52 PM CST | Test Build
+        Build: 5 Aug 2025 05:58:50 PM CST | Test Build
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
