@@ -4135,27 +4135,25 @@
     function initAutocomplete() {
         const searchInput = document.getElementById('search');
         
-        // For manual typing - normalize AS YOU TYPE
+        // For manual typing - just filter as typed, NO normalization
         if (searchInput) {
             // Handle direct input events
             searchInput.addEventListener('input', debounce(() => {
-                let currentValue = searchInput.value || '';
-                
-                // Normalize 6th Ave variations AS YOU TYPE for immediate filtering
-                if (currentValue.match(/(6th?\s+(ave|avenue)|sixth\s+(ave|avenue))/i)) {
-                    // Don't change the input value, but filter with normalized version
-                    const normalizedForFilter = currentValue.replace(/(sixth|6th|6)\s+(avenue|ave\.?|av)/gi, 'Ave Of The Americas');
-                    filterTableWithValue(normalizedForFilter);
-                } else {
-                    filterTableWithValue(currentValue);
-                }
+                const currentValue = searchInput.value || '';
+                filterTableWithValue(currentValue);
                 updateClearButtonState();
             }, 300));
         }
     }
     
     function filterTableWithValue(searchValue) {
-        const input = normalizeForComparison(searchValue);
+        // Normalize 6th Ave to Ave Of The Americas for searching
+        let normalizedSearch = searchValue;
+        if (searchValue.match(/(sixth|6th|6)\s+(avenue|ave\.?|av)/i)) {
+            normalizedSearch = searchValue.replace(/(sixth|6th|6)\s+(avenue|ave\.?|av)/gi, 'Ave Of The Americas');
+        }
+        
+        const input = normalizeForComparison(normalizedSearch);
         const rows = document.querySelectorAll('#buildingTable tbody tr');
         let visibleCount = 0;
         
@@ -5109,7 +5107,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: 5 Aug 2025 05:46:02 PM CST | Test Build
+        Build: 5 Aug 2025 05:49:53 PM CST | Test Build
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
