@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>111 E 58th St, New York, NY 10022 - ODCV Analysis (v1754356346)</title>
+    <title>111 E 58th St, New York, NY 10022 - ODCV Analysis (v1754357989)</title>
     <link rel="icon" type="image/png" href="https://rzero.com/wp-content/themes/rzero/build/images/favicons/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Preload aerial video for faster playback -->
@@ -153,6 +153,8 @@
             border-bottom: 3px solid var(--rzero-primary); 
             background: white;
             position: relative;
+            width: 100%;
+            box-sizing: border-box;
         }
         
         .section:nth-child(even) {
@@ -200,6 +202,8 @@
         
         .page { 
             margin-bottom: 40px;
+            width: 100%;
+            box-sizing: border-box;
             /* max-width: 900px; */
             /* margin-left: auto; */
             /* margin-right: auto; */
@@ -271,7 +275,6 @@
             position: relative;
             width: 100%;
             /* max-width: 900px; */
-            margin: 0 auto;
             height: 675px;
             overflow: hidden;
             border-radius: 12px;
@@ -316,6 +319,10 @@
         }
         
         .fullscreen-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        
+        .download-btn:hover {
             background: rgba(0, 0, 0, 0.8);
         }
         
@@ -607,6 +614,7 @@
                                 <img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1013130005/1013130005_hero.jpg" 
                                      style="width: 100%; height: 100%; object-fit: contain; background: #f0f0f0;"
                                      onerror="handleImageError(this, '1013130005', 'hero')">
+                                <button class="download-btn" onclick="downloadImage(this)" title="Download Image" style="position: absolute; top: 20px; left: 20px; background: rgba(0, 0, 0, 0.6); color: white; border: none; padding: 10px; cursor: pointer; border-radius: 4px; font-size: 20px; z-index: 10; transition: background 0.3s ease;">⬇</button>
                                 <button class="fullscreen-btn" onclick="toggleFullscreen(this)" title="Fullscreen">⛶</button>
                             </div>
                         </div>
@@ -615,6 +623,7 @@
                                 <img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1013130005/1013130005_roadview.jpg" 
                                      style="width: 100%; height: 100%; object-fit: contain; background: #f0f0f0;"
                                      onerror="handleImageError(this, '1013130005', 'roadview')">
+                                <button class="download-btn" onclick="downloadImage(this)" title="Download Image" style="position: absolute; top: 20px; left: 20px; background: rgba(0, 0, 0, 0.6); color: white; border: none; padding: 10px; cursor: pointer; border-radius: 4px; font-size: 20px; z-index: 10; transition: background 0.3s ease;">⬇</button>
                                 <button class="fullscreen-btn" onclick="toggleFullscreen(this)" title="Fullscreen">⛶</button>
                             </div>
                         </div>
@@ -623,6 +632,7 @@
                                 <img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1013130005/1013130005_street.jpg" 
                                      style="width: 100%; height: 100%; object-fit: contain; background: #f0f0f0;"
                                      onerror="handleImageError(this, '1013130005', 'street')">
+                                <button class="download-btn" onclick="downloadImage(this)" title="Download Image" style="position: absolute; top: 20px; left: 20px; background: rgba(0, 0, 0, 0.6); color: white; border: none; padding: 10px; cursor: pointer; border-radius: 4px; font-size: 20px; z-index: 10; transition: background 0.3s ease;">⬇</button>
                                 <button class="fullscreen-btn" onclick="toggleFullscreen(this)" title="Fullscreen">⛶</button>
                             </div>
                         </div>
@@ -631,6 +641,7 @@
                                 <img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1013130005/1013130005_satellite.jpg" 
                                      style="width: 100%; height: 100%; object-fit: contain; background: #f0f0f0;"
                                      onerror="handleImageError(this, '1013130005', 'satellite')">
+                                <button class="download-btn" onclick="downloadImage(this)" title="Download Image" style="position: absolute; top: 20px; left: 20px; background: rgba(0, 0, 0, 0.6); color: white; border: none; padding: 10px; cursor: pointer; border-radius: 4px; font-size: 20px; z-index: 10; transition: background 0.3s ease;">⬇</button>
                                 <button class="fullscreen-btn" onclick="toggleFullscreen(this)" title="Fullscreen">⛶</button>
                             </div>
                         </div>
@@ -639,6 +650,7 @@
                                 <img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1013130005/1013130005_equipment.jpg" 
                                      style="width: 100%; height: 100%; object-fit: contain; background: #f0f0f0;"
                                      onerror="handleImageError(this, '1013130005', 'equipment')">
+                                <button class="download-btn" onclick="downloadImage(this)" title="Download Image" style="position: absolute; top: 20px; left: 20px; background: rgba(0, 0, 0, 0.6); color: white; border: none; padding: 10px; cursor: pointer; border-radius: 4px; font-size: 20px; z-index: 10; transition: background 0.3s ease;">⬇</button>
                                 <button class="fullscreen-btn" onclick="toggleFullscreen(this)" title="Fullscreen">⛶</button>
                             </div>
                         </div>
@@ -647,6 +659,7 @@
                                 <img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1013130005/1013130005_double.jpg" 
                                      style="width: 100%; height: 100%; object-fit: contain; background: #f0f0f0;"
                                      onerror="handleImageError(this, '1013130005', 'double')">
+                                <button class="download-btn" onclick="downloadImage(this)" title="Download Image" style="position: absolute; top: 20px; left: 20px; background: rgba(0, 0, 0, 0.6); color: white; border: none; padding: 10px; cursor: pointer; border-radius: 4px; font-size: 20px; z-index: 10; transition: background 0.3s ease;">⬇</button>
                                 <button class="fullscreen-btn" onclick="toggleFullscreen(this)" title="Fullscreen">⛶</button>
                             </div>
                         </div>
@@ -655,6 +668,7 @@
                                 <img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1013130005/1013130005_stack.jpg" 
                                      style="width: 100%; height: 100%; object-fit: contain; background: #f0f0f0;"
                                      onerror="handleImageError(this, '1013130005', 'stack')">
+                                <button class="download-btn" onclick="downloadImage(this)" title="Download Image" style="position: absolute; top: 20px; left: 20px; background: rgba(0, 0, 0, 0.6); color: white; border: none; padding: 10px; cursor: pointer; border-radius: 4px; font-size: 20px; z-index: 10; transition: background 0.3s ease;">⬇</button>
                                 <button class="fullscreen-btn" onclick="toggleFullscreen(this)" title="Fullscreen">⛶</button>
                             </div>
                         </div>
@@ -780,14 +794,14 @@
                 </div>
                 <div class='stat'><span class='stat-label'>Heating System: </span><span class='stat-value'>Boiler (Gas)</span></div>
                 <div class='stat'><span class='stat-label'>Cooling System: </span><span class='stat-value'>Plant</span></div>
-                <div class='stat'><span class='stat-label'>Equipment Counts: </span><span class='stat-value'>Cooling Towers: 2 | Water Tanks: 1</span></div>
+                <div class='stat'><span class='stat-label'>Rooftop System: </span><span class='stat-value'>Cooling Towers: 2 | Water Tanks: 1</span></div>
             </div>
         </div>
         
         <!-- Major Tenants Section -->
         <div class="section section-white">
             <h2 class="section-header">Major Tenants</h2>
-            <div class="page" style="max-width: 100%;">
+            <div class="page">
                 <div style="overflow-x: auto;">
                     <table id="tenantTable-1013130005" style="width: 100%; border-collapse: collapse; font-size: 0.9em;">
                         <thead>
@@ -984,12 +998,12 @@
             <h2 class="section-header">HVAC Analysis</h2>
             
             <div class="page">
-                <h3 class="page-title">HVAC Electricity Disaggregation</h3>
+                <h3 class="page-title">Electricity Disaggregation</h3>
                 <div id="hvac_pct_chart" style="width: 100%; height: 400px;"></div>
             </div>
             
             <div class="page">
-                <h3 class="page-title">HVAC Analysis</h3>
+                <h3 class="page-title">Savings Potential</h3>
                 <div id="odcv_savings_chart" style="width: 100%; height: 400px;"></div>
             </div>
         </div>
@@ -999,7 +1013,7 @@
             <h2 class="section-header">Air Quality</h2>
             
             <div class="page">
-                <h3 class="page-title">Outdoor Pollution Level</h3>
+                <h3 class="page-title">Outdoor Pollution (PM2.5)</h3>
             
             <div class="iaq-summary" style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px solid #e9ecef;">
                 <div class="iaq-stat-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: center;">
@@ -1218,6 +1232,16 @@
             }
             button.innerHTML = '⛶';
         }
+    }
+    
+    function downloadImage(button) {
+        const img = button.parentElement.querySelector('img');
+        const link = document.createElement('a');
+        link.href = img.src;
+        link.download = img.src.split('/').pop();
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
     
     // Enhanced Interactive carousel with smooth transitions
@@ -1498,6 +1522,11 @@
         displaylogo: false,
         displayModeBar: true
     });
+
+    // Add annual cost caption below the chart
+    document.getElementById('energy_cost_chart').insertAdjacentHTML('afterend', 
+        '<div style="text-align: center; margin-top: 10px; font-size: 16px; color: #666;">Annual Cost: $' + (2770276).toLocaleString() + '</div>'
+    );
     
     // Office Cost Chart
     const officeElecCost = {
@@ -1557,6 +1586,11 @@
         displaylogo: false,
         displayModeBar: true
     });
+
+    // Add annual cost caption below the chart
+    document.getElementById('office_cost_chart').insertAdjacentHTML('afterend', 
+        '<div style="text-align: center; margin-top: 10px; font-size: 16px; color: #666;">Annual Cost: $' + (1133866).toLocaleString() + '</div>'
+    );
     
     // HVAC Percentage Chart
     const hvacData = {
@@ -1667,7 +1701,7 @@
 
     Plotly.newPlot('pm25_chart', [pm25Data, goodThreshold], {
         title: {
-            text: 'Daily PM2.5 Levels (31-Day History)',
+            text: 'Neighborhood PM2.5 Levels (31-Day History)',
             y: 0.95
         },
         yaxis: {
@@ -1717,33 +1751,22 @@
             const isEven = buildingNumber % 2 === 0;
             const addressLower = address.toLowerCase();
             
-            // Manhattan grid: Avenues at 29°, Streets at 119°
+            // Manhattan grid is rotated ~29° clockwise from true north
+            const northOffset = -29;  // Was -2.45, now proper grid rotation
             
             if (addressLower.includes('street') || addressLower.includes(' st')) {
                 // STREETS: Even = South side, Odd = North side
-                if (isEven) {
-                    // Even = South side → camera looks NORTH
-                    return 29; // 119° - 90° = 29°
-                } else {
-                    // Odd = North side → camera looks SOUTH
-                    return 209; // 119° + 90° = 209°
-                }
+                return isEven ? (29 + northOffset) : (209 + northOffset);
             } else if (addressLower.includes('avenue') || addressLower.includes(' ave')) {
                 // AVENUES: Even = West side, Odd = East side
-                if (isEven) {
-                    // Even = West side → camera looks WEST
-                    return 299; // 29° - 90° + 360° = 299°
-                } else {
-                    // Odd = East side → camera looks EAST
-                    return 119; // 29° + 90° = 119°
-                }
+                return isEven ? (299 + northOffset) : (119 + northOffset);
             } else if (addressLower.includes('broadway')) {
                 // Broadway runs diagonal
-                return isEven ? 330 : 150;
+                return isEven ? (330 + northOffset) : (150 + northOffset);
             }
             
             // Default (assume street)
-            return isEven ? 29 : 209;
+            return isEven ? (29 + northOffset) : (209 + northOffset);
         }
         
         // Function to initialize panorama
@@ -1881,7 +1904,7 @@
     </div>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif;">
-        Build: 07:12:32 PM CST | t
+        Build: 07:39:56 PM CST | g
     </div>
 </body>
 </html>

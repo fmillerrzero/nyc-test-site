@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>NYC ODCV Opportunity Rankings | R-Zero</title>
+    <title>NYC ODCV Opportunities | R-Zero</title>
     <link rel="icon" type="image/png" href="https://rzero.com/wp-content/themes/rzero/build/images/favicons/favicon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -280,7 +280,7 @@
                 </a>
             </div>
             <h1>Prospector: NYC</h1>
-            <p class="subtitle">ODCV Opportunity Rankings</p>
+            <p class="subtitle">ODCV Opportunities</p>
         </div>
         
         <div class="stats">
@@ -479,7 +479,7 @@
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                      onclick="window.location.href='1013130005.html'">
                 <div class="no-thumb" style="display:none;" onclick="window.location.href='1013130005.html'">No image</div></td>
-            <td>121</td>
+            <td><span class="rzero-badge">#121</span></td>
             <td>111 E 58th St</td>
             <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByOwner('Jack Resnick & Sons')" class="clickable-link">Jack Resnick & Sons</a></td>
             <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByManager('Jack Resnick & Sons')" class="clickable-link">Jack Resnick & Sons</a></td>
@@ -1381,7 +1381,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: {datetime.now(pytz.timezone('America/Mexico_City')).strftime('%I:%M:%S %p CST')} | t{' | ' + sys.argv[1] if len(sys.argv) > 1 else ''}
+        Build: {datetime.now(pytz.timezone('America/Mexico_City')).strftime('%I:%M:%S %p CST')} | g{' | ' + sys.argv[1] if len(sys.argv) > 1 else ''}
     </div>
 </body>
 </html>
