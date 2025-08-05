@@ -4079,7 +4079,16 @@
                     autocomplete.addListener('place_changed', function() {
                         const place = autocomplete.getPlace();
                         if (place && place.formatted_address) {
-                            searchInput.value = place.formatted_address;
+                            // Extract just the street address part (before comma)
+                            const fullAddress = place.formatted_address;
+                            const streetAddress = fullAddress.split(',')[0].trim();
+                            
+                            // Normalize the address to match CSV format
+                            const normalized = normalizeAddress(streetAddress);
+                            
+                            // Update search box with normalized address
+                            searchInput.value = normalized;
+                            
                             // Filter table to show matches
                             filterTable();
                         }
@@ -5102,7 +5111,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: 5 Aug 2025 04:06:47 PM CST | Google autocomplete only - table shows all matches
+        Build: 5 Aug 2025 04:13:10 PM CST | Normalize Google addresses to match CSV
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
