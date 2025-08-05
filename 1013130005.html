@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>111 E 58th St, New York, NY 10022 - ODCV Analysis (v1754360682)</title>
+    <title>111 E 58th St, New York, NY 10022 - ODCV Analysis (v1754363302)</title>
     <link rel="icon" type="image/png" href="https://rzero.com/wp-content/themes/rzero/build/images/favicons/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Preload aerial video for faster playback -->
@@ -137,7 +137,7 @@
         
         /* Section 0 - Title */
         .title-section {
-            background: linear-gradient(to right, #0066cc, #0052a3);
+            background: url('https://rzero.com/wp-content/uploads/2025/02/bg-cta-bottom.jpg') center/cover;
             color: white;
             padding: 30px 15%;
             display: flex;
@@ -166,6 +166,10 @@
         
         .section:nth-child(even) {
             background: #f8fafb;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
         }
         
         /* Override backgrounds to ensure proper alternating pattern */
@@ -439,21 +443,47 @@
             border: 2px solid #6B4423;
         }
         
-        /* Energy Grade Styling from Prospector */
+        /* Energy Grade Styling - NYC LL97 Style */
         .energy-grade {
             display: inline-block;
-            padding: 8px 20px;
-            border-radius: 8px;
+            padding: 12px 24px;
+            border-radius: 6px;
             font-weight: bold;
-            font-size: 1.2em;
+            font-size: 1.4em;
+            border: 2px solid;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         
-        .grade-A { background: #d4f1d4; color: #1e7e1e; }
-        .grade-B { background: #e6f3d5; color: #5d7e1e; }
-        .grade-C { background: #fff3cd; color: #856404; }
-        .grade-D { background: #f8d7da; color: #721c24; }
-        .grade-F { background: #f5c6cb; color: #721c24; }
-        .grade-NA { background: #e9ecef; color: #6c757d; }
+        .grade-A { 
+            background: #4CAF50; 
+            color: white; 
+            border-color: #388E3C;
+        }
+        .grade-B { 
+            background: #FFEB3B; 
+            color: #333; 
+            border-color: #F9A825;
+        }
+        .grade-C { 
+            background: #FF9800; 
+            color: white; 
+            border-color: #EF6C00;
+        }
+        .grade-D { 
+            background: #F44336; 
+            color: white; 
+            border-color: #C62828;
+        }
+        .grade-F { 
+            background: #9E9E9E; 
+            color: white; 
+            border-color: #616161;
+        }
+        .grade-N, .grade-NA { 
+            background: #E1BEE7; 
+            color: #4A148C; 
+            border-color: #BA68C8;
+        }
         
         /* Carousel Loading Animation */
         .carousel-slide iframe {
@@ -558,10 +588,6 @@
             border: 2px solid #8B4513;
         }
         
-        .grade-A { background: #d4f1d4; color: #1e7e1e; padding: 4px 12px; border-radius: 4px; font-weight: bold; }
-        .grade-B { background: #e6f3d5; color: #5d7e1e; padding: 4px 12px; border-radius: 4px; font-weight: bold; }
-        .grade-C { background: #fff3cd; color: #856404; padding: 4px 12px; border-radius: 4px; font-weight: bold; }
-        .grade-D { background: #f8d7da; color: #721c24; padding: 4px 12px; border-radius: 4px; font-weight: bold; }
         
         .yes { color: #38a169; font-weight: bold; }
         .no { color: #c41e3a; font-weight: bold; }
@@ -578,7 +604,7 @@
 <body>
     <div class="container">
         <!-- Navigation Bar -->
-        <div style="background: linear-gradient(to right, #0066cc, #0052a3); padding: 0; margin: 0; width: 100%; position: relative;">
+        <div style="background: url('https://rzero.com/wp-content/uploads/2025/02/bg-cta-bottom.jpg') center/cover; padding: 0; margin: 0; width: 100%; position: relative;">
             <a href="index.html" style="text-decoration: none; display: block;">
                 <div style="padding: 15px 40px; display: flex; align-items: center; gap: 10px; color: white; cursor: pointer; transition: all 0.3s ease;"
                      onmouseover="this.style.background='rgba(255,255,255,0.1)'" 
@@ -605,8 +631,8 @@
                 </p>
             </div>
             <div style="text-align: center; min-width: 200px;">
-                <div style="font-size: 0.9em; opacity: 0.8; margin-bottom: 8px;">2026 ODCV Savings</div>
-                <div style="font-size: 2.5em; font-weight: 700; line-height: 1;">$169,511</div>
+                <div style="font-size: 2.5em; font-weight: 700; line-height: 1; margin-bottom: 8px;">$169,511</div>
+                <div style="font-size: 0.9em; opacity: 0.8;">2026 ODCV Savings</div>
                 
             </div>
         </div>
@@ -760,12 +786,12 @@
                     <span class="stat-value">1974</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-label">Floors: </span>
-                    <span class="stat-value">36</span>
-                </div>
-                <div class="stat">
                     <span class="stat-label">Units: </span>
                     <span class="stat-value">29</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Floors: </span>
+                    <span class="stat-value">36</span>
                 </div>
                 <div class='stat'><span class='stat-label'>Avg Floor Sq Ft: </span><span class='stat-value'>9,175 sq ft</span></div>
                 <div class="stat">
@@ -796,10 +822,7 @@
             
             <div class="page">
                 <h3 class="page-title">Equipment</h3>
-                <div class="stat">
-                    <span class="stat-label">Elevator Shafts: </span>
-                    <span class="stat-value">5</span>
-                </div>
+                <div class='stat'><span class='stat-label'>Elevator Shafts: </span><span class='stat-value'>5</span></div>
                 <div class="stat">
                     <span class="stat-label">BMS Controls: </span>
                     <span class="stat-value"><span style="color: #888888; font-weight: normal;">Ventilation</span><span style="color: #888888;">,</span> <span style="color: #ff6600; font-weight: normal;">Heating</span><span style="color: #888888;">,</span> <span style="color: #0066cc; font-weight: normal;">Cooling</span></span>
@@ -954,20 +977,12 @@
                         <span class="stat-value"><span class="yes">Yes</span></span>
                     </div>
                     <div class="stat">
-                        <span class="stat-label">2030-2034 Status: </span>
-                        <span class="stat-value"><span class="no">No</span> <span style="color: #c41e3a; font-weight: bold;">($190,372 annual penalty)</span></span>
-                    </div>
-                    <div class="stat">
                         <span class="stat-label">Current Emissions: </span>
                         <span class="stat-value">3,283 tCO2e</span>
                     </div>
                     <div class="stat">
                         <span class="stat-label">2024-2029 Limit: </span>
                         <span class="stat-value">4,429 tCO2e</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-label">2030-2034 Limit: </span>
-                        <span class="stat-value">1,452 tCO2e</span>
                     </div>
                 </div>
             
@@ -1018,7 +1033,7 @@
                 <h2 class="section-header">HVAC Analysis</h2>
                 
                 <div class="page">
-                <h3 class="page-title">Electricity Disaggregation</h3>
+                <h3 class="page-title">Usage Disaggregation</h3>
                 <div id="hvac_pct_chart" style="width: 100%; height: 400px;"></div>
             </div>
             
@@ -1035,10 +1050,10 @@
                 <h2 class="section-header">Air Quality</h2>
                 
                 <div class="page">
-                <h3 class="page-title">Outdoor Pollution (PM2.5)</h3>
+                <h3 class="page-title">Outdoor Pollution</h3>
             
             <div class="iaq-summary" style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px solid #e9ecef;">
-                <div class="iaq-stat-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: center;">
+                <div class="iaq-stat-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; text-align: center; max-width: 400px; margin: 0 auto;">
                     <div class="iaq-stat">
                         <div class="iaq-label" style="font-size: 12px; color: #6c757d; margin-bottom: 4px;">Max</div>
                         <div class="iaq-value" style="font-size: 24px; font-weight: bold; color: #c41e3a;">17.9 μg/m³</div>
@@ -1046,14 +1061,10 @@
                     </div>
                     <div class="iaq-stat">
                         <div class="iaq-label" style="font-size: 12px; color: #6c757d; margin-bottom: 4px;">Average</div>
-                        <div class="iaq-value" style="font-size: 24px; font-weight: bold; color: #00e400;">7.7 μg/m³</div>
+                        <div class="iaq-value" style="font-size: 24px; font-weight: bold; color: #00e400;">7.6 μg/m³</div>
                         <div class="iaq-category" style="font-size: 11px; color: #6c757d; margin-top: 4px;">Daily Average</div>
                     </div>
-                    <div class="iaq-stat">
-                        <div class="iaq-label" style="font-size: 12px; color: #6c757d; margin-bottom: 4px;">Good</div>
-                        <div class="iaq-value" style="font-size: 24px; font-weight: bold; color: #00e400;">12 μg/m³</div>
-                        <div class="iaq-category" style="font-size: 11px; color: #6c757d; margin-top: 4px;">EPA Threshold</div>
-                    </div>
+                    
                 </div>
             </div>
             
@@ -1363,7 +1374,7 @@
     const elecData = {
         x: months,
         y: [341682.2707, 331408.4187, 347352.2707, 302131.32, 364869.1707, 568092.82, 754873.0707, 857575.0707, 667334.02, 499853.9707, 370313.72, 327787.2707],
-        name: 'Electricity',
+        name: 'Elec',
         type: 'scatter',
         mode: 'lines+markers',
         line: {color: '#0066cc', width: 3},
@@ -1430,7 +1441,7 @@
     const officeElecData = {
         x: months,
         y: [1804759.0, 1649592.0, 1809607.0, 1722149.0, 1824584.0, 1949546.0, 2158037.0, 2245847.0, 2034397.0, 1939996.0, 1780444.0, 1792879.0],
-        name: 'Electricity',
+        name: 'Elec',
         type: 'bar',
         marker: {color: '#0066cc'}
     };
@@ -1488,7 +1499,7 @@
     const elecCost = {
         x: months, 
         y: [140315.39002, 141235.13003, 134817.92001, 122929.99, 153120.05998, 302314.73004, 339330.19, 341296.57, 326156.69999, 159336.52997, 141653.68996000002, 127174.25996000001], 
-        name: 'Electricity', 
+        name: 'Elec', 
         type: 'scatter', 
         mode: 'lines+markers', 
         line: {color: '#0066cc', width: 3},
@@ -1555,7 +1566,7 @@
     const officeElecCost = {
         x: months, 
         y: [59098.72, 56687.22, 56080.41, 53910.67, 60849.25, 74947.55, 83659.96, 89346.43, 80148.47, 62690.43, 59236.61, 55679.98], 
-        name: 'Electricity', 
+        name: 'Elec', 
         type: 'bar', 
         marker: {color: '#0066cc'}
     };
@@ -1615,17 +1626,68 @@
         '<div style="text-align: center; margin-top: 10px; font-size: 16px; color: #666;">Annual Cost: $' + (1133866).toLocaleString() + '</div>'
     );
     
-    // HVAC Percentage Chart
+    // HVAC Percentage Chart with seasonal colors
+    const hvacValues = [0.16187112776476034, 0.1717722887809275, 0.16411643508890622, 0.15, 0.1709777189341904, 0.24914490816760484, 0.2990757326030971, 0.3264811183270129, 0.2804617948597794, 0.22029696631036255, 0.177831005048427, 0.1563173999500677];
+    
+    // Create seasonal fill traces
+    const winterFill = {
+        x: ['Jan', 'Feb', 'Mar', 'Dec'],
+        y: [hvacValues[0], hvacValues[1], hvacValues[2], hvacValues[11]],
+        type: 'scatter',
+        mode: 'lines',
+        fill: 'tozeroy',
+        fillcolor: 'rgba(100, 149, 237, 0.3)', // Light cornflower blue for winter
+        line: {width: 0},
+        showlegend: false,
+        hoverinfo: 'skip'
+    };
+    
+    const springFill = {
+        x: ['Mar', 'Apr', 'May', 'Jun'],
+        y: [hvacValues[2], hvacValues[3], hvacValues[4], hvacValues[5]],
+        type: 'scatter',
+        mode: 'lines',
+        fill: 'tozeroy',
+        fillcolor: 'rgba(144, 238, 144, 0.3)', // Light green for spring
+        line: {width: 0},
+        showlegend: false,
+        hoverinfo: 'skip'
+    };
+    
+    const summerFill = {
+        x: ['Jun', 'Jul', 'Aug', 'Sep'],
+        y: [hvacValues[5], hvacValues[6], hvacValues[7], hvacValues[8]],
+        type: 'scatter',
+        mode: 'lines',
+        fill: 'tozeroy',
+        fillcolor: 'rgba(255, 218, 185, 0.3)', // Light peach for summer
+        line: {width: 0},
+        showlegend: false,
+        hoverinfo: 'skip'
+    };
+    
+    const fallFill = {
+        x: ['Sep', 'Oct', 'Nov', 'Dec'],
+        y: [hvacValues[8], hvacValues[9], hvacValues[10], hvacValues[11]],
+        type: 'scatter',
+        mode: 'lines',
+        fill: 'tozeroy',
+        fillcolor: 'rgba(255, 228, 181, 0.3)', // Light moccasin for fall
+        line: {width: 0},
+        showlegend: false,
+        hoverinfo: 'skip'
+    };
+    
+    // Main line trace
     const hvacData = {
         x: months,
-        y: [0.16187112776476034, 0.1717722887809275, 0.16411643508890622, 0.15, 0.1709777189341904, 0.24914490816760484, 0.2990757326030971, 0.3264811183270129, 0.2804617948597794, 0.22029696631036255, 0.177831005048427, 0.1563173999500677],
+        y: hvacValues,
         type: 'scatter',
         mode: 'lines+markers',
-        fill: 'tozeroy',
-        line: {color: '#0066cc', width: 3},
-        fillcolor: 'rgba(0, 102, 204, 0.2)',
-        marker: {size: 8},
-        name: 'HVAC %'
+        line: {color: '#2c3e50', width: 3},
+        marker: {size: 8, color: '#2c3e50'},
+        name: 'HVAC %',
+        hovertemplate: '%{x}: %{y:.1%}<extra></extra>'
     };
     
     const hvacLayout = {
@@ -1648,7 +1710,7 @@
         hovermode: 'x unified'
     };
     
-    Plotly.newPlot('hvac_pct_chart', [hvacData], hvacLayout, {
+    Plotly.newPlot('hvac_pct_chart', [winterFill, springFill, summerFill, fallFill, hvacData], hvacLayout, {
         modeBarButtonsToRemove: ['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'resetScale2d', 'hoverClosestCartesian', 'hoverCompareCartesian'],
         displaylogo: false,
         displayModeBar: true
@@ -1703,8 +1765,8 @@
     
     // PM2.5 Chart - Business Hours Only
     const pm25Data = {
-        x: ["2025-07-05", "2025-07-06", "2025-07-07", "2025-07-08", "2025-07-09", "2025-07-10", "2025-07-11", "2025-07-12", "2025-07-13", "2025-07-14", "2025-07-15", "2025-07-16", "2025-07-17", "2025-07-18", "2025-07-19", "2025-07-20", "2025-07-21", "2025-07-22", "2025-07-23", "2025-07-24", "2025-07-25", "2025-07-26", "2025-07-27", "2025-07-28", "2025-07-29", "2025-07-30", "2025-07-31", "2025-08-01", "2025-08-02", "2025-08-03", "2025-08-04"],
-        y: [10.59, 6.468333333333334, 4.422083333333333, 10.684583333333334, 10.950000000000001, 8.28625, 5.12, 2.6916666666666664, 3.34, 2.56, 8.960833333333333, 9.414583333333333, 4.015, 5.425, 8.310416666666667, 7.578749999999999, 7.402083333333334, 5.293333333333334, 4.048333333333333, 4.769166666666666, 8.834583333333333, 5.9679166666666665, 6.728333333333333, 11.052083333333334, 16.017083333333336, 17.909166666666668, 10.72375, 5.53, 6.8825, 8.910416666666666, 9.916521739130435],
+        x: ["2025-07-06", "2025-07-07", "2025-07-08", "2025-07-09", "2025-07-10", "2025-07-11", "2025-07-12", "2025-07-13", "2025-07-14", "2025-07-15", "2025-07-16", "2025-07-17", "2025-07-18", "2025-07-19", "2025-07-20", "2025-07-21", "2025-07-22", "2025-07-23", "2025-07-24", "2025-07-25", "2025-07-26", "2025-07-27", "2025-07-28", "2025-07-29", "2025-07-30", "2025-07-31", "2025-08-01", "2025-08-02", "2025-08-03", "2025-08-04"],
+        y: [6.468333333333334, 4.422083333333333, 10.684583333333334, 10.950000000000001, 8.28625, 5.12, 2.6916666666666664, 3.34, 2.56, 8.960833333333333, 9.414583333333333, 4.015, 5.425, 8.310416666666667, 7.578749999999999, 7.402083333333334, 5.293333333333334, 4.048333333333333, 4.769166666666666, 8.834583333333333, 5.9679166666666665, 6.728333333333333, 11.052083333333334, 16.017083333333336, 17.909166666666668, 10.72375, 5.53, 6.8825, 8.910416666666666, 9.85625],
         type: 'scatter',
         mode: 'lines',
         line: {color: '#0066cc', width: 3},
@@ -1714,8 +1776,8 @@
     
     // EPA Good threshold line
     const goodThreshold = {
-        x: ["2025-07-05", "2025-07-06", "2025-07-07", "2025-07-08", "2025-07-09", "2025-07-10", "2025-07-11", "2025-07-12", "2025-07-13", "2025-07-14", "2025-07-15", "2025-07-16", "2025-07-17", "2025-07-18", "2025-07-19", "2025-07-20", "2025-07-21", "2025-07-22", "2025-07-23", "2025-07-24", "2025-07-25", "2025-07-26", "2025-07-27", "2025-07-28", "2025-07-29", "2025-07-30", "2025-07-31", "2025-08-01", "2025-08-02", "2025-08-03", "2025-08-04"],
-        y: Array(31).fill(12),
+        x: ["2025-07-06", "2025-07-07", "2025-07-08", "2025-07-09", "2025-07-10", "2025-07-11", "2025-07-12", "2025-07-13", "2025-07-14", "2025-07-15", "2025-07-16", "2025-07-17", "2025-07-18", "2025-07-19", "2025-07-20", "2025-07-21", "2025-07-22", "2025-07-23", "2025-07-24", "2025-07-25", "2025-07-26", "2025-07-27", "2025-07-28", "2025-07-29", "2025-07-30", "2025-07-31", "2025-08-01", "2025-08-02", "2025-08-03", "2025-08-04"],
+        y: Array(30).fill(12),
         mode: 'lines',
         line: {color: '#00e400', dash: 'dash', width: 2},
         name: 'Good AQ Threshold (EPA)',
@@ -1723,8 +1785,8 @@
     };
 
     // Create fill traces for areas above and below threshold
-    const dates = ["2025-07-05", "2025-07-06", "2025-07-07", "2025-07-08", "2025-07-09", "2025-07-10", "2025-07-11", "2025-07-12", "2025-07-13", "2025-07-14", "2025-07-15", "2025-07-16", "2025-07-17", "2025-07-18", "2025-07-19", "2025-07-20", "2025-07-21", "2025-07-22", "2025-07-23", "2025-07-24", "2025-07-25", "2025-07-26", "2025-07-27", "2025-07-28", "2025-07-29", "2025-07-30", "2025-07-31", "2025-08-01", "2025-08-02", "2025-08-03", "2025-08-04"];
-    const values = [10.59, 6.468333333333334, 4.422083333333333, 10.684583333333334, 10.950000000000001, 8.28625, 5.12, 2.6916666666666664, 3.34, 2.56, 8.960833333333333, 9.414583333333333, 4.015, 5.425, 8.310416666666667, 7.578749999999999, 7.402083333333334, 5.293333333333334, 4.048333333333333, 4.769166666666666, 8.834583333333333, 5.9679166666666665, 6.728333333333333, 11.052083333333334, 16.017083333333336, 17.909166666666668, 10.72375, 5.53, 6.8825, 8.910416666666666, 9.916521739130435];
+    const dates = ["2025-07-06", "2025-07-07", "2025-07-08", "2025-07-09", "2025-07-10", "2025-07-11", "2025-07-12", "2025-07-13", "2025-07-14", "2025-07-15", "2025-07-16", "2025-07-17", "2025-07-18", "2025-07-19", "2025-07-20", "2025-07-21", "2025-07-22", "2025-07-23", "2025-07-24", "2025-07-25", "2025-07-26", "2025-07-27", "2025-07-28", "2025-07-29", "2025-07-30", "2025-07-31", "2025-08-01", "2025-08-02", "2025-08-03", "2025-08-04"];
+    const values = [6.468333333333334, 4.422083333333333, 10.684583333333334, 10.950000000000001, 8.28625, 5.12, 2.6916666666666664, 3.34, 2.56, 8.960833333333333, 9.414583333333333, 4.015, 5.425, 8.310416666666667, 7.578749999999999, 7.402083333333334, 5.293333333333334, 4.048333333333333, 4.769166666666666, 8.834583333333333, 5.9679166666666665, 6.728333333333333, 11.052083333333334, 16.017083333333336, 17.909166666666668, 10.72375, 5.53, 6.8825, 8.910416666666666, 9.85625];
     const threshold = 12;
     
     // Create traces for filled areas
@@ -1769,7 +1831,7 @@
             dtick: 86400000 * 3,  // Dynamic tick interval
             tickangle: -45,
             showticklabels: true,
-            range: ["2025-07-05", "2025-08-04"]
+            range: ["2025-07-06", "2025-08-04"]
         },
         legend: {
             orientation: 'h',
@@ -1954,7 +2016,7 @@
     </div>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif;">
-        Build: 4 Aug 2025 08:24:49 PM CST
+        Build: 4 Aug 2025 09:08:28 PM CST
     </div>
 </body>
 </html>
