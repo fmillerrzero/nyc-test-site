@@ -339,10 +339,18 @@
             position: relative;
             flex: 1;
         }
+        
+        /* Make Google Places dropdown appear OVER sticky table headers */
+        .pac-container {
+            z-index: 10001 !important;  /* Higher than sticky headers (z-index: 100) */
+            background: white !important;
+            border: 1px solid #ccc !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2) !important;
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.js"></script>
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQdR4xY0a_qmEsYairsp6r6tXwh5qx_ho&libraries=places&callback=initGooglePlaces&loading=async"></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZfwYEVShfBun2dg5QELXS4r4WRKjVb2c&libraries=places&callback=initGooglePlaces&loading=async"></script>
 </head>
 <body>
     <div class="container">
@@ -4081,52 +4089,47 @@
     
     // Autocomplete functionality
     
-    // Callback function for Google Maps API
-    async function initGooglePlaces() {
-        if (typeof google !== 'undefined' && google.maps) {
-            try {
-                // Wait for the library to load
-                await google.maps.importLibrary('places');
-                
-                const searchInput = document.getElementById('search');
-                
-                if (searchInput) {
-                    // Use Google's NATIVE Autocomplete widget
-                    const autocomplete = new google.maps.places.Autocomplete(searchInput, {
-                        bounds: new google.maps.LatLngBounds(
-                            new google.maps.LatLng(40.70, -74.02),  // Lower Manhattan
-                            new google.maps.LatLng(40.88, -73.93)   // Upper Manhattan
-                        ),
-                        strictBounds: true,
-                        componentRestrictions: { country: 'us' },
-                        types: ['address']
-                    });
+    // Callback function for Google Maps API - EXACTLY like working example
+    function initGooglePlaces() {
+        if (typeof google !== 'undefined' && google.maps && google.maps.places) {
+            const searchInput = document.getElementById('search');
+            if (!searchInput) return;
+            
+            // Use native Autocomplete EXACTLY like working example
+            const autocomplete = new google.maps.places.Autocomplete(searchInput, {
+                types: ['address'],
+                componentRestrictions: { country: 'us' },
+                bounds: new google.maps.LatLngBounds(
+                    new google.maps.LatLng(40.70, -74.02),  // Lower Manhattan
+                    new google.maps.LatLng(40.88, -73.93)   // Upper Manhattan
+                ),
+                strictBounds: true  // STRICT Manhattan bounds
+            });
+            
+            // Listen for place selection
+            autocomplete.addListener('place_changed', function() {
+                const place = autocomplete.getPlace();
+                if (place && place.formatted_address) {
+                    // Extract street address and normalize
+                    const streetAddress = place.formatted_address.split(',')[0].trim();
+                    const normalized = normalizeAddress(streetAddress);
                     
-                    // Listen for place selection
-                    autocomplete.addListener('place_changed', function() {
-                        const place = autocomplete.getPlace();
-                        if (place && place.formatted_address) {
-                            // Extract street address and normalize
-                            const streetAddress = place.formatted_address.split(',')[0].trim();
-                            const normalized = normalizeAddress(streetAddress);
-                            
-                            // Update search box with normalized address
-                            searchInput.value = normalized;
-                            
-                            // Filter the table
-                            filterTableWithValue(normalized);
-                            updateClearButtonState();
-                        }
-                    });
+                    // Update search box with normalized address
+                    searchInput.value = normalized;
                     
-                    console.log('Google Places Autocomplete initialized');
+                    // Filter the table with ALL addresses
+                    filterTableWithValue(normalized);
+                    updateClearButtonState();
                 }
-            } catch (error) {
-                console.error('Google Places initialization failed:', error);
-            }
-        } else {
-            console.error('Google Places API failed to load');
+            });
+            
+            console.log('Google Places Autocomplete initialized');
         }
+    }
+    
+    // Also setup when window loads as backup
+    window.initMap = function() {
+        initGooglePlaces();
     }
     
     function initAutocomplete() {
@@ -5098,7 +5101,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: 5 Aug 2025 05:29:49 PM CST | Test Build
+        Build: 5 Aug 2025 05:41:40 PM CST | Test Build
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
