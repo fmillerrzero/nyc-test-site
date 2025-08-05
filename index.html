@@ -856,7 +856,7 @@
     function fetchAllAerialVideos() {
         console.log('Building AWS S3 video URLs...');
         
-        // Complete mapping from aerial_videos.csv
+        // Complete mapping from aerial_videos.csv for AWS S3 videos
         const aerialVideos = {
             1000090014: 'wJql3ZGi_K9jUolEQJ4qPt',
             1000090029: 'pEmc7uTCM_sx1YCcOewv96',
@@ -1340,6 +1340,13 @@
             videoUrls[bbl] = `https://aerial-videos-forrest.s3.us-east-2.amazonaws.com/${bbl}_aerial.mp4`;
         });
         
+        // Log a sample for verification
+        const sampleBBLs = Object.keys(videoUrls).slice(0, 3);
+        console.log('Sample AWS video URLs:', sampleBBLs.map(bbl => ({
+            bbl: bbl,
+            url: videoUrls[bbl]
+        })));
+        
         // Store in sessionStorage for building pages to use
         sessionStorage.setItem('aerialVideoUrls', JSON.stringify(videoUrls));
         console.log(`Stored ${Object.keys(videoUrls).length} AWS video URLs in sessionStorage`);
@@ -1347,7 +1354,7 @@
     
     // Call on page load
     document.addEventListener('DOMContentLoaded', () => {
-        fetchAllAerialVideos();
+        setTimeout(fetchAllAerialVideos, 100);
     });
     </script>
     
@@ -1374,7 +1381,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: {datetime.now(pytz.timezone('America/Mexico_City')).strftime('%I:%M:%S %p CST')} | rtrerer{' | ' + sys.argv[1] if len(sys.argv) > 1 else ''}
+        Build: {datetime.now(pytz.timezone('America/Mexico_City')).strftime('%I:%M:%S %p CST')} | trip{' | ' + sys.argv[1] if len(sys.argv) > 1 else ''}
     </div>
 </body>
 </html>
