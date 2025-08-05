@@ -280,18 +280,10 @@
         .bas { color: #38a169; font-weight: 600; }
         .no-bas { color: #c41e3a; font-weight: 600; }
         
-        /* Autocomplete dropdown styles */
-        .autocomplete-dropdown {
-            position: absolute;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            max-height: 300px;
-            overflow-y: auto;
-            z-index: 1001;
-            display: none;
-            width: 100%;
+        /* Style Google's autocomplete dropdown */
+        .pac-container {
+            z-index: 10000 !important;
+            font-family: 'Inter', sans-serif !important;
         }
         .autocomplete-item {
             padding: 10px 15px;
@@ -4063,13 +4055,14 @@
     
     // Autocomplete functionality
     let autocompleteService;
+    let sessionToken;
     let currentSelectedIndex = -1;
     
     // Callback function for Google Maps API
     function initGooglePlaces() {
         if (typeof google !== 'undefined' && google.maps && google.maps.places) {
             try {
-                // Use the Autocomplete widget instead of AutocompleteService
+                // Use the native Autocomplete widget
                 const searchInput = document.getElementById('search');
                 if (searchInput) {
                     const autocomplete = new google.maps.places.Autocomplete(searchInput, {
@@ -4087,12 +4080,12 @@
                         const place = autocomplete.getPlace();
                         if (place && place.formatted_address) {
                             searchInput.value = place.formatted_address;
+                            // Filter table to show matches
                             filterTable();
                         }
                     });
                     
-                    console.log('Google Places Autocomplete initialized');
-                    window.googleAutocomplete = autocomplete;
+                    console.log('Google Places Autocomplete widget initialized');
                 }
             } catch (error) {
                 console.error('Google Places initialization failed:', error);
@@ -4104,60 +4097,17 @@
     
     function initAutocomplete() {
         const searchInput = document.getElementById('search');
-        const dropdown = document.getElementById('autocomplete-dropdown');
         
-        // Google Places Autocomplete Service will be initialized when API loads
-        
-        // Add event listeners
+        // Add event listener for manual typing (Google handles its own dropdown)
         searchInput.addEventListener('input', debounce(handleSearchInput, 300));
-        searchInput.addEventListener('keydown', handleKeyNavigation);
-        
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.search-container')) {
-                dropdown.style.display = 'none';
-            }
-        });
     }
     
     function handleSearchInput(e) {
-        const input = e.target.value.trim();
-        
-        // Google Autocomplete widget handles its own dropdown
-        // We just need to filter the table based on the input
+        // Simply filter the table based on input
+        // Google Autocomplete widget handles the dropdown
         filterTable();
     }
     
-    function displaySuggestions(suggestions) {
-        const dropdown = document.getElementById('autocomplete-dropdown');
-        
-        console.log('displaySuggestions called with', suggestions.length, 'suggestions');
-        
-        if (suggestions.length === 0) {
-            dropdown.style.display = 'none';
-            return;
-        }
-        
-        dropdown.innerHTML = suggestions.map((item, index) => `
-            <div class="autocomplete-item" data-index="${index}" data-address="${attr_escape(item.normalized)}">
-                <span class="autocomplete-item-type ${item.type}">${item.type === 'local' ? 'LOCAL' : 'GOOGLE'}</span>
-                <div>
-                    <div style="font-weight: 500;">${escape(item.normalized)}</div>
-                    ${item.normalized !== item.address ? `<div style="font-size: 12px; color: #666;">Original: ${escape(item.address)}</div>` : ''}
-                </div>
-            </div>
-        `).join('');
-        
-        dropdown.style.display = 'block';
-        currentSelectedIndex = -1;
-        
-        // Add click handlers
-        dropdown.querySelectorAll('.autocomplete-item').forEach(item => {
-            item.addEventListener('click', function() {
-                selectAddress(this.getAttribute('data-address'));
-            });
-        });
-    }
     
     function handleKeyNavigation(e) {
         const dropdown = document.getElementById('autocomplete-dropdown');
@@ -5152,7 +5102,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: 5 Aug 2025 03:43:17 PM CST | Use native Google Autocomplete widget
+        Build: 5 Aug 2025 04:06:47 PM CST | Google autocomplete only - table shows all matches
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
