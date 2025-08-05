@@ -4147,11 +4147,10 @@
     }
     
     function filterTableWithValue(searchValue) {
-        // Normalize 6th Ave to Ave Of The Americas for searching
-        let normalizedSearch = searchValue;
-        if (searchValue.match(/(sixth|6th|6)\s+(avenue|ave\.?|av)/i)) {
-            normalizedSearch = searchValue.replace(/(sixth|6th|6)\s+(avenue|ave\.?|av)/gi, 'Ave Of The Americas');
-        }
+        // Normalize 6th Ave to ave of the americas (LOWERCASE for case-insensitive matching)
+        let normalizedSearch = searchValue.toLowerCase();
+        // Handle "1250 6 ave" or "6th avenue" or just "6 ave" etc
+        normalizedSearch = normalizedSearch.replace(/(^|\s)(sixth|6th|6)\s+(avenue|ave\.?|av)(\s|$)/gi, '$1ave of the americas$4');
         
         const input = normalizeForComparison(normalizedSearch);
         const rows = document.querySelectorAll('#buildingTable tbody tr');
@@ -5107,7 +5106,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: 5 Aug 2025 05:49:53 PM CST | Test Build
+        Build: 5 Aug 2025 05:53:52 PM CST | Test Build
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
