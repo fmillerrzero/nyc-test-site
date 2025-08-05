@@ -28,12 +28,14 @@
         .container { max-width: 1400px; margin: 0 auto; padding: 0 7.5%; }
         
         .header {
-            background: white;
+            background: url('https://rzero.com/wp-content/uploads/2025/02/bg-cta-bottom.jpg') center/cover;
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0, 118, 157, 0.08);
             margin-bottom: 30px;
             text-align: center;
+            position: relative;
+            color: white;
         }
         
         .logo-header {
@@ -45,14 +47,14 @@
         }
         
         h1 { 
-            color: var(--rzero-primary); 
+            color: white; 
             margin: 0;
             font-size: 2.5em;
             font-weight: 700;
         }
         
         .subtitle { 
-            color: #666; 
+            color: rgba(255, 255, 255, 0.9); 
             margin: 10px 0 0 0;
             font-size: 1.1em;
         }
@@ -1381,7 +1383,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: {datetime.now(pytz.timezone('America/Mexico_City')).strftime('%I:%M:%S %p CST')} | win{' | ' + sys.argv[1] if len(sys.argv) > 1 else ''}
+        Build: {datetime.now(pytz.timezone('America/Mexico_City')).strftime('%I:%M:%S %p CST')} | dfd{' | ' + sys.argv[1] if len(sys.argv) > 1 else ''}
     </div>
 </body>
 </html>

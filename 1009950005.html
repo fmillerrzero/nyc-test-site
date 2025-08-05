@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>1472 Broadway, New York, NY 10036 - ODCV Analysis (v1754363302)</title>
+    <title>1472 Broadway, New York, NY 10036 - ODCV Analysis (v1754366796)</title>
     <link rel="icon" type="image/png" href="https://rzero.com/wp-content/themes/rzero/build/images/favicons/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Preload aerial video for faster playback -->
@@ -139,11 +139,12 @@
         .title-section {
             background: url('https://rzero.com/wp-content/uploads/2025/02/bg-cta-bottom.jpg') center/cover;
             color: white;
-            padding: 30px 15%;
+            padding: 80px 15% 30px 15%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 3rem;
+            position: relative;
         }
         
         .back { 
@@ -196,19 +197,8 @@
             color: var(--rzero-primary); 
             margin-bottom: 40px; 
             font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 15px;
             padding-bottom: 20px;
             border-bottom: 2px solid rgba(0, 118, 157, 0.2);
-        }
-        
-        .section-header::before {
-            content: '';
-            width: 6px;
-            height: 40px;
-            background: var(--rzero-primary);
-            border-radius: 3px;
         }
         
         .page { 
@@ -222,7 +212,18 @@
             font-size: 1.3em; 
             color: var(--text-dark); 
             margin-bottom: 20px; 
-            font-weight: 500; 
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .page-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: #333;
+            border-radius: 2px;
         }
         
         /* Stats - Prospector Style */
@@ -604,8 +605,9 @@
 <body>
     <div class="container">
         <!-- Navigation Bar -->
-        <div style="background: url('https://rzero.com/wp-content/uploads/2025/02/bg-cta-bottom.jpg') center/cover; padding: 0; margin: 0; width: 100%; position: relative;">
-            <a href="index.html" style="text-decoration: none; display: block;">
+        <!-- Section 0.0 - Title -->
+        <div class="title-section">
+            <a href="index.html" style="text-decoration: none; display: block; position: absolute; top: 0; left: 0; z-index: 10;">
                 <div style="padding: 15px 40px; display: flex; align-items: center; gap: 10px; color: white; cursor: pointer; transition: all 0.3s ease;"
                      onmouseover="this.style.background='rgba(255,255,255,0.1)'" 
                      onmouseout="this.style.background='transparent'">
@@ -617,22 +619,18 @@
                     <span style="font-size: 16px; font-weight: 500; opacity: 0.9;">Back to Rankings</span>
                 </div>
             </a>
-        </div>
-        <!-- Section 0.0 - Title -->
-        <div class="title-section">
-            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-                <h1 style="margin: 0; color: white; font-size: 2em; font-weight: 700;">
-                    <span style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 25px; font-size: 0.8em;">#1</span>
-                    <span>1472 Broadway, 10036</span>
-                </h1>
-                <h2 style='margin: 0; color: white; font-size: 1.5em; font-weight: 600; opacity: 0.9;'>Conde Nast Building</h2>
+            <div style="display: flex; flex-direction: column; justify-content: center;">
+                <div style="display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.5rem;">
+                    <span style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 25px; font-size: 1.6em; font-weight: 700;">#1</span>
+                    <span style="font-size: 2.5em; font-weight: 700; color: white;">1472 Broadway, 10036</span>
+                </div>
                 <p style="margin: 0; opacity: 0.9; font-size: 1.1em; padding-left: 0.5rem;">
-                    <span style="margin-right: 1.5rem;">Midtown-Times Square</span>
+                    <span>Midtown-Times Square</span>
                 </p>
             </div>
-            <div style="text-align: center; min-width: 200px;">
-                <div style="font-size: 2.5em; font-weight: 700; line-height: 1; margin-bottom: 8px;">$554,335</div>
-                <div style="font-size: 0.9em; opacity: 0.8;">2026 ODCV Savings</div>
+            <div style="text-align: right; min-width: 200px; display: flex; flex-direction: column; justify-content: center;">
+                <div style="font-size: 2.5em; font-weight: 700; line-height: 1; color: white;">$554,335</div>
+                <div style="font-size: 1.1em; opacity: 0.9; margin-top: 0.5rem;">2026 ODCV Savings</div>
                 
             </div>
         </div>
@@ -780,11 +778,23 @@
                 <h2 class="section-header">Building Overview</h2>
                 
                 <div class="page">
-                <h3 class="page-title">Property</h3>
+                <h3 class="page-title">Commercial</h3>
                 <div class="stat">
-                    <span class="stat-label">Last Renovated: </span>
-                    <span class="stat-value">2016</span>
+                    <span class="stat-label">Class: </span>
+                    <span class="stat-value"><span class="class-badge class-A">A</span></span>
                 </div>
+                <div class='stat'><span class='stat-label'>Owner & Manager: </span><span class='stat-value'>Durst Organization <img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/Logos/Durst_Organization.png" style="height:30px;margin-left:10px;vertical-align:middle;"></span></div>
+                
+                
+                <div class="stat">
+                    <span class="stat-label">% Leased: </span>
+                    <span class="stat-value">90%</span>
+                </div>
+                
+            </div>
+            
+            <div class="page">
+                <h3 class="page-title">Property</h3>
                 <div class="stat">
                     <span class="stat-label">Units: </span>
                     <span class="stat-value">2</span>
@@ -805,23 +815,11 @@
             </div>
             
             <div class="page">
-                <h3 class="page-title">Commercial</h3>
-                <div class="stat">
-                    <span class="stat-label">Class: </span>
-                    <span class="stat-value"><span class="class-badge class-A">A</span></span>
-                </div>
-                <div class='stat'><span class='stat-label'>Owner & Manager: </span><span class='stat-value'>Durst Organization <img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/Logos/Durst_Organization.png" style="height:30px;margin-left:10px;vertical-align:middle;"></span></div>
-                
-                
-                <div class="stat">
-                    <span class="stat-label">% Leased: </span>
-                    <span class="stat-value">90%</span>
-                </div>
-                
-            </div>
-            
-            <div class="page">
                 <h3 class="page-title">Equipment</h3>
+                <div class="stat">
+                    <span class="stat-label">Last Renovated: </span>
+                    <span class="stat-value">2016</span>
+                </div>
                 
                 <div class="stat">
                     <span class="stat-label">BMS Controls: </span>
@@ -837,7 +835,7 @@
         
         
         <!-- Section 2: Building -->
-        <div class="section section-white">
+        <div class="section section-gray">
             <div class="section-content">
                 <h2 class="section-header">Energy Efficiency</h2>
                 
@@ -891,7 +889,7 @@
         </div>
         
         <!-- Section 3: Energy Consumption -->
-        <div class="section section-gray">
+        <div class="section section-white">
             <div class="section-content">
                 <h2 class="section-header">Energy Consumption</h2>
                 
@@ -929,7 +927,7 @@
         </div>
         
         <!-- Section 4: ODCV -->
-        <div class="section section-white">
+        <div class="section section-gray">
             <div class="section-content">
                 <h2 class="section-header">HVAC Analysis</h2>
                 
@@ -954,7 +952,7 @@
                 <h3 class="page-title">Outdoor Pollution</h3>
             
             <div class="iaq-summary" style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px solid #e9ecef;">
-                <div class="iaq-stat-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; text-align: center; max-width: 400px; margin: 0 auto;">
+                <div class="iaq-stat-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 80px; text-align: center; max-width: 500px; margin: 0 auto;">
                     <div class="iaq-stat">
                         <div class="iaq-label" style="font-size: 12px; color: #6c757d; margin-bottom: 4px;">Max</div>
                         <div class="iaq-value" style="font-size: 24px; font-weight: bold; color: #c41e3a;">17.9 μg/m³</div>
@@ -974,8 +972,6 @@
             </div>
         </div>
         
-    </div>
-    
     <script>
     // Unit conversion functions
     function kBtuToKwh(kbtu) { return kbtu / 3.412; }
@@ -1169,14 +1165,41 @@
         }
     }
     
-    function downloadImage(button) {
+    async function downloadImage(button) {
         const img = button.parentElement.querySelector('img');
-        const link = document.createElement('a');
-        link.href = img.src;
-        link.download = img.src.split('/').pop();
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        const imageUrl = img.src;
+        const fileName = imageUrl.split('/').pop();
+        
+        try {
+            // Fetch the image as a blob
+            const response = await fetch(imageUrl);
+            const blob = await response.blob();
+            
+            // Create a blob URL
+            const blobUrl = URL.createObjectURL(blob);
+            
+            // Create and click the download link
+            const link = document.createElement('a');
+            link.href = blobUrl;
+            link.download = fileName;
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            
+            // Clean up
+            document.body.removeChild(link);
+            URL.revokeObjectURL(blobUrl);
+        } catch (error) {
+            console.error('Download failed:', error);
+            // Fallback to simple download if fetch fails
+            const link = document.createElement('a');
+            link.href = imageUrl;
+            link.download = fileName;
+            link.target = '_self';  // Ensure it doesn't open in new tab
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
     }
     
     // Enhanced Interactive carousel with smooth transitions
@@ -1530,63 +1553,15 @@
     // HVAC Percentage Chart with seasonal colors
     const hvacValues = [0.19311314861914855, 0.1983193544059576, 0.1813727024148016, 0.18010620119663223, 0.1993722551318717, 0.24134767796776882, 0.26063155366928553, 0.25670832837174207, 0.23478173471486896, 0.2159403294975678, 0.18164994757617212, 0.15];
     
-    // Create seasonal fill traces
-    const winterFill = {
-        x: ['Jan', 'Feb', 'Mar', 'Dec'],
-        y: [hvacValues[0], hvacValues[1], hvacValues[2], hvacValues[11]],
-        type: 'scatter',
-        mode: 'lines',
-        fill: 'tozeroy',
-        fillcolor: 'rgba(100, 149, 237, 0.3)', // Light cornflower blue for winter
-        line: {width: 0},
-        showlegend: false,
-        hoverinfo: 'skip'
-    };
-    
-    const springFill = {
-        x: ['Mar', 'Apr', 'May', 'Jun'],
-        y: [hvacValues[2], hvacValues[3], hvacValues[4], hvacValues[5]],
-        type: 'scatter',
-        mode: 'lines',
-        fill: 'tozeroy',
-        fillcolor: 'rgba(144, 238, 144, 0.3)', // Light green for spring
-        line: {width: 0},
-        showlegend: false,
-        hoverinfo: 'skip'
-    };
-    
-    const summerFill = {
-        x: ['Jun', 'Jul', 'Aug', 'Sep'],
-        y: [hvacValues[5], hvacValues[6], hvacValues[7], hvacValues[8]],
-        type: 'scatter',
-        mode: 'lines',
-        fill: 'tozeroy',
-        fillcolor: 'rgba(255, 218, 185, 0.3)', // Light peach for summer
-        line: {width: 0},
-        showlegend: false,
-        hoverinfo: 'skip'
-    };
-    
-    const fallFill = {
-        x: ['Sep', 'Oct', 'Nov', 'Dec'],
-        y: [hvacValues[8], hvacValues[9], hvacValues[10], hvacValues[11]],
-        type: 'scatter',
-        mode: 'lines',
-        fill: 'tozeroy',
-        fillcolor: 'rgba(255, 228, 181, 0.3)', // Light moccasin for fall
-        line: {width: 0},
-        showlegend: false,
-        hoverinfo: 'skip'
-    };
-    
-    // Main line trace
+    // Create area trace with seasonal colors
     const hvacData = {
         x: months,
         y: hvacValues,
         type: 'scatter',
-        mode: 'lines+markers',
+        mode: 'lines',
+        fill: 'tozeroy',
         line: {color: '#2c3e50', width: 3},
-        marker: {size: 8, color: '#2c3e50'},
+        fillcolor: 'rgba(0, 0, 0, 0)',  // Transparent fill for the main trace
         name: 'HVAC %',
         hovertemplate: '%{x}: %{y:.1%}<extra></extra>'
     };
@@ -1600,7 +1575,7 @@
             title: '',
             tickformat: '.0%',
             showgrid: false,
-            rangemode: 'tozero'  // Auto-scale but start at 0
+            rangemode: 'tozero'
         },
         xaxis: {
             showgrid: false
@@ -1608,19 +1583,106 @@
         font: {family: 'Arial, sans-serif'},
         plot_bgcolor: '#ffffff',
         paper_bgcolor: 'white',
-        hovermode: 'x unified'
+        hovermode: 'x unified',
+        shapes: [
+            // Cool season (Jan-Mar) - Blue
+            {
+                type: 'rect',
+                xref: 'x',
+                yref: 'paper',
+                x0: -0.5,
+                y0: 0,
+                x1: 2.5,
+                y1: 1,
+                fillcolor: 'rgba(30, 144, 255, 0.3)',
+                line: {width: 0}
+            },
+            // Warm season (Apr-Jun) - Yellow
+            {
+                type: 'rect',
+                xref: 'x',
+                yref: 'paper',
+                x0: 2.5,
+                y0: 0,
+                x1: 5.5,
+                y1: 1,
+                fillcolor: 'rgba(255, 215, 0, 0.3)',
+                line: {width: 0}
+            },
+            // Hot season (Jul-Sep) - Red
+            {
+                type: 'rect',
+                xref: 'x',
+                yref: 'paper',
+                x0: 5.5,
+                y0: 0,
+                x1: 8.5,
+                y1: 1,
+                fillcolor: 'rgba(255, 69, 0, 0.3)',
+                line: {width: 0}
+            },
+            // Cold season (Oct-Dec) - Blue
+            {
+                type: 'rect',
+                xref: 'x',
+                yref: 'paper',
+                x0: 8.5,
+                y0: 0,
+                x1: 11.5,
+                y1: 1,
+                fillcolor: 'rgba(30, 144, 255, 0.3)',
+                line: {width: 0}
+            }
+        ],
+        annotations: [
+            // Cool label
+            {
+                x: 1,
+                y: 0.5,
+                xref: 'x',
+                yref: 'paper',
+                text: 'Cool',
+                showarrow: false,
+                font: {size: 16, color: '#1e90ff'}
+            },
+            // Warm label
+            {
+                x: 4,
+                y: 0.5,
+                xref: 'x',
+                yref: 'paper',
+                text: 'Warm',
+                showarrow: false,
+                font: {size: 16, color: '#daa520'}
+            },
+            // Hot label
+            {
+                x: 7,
+                y: 0.5,
+                xref: 'x',
+                yref: 'paper',
+                text: 'Hot',
+                showarrow: false,
+                font: {size: 16, color: '#ff4500'}
+            },
+            // Cold label
+            {
+                x: 10,
+                y: 0.5,
+                xref: 'x',
+                yref: 'paper',
+                text: 'Cold',
+                showarrow: false,
+                font: {size: 16, color: '#1e90ff'}
+            }
+        ]
     };
     
-    Plotly.newPlot('hvac_pct_chart', [winterFill, springFill, summerFill, fallFill, hvacData], hvacLayout, {
+    Plotly.newPlot('hvac_pct_chart', [hvacData], hvacLayout, {
         modeBarButtonsToRemove: ['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'resetScale2d', 'hoverClosestCartesian', 'hoverCompareCartesian'],
         displaylogo: false,
         displayModeBar: true
     });
-
-    // Add annual average caption below the chart
-    document.getElementById('hvac_pct_chart').insertAdjacentHTML('afterend', 
-        '<div style="text-align: center; margin-top: 10px; font-size: 16px; color: #666;">Annual Average: 20.8%</div>'
-    );
     
     // ODCV Savings Chart
     const odcvElecSave = {x: months, y: [15045.3, 14968.619999999995, 13377.97, 12980.50999999998, 16195.410000000003, 23126.719999999972, 26797.79999999999, 26946.26000000001, 22921.75, 17397.580000000016, 13987.28, 10699.48999999999], name: 'Elec', type: 'bar', marker: {color: '#0066cc'}};
@@ -1666,8 +1728,8 @@
     
     // PM2.5 Chart - Business Hours Only
     const pm25Data = {
-        x: ["2025-07-06", "2025-07-07", "2025-07-08", "2025-07-09", "2025-07-10", "2025-07-11", "2025-07-12", "2025-07-13", "2025-07-14", "2025-07-15", "2025-07-16", "2025-07-17", "2025-07-18", "2025-07-19", "2025-07-20", "2025-07-21", "2025-07-22", "2025-07-23", "2025-07-24", "2025-07-25", "2025-07-26", "2025-07-27", "2025-07-28", "2025-07-29", "2025-07-30", "2025-07-31", "2025-08-01", "2025-08-02", "2025-08-03", "2025-08-04"],
-        y: [6.468333333333334, 4.422083333333333, 10.684583333333334, 10.950000000000001, 8.28625, 5.12, 2.6916666666666664, 3.34, 2.56, 8.960833333333333, 9.414583333333333, 4.015, 5.425, 8.310416666666667, 7.578749999999999, 7.402083333333334, 5.293333333333334, 4.048333333333333, 4.769166666666666, 8.834583333333333, 5.9679166666666665, 6.728333333333333, 11.052083333333334, 16.017083333333336, 17.909166666666668, 10.72375, 5.53, 6.8825, 8.910416666666666, 9.85625],
+        x: ["2025-07-06", "2025-07-07", "2025-07-08", "2025-07-09", "2025-07-10", "2025-07-11", "2025-07-12", "2025-07-13", "2025-07-14", "2025-07-15", "2025-07-16", "2025-07-17", "2025-07-18", "2025-07-19", "2025-07-20", "2025-07-21", "2025-07-22", "2025-07-23", "2025-07-24", "2025-07-25", "2025-07-26", "2025-07-27", "2025-07-28", "2025-07-29", "2025-07-30", "2025-07-31", "2025-08-01", "2025-08-02", "2025-08-03", "2025-08-04", "2025-08-05"],
+        y: [6.294347826086957, 4.422083333333333, 10.684583333333334, 10.950000000000001, 8.28625, 5.12, 2.6916666666666664, 3.34, 2.56, 8.960833333333333, 9.414583333333333, 4.015, 5.425, 8.310416666666667, 7.578749999999999, 7.402083333333334, 5.293333333333334, 4.048333333333333, 4.769166666666666, 8.834583333333333, 5.9679166666666665, 6.728333333333333, 11.052083333333334, 16.017083333333336, 17.909166666666668, 10.72375, 5.53, 6.8825, 8.910416666666666, 9.85625, 8.34],
         type: 'scatter',
         mode: 'lines',
         line: {color: '#0066cc', width: 3},
@@ -1677,8 +1739,8 @@
     
     // EPA Good threshold line
     const goodThreshold = {
-        x: ["2025-07-06", "2025-07-07", "2025-07-08", "2025-07-09", "2025-07-10", "2025-07-11", "2025-07-12", "2025-07-13", "2025-07-14", "2025-07-15", "2025-07-16", "2025-07-17", "2025-07-18", "2025-07-19", "2025-07-20", "2025-07-21", "2025-07-22", "2025-07-23", "2025-07-24", "2025-07-25", "2025-07-26", "2025-07-27", "2025-07-28", "2025-07-29", "2025-07-30", "2025-07-31", "2025-08-01", "2025-08-02", "2025-08-03", "2025-08-04"],
-        y: Array(30).fill(12),
+        x: ["2025-07-06", "2025-07-07", "2025-07-08", "2025-07-09", "2025-07-10", "2025-07-11", "2025-07-12", "2025-07-13", "2025-07-14", "2025-07-15", "2025-07-16", "2025-07-17", "2025-07-18", "2025-07-19", "2025-07-20", "2025-07-21", "2025-07-22", "2025-07-23", "2025-07-24", "2025-07-25", "2025-07-26", "2025-07-27", "2025-07-28", "2025-07-29", "2025-07-30", "2025-07-31", "2025-08-01", "2025-08-02", "2025-08-03", "2025-08-04", "2025-08-05"],
+        y: Array(31).fill(12),
         mode: 'lines',
         line: {color: '#00e400', dash: 'dash', width: 2},
         name: 'Good AQ Threshold (EPA)',
@@ -1686,15 +1748,15 @@
     };
 
     // Create fill traces for areas above and below threshold
-    const dates = ["2025-07-06", "2025-07-07", "2025-07-08", "2025-07-09", "2025-07-10", "2025-07-11", "2025-07-12", "2025-07-13", "2025-07-14", "2025-07-15", "2025-07-16", "2025-07-17", "2025-07-18", "2025-07-19", "2025-07-20", "2025-07-21", "2025-07-22", "2025-07-23", "2025-07-24", "2025-07-25", "2025-07-26", "2025-07-27", "2025-07-28", "2025-07-29", "2025-07-30", "2025-07-31", "2025-08-01", "2025-08-02", "2025-08-03", "2025-08-04"];
-    const values = [6.468333333333334, 4.422083333333333, 10.684583333333334, 10.950000000000001, 8.28625, 5.12, 2.6916666666666664, 3.34, 2.56, 8.960833333333333, 9.414583333333333, 4.015, 5.425, 8.310416666666667, 7.578749999999999, 7.402083333333334, 5.293333333333334, 4.048333333333333, 4.769166666666666, 8.834583333333333, 5.9679166666666665, 6.728333333333333, 11.052083333333334, 16.017083333333336, 17.909166666666668, 10.72375, 5.53, 6.8825, 8.910416666666666, 9.85625];
+    const dates = ["2025-07-06", "2025-07-07", "2025-07-08", "2025-07-09", "2025-07-10", "2025-07-11", "2025-07-12", "2025-07-13", "2025-07-14", "2025-07-15", "2025-07-16", "2025-07-17", "2025-07-18", "2025-07-19", "2025-07-20", "2025-07-21", "2025-07-22", "2025-07-23", "2025-07-24", "2025-07-25", "2025-07-26", "2025-07-27", "2025-07-28", "2025-07-29", "2025-07-30", "2025-07-31", "2025-08-01", "2025-08-02", "2025-08-03", "2025-08-04", "2025-08-05"];
+    const values = [6.294347826086957, 4.422083333333333, 10.684583333333334, 10.950000000000001, 8.28625, 5.12, 2.6916666666666664, 3.34, 2.56, 8.960833333333333, 9.414583333333333, 4.015, 5.425, 8.310416666666667, 7.578749999999999, 7.402083333333334, 5.293333333333334, 4.048333333333333, 4.769166666666666, 8.834583333333333, 5.9679166666666665, 6.728333333333333, 11.052083333333334, 16.017083333333336, 17.909166666666668, 10.72375, 5.53, 6.8825, 8.910416666666666, 9.85625, 8.34];
     const threshold = 12;
     
     // Create traces for filled areas
     const betterFill = {
-        x: dates.concat([...dates].reverse()),
-        y: values.map(v => Math.min(v, threshold)).concat(Array(dates.length).fill(0)),
-        fill: 'toself',
+        x: dates,
+        y: values.map(v => Math.min(v, threshold)),
+        fill: 'tozeroy',
         fillcolor: 'rgba(0, 102, 204, 0.15)',  // Light blue
         line: {width: 0},
         showlegend: false,
@@ -1732,7 +1794,7 @@
             dtick: 86400000 * 3,  // Dynamic tick interval
             tickangle: -45,
             showticklabels: true,
-            range: ["2025-07-06", "2025-08-04"]
+            range: ["2025-07-06", "2025-08-05"]
         },
         legend: {
             orientation: 'h',
@@ -1793,13 +1855,17 @@
             // Calculate yaw based on address
             const yaw = getBuildingYaw(address);
             
+            // Adjust yaw to pannellum's coordinate system
+            let adjustedYaw = 360 - yaw;
+            if (adjustedYaw > 180) adjustedYaw -= 360;
+            
             // Calculate pitch based on building height
             // We're at street level looking at buildings
             // Based on: 737ft building = 40.10665551348826° pitch (optimal viewing angle)
             // Increased by 10% to look more upward
             const pitch = Math.min(buildingHeight * (40.10665551348826 / 737 * 1.1), 60);  // Max 60° for very tall buildings
             
-            console.log(`Panorama 1009950005: Address="${address}", Height=${buildingHeight}ft, Yaw=${yaw}°, Pitch=${pitch}°`);
+            console.log(`Panorama 1009950005: Address="${address}", Height=${buildingHeight}ft, Yaw=${yaw}° (adjusted: ${adjustedYaw}°), Pitch=${pitch}°`);
             
             try {
                 const viewer = pannellum.viewer('viewer-1009950005', {
@@ -1808,7 +1874,7 @@
                     "autoLoad": true,
                     "autoRotate": 0,  // Will be started when user navigates to this slide
                     "pitch": pitch,
-                    "yaw": yaw,
+                    "yaw": adjustedYaw,
                     "hfov": 120,
                     "maxHfov": 120,
                     "minHfov": 30,
@@ -1914,10 +1980,11 @@
     }
     
     </script>
-    </div>
+    
+    </div><!-- End of container -->
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif;">
-        Build: 4 Aug 2025 09:08:23 PM CST
+        Build: 4 Aug 2025 10:06:37 PM CST
     </div>
 </body>
 </html>
