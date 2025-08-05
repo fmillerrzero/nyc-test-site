@@ -4125,37 +4125,44 @@
             }));
             
         console.log('Local matches found:', localMatches.length);
+        console.log('autocompleteService exists?', !!autocompleteService);
         
         // Get Google suggestions if available
         if (autocompleteService) {
-            // Add "New York NY" to the search to filter results to NYC
-            const nycInput = input + ' New York NY';
-            
-            const request = {
-                input: nycInput,
-                componentRestrictions: { country: 'us' },  // Restrict to US
-                // NYC bounds to prioritize NYC results
-                locationBias: new google.maps.LatLngBounds(
-                    new google.maps.LatLng(40.49, -74.26),   // SW corner of NYC
-                    new google.maps.LatLng(40.92, -73.70)    // NE corner of NYC
-                )
-            };
-            
-            autocompleteService.getPlacePredictions(request, function(predictions, status) {
-                if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
-                    const googleMatches = predictions.slice(0, 7).map(pred => ({  // Show up to 7 Google results
-                        address: pred.description,
-                        type: 'google',
-                        normalized: normalizeAddress(pred.description)
-                    }));
-                    
-                    displaySuggestions([...localMatches, ...googleMatches]);  // Total up to 15 suggestions
-                } else {
-                    console.log('Google Places failed with status:', status);
-                    displaySuggestions(localMatches);
-                }
-            });
+            try {
+                // Add "New York NY" to the search to filter results to NYC
+                const nycInput = input + ' New York NY';
+                
+                const request = {
+                    input: nycInput,
+                    componentRestrictions: { country: 'us' },  // Restrict to US
+                    // NYC bounds to prioritize NYC results
+                    locationBias: new google.maps.LatLngBounds(
+                        new google.maps.LatLng(40.49, -74.26),   // SW corner of NYC
+                        new google.maps.LatLng(40.92, -73.70)    // NE corner of NYC
+                    )
+                };
+                
+                autocompleteService.getPlacePredictions(request, function(predictions, status) {
+                    if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
+                        const googleMatches = predictions.slice(0, 7).map(pred => ({  // Show up to 7 Google results
+                            address: pred.description,
+                            type: 'google',
+                            normalized: normalizeAddress(pred.description)
+                        }));
+                        
+                        displaySuggestions([...localMatches, ...googleMatches]);  // Total up to 15 suggestions
+                    } else {
+                        console.log('Google Places failed with status:', status);
+                        displaySuggestions(localMatches);
+                    }
+                });
+            } catch (error) {
+                console.error('Google Places API error:', error);
+                displaySuggestions(localMatches);
+            }
         } else {
+            console.log('No autocomplete service, showing local matches only');
             displaySuggestions(localMatches);
         }
         
@@ -5187,7 +5194,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: 5 Aug 2025 03:27:15 PM CST | More debug logs
+        Build: 5 Aug 2025 03:30:34 PM CST | Fix autocomplete display
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
