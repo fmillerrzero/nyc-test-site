@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>1290 Ave Of The Americas, New York, NY 10104 - ODCV Analysis (v1754351813)</title>
+    <title>1290 Ave Of The Americas, New York, NY 10104 - ODCV Analysis (v1754356346)</title>
     <link rel="icon" type="image/png" href="https://rzero.com/wp-content/themes/rzero/build/images/favicons/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Preload aerial video for faster playback -->
+    <link rel="preload" 
+          as="video" 
+          href="https://aerial-videos-forrest.s3.us-east-2.amazonaws.com/1012670001_aerial.mp4"
+          type="video/mp4"
+          crossorigin="anonymous">
     <style>
         :root {
             --rzero-primary: #0066cc;
@@ -143,7 +149,7 @@
         
         /* Section styling */
         .section { 
-            padding: 40px 15%; 
+            padding: 40px 5%; 
             border-bottom: 3px solid var(--rzero-primary); 
             background: white;
             position: relative;
@@ -672,7 +678,7 @@
                     <div class="carousel-track" id="interactive-carousel-1012670001">
                         <div class="carousel-slide" data-type="video">
                             <div id="aerial-video-1012670001" style="width: 100%; height: 100%; background: #000; display: flex; align-items: center; justify-content: center; position: relative;">
-                    <video controls autoplay loop muted style="width: 100%; height: 100%; object-fit: contain;" 
+                    <video controls autoplay loop muted preload="auto" style="width: 100%; height: 100%; object-fit: contain;" 
                            onerror="this.style.display='none'; document.getElementById('video-error-1012670001').style.display='flex';">
                         <source src="https://aerial-videos-forrest.s3.us-east-2.amazonaws.com/1012670001_aerial.mp4" type="video/mp4">
                         Your browser does not support the video tag.
@@ -714,30 +720,6 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Page 1.2 - Commercial -->
-            <div class="page">
-                <h3 class="page-title">Commercial Stats</h3>
-                <div class="stat">
-                    <span class="stat-label">Class: </span>
-                    <span class="stat-value"><span class="class-badge class-A">A</span></span>
-                </div>
-                <div class="stat">
-                    <span class="stat-label">Owner: </span>
-                    <span class="stat-value">Vornado Realty Trust <img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/Logos/Vornado_Realty_Trust.png" style="height:30px;margin-left:10px;vertical-align:middle;"></span>
-                </div>
-                <div class="stat">
-                    <span class="stat-label">Manager: </span>
-                    <span class="stat-value">Cushman & Wakefield <img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/Logos/Cushman_Wakefield.png" style="height:30px;margin-left:10px;vertical-align:middle;"></span>
-                </div>
-                <div class='stat'><span class='stat-label'>Owner Contact: </span><span class='stat-value'>Josh Kuriloff • (212) 841-7894</span></div>
-                
-                <div class="stat">
-                    <span class="stat-label">% Leased: </span>
-                    <span class="stat-value">100%</span>
-                </div>
-                
-            </div>
         </div>
         </div>
         
@@ -746,7 +728,7 @@
             <h2 class="section-header">Building Overview</h2>
             
             <div class="page">
-                <h3 class="page-title">Property Details</h3>
+                <h3 class="page-title">Property</h3>
                 <div class="stat">
                     <span class="stat-label">Last Renovated: </span>
                     <span class="stat-value">2014</span>
@@ -761,7 +743,7 @@
                 </div>
                 
                 <div class="stat">
-                    <span class="stat-label">Total Gross Floor Area: </span>
+                    <span class="stat-label">Total Floor Area: </span>
                     <span class="stat-value">1,920,459 sq ft</span>
                 </div>
                 <div class="stat">
@@ -771,22 +753,7 @@
             </div>
             
             <div class="page">
-                <h3 class="page-title">Equipment Details</h3>
-                <div class="stat">
-                    <span class="stat-label">Elevator Shafts: </span>
-                    <span class="stat-value">0</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-label">BMS Controls: </span>
-                    <span class="stat-value"><span style="color: black; font-weight: normal;">Ventilation</span><span style="color: black;">,</span> <span style="color: #ff6600; font-weight: normal;">Heating</span><span style="color: black;">,</span> <span style="color: #0066cc; font-weight: normal;">Cooling</span> <span style="font-weight: normal;">Controls</span></span>
-                </div>
-                <div class='stat'><span class='stat-label'>Heating System: </span><span class='stat-value'>District Steam</span></div>
-                <div class='stat'><span class='stat-label'>Cooling System: </span><span class='stat-value'>Plant</span></div>
-                
-            </div>
-            
-            <div class="page">
-                <h3 class="page-title">Commercial Stats</h3>
+                <h3 class="page-title">Commercial</h3>
                 <div class="stat">
                     <span class="stat-label">Class: </span>
                     <span class="stat-value"><span class="class-badge class-A">A</span></span>
@@ -798,6 +765,21 @@
                     <span class="stat-label">% Leased: </span>
                     <span class="stat-value">100%</span>
                 </div>
+                
+            </div>
+            
+            <div class="page">
+                <h3 class="page-title">Equipment</h3>
+                <div class="stat">
+                    <span class="stat-label">Elevator Shafts: </span>
+                    <span class="stat-value">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">BMS Controls: </span>
+                    <span class="stat-value"><span style="color: black; font-weight: normal;">Ventilation</span><span style="color: black;">,</span> <span style="color: #ff6600; font-weight: normal;">Heating</span><span style="color: black;">,</span> <span style="color: #0066cc; font-weight: normal;">Cooling</span> <span style="font-weight: normal;">Controls</span></span>
+                </div>
+                <div class='stat'><span class='stat-label'>Heating System: </span><span class='stat-value'>District Steam</span></div>
+                <div class='stat'><span class='stat-label'>Cooling System: </span><span class='stat-value'>Plant</span></div>
                 
             </div>
         </div>
@@ -846,7 +828,7 @@
                     </div>
                     <div class="stat">
                         <span class="stat-label">2030-2034 Status: </span>
-                        <span class="stat-value"><span class="no">No</span> ($635,329 in annual penalties)</span>
+                        <span class="stat-value"><span class="no">No</span> <span style="color: #c41e3a; font-weight: bold;">($635,329 in annual penalties)</span></span>
                     </div>
                     <div class="stat">
                         <span class="stat-label">Current Emissions: </span>
@@ -869,7 +851,7 @@
             <h2 class="section-header">Energy Consumption</h2>
             
             <div class="page">
-                <h3 class="page-title">Energy Usage</h3>
+                <h3 class="page-title">Usage</h3>
             <div class="chart-carousel">
                 <div class="chart-toggle">
                     <button class="toggle-btn active" onclick="showChart('usage', 'building')">Building</button>
@@ -885,7 +867,7 @@
         </div>
         
         <div class="page">
-            <h3 class="page-title">Energy Cost</h3>
+            <h3 class="page-title">Cost</h3>
             <div class="chart-carousel">
                 <div class="chart-toggle">
                     <button class="toggle-btn active" onclick="showChart('cost', 'building')">Building</button>
@@ -903,15 +885,15 @@
         
         <!-- Section 4: ODCV -->
         <div class="section section-white">
-            <h2 class="section-header">ODCV Savings</h2>
+            <h2 class="section-header">HVAC Analysis</h2>
             
             <div class="page">
-                <h3 class="page-title">HVAC Electricity Usage (% of Total)</h3>
+                <h3 class="page-title">HVAC Electricity Disaggregation</h3>
                 <div id="hvac_pct_chart" style="width: 100%; height: 400px;"></div>
             </div>
             
             <div class="page">
-                <h3 class="page-title">ODCV Savings Potential</h3>
+                <h3 class="page-title">HVAC Analysis</h3>
                 <div id="odcv_savings_chart" style="width: 100%; height: 400px;"></div>
             </div>
         </div>
@@ -927,12 +909,12 @@
                 <div class="iaq-stat-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: center;">
                     <div class="iaq-stat">
                         <div class="iaq-label" style="font-size: 12px; color: #6c757d; margin-bottom: 4px;">Max</div>
-                        <div class="iaq-value" style="font-size: 24px; font-weight: bold; color: #c41e3a;">20.3 μg/m³</div>
+                        <div class="iaq-value" style="font-size: 24px; font-weight: bold; color: #c41e3a;">17.9 μg/m³</div>
                         <div class="iaq-category" style="font-size: 11px; color: #6c757d; margin-top: 4px;">Daily Average</div>
                     </div>
                     <div class="iaq-stat">
                         <div class="iaq-label" style="font-size: 12px; color: #6c757d; margin-bottom: 4px;">Average</div>
-                        <div class="iaq-value" style="font-size: 24px; font-weight: bold; color: #FFB300;">17.5 μg/m³</div>
+                        <div class="iaq-value" style="font-size: 24px; font-weight: bold; color: #00e400;">7.7 μg/m³</div>
                         <div class="iaq-category" style="font-size: 11px; color: #6c757d; margin-top: 4px;">Daily Average</div>
                     </div>
                     <div class="iaq-stat">
@@ -945,7 +927,7 @@
             
             <div id="pm25_chart" style="width: 100%; height: 400px;"></div>
             </div>
-        </div>
+        </div>''' if chart_dates else ""}
         
     </div>
     
@@ -1273,11 +1255,11 @@
     
     const layout = {
         title: {
-            text: 'Monthly Energy Usage (2023)',
+            text: 'Monthly Usage (2023)',
             font: {size: 20}
         },
         yaxis: {
-            title: 'Energy Usage (kBtu)',
+            title: 'Usage (kBtu)',
             showgrid: false
         },
         xaxis: {
@@ -1328,11 +1310,11 @@
     
     const officeLayout = {
         title: {
-            text: 'Monthly Office Energy Usage (2023)',
+            text: 'Monthly Office Usage (2023)',
             font: {size: 20}
         },
         yaxis: {
-            title: 'Energy Usage (kBtu)',
+            title: 'Usage (kBtu)',
             showgrid: false
         },
         xaxis: {
@@ -1392,11 +1374,11 @@
     
     const costLayout = {
         title: {
-            text: 'Monthly Energy Cost (2023)',
+            text: 'Monthly Cost (2023)',
             font: {size: 20}
         },
         yaxis: {
-            title: 'Cost ($)',
+            title: '',
             tickformat: '$,.0f',
             showgrid: false
         },
@@ -1452,7 +1434,7 @@
             font: {size: 20}
         },
         yaxis: {
-            title: 'Cost ($)',
+            title: '',
             tickformat: '$,.0f',
             showgrid: false
         },
@@ -1499,7 +1481,7 @@
             font: {size: 20}
         },
         yaxis: {
-            title: 'Percentage',
+            title: '',
             tickformat: '.0%',
             showgrid: false,
             rangemode: 'tozero'  // Auto-scale but start at 0
@@ -1518,6 +1500,11 @@
         displaylogo: false,
         displayModeBar: true
     });
+
+    // Add annual average caption below the chart
+    document.getElementById('hvac_pct_chart').insertAdjacentHTML('afterend', 
+        '<div style="text-align: center; margin-top: 10px; font-size: 16px; color: #666;">Annual Average: 29.4%</div>'
+    );
     
     // ODCV Savings Chart
     const odcvElecSave = {x: months, y: [26350.089999999997, 28217.98999999999, 17889.359999999986, 12326.03, 7932.599999999977, 19538.23999999999, 26854.599999999977, 27569.170000000013, 20031.369999999995, 11367.709999999992, 16879.0, 21448.160000000003], name: 'Elec', type: 'bar', marker: {color: '#0066cc'}};
@@ -1534,11 +1521,11 @@
     
     Plotly.newPlot('odcv_savings_chart', odcvSavingsData, {
         title: {
-            text: 'Monthly ODCV Savings (Annual: $' + totalSavings.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ')',
+            text: 'Monthly ODCV Savings',
             font: {size: 20}
         },
         yaxis: {
-            title: 'Savings ($)',
+            title: '',
             tickformat: '$,.0f',
             showgrid: false
         },
@@ -1555,11 +1542,16 @@
         displaylogo: false,
         displayModeBar: true
     });
+
+    // Add annual savings caption below the chart
+    document.getElementById('odcv_savings_chart').insertAdjacentHTML('afterend', 
+        '<div style="text-align: center; margin-top: 10px; font-size: 16px; color: #666;">Annual Savings: $' + totalSavings.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '</div>'
+    );
     
     // PM2.5 Chart - Business Hours Only
     const pm25Data = {
-        x: ["2025-08-01", "2025-08-02", "2025-08-03", "2025-08-04"],
-        y: [17.922, 14.76, 16.907083333333333, 20.32842105263158],
+        x: ["2025-07-05", "2025-07-06", "2025-07-07", "2025-07-08", "2025-07-09", "2025-07-10", "2025-07-11", "2025-07-12", "2025-07-13", "2025-07-14", "2025-07-15", "2025-07-16", "2025-07-17", "2025-07-18", "2025-07-19", "2025-07-20", "2025-07-21", "2025-07-22", "2025-07-23", "2025-07-24", "2025-07-25", "2025-07-26", "2025-07-27", "2025-07-28", "2025-07-29", "2025-07-30", "2025-07-31", "2025-08-01", "2025-08-02", "2025-08-03", "2025-08-04"],
+        y: [10.5, 6.468333333333334, 4.422083333333333, 10.684583333333334, 10.950000000000001, 8.28625, 5.12, 2.6916666666666664, 3.34, 2.56, 8.960833333333333, 9.414583333333333, 4.015, 5.425, 8.310416666666667, 7.578749999999999, 7.402083333333334, 5.293333333333334, 4.048333333333333, 4.769166666666666, 8.834583333333333, 5.9679166666666665, 6.728333333333333, 11.052083333333334, 16.017083333333336, 17.909166666666668, 10.72375, 5.53, 6.8825, 8.910416666666666, 9.973636363636363],
         type: 'scatter',
         mode: 'lines',
         line: {color: '#0066cc', width: 3},
@@ -1569,8 +1561,8 @@
     
     // EPA Good threshold line
     const goodThreshold = {
-        x: ["2025-08-01", "2025-08-02", "2025-08-03", "2025-08-04"],
-        y: Array(4).fill(12),
+        x: ["2025-07-05", "2025-07-06", "2025-07-07", "2025-07-08", "2025-07-09", "2025-07-10", "2025-07-11", "2025-07-12", "2025-07-13", "2025-07-14", "2025-07-15", "2025-07-16", "2025-07-17", "2025-07-18", "2025-07-19", "2025-07-20", "2025-07-21", "2025-07-22", "2025-07-23", "2025-07-24", "2025-07-25", "2025-07-26", "2025-07-27", "2025-07-28", "2025-07-29", "2025-07-30", "2025-07-31", "2025-08-01", "2025-08-02", "2025-08-03", "2025-08-04"],
+        y: Array(31).fill(12),
         mode: 'lines',
         line: {color: '#00e400', dash: 'dash', width: 2},
         name: 'Good AQ Threshold (EPA)',
@@ -1579,25 +1571,24 @@
 
     Plotly.newPlot('pm25_chart', [pm25Data, goodThreshold], {
         title: {
-            text: 'Daily PM2.5 Levels (30-Day History)',
+            text: 'Daily PM2.5 Levels (31-Day History)',
             y: 0.95
         },
         yaxis: {
             title: 'PM2.5 (μg/m³)',
             showgrid: false,
             zeroline: false,
-            range: [0, 22.36126315789474]
+            range: [0, 19.700083333333335]
         },
         xaxis: {
             title: '',
             showgrid: false,
             type: 'date',
             tickformat: '%b %d',
-            dtick: 86400000 * 5,  // Show every 5 days for 30-day span
+            dtick: 86400000 * 3,  // Dynamic tick interval
             tickangle: -45,
             showticklabels: true,
-            tickmode: 'linear',
-            range: ["2025-08-01", "2025-08-04"]
+            range: ["2025-07-05", "2025-08-04"]
         },
         legend: {
             orientation: 'h',
@@ -1630,25 +1621,33 @@
             const isEven = buildingNumber % 2 === 0;
             const addressLower = address.toLowerCase();
             
-            // Manhattan grid with panorama northOffset correction
-            // After fixing even/odd logic: Broadway even (270°) should be -92.45° (~267.55°)
-            // This means we need to subtract ~2.45° from all values
-            const northOffset = -2.45;
+            // Manhattan grid: Avenues at 29°, Streets at 119°
             
             if (addressLower.includes('street') || addressLower.includes(' st')) {
-                // STREETS: Even = South side (look north), Odd = North side (look south)
-                return isEven ? (29 + northOffset) : (209 + northOffset);
+                // STREETS: Even = South side, Odd = North side
+                if (isEven) {
+                    // Even = South side → camera looks NORTH
+                    return 29; // 119° - 90° = 29°
+                } else {
+                    // Odd = North side → camera looks SOUTH
+                    return 209; // 119° + 90° = 209°
+                }
             } else if (addressLower.includes('avenue') || addressLower.includes(' ave')) {
-                // AVENUES: Even = West side (look east), Odd = East side (look west)
-                return isEven ? (119 + northOffset) : (299 + northOffset);
+                // AVENUES: Even = West side, Odd = East side
+                if (isEven) {
+                    // Even = West side → camera looks WEST
+                    return 299; // 29° - 90° + 360° = 299°
+                } else {
+                    // Odd = East side → camera looks EAST
+                    return 119; // 29° + 90° = 119°
+                }
             } else if (addressLower.includes('broadway')) {
-                // Broadway runs diagonal NE-SW through Manhattan
-                // Even = west side (look west), Odd = east side (look east)
-                return isEven ? (270 + northOffset) : (90 + northOffset);
+                // Broadway runs diagonal
+                return isEven ? 330 : 150;
             }
             
             // Default (assume street)
-            return isEven ? (29 + northOffset) : (209 + northOffset);
+            return isEven ? 29 : 209;
         }
         
         // Function to initialize panorama
@@ -1717,11 +1716,76 @@
         };
     });
     
+    // Tenant table sorting
+    let tenantSortDir = {};
+    function sortTenantTable(col) {
+        // Find the tenant table (there should only be one per page)
+        const table = document.querySelector('[id^="tenantTable-"]');
+        if (!table) return;
+        
+        const tbody = table.querySelector('tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        
+        // Toggle sort direction
+        tenantSortDir[col] = !tenantSortDir[col];
+        
+        rows.sort((a, b) => {
+            let aVal, bVal;
+            
+            if (col === 3) {
+                // SF Occupied - parse number from formatted string
+                aVal = parseInt(a.cells[col].textContent.replace(/,/g, '') || '0');
+                bVal = parseInt(b.cells[col].textContent.replace(/,/g, '') || '0');
+            } else if (col === 4 || col === 5) {
+                // Dates - convert to sortable format
+                aVal = a.cells[col].textContent.trim();
+                bVal = b.cells[col].textContent.trim();
+                // Handle N/A values
+                if (aVal === 'N/A') aVal = '';
+                if (bVal === 'N/A') bVal = '';
+                // Convert Mon-YY to YYYY-MM for sorting
+                if (aVal && aVal !== 'N/A') {
+                    const [month, year] = aVal.split('-');
+                    const monthNum = new Date(month + ' 1, 2000').getMonth() + 1;
+                    aVal = `20${year}-${monthNum.toString().padStart(2, '0')}`;
+                }
+                if (bVal && bVal !== 'N/A') {
+                    const [month, year] = bVal.split('-');
+                    const monthNum = new Date(month + ' 1, 2000').getMonth() + 1;
+                    bVal = `20${year}-${monthNum.toString().padStart(2, '0')}`;
+                }
+            } else {
+                // Text columns (Tenant, Industry, Floor)
+                aVal = a.cells[col].textContent.toLowerCase().trim();
+                bVal = b.cells[col].textContent.toLowerCase().trim();
+            }
+            
+            if (tenantSortDir[col]) {
+                return aVal > bVal ? 1 : -1;
+            } else {
+                return aVal < bVal ? 1 : -1;
+            }
+        });
+        
+        // Clear and rebuild tbody
+        tbody.innerHTML = '';
+        rows.forEach(row => tbody.appendChild(row));
+        
+        // Update sort indicators
+        const headers = table.querySelectorAll('th');
+        headers.forEach((th, idx) => {
+            const indicator = th.querySelector('.sort-indicator');
+            if (indicator) {
+                indicator.textContent = idx === col ? (tenantSortDir[col] ? '↑' : '↓') : '↕';
+            }
+        });
+    }
+    
     </script>
     </div>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif;">
-        Build: 05:56:55 PM CST | rtrerer
+        Build: 07:12:30 PM CST | t
     </div>
 </body>
 </html>
