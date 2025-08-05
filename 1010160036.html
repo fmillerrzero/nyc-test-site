@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>1515 Broadway, New York, NY 10036 - ODCV Analysis (v1754366796)</title>
+    <title>1515 Broadway, New York, NY 10036 - ODCV Analysis (v1754368653)</title>
     <link rel="icon" type="image/png" href="https://rzero.com/wp-content/themes/rzero/build/images/favicons/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Preload aerial video for faster playback -->
@@ -133,6 +133,7 @@
             background: white;
             box-shadow: 0 4px 20px rgba(0, 118, 157, 0.08);
             padding: 0;
+            border-bottom: none !important;
         }
         
         /* Section 0 - Title */
@@ -157,7 +158,6 @@
         /* Section styling */
         .section { 
             padding: 40px 5%; 
-            border-bottom: 3px solid var(--rzero-primary); 
             background: white;
             position: relative;
             width: 100%;
@@ -170,7 +170,21 @@
         }
         
         .section:last-child {
-            border-bottom: none;
+            border-bottom: none !important;
+        }
+        
+        /* Remove any borders from last section */
+        .section:last-of-type {
+            border-bottom: none !important;
+        }
+        
+        .section-gray:last-child {
+            border-bottom: none !important;
+        }
+        
+        /* Ensure no borders on container */
+        .container {
+            border: none !important;
         }
         
         /* Override backgrounds to ensure proper alternating pattern */
@@ -182,15 +196,6 @@
             background: #f8fafb !important;
         }
         
-        .section::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 0;
-            right: 0;
-            height: 20px;
-            background: linear-gradient(to bottom, rgba(0, 118, 157, 0.05), transparent);
-        }
         
         .section-header { 
             font-size: 2em; 
@@ -199,6 +204,8 @@
             font-weight: 700;
             padding-bottom: 20px;
             border-bottom: 2px solid rgba(0, 118, 157, 0.2);
+            max-width: 100%;
+            box-sizing: border-box;
         }
         
         .page { 
@@ -624,9 +631,9 @@
                     <span style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 25px; font-size: 1.6em; font-weight: 700;">#3</span>
                     <span style="font-size: 2.5em; font-weight: 700; color: white;">1515 Broadway, 10036</span>
                 </div>
-                <p style="margin: 0; opacity: 0.9; font-size: 1.1em; padding-left: 0.5rem;">
+                <div style="margin: 0; opacity: 0.9; font-size: 1.1em; margin-left: calc(1.6em * 1.5 + 30px + 1rem);">
                     <span>Midtown-Times Square</span>
-                </p>
+                </div>
             </div>
             <div style="text-align: right; min-width: 200px; display: flex; flex-direction: column; justify-content: center;">
                 <div style="font-size: 2.5em; font-weight: 700; line-height: 1; color: white;">$651,112</div>
@@ -873,7 +880,7 @@
                     <h3 class="page-title">LL97 Compliance</h3>
                     <div class="stat">
                         <span class="stat-label">2024-2029 Status: </span>
-                        <span class="stat-value"><span class="yes">Yes</span></span>
+                        <span class="stat-value"><span class="yes">Compliant</span></span>
                     </div>
                     <div class="stat">
                         <span class="stat-label">Current Emissions: </span>
@@ -1321,14 +1328,14 @@
     
     const steamData = {
         x: months,
-        y: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+        y: [10475442.6, 9777079.8, 8380354.1, 5586902.7, 2793451.4, 1396725.7, 1396725.7, 1396725.7, 2095088.5, 4190177.1, 6983628.4, 9777079.8],
         name: 'Steam',
         type: 'scatter',
         mode: 'lines+markers',
         line: {color: '#ffc107', width: 3},
         marker: {size: 8},
         hovertemplate: '%{x}<br>Steam: %{y:,.0f} kBtu<br>(%{customdata:,.0f} lbs)<extra></extra>',
-        customdata: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0].map(v => kBtuToLbs(v))
+        customdata: [10475442.6, 9777079.8, 8380354.1, 5586902.7, 2793451.4, 1396725.7, 1396725.7, 1396725.7, 2095088.5, 4190177.1, 6983628.4, 9777079.8].map(v => kBtuToLbs(v))
     };
     
     const layout = {
@@ -1353,7 +1360,7 @@
     const buildingUsageData = [];
     if ([2034753.497, 2180945.464, 1572309.52, 1312744.192, 1109865.544, 1775188.168, 2034753.497, 2034753.497, 1775188.168, 1109865.544, 1312744.192, 1572309.52].some(v => v > 0)) buildingUsageData.push(elecData);
     if ([689874.9, 639368.2, 641882.2, 355168.9, 270724.4, 246937.3, 268396.4, 255752.3, 241153.7, 293246.1, 539441.3, 656274.2].some(v => v > 0)) buildingUsageData.push(gasData);
-    if ([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0].some(v => v > 0)) buildingUsageData.push(steamData);
+    if ([10475442.6, 9777079.8, 8380354.1, 5586902.7, 2793451.4, 1396725.7, 1396725.7, 1396725.7, 2095088.5, 4190177.1, 6983628.4, 9777079.8].some(v => v > 0)) buildingUsageData.push(steamData);
     
     Plotly.newPlot('energy_chart', buildingUsageData, layout, {
         modeBarButtonsToRemove: ['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'resetScale2d', 'hoverClosestCartesian', 'hoverCompareCartesian'],
@@ -1553,18 +1560,71 @@
     // HVAC Percentage Chart with seasonal colors
     const hvacValues = [0.2444444443750333, 0.2774193547960357, 0.19999999989823886, 0.17741935482999024, 0.1499999999729697, 0.22580645153083778, 0.2444444443750333, 0.2444444443750333, 0.22580645153083778, 0.1499999999729697, 0.17741935482999024, 0.19999999989823886];
     
-    // Create area trace with seasonal colors
-    const hvacData = {
+    // Create separate traces for each season with filled area only below the curve
+    const hvacTraces = [];
+    
+    // Cool season (Jan-Mar) - Blue
+    hvacTraces.push({
+        x: months.slice(0, 3),
+        y: hvacValues.slice(0, 3),
+        type: 'scatter',
+        mode: 'lines',
+        fill: 'tozeroy',
+        line: {color: '#1e90ff', width: 3},
+        fillcolor: 'rgba(30, 144, 255, 0.3)',
+        showlegend: false,
+        hovertemplate: '%{x}: %{y:.1%}<extra></extra>'
+    });
+    
+    // Warm season (Apr-Jun) - Yellow
+    hvacTraces.push({
+        x: months.slice(3, 6),
+        y: hvacValues.slice(3, 6),
+        type: 'scatter',
+        mode: 'lines',
+        fill: 'tozeroy',
+        line: {color: '#daa520', width: 3},
+        fillcolor: 'rgba(255, 215, 0, 0.3)',
+        showlegend: false,
+        hovertemplate: '%{x}: %{y:.1%}<extra></extra>'
+    });
+    
+    // Hot season (Jul-Sep) - Red
+    hvacTraces.push({
+        x: months.slice(6, 9),
+        y: hvacValues.slice(6, 9),
+        type: 'scatter',
+        mode: 'lines',
+        fill: 'tozeroy',
+        line: {color: '#ff4500', width: 3},
+        fillcolor: 'rgba(255, 69, 0, 0.3)',
+        showlegend: false,
+        hovertemplate: '%{x}: %{y:.1%}<extra></extra>'
+    });
+    
+    // Cold season (Oct-Dec) - Blue
+    hvacTraces.push({
+        x: months.slice(9, 12),
+        y: hvacValues.slice(9, 12),
+        type: 'scatter',
+        mode: 'lines',
+        fill: 'tozeroy',
+        line: {color: '#1e90ff', width: 3},
+        fillcolor: 'rgba(30, 144, 255, 0.3)',
+        showlegend: false,
+        hovertemplate: '%{x}: %{y:.1%}<extra></extra>'
+    });
+    
+    // Add connecting lines between seasons
+    hvacTraces.push({
         x: months,
         y: hvacValues,
         type: 'scatter',
         mode: 'lines',
-        fill: 'tozeroy',
         line: {color: '#2c3e50', width: 3},
-        fillcolor: 'rgba(0, 0, 0, 0)',  // Transparent fill for the main trace
-        name: 'HVAC %',
+        showlegend: false,
         hovertemplate: '%{x}: %{y:.1%}<extra></extra>'
-    };
+    });
     
     const hvacLayout = {
         title: {
@@ -1575,7 +1635,8 @@
             title: '',
             tickformat: '.0%',
             showgrid: false,
-            rangemode: 'tozero'
+            rangemode: 'tozero',
+            range: [0, Math.max(...hvacValues) * 1.2]  // Add space above for labels
         },
         xaxis: {
             showgrid: false
@@ -1584,101 +1645,51 @@
         plot_bgcolor: '#ffffff',
         paper_bgcolor: 'white',
         hovermode: 'x unified',
-        shapes: [
-            // Cool season (Jan-Mar) - Blue
-            {
-                type: 'rect',
-                xref: 'x',
-                yref: 'paper',
-                x0: -0.5,
-                y0: 0,
-                x1: 2.5,
-                y1: 1,
-                fillcolor: 'rgba(30, 144, 255, 0.3)',
-                line: {width: 0}
-            },
-            // Warm season (Apr-Jun) - Yellow
-            {
-                type: 'rect',
-                xref: 'x',
-                yref: 'paper',
-                x0: 2.5,
-                y0: 0,
-                x1: 5.5,
-                y1: 1,
-                fillcolor: 'rgba(255, 215, 0, 0.3)',
-                line: {width: 0}
-            },
-            // Hot season (Jul-Sep) - Red
-            {
-                type: 'rect',
-                xref: 'x',
-                yref: 'paper',
-                x0: 5.5,
-                y0: 0,
-                x1: 8.5,
-                y1: 1,
-                fillcolor: 'rgba(255, 69, 0, 0.3)',
-                line: {width: 0}
-            },
-            // Cold season (Oct-Dec) - Blue
-            {
-                type: 'rect',
-                xref: 'x',
-                yref: 'paper',
-                x0: 8.5,
-                y0: 0,
-                x1: 11.5,
-                y1: 1,
-                fillcolor: 'rgba(30, 144, 255, 0.3)',
-                line: {width: 0}
-            }
-        ],
         annotations: [
-            // Cool label
+            // Cool label - below the curve
             {
                 x: 1,
-                y: 0.5,
+                y: 0.05,
                 xref: 'x',
                 yref: 'paper',
                 text: 'Cool',
                 showarrow: false,
-                font: {size: 16, color: '#1e90ff'}
+                font: {size: 16, color: '#1e90ff', weight: 'bold'}
             },
-            // Warm label
+            // Warm label - below the curve
             {
                 x: 4,
-                y: 0.5,
+                y: 0.05,
                 xref: 'x',
                 yref: 'paper',
                 text: 'Warm',
                 showarrow: false,
-                font: {size: 16, color: '#daa520'}
+                font: {size: 16, color: '#daa520', weight: 'bold'}
             },
-            // Hot label
+            // Hot label - below the curve
             {
                 x: 7,
-                y: 0.5,
+                y: 0.05,
                 xref: 'x',
                 yref: 'paper',
                 text: 'Hot',
                 showarrow: false,
-                font: {size: 16, color: '#ff4500'}
+                font: {size: 16, color: '#ff4500', weight: 'bold'}
             },
-            // Cold label
+            // Cold label - below the curve
             {
                 x: 10,
-                y: 0.5,
+                y: 0.05,
                 xref: 'x',
                 yref: 'paper',
                 text: 'Cold',
                 showarrow: false,
-                font: {size: 16, color: '#1e90ff'}
+                font: {size: 16, color: '#1e90ff', weight: 'bold'}
             }
         ]
     };
     
-    Plotly.newPlot('hvac_pct_chart', [hvacData], hvacLayout, {
+    Plotly.newPlot('hvac_pct_chart', hvacTraces, hvacLayout, {
         modeBarButtonsToRemove: ['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'resetScale2d', 'hoverClosestCartesian', 'hoverCompareCartesian'],
         displaylogo: false,
         displayModeBar: true
@@ -1753,10 +1764,12 @@
     const threshold = 12;
     
     // Create traces for filled areas
+    // Fill below threshold - create a polygon that fills the entire area below the threshold
+    const thresholdLine = Array(dates.length).fill(threshold);
     const betterFill = {
-        x: dates,
-        y: values.map(v => Math.min(v, threshold)),
-        fill: 'tozeroy',
+        x: dates.concat([...dates].reverse()),
+        y: thresholdLine.concat(Array(dates.length).fill(0)),
+        fill: 'toself',
         fillcolor: 'rgba(0, 102, 204, 0.15)',  // Light blue
         line: {width: 0},
         showlegend: false,
@@ -1983,8 +1996,8 @@
     
     </div><!-- End of container -->
     
-    <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif;">
-        Build: 4 Aug 2025 10:06:40 PM CST
+    <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif; border: none !important; box-shadow: none !important; background: transparent;">
+        Build: 4 Aug 2025 10:37:39 PM CST
     </div>
 </body>
 </html>
