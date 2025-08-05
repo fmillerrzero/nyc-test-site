@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>1472 Broadway, New York, NY 10036 - ODCV Analysis (v1754369348)</title>
+    <title>1472 Broadway, New York, NY 10036 - ODCV Analysis (v1754426874)</title>
     <link rel="icon" type="image/png" href="https://rzero.com/wp-content/themes/rzero/build/images/favicons/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Preload aerial video for faster playback -->
@@ -606,8 +606,7 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
     <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
-    <!-- Preload aerial video for faster playback -->
-    <link rel="preload" as="video" href="https://aerial-videos-forrest.s3.us-east-2.amazonaws.com/1009950005_aerial.mp4">
+    <!-- Preload aerial video for faster playback --><link rel="preload" as="video" href="https://aerial-videos-forrest.s3.us-east-2.amazonaws.com/1009950005_aerial.mp4">
 </head>
 <body>
     <div class="container">
@@ -732,8 +731,7 @@
                 <h3 class="page-title" id="interactive-views-title-1009950005">Dynamic: <span style="color: #555;">Drone Footage</span></h3>
                 <div class="carousel-container">
                     <div class="carousel-track" id="interactive-carousel-1009950005">
-                        <div class="carousel-slide" data-type="video">
-                            <div id="aerial-video-1009950005" style="width: 100%; height: 100%; background: #000; display: flex; align-items: center; justify-content: center; position: relative;">
+                        <div class="carousel-slide" data-type="video"><div id="aerial-video-1009950005" style="width: 100%; height: 100%; background: #000; display: flex; align-items: center; justify-content: center; position: relative;">
                     <video controls autoplay loop muted preload="auto" style="width: 100%; height: 100%; object-fit: contain;" 
                            onerror="this.style.display='none'; document.getElementById('video-error-1009950005').style.display='flex';">
                         <source src="https://aerial-videos-forrest.s3.us-east-2.amazonaws.com/1009950005_aerial.mp4" type="video/mp4">
@@ -755,8 +753,7 @@
                             }
                         });
                     </script>
-                </div>
-                        </div>
+                </div></div>
                         <div class="carousel-slide" data-type="pano">
                             <div id="panorama-1009950005" style="width: 100%; height: 675px; background: #f0f0f0; position: relative;">
                                 <div id="viewer-1009950005" style="width: 100%; height: 100%;"></div>
@@ -765,15 +762,7 @@
                     </div>
                     
                     
-                    <!-- Navigation Controls -->
-                    <button class="carousel-btn carousel-prev" onclick="moveInteractiveCarousel('1009950005', -1)" title="Previous">❮</button>
-                    <button class="carousel-btn carousel-next" onclick="moveInteractiveCarousel('1009950005', 1)" title="Next">❯</button>
-                    
-                    <!-- Dot Navigation with Labels -->
-                    <div class="carousel-dots">
-                        <span class="dot active" onclick="goToInteractiveSlide('1009950005', 0)" title="Aerial Video"></span>
-                        <span class="dot" onclick="goToInteractiveSlide('1009950005', 1)" title="360° Virtual Tour"></span>
-                    </div>
+                    <!-- Navigation Controls --><button class="carousel-btn carousel-prev" onclick="moveInteractiveCarousel('1009950005', -1)" title="Previous">❮</button><button class="carousel-btn carousel-next" onclick="moveInteractiveCarousel('1009950005', 1)" title="Next">❯</button><!-- Dot Navigation with Labels --><div class="carousel-dots"><span class="dot active" onclick="goToInteractiveSlide('1009950005', 0)" title="Aerial Video"></span><span class="dot" onclick="goToInteractiveSlide('1009950005', 1)" title="360° Virtual Tour"></span></div>
                 </div>
                 </div>
             </div>
@@ -967,7 +956,7 @@
                     </div>
                     <div class="iaq-stat">
                         <div class="iaq-label" style="font-size: 12px; color: #6c757d; margin-bottom: 4px;">Average</div>
-                        <div class="iaq-value" style="font-size: 24px; font-weight: bold; color: #00e400;">7.6 μg/m³</div>
+                        <div class="iaq-value" style="font-size: 24px; font-weight: bold; color: #00e400;">7.5 μg/m³</div>
                         <div class="iaq-category" style="font-size: 11px; color: #6c757d; margin-top: 4px;">Daily Average</div>
                     </div>
                     
@@ -1215,7 +1204,7 @@
     function moveInteractiveCarousel(bbl, direction) {
         const carousel = document.getElementById('interactive-carousel-' + bbl);
         const dots = carousel.parentElement.querySelectorAll('.dot');
-        const totalViews = 2;
+        const totalViews = carousel.children.length;
         
         interactiveIndex += direction;
         
@@ -1749,7 +1738,7 @@
 
     // Create fill traces for areas above and below threshold
     const dates = ["2025-07-06", "2025-07-07", "2025-07-08", "2025-07-09", "2025-07-10", "2025-07-11", "2025-07-12", "2025-07-13", "2025-07-14", "2025-07-15", "2025-07-16", "2025-07-17", "2025-07-18", "2025-07-19", "2025-07-20", "2025-07-21", "2025-07-22", "2025-07-23", "2025-07-24", "2025-07-25", "2025-07-26", "2025-07-27", "2025-07-28", "2025-07-29", "2025-07-30", "2025-07-31", "2025-08-01", "2025-08-02", "2025-08-03", "2025-08-04", "2025-08-05"];
-    const values = [6.294347826086957, 4.422083333333333, 10.684583333333334, 10.950000000000001, 8.28625, 5.12, 2.6916666666666664, 3.34, 2.56, 8.960833333333333, 9.414583333333333, 4.015, 5.425, 8.310416666666667, 7.578749999999999, 7.402083333333334, 5.293333333333334, 4.048333333333333, 4.769166666666666, 8.834583333333333, 5.9679166666666665, 6.728333333333333, 11.052083333333334, 16.017083333333336, 17.909166666666668, 10.72375, 5.53, 6.8825, 8.910416666666666, 9.85625, 8.34];
+    const values = [2.6214285714285714, 4.422083333333333, 10.684583333333334, 10.950000000000001, 8.28625, 5.12, 2.6916666666666664, 3.34, 2.56, 8.960833333333333, 9.414583333333333, 4.015, 5.425, 8.310416666666667, 7.578749999999999, 7.402083333333334, 5.293333333333334, 4.048333333333333, 4.769166666666666, 8.834583333333333, 5.9679166666666665, 6.728333333333333, 11.052083333333334, 16.017083333333336, 17.909166666666668, 10.72375, 5.53, 6.8825, 8.909166666666666, 9.837083333333334, 9.627647058823529];
     const threshold = 12;
     
     // Create PM2.5 data with fill below the line
@@ -1770,7 +1759,7 @@
         x: dates.concat([...dates].reverse()),
         y: values.map(v => Math.max(v, threshold)).concat(Array(dates.length).fill(threshold)),
         fill: 'toself',
-        fillcolor: 'rgba(255, 235, 59, 0.25)',  // Light yellow
+        fillcolor: 'rgba(255, 235, 59, 0.15)',  // Lighter yellow
         line: {width: 0},
         showlegend: false,
         hoverinfo: 'skip',
@@ -1869,9 +1858,9 @@
             
             // Calculate pitch based on building height
             // We're at street level looking at buildings
-            // Based on: 737ft building = 40.10665551348826° pitch (optimal viewing angle)
-            // Increased by 10% to look more upward
-            const pitch = Math.min(buildingHeight * (40.10665551348826 / 737 * 1.1), 60);  // Max 60° for very tall buildings
+            // Based on ideal pitch for 463.31ft building = 37.03° pitch
+            // This gives us 0.0799 degrees per foot of building height
+            const pitch = Math.min(buildingHeight * 0.0799, 60);  // Max 60° for very tall buildings
             
             console.log(`Panorama 1009950005: Address="${address}", Height=${buildingHeight}ft, Yaw=${yaw}° (adjusted: ${adjustedYaw}°), Pitch=${pitch}°`);
             
@@ -1901,7 +1890,10 @@
             }
         }
         
-        // Don't initialize immediately - wait for user to navigate to panorama slide
+        // If no video, initialize panorama immediately since it's the only view
+        
+        
+        // Don't initialize immediately if video exists - wait for user to navigate to panorama slide
         
         // Reinitialize when carousel shows panorama
         const originalMoveCarousel = window.moveInteractiveCarousel;
@@ -1992,7 +1984,12 @@
     </div><!-- End of container -->
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif; border: none !important; box-shadow: none !important; background: transparent;">
-        Build: 4 Aug 2025 10:49:09 PM CST
+        Build: 5 Aug 2025 02:47:55 PM CST | Test Build
+        <div style="margin-top: 10px;">
+            <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
+            <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
+            <a href="https://drive.google.com/drive/folders/1ikLvk6LeRrR3OUj9Z68JIMsqQdGRR6NR?usp=sharing" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Download source data</a>
+        </div>
     </div>
 </body>
 </html>
