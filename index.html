@@ -280,10 +280,23 @@
         .bas { color: #38a169; font-weight: 600; }
         .no-bas { color: #c41e3a; font-weight: 600; }
         
-        /* Style Google's autocomplete dropdown */
-        .pac-container {
-            z-index: 10000 !important;
-            font-family: 'Inter', sans-serif !important;
+        /* Style the new PlaceAutocompleteElement */
+        gmp-place-autocomplete {
+            --gmpx-color-surface: #ffffff;
+            --gmpx-color-on-surface: #212121;
+            --gmpx-color-primary: var(--rzero-primary);
+            --gmpx-font-family: 'Inter', sans-serif;
+            width: 100%;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        gmp-place-autocomplete input {
+            padding: 10px !important;
+            border: 1px solid #ddd !important;
+            border-radius: 4px !important;
+            font-size: 14px !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
         }
         .autocomplete-item {
             padding: 10px 15px;
@@ -318,7 +331,7 @@
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQdR4xY0a_qmEsYairsp6r6tXwh5qx_ho&libraries=places&callback=initGooglePlaces" async defer></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQdR4xY0a_qmEsYairsp6r6tXwh5qx_ho&libraries=places&callback=initGooglePlaces&loading=async"></script>
 </head>
 <body>
     <div class="container">
@@ -421,7 +434,7 @@
         
         <div style="display: flex; gap: 10px; margin-bottom: 20px; align-items: center;">
             <div class="search-container">
-                <input type="text" id="search" placeholder="Search by address, owner, property manager" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;" autocomplete="off">
+                <gmp-place-autocomplete id="search" placeholder="Search by address, owner, property manager" style="width: 100%; height: 44px;"></gmp-place-autocomplete>
             </div>
             <button id="clearFilterBtn" onclick="clearAllFilters()" style="background: #e0e0e0; color: #999; border: none; padding: 10px 25px; border-radius: 8px; cursor: not-allowed; font-size: 16px; font-weight: 600; transition: all 0.2s;" disabled>
                 Clear Filter
@@ -4056,42 +4069,41 @@
     // Autocomplete functionality
     
     // Callback function for Google Maps API
-    function initGooglePlaces() {
-        if (typeof google !== 'undefined' && google.maps && google.maps.places) {
+    async function initGooglePlaces() {
+        if (typeof google !== 'undefined' && google.maps) {
             try {
-                // Use the native Autocomplete widget
+                // Wait for the library to load
+                await google.maps.importLibrary('places');
+                
+                // Get the new PlaceAutocompleteElement
                 const searchInput = document.getElementById('search');
                 if (searchInput) {
-                    const autocomplete = new google.maps.places.Autocomplete(searchInput, {
-                        types: ['address'],
-                        componentRestrictions: { country: 'us' },
-                        bounds: new google.maps.LatLngBounds(
-                            new google.maps.LatLng(40.49, -74.26),   // SW corner of NYC
-                            new google.maps.LatLng(40.92, -73.70)    // NE corner of NYC
-                        ),
-                        strictBounds: false  // Prefer NYC but allow other results
-                    });
+                    // Configure the autocomplete element
+                    searchInput.setAttribute('location-bias-radius', '10');
+                    searchInput.setAttribute('location-bias-center', '40.7128,-74.0060'); // NYC coordinates
+                    searchInput.setAttribute('country', 'us');
+                    searchInput.setAttribute('type', 'address');
                     
-                    // Listen for place selection
-                    autocomplete.addListener('place_changed', function() {
-                        const place = autocomplete.getPlace();
-                        if (place && place.formatted_address) {
+                    // Listen for place selection using the new event
+                    searchInput.addEventListener('gmp-placeselect', (event) => {
+                        const place = event.detail.place;
+                        if (place && place.formattedAddress) {
                             // Extract just the street address part (before comma)
-                            const fullAddress = place.formatted_address;
+                            const fullAddress = place.formattedAddress;
                             const streetAddress = fullAddress.split(',')[0].trim();
                             
                             // Normalize the address to match CSV format
                             const normalized = normalizeAddress(streetAddress);
                             
-                            // Update search box with normalized address
+                            // Update the value in the custom element
                             searchInput.value = normalized;
                             
                             // Filter table to show matches
-                            filterTable();
+                            filterTableWithValue(normalized);
                         }
                     });
                     
-                    console.log('Google Places Autocomplete widget initialized');
+                    console.log('Google PlaceAutocompleteElement initialized');
                 }
             } catch (error) {
                 console.error('Google Places initialization failed:', error);
@@ -4104,14 +4116,30 @@
     function initAutocomplete() {
         const searchInput = document.getElementById('search');
         
-        // Add event listener for manual typing (when not using Google autocomplete)
-        searchInput.addEventListener('input', debounce(handleSearchInput, 300));
+        // For manual typing in the PlaceAutocompleteElement
+        if (searchInput) {
+            // Handle direct input events
+            searchInput.addEventListener('input', debounce(() => {
+                const currentValue = searchInput.value || '';
+                filterTableWithValue(currentValue);
+                updateClearButtonState();
+            }, 300));
+        }
     }
     
-    function handleSearchInput(e) {
-        // Simply filter the table based on input
-        // Google Autocomplete widget handles the dropdown
-        filterTable();
+    function filterTableWithValue(searchValue) {
+        const input = normalizeForComparison(searchValue);
+        const rows = document.querySelectorAll('#buildingTable tbody tr');
+        let visibleCount = 0;
+        
+        rows.forEach(row => {
+            const searchText = normalizeForComparison(row.getAttribute('data-search'));
+            const matchesSearch = searchText && searchText.includes(input);
+            row.style.display = matchesSearch ? '' : 'none';
+            if (matchesSearch) visibleCount++;
+        });
+        
+        updateResultCounter(visibleCount);
         updateClearButtonState();
     }
     
@@ -4149,7 +4177,8 @@
             activeOwnerFilter = null;
             
             // Clear search bar
-            document.getElementById('search').value = '';
+            const searchBox = document.getElementById('search');
+            if (searchBox) searchBox.value = '';
             
             // Remove selection styling
             document.querySelectorAll('.portfolio-tile').forEach(tile => {
@@ -4167,7 +4196,8 @@
             activeOwnerFilter = ownerName;
             
             // Populate search bar with owner name
-            document.getElementById('search').value = ownerName;
+            const searchBox = document.getElementById('search');
+            if (searchBox) searchBox.value = ownerName;
             
             // Remove previous selection styling
             document.querySelectorAll('.portfolio-tile').forEach(tile => {
@@ -4201,7 +4231,8 @@
         activeOwnerFilter = managerName;
         
         // Populate search bar with manager name
-        document.getElementById('search').value = managerName;
+        const searchBox = document.getElementById('search');
+        if (searchBox) searchBox.value = managerName;
         
         // Remove active styling from portfolio tiles
         document.querySelectorAll('.portfolio-tile').forEach(tile => {
@@ -4233,19 +4264,9 @@
     
     // Search functionality
     function filterTable() {
-        const input = normalizeForComparison(document.getElementById('search').value);
-        const rows = document.querySelectorAll('#buildingTable tbody tr');
-        let visibleCount = 0;
-        
-        rows.forEach(row => {
-            const searchText = normalizeForComparison(row.getAttribute('data-search'));
-            const matchesSearch = searchText && searchText.includes(input);
-            row.style.display = matchesSearch ? '' : 'none';
-            if (matchesSearch) visibleCount++;
-        });
-        
-        updateResultCounter(visibleCount);
-        updateClearButtonState();
+        const searchElement = document.getElementById('search');
+        const searchValue = searchElement ? (searchElement.value || '') : '';
+        filterTableWithValue(searchValue);
     }
     
     // Update result counter
@@ -4256,7 +4277,8 @@
     function updateClearButtonState() {
         const btn = document.getElementById('clearFilterBtn');
         const searchBox = document.getElementById('search');
-        const hasActiveFilter = (searchBox.value.trim() !== '') || (activeOwnerFilter !== null);
+        const searchValue = searchBox ? (searchBox.value || '').trim() : '';
+        const hasActiveFilter = (searchValue !== '') || (activeOwnerFilter !== null);
         
         if (hasActiveFilter) {
             btn.disabled = false;
@@ -4277,7 +4299,10 @@
     
     function clearAllFilters() {
         // Clear search box
-        document.getElementById('search').value = '';
+        const searchBox = document.getElementById('search');
+        if (searchBox) {
+            searchBox.value = '';
+        }
         
         // Reset active filter
         activeOwnerFilter = null;
@@ -5059,7 +5084,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: 5 Aug 2025 04:55:39 PM CST | Test Build
+        Build: 5 Aug 2025 05:04:48 PM CST | Test Build
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
