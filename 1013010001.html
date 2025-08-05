@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>245 Park Ave, New York, NY 10167 - ODCV Analysis (v1754368653)</title>
+    <title>245 Park Ave, New York, NY 10167 - ODCV Analysis (v1754369348)</title>
     <link rel="icon" type="image/png" href="https://rzero.com/wp-content/themes/rzero/build/images/favicons/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Preload aerial video for faster playback -->
@@ -627,11 +627,11 @@
                 </div>
             </a>
             <div style="display: flex; flex-direction: column; justify-content: center;">
-                <div style="display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.5rem;">
+                <div style="display: flex; align-items: baseline; gap: 1rem;">
                     <span style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 25px; font-size: 1.6em; font-weight: 700;">#5</span>
-                    <span style="font-size: 2.5em; font-weight: 700; color: white;">245 Park Ave, 10167</span>
+                    <span style="font-size: 2.5em; font-weight: 700; color: white; line-height: 1.2;">245 Park Ave, 10167</span>
                 </div>
-                <div style="margin: 0; opacity: 0.9; font-size: 1.1em; margin-left: calc(1.6em * 1.5 + 30px + 1rem);">
+                <div style="margin: 0; opacity: 0.9; font-size: 1.1em; margin-left: calc(1.6em * 1.5 + 30px + 1rem); margin-top: -0.2rem;">
                     <span>East Midtown-Turtle Bay</span>
                 </div>
             </div>
@@ -830,7 +830,7 @@
                 
                 <div class="stat">
                     <span class="stat-label">BMS Controls: </span>
-                    <span class="stat-value"><span style="color: #888888; font-weight: normal;">Ventilation</span><span style="color: #888888;">,</span> <span style="color: #ff6600; font-weight: normal;">Heating</span><span style="color: #888888;">,</span> <span style="color: #0066cc; font-weight: normal;">Cooling</span></span>
+                    <span class="stat-value"><span style="font-weight: normal;">Ventilation</span><span>, </span><span style="color: #ff6600; font-weight: normal;">Heating</span><span>, </span><span style="color: #0066cc; font-weight: normal;">Cooling</span></span>
                 </div>
                 <div class='stat'><span class='stat-label'>Heating System: </span><span class='stat-value'>District Steam</span></div>
                 <div class='stat'><span class='stat-label'>Cooling System: </span><span class='stat-value'>Plant</span></div>
@@ -1737,17 +1737,6 @@
         '<div style="text-align: center; margin-top: 10px; font-size: 16px; color: #666;">Annual Savings: $' + totalSavings.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '</div>'
     );
     
-    // PM2.5 Chart - Business Hours Only
-    const pm25Data = {
-        x: ["2025-07-06", "2025-07-07", "2025-07-08", "2025-07-09", "2025-07-10", "2025-07-11", "2025-07-12", "2025-07-13", "2025-07-14", "2025-07-15", "2025-07-16", "2025-07-17", "2025-07-18", "2025-07-19", "2025-07-20", "2025-07-21", "2025-07-22", "2025-07-23", "2025-07-24", "2025-07-25", "2025-07-26", "2025-07-27", "2025-07-28", "2025-07-29", "2025-07-30", "2025-07-31", "2025-08-01", "2025-08-02", "2025-08-03", "2025-08-04", "2025-08-05"],
-        y: [6.294347826086957, 4.422083333333333, 10.684583333333334, 10.950000000000001, 8.28625, 5.12, 2.6916666666666664, 3.34, 2.56, 8.960833333333333, 9.414583333333333, 4.015, 5.425, 8.310416666666667, 7.578749999999999, 7.402083333333334, 5.293333333333334, 4.048333333333333, 4.769166666666666, 8.834583333333333, 5.9679166666666665, 6.728333333333333, 11.052083333333334, 16.017083333333336, 17.909166666666668, 10.72375, 5.53, 6.8825, 8.910416666666666, 9.85625, 8.34],
-        type: 'scatter',
-        mode: 'lines',
-        line: {color: '#0066cc', width: 3},
-        name: 'Daily Average PM2.5',
-        hovertemplate: '%{x|%b %d, %Y}<br>PM2.5: %{y:.1f} μg/m³<extra></extra>'
-    };
-    
     // EPA Good threshold line
     const goodThreshold = {
         x: ["2025-07-06", "2025-07-07", "2025-07-08", "2025-07-09", "2025-07-10", "2025-07-11", "2025-07-12", "2025-07-13", "2025-07-14", "2025-07-15", "2025-07-16", "2025-07-17", "2025-07-18", "2025-07-19", "2025-07-20", "2025-07-21", "2025-07-22", "2025-07-23", "2025-07-24", "2025-07-25", "2025-07-26", "2025-07-27", "2025-07-28", "2025-07-29", "2025-07-30", "2025-07-31", "2025-08-01", "2025-08-02", "2025-08-03", "2025-08-04", "2025-08-05"],
@@ -1763,20 +1752,20 @@
     const values = [6.294347826086957, 4.422083333333333, 10.684583333333334, 10.950000000000001, 8.28625, 5.12, 2.6916666666666664, 3.34, 2.56, 8.960833333333333, 9.414583333333333, 4.015, 5.425, 8.310416666666667, 7.578749999999999, 7.402083333333334, 5.293333333333334, 4.048333333333333, 4.769166666666666, 8.834583333333333, 5.9679166666666665, 6.728333333333333, 11.052083333333334, 16.017083333333336, 17.909166666666668, 10.72375, 5.53, 6.8825, 8.910416666666666, 9.85625, 8.34];
     const threshold = 12;
     
-    // Create traces for filled areas
-    // Fill below threshold - create a polygon that fills the entire area below the threshold
-    const thresholdLine = Array(dates.length).fill(threshold);
-    const betterFill = {
-        x: dates.concat([...dates].reverse()),
-        y: thresholdLine.concat(Array(dates.length).fill(0)),
-        fill: 'toself',
-        fillcolor: 'rgba(0, 102, 204, 0.15)',  // Light blue
-        line: {width: 0},
-        showlegend: false,
-        hoverinfo: 'skip',
-        type: 'scatter'
+    // Create PM2.5 data with fill below the line
+    const pm25DataWithFill = {
+        x: dates,
+        y: values,
+        type: 'scatter',
+        mode: 'lines',
+        line: {color: '#0066cc', width: 3},
+        fill: 'tozeroy',
+        fillcolor: 'rgba(0, 102, 204, 0.15)',  // Light blue fill below the line
+        name: 'Daily Average PM2.5',
+        hovertemplate: '%{x|%b %d, %Y}<br>PM2.5: %{y:.1f} μg/m³<extra></extra>'
     };
     
+    // Create yellow fill for areas above threshold
     const worseFill = {
         x: dates.concat([...dates].reverse()),
         y: values.map(v => Math.max(v, threshold)).concat(Array(dates.length).fill(threshold)),
@@ -1788,7 +1777,7 @@
         type: 'scatter'
     };
 
-    Plotly.newPlot('pm25_chart', [betterFill, worseFill, pm25Data, goodThreshold], {
+    Plotly.newPlot('pm25_chart', [pm25DataWithFill, worseFill, goodThreshold], {
         title: {
             text: 'Neighborhood Latest',
             y: 0.95
@@ -1834,27 +1823,34 @@
         // Manhattan grid even/odd logic for yaw
         function getBuildingYaw(address) {
             const match = address.match(/\b(\d+)/);
-            if (!match) return 119;
+            if (!match) return 0;
             
             const buildingNumber = parseInt(match[1]);
             const isEven = buildingNumber % 2 === 0;
             const addressLower = address.toLowerCase();
             
-            // Manhattan grid angles already include rotation
+            // Fix the yaw angles to actually look at buildings
+            // In pannellum: 0° = North, 90° = East, 180° = South, 270° = West
             
             if (addressLower.includes('street') || addressLower.includes(' st')) {
-                // STREETS: Even = South side, Odd = North side
-                return isEven ? 29 : 209;
+                // STREETS run East-West
+                // For 111 E 58th St (odd building number), yaw should be -91.56° (looking west)
+                // Even building numbers are on SOUTH side, Odd on NORTH side
+                return isEven ? 90 : -91.56;
             } else if (addressLower.includes('avenue') || addressLower.includes(' ave')) {
-                // AVENUES: Even = West side, Odd = East side
-                return isEven ? 299 : 119;
+                // AVENUES run North-South
+                // Even numbers are on WEST side (need to look EAST = 90°)
+                // Odd numbers are on EAST side (need to look WEST = 270°)
+                return isEven ? 90 : 270;
             } else if (addressLower.includes('broadway')) {
-                // Broadway runs diagonal
-                return isEven ? 330 : 150;
+                // Broadway runs diagonal NE-SW
+                // Even = NW side (look SE = ~135°)
+                // Odd = SE side (look NW = ~315°)
+                return isEven ? 135 : 315;
             }
             
-            // Default (assume street)
-            return isEven ? 29 : 209;
+            // Default to north-facing
+            return 0;
         }
         
         // Function to initialize panorama
@@ -1868,9 +1864,8 @@
             // Calculate yaw based on address
             const yaw = getBuildingYaw(address);
             
-            // Adjust yaw to pannellum's coordinate system
-            let adjustedYaw = 360 - yaw;
-            if (adjustedYaw > 180) adjustedYaw -= 360;
+            // Use yaw directly without adjustment
+            let adjustedYaw = yaw;
             
             // Calculate pitch based on building height
             // We're at street level looking at buildings
@@ -1997,7 +1992,7 @@
     </div><!-- End of container -->
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif; border: none !important; box-shadow: none !important; background: transparent;">
-        Build: 4 Aug 2025 10:37:41 PM CST
+        Build: 4 Aug 2025 10:49:13 PM CST
     </div>
 </body>
 </html>
