@@ -4069,8 +4069,13 @@
     // Callback function for Google Maps API
     function initGooglePlaces() {
         if (typeof google !== 'undefined' && google.maps && google.maps.places) {
-            autocompleteService = new google.maps.places.AutocompleteService();
-            console.log('Google Places API initialized');
+            try {
+                autocompleteService = new google.maps.places.AutocompleteService();
+                console.log('Google Places API initialized');
+            } catch (error) {
+                console.error('Google Places API initialization failed:', error);
+                autocompleteService = null;
+            }
         } else {
             console.error('Google Places API failed to load');
         }
@@ -4098,11 +4103,15 @@
         const input = e.target.value.trim();
         const dropdown = document.getElementById('autocomplete-dropdown');
         
+        console.log('handleSearchInput called with:', input);
+        
         if (input.length < 2) {
             dropdown.style.display = 'none';
             filterTable();  // Still filter the table
             return;
         }
+        
+        console.log('Searching for suggestions...');
         
         // Get local matches (case-insensitive)
         const searchInput = normalizeForComparison(input);
@@ -4114,6 +4123,8 @@
                 type: 'local',
                 normalized: normalizeAddress(addr)
             }));
+            
+        console.log('Local matches found:', localMatches.length);
         
         // Get Google suggestions if available
         if (autocompleteService) {
@@ -5173,7 +5184,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: 5 Aug 2025 03:04:07 PM CST | NYC-only Google Places + 15 suggestions
+        Build: 5 Aug 2025 03:25:13 PM CST | Debug autocomplete
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
