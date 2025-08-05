@@ -4108,7 +4108,7 @@
         const searchInput = normalizeForComparison(input);
         const localMatches = localAddresses
             .filter(addr => normalizeForComparison(addr).includes(searchInput))
-            .slice(0, 5)
+            .slice(0, 8)  // Show up to 8 local results
             .map(addr => ({
                 address: addr,
                 type: 'local',
@@ -4117,26 +4117,28 @@
         
         // Get Google suggestions if available
         if (autocompleteService) {
+            // Add "New York NY" to the search to filter results to NYC
+            const nycInput = input + ' New York NY';
+            
             const request = {
-                input: input,
-                // Remove country restriction to allow worldwide results
-                // componentRestrictions: { country: 'us' },
-                // Use locationBias instead of strict bounds to prefer NYC but allow global
+                input: nycInput,
+                componentRestrictions: { country: 'us' },  // Restrict to US
+                // NYC bounds to prioritize NYC results
                 locationBias: new google.maps.LatLngBounds(
-                    new google.maps.LatLng(40.6, -74.3),  // SW corner of NYC
-                    new google.maps.LatLng(40.9, -73.7)   // NE corner of NYC
+                    new google.maps.LatLng(40.49, -74.26),   // SW corner of NYC
+                    new google.maps.LatLng(40.92, -73.70)    // NE corner of NYC
                 )
             };
             
             autocompleteService.getPlacePredictions(request, function(predictions, status) {
                 if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
-                    const googleMatches = predictions.slice(0, 5).map(pred => ({
+                    const googleMatches = predictions.slice(0, 7).map(pred => ({  // Show up to 7 Google results
                         address: pred.description,
                         type: 'google',
                         normalized: normalizeAddress(pred.description)
                     }));
                     
-                    displaySuggestions([...localMatches, ...googleMatches]);
+                    displaySuggestions([...localMatches, ...googleMatches]);  // Total up to 15 suggestions
                 } else {
                     displaySuggestions(localMatches);
                 }
@@ -5171,7 +5173,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: 5 Aug 2025 02:58:28 PM CST | Google API fix + green savings
+        Build: 5 Aug 2025 03:04:07 PM CST | NYC-only Google Places + 15 suggestions
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
