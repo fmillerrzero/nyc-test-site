@@ -16,7 +16,7 @@ TEST_DIR = "/Users/forrestmiller/Desktop/NYC Test"
 TEST_REPO = "https://github.com/fmillerrzero/nyc-test-site.git"
 
 # Top 5 BBLs from odcv_scoring.csv (hardcoded)
-TEST_BBLS = [1009950005, 1000940025, 1010160036, 1012670001, 1013010001]
+TEST_BBLS = [1009950005, 1013130005, 1010160036, 1012670001, 1013010001]
 
 def run_command(cmd, cwd=None, show_output=False):
     """Run a shell command and handle errors"""
@@ -37,7 +37,7 @@ def run_command(cmd, cwd=None, show_output=False):
 
 def modify_building_script(version_text):
     """Create modified building.py that only processes test BBLs"""
-    original_file = os.path.join(SOURCE_DIR, "building.py")
+    original_file = os.path.join(SOURCE_DIR, "Scripts", "building.py")
     temp_file = os.path.join(TEST_DIR, "temp_building_test.py")
     
     print("🔧 Creating modified building script...")
@@ -54,8 +54,9 @@ def modify_building_script(version_text):
     modified_content = content
     
     # Modification 1: Change all data file paths to use current directory
-    # The building script uses relative paths like 'data/file.csv'
-    # No need to change since we're running from TEST_DIR which has data/
+    # The building script now uses '../data/file.csv' paths since it's in Scripts folder
+    # We need to change these back to 'data/file.csv' for test mode
+    modified_content = modified_content.replace("../data/", "data/")
     
     # Modification 2: Filter to test BBLs only
     modified_content = modified_content.replace(
@@ -68,9 +69,10 @@ for i, row in scoring_filtered.iterrows():"""
     )
     
     # Modification 3: Change output directory
+    # Update the new path to output to test directory instead of Building reports folder
     modified_content = modified_content.replace(
-        'with open(f"{bbl}.html", \'w\') as f:',
-        f'with open(f"{{bbl}}.html", \'w\') as f:'
+        'output_path = f"/Users/forrestmiller/Desktop/New/Building reports/{bbl}.html"',
+        'output_path = f"{bbl}.html"  # Test mode: save to current directory'
     )
     
     # Modification 4: Change GitHub URLs to test site
@@ -81,8 +83,8 @@ for i, row in scoring_filtered.iterrows():"""
     
     # Modification 5: Add version text
     modified_content = modified_content.replace(
-        "Build: {datetime.now(pytz.timezone('America/Mexico_City')).strftime('%I:%M:%S %p CST')}",
-        f"Build: {{datetime.now(pytz.timezone('America/Mexico_City')).strftime('%I:%M:%S %p CST')}} | {version_text}"
+        "Build: {datetime.now(pytz.timezone('America/Mexico_City')).strftime('%-d %b %Y %I:%M:%S %p CST')}",
+        f"Build: {{datetime.now(pytz.timezone('America/Mexico_City')).strftime('%-d %b %Y %I:%M:%S %p CST')}} | {version_text}"
     )
     
     # Write modifications back to the temp file
@@ -94,7 +96,7 @@ for i, row in scoring_filtered.iterrows():"""
 
 def modify_homepage_script(version_text):
     """Create modified homepage.py that outputs to test folder"""
-    original_file = os.path.join(SOURCE_DIR, "homepage.py")
+    original_file = os.path.join(SOURCE_DIR, "Scripts", "homepage.py")
     temp_file = os.path.join(TEST_DIR, "temp_homepage_test.py")
     
     print("🔧 Creating modified homepage script...")
@@ -110,16 +112,21 @@ def modify_homepage_script(version_text):
     # Apply modifications
     modified_content = content
     
+    # Modification 0: Fix data paths
+    # The homepage script now uses '../data/file.csv' paths since it's in Scripts folder
+    # We need to change these back to 'data/file.csv' for test mode
+    modified_content = modified_content.replace("../data/", "data/")
+    
     # Modification 1: Change output path
     modified_content = modified_content.replace(
-        "with open('index.html', 'w', encoding='utf-8') as f:",
+        "with open('../index.html', 'w', encoding='utf-8') as f:",
         f"with open('{TEST_DIR}/index.html', 'w', encoding='utf-8') as f:"
     )
     
     # Modification 2: Filter to only show test BBLs
     # The homepage iterates through scoring dataframe, so we need to filter it
     modified_content = modified_content.replace(
-        "scoring = pd.read_csv('data/odcv_scoring.csv')",
+        "scoring = pd.read_csv('data/odcv_scoring.csv')",  # This will already be fixed by the ../data/ replacement
         f"""scoring = pd.read_csv('data/odcv_scoring.csv')
 # TEST MODE: Filter to only test BBLs
 test_bbls = {TEST_BBLS}
@@ -135,8 +142,8 @@ print(f"TEST MODE: Homepage will show {{len(scoring)}} buildings: {TEST_BBLS}")"
     
     # Modification 4: Add version text
     modified_content = modified_content.replace(
-        "Build: {datetime.now(pytz.timezone('America/Mexico_City')).strftime('%I:%M:%S %p CST')}",
-        f"Build: {{datetime.now(pytz.timezone('America/Mexico_City')).strftime('%I:%M:%S %p CST')}} | {version_text}"
+        "Build: {datetime.now(pytz.timezone('America/Mexico_City')).strftime('%-d %b %Y %I:%M:%S %p CST')}",
+        f"Build: {{datetime.now(pytz.timezone('America/Mexico_City')).strftime('%-d %b %Y %I:%M:%S %p CST')}} | {version_text}"
     )
     
     # Write modifications back to the temp file
