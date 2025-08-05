@@ -4151,6 +4151,7 @@
                     
                     displaySuggestions([...localMatches, ...googleMatches]);  // Total up to 15 suggestions
                 } else {
+                    console.log('Google Places failed with status:', status);
                     displaySuggestions(localMatches);
                 }
             });
@@ -4164,6 +4165,8 @@
     
     function displaySuggestions(suggestions) {
         const dropdown = document.getElementById('autocomplete-dropdown');
+        
+        console.log('displaySuggestions called with', suggestions.length, 'suggestions');
         
         if (suggestions.length === 0) {
             dropdown.style.display = 'none';
@@ -5184,7 +5187,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: 5 Aug 2025 03:25:13 PM CST | Debug autocomplete
+        Build: 5 Aug 2025 03:27:15 PM CST | More debug logs
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
