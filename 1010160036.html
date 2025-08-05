@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>1515 Broadway, New York, NY 10036 - ODCV Analysis (v1754358874)</title>
+    <title>1515 Broadway, New York, NY 10036 - ODCV Analysis (v1754359488)</title>
     <link rel="icon" type="image/png" href="https://rzero.com/wp-content/themes/rzero/build/images/favicons/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Preload aerial video for faster playback -->
@@ -43,6 +43,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+        
+        .section-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
         
         .rzero-logo {
@@ -607,9 +613,10 @@
         
         <!-- Section 1: General -->
         <div class="section section-white">
-            <h2 class="section-header">Image Gallery</h2>
-            
-            <div class="page">
+            <div class="section-content">
+                <h2 class="section-header">Image Gallery</h2>
+                
+                <div class="page">
                 <h3 class="page-title" id="image-gallery-title-1010160036">Static: <span style="color: #555;">Marketing</span></h3>
                 <div class="carousel-container">
                     <div class="carousel-track" id="carousel-1010160036">
@@ -737,15 +744,16 @@
                         <span class="dot" onclick="goToInteractiveSlide('1010160036', 1)" title="360° Virtual Tour"></span>
                     </div>
                 </div>
+                </div>
             </div>
-        </div>
         </div>
         
         <!-- Building Overview Section -->
         <div class="section section-gray">
-            <h2 class="section-header">Building Overview</h2>
-            
-            <div class="page">
+            <div class="section-content">
+                <h2 class="section-header">Building Overview</h2>
+                
+                <div class="page">
                 <h3 class="page-title">Property</h3>
                 <div class="stat">
                     <span class="stat-label">Last Renovated: </span>
@@ -794,11 +802,12 @@
                 </div>
                 <div class="stat">
                     <span class="stat-label">BMS Controls: </span>
-                    <span class="stat-value"><span style="color: black; font-weight: normal;">Ventilation</span><span style="color: black;">,</span> <span style="color: #ff6600; font-weight: normal;">Heating</span><span style="color: black;">,</span> <span style="color: #0066cc; font-weight: normal;">Cooling</span> <span style="font-weight: normal;">Controls</span></span>
+                    <span class="stat-value"><span style="color: black; font-weight: normal;">Ventilation</span><span style="color: black;">,</span> <span style="color: #ff6600; font-weight: normal;">Heating</span><span style="color: black;">,</span> <span style="color: #0066cc; font-weight: normal;">Cooling</span></span>
                 </div>
                 <div class='stat'><span class='stat-label'>Heating System: </span><span class='stat-value'>District Steam</span></div>
                 <div class='stat'><span class='stat-label'>Cooling System: </span><span class='stat-value'>Plant</span></div>
                 <div class='stat'><span class='stat-label'>Rooftop System: </span><span class='stat-value'>Cooling Towers: 5 | Water Tanks: 0</span></div>
+            </div>
             </div>
         </div>
         
@@ -806,10 +815,11 @@
         
         <!-- Section 2: Building -->
         <div class="section section-white">
-            <h2 class="section-header">Energy Efficiency</h2>
-            
-            <!-- Page 2.0 - Efficiency -->
-            <div class="page">
+            <div class="section-content">
+                <h2 class="section-header">Energy Efficiency</h2>
+                
+                <!-- Page 2.0 - Efficiency -->
+                <div class="page">
                 <h3 class="page-title">Performance</h3>
                 <div class="stat">
                     <span class="stat-label">ENERGY STAR Score: </span>
@@ -862,13 +872,15 @@
                     </div>
                 </div>
             
+            </div>
         </div>
         
         <!-- Section 3: Energy Consumption -->
         <div class="section section-gray">
-            <h2 class="section-header">Energy Consumption</h2>
-            
-            <div class="page">
+            <div class="section-content">
+                <h2 class="section-header">Energy Consumption</h2>
+                
+                <div class="page">
                 <h3 class="page-title">Usage</h3>
             <div class="chart-carousel">
                 <div class="chart-toggle">
@@ -898,14 +910,15 @@
                     <div id="office_cost_chart" style="width: 100%; height: 400px;"></div>
                 </div>
             </div>
-        </div>
+            </div>
         </div>
         
         <!-- Section 4: ODCV -->
         <div class="section section-white">
-            <h2 class="section-header">HVAC Analysis</h2>
-            
-            <div class="page">
+            <div class="section-content">
+                <h2 class="section-header">HVAC Analysis</h2>
+                
+                <div class="page">
                 <h3 class="page-title">Electricity Disaggregation</h3>
                 <div id="hvac_pct_chart" style="width: 100%; height: 400px;"></div>
             </div>
@@ -914,13 +927,15 @@
                 <h3 class="page-title">Savings Potential</h3>
                 <div id="odcv_savings_chart" style="width: 100%; height: 400px;"></div>
             </div>
+            </div>
         </div>
         
         <!-- Air Quality Section -->
         <div class="section section-gray">
-            <h2 class="section-header">Air Quality</h2>
-            
-            <div class="page">
+            <div class="section-content">
+                <h2 class="section-header">Air Quality</h2>
+                
+                <div class="page">
                 <h3 class="page-title">Outdoor Pollution (PM2.5)</h3>
             
             <div class="iaq-summary" style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px solid #e9ecef;">
@@ -944,6 +959,7 @@
             </div>
             
             <div id="pm25_chart" style="width: 100%; height: 400px;"></div>
+            </div>
             </div>
         </div>''' if chart_dates else ""}
         
@@ -1589,7 +1605,7 @@
     // PM2.5 Chart - Business Hours Only
     const pm25Data = {
         x: ["2025-07-05", "2025-07-06", "2025-07-07", "2025-07-08", "2025-07-09", "2025-07-10", "2025-07-11", "2025-07-12", "2025-07-13", "2025-07-14", "2025-07-15", "2025-07-16", "2025-07-17", "2025-07-18", "2025-07-19", "2025-07-20", "2025-07-21", "2025-07-22", "2025-07-23", "2025-07-24", "2025-07-25", "2025-07-26", "2025-07-27", "2025-07-28", "2025-07-29", "2025-07-30", "2025-07-31", "2025-08-01", "2025-08-02", "2025-08-03", "2025-08-04"],
-        y: [10.5, 6.468333333333334, 4.422083333333333, 10.684583333333334, 10.950000000000001, 8.28625, 5.12, 2.6916666666666664, 3.34, 2.56, 8.960833333333333, 9.414583333333333, 4.015, 5.425, 8.310416666666667, 7.578749999999999, 7.402083333333334, 5.293333333333334, 4.048333333333333, 4.769166666666666, 8.834583333333333, 5.9679166666666665, 6.728333333333333, 11.052083333333334, 16.017083333333336, 17.909166666666668, 10.72375, 5.53, 6.8825, 8.910416666666666, 9.973636363636363],
+        y: [10.59, 6.468333333333334, 4.422083333333333, 10.684583333333334, 10.950000000000001, 8.28625, 5.12, 2.6916666666666664, 3.34, 2.56, 8.960833333333333, 9.414583333333333, 4.015, 5.425, 8.310416666666667, 7.578749999999999, 7.402083333333334, 5.293333333333334, 4.048333333333333, 4.769166666666666, 8.834583333333333, 5.9679166666666665, 6.728333333333333, 11.052083333333334, 16.017083333333336, 17.909166666666668, 10.72375, 5.53, 6.8825, 8.910416666666666, 9.916521739130435],
         type: 'scatter',
         mode: 'lines',
         line: {color: '#0066cc', width: 3},
@@ -1812,7 +1828,7 @@
     </div>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif;">
-        Build: 07:54:38 PM CST | width
+        Build: 08:04:50 PM CST | maybe
     </div>
 </body>
 </html>
