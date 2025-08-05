@@ -128,13 +128,13 @@
         }
         
         .savings-medium {
-            color: #f57c00;
+            color: #1b5e20;
             font-weight: 700;
             position: relative;
         }
         
         .savings-low {
-            color: #616161;
+            color: #1b5e20;
             font-weight: 700;
             position: relative;
         }
@@ -326,7 +326,7 @@
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQdR4xY0a_qmEsYairsp6r6tXwh5qx_ho&libraries=places" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQdR4xY0a_qmEsYairsp6r6tXwh5qx_ho&libraries=places&callback=initGooglePlaces" async defer></script>
 </head>
 <body>
     <div class="container">
@@ -4066,14 +4066,21 @@
     let autocompleteService;
     let currentSelectedIndex = -1;
     
+    // Callback function for Google Maps API
+    function initGooglePlaces() {
+        if (typeof google !== 'undefined' && google.maps && google.maps.places) {
+            autocompleteService = new google.maps.places.AutocompleteService();
+            console.log('Google Places API initialized');
+        } else {
+            console.error('Google Places API failed to load');
+        }
+    }
+    
     function initAutocomplete() {
         const searchInput = document.getElementById('search');
         const dropdown = document.getElementById('autocomplete-dropdown');
         
-        // Initialize Google Places Autocomplete Service
-        if (typeof google !== 'undefined' && google.maps && google.maps.places) {
-            autocompleteService = new google.maps.places.AutocompleteService();
-        }
+        // Google Places Autocomplete Service will be initialized when API loads
         
         // Add event listeners
         searchInput.addEventListener('input', debounce(handleSearchInput, 300));
@@ -5164,7 +5171,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: 5 Aug 2025 02:54:14 PM CST | Fix Google autocomplete
+        Build: 5 Aug 2025 02:58:28 PM CST | Google API fix + green savings
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
