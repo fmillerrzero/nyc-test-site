@@ -4279,6 +4279,14 @@
         searchValue = searchValue.trim().toLowerCase();
         let variations = new Set([searchValue]);
         
+        // SPECIAL CASE: Handle "#### 6" pattern for Ave of the Americas
+        if (searchValue.match(/^\d+\s+6$/)) {
+            const buildingNum = searchValue.match(/^(\d+)\s+6$/)[1];
+            variations.add(buildingNum + ' ave of the americas');
+            variations.add(buildingNum + ' 6 ave');
+            variations.add(buildingNum + ' 6th ave');
+        }
+        
         // COMPREHENSIVE equivalences from your list
         const equivalences = {
             // Directions
@@ -5183,7 +5191,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: 5 Aug 2025 10:43:43 PM CST | Test Build
+        Build: 5 Aug 2025 11:28:53 PM CST | Test Build
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
