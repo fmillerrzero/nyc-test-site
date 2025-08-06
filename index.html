@@ -4147,23 +4147,15 @@
     }
     
     function filterTableWithValue(searchValue) {
-        const input = normalizeForComparison(searchValue);
+        // Generate all possible search variations for INCLUSIVE matching
+        const searchTerms = generateSearchVariations(searchValue.toLowerCase());
         const rows = document.querySelectorAll('#buildingTable tbody tr');
         let visibleCount = 0;
         
         rows.forEach(row => {
-            const searchText = normalizeForComparison(row.getAttribute('data-search'));
-            let matchesSearch = false;
-            
-            // Special handling for "#### 6" pattern
-            if (input.includes('|')) {
-                // This means we're searching for "#### 6" which was expanded to "#### 6|#### ave of the americas"
-                const searchTerms = input.split('|');
-                matchesSearch = searchText && searchTerms.some(term => searchText.includes(term.trim()));
-            } else {
-                matchesSearch = searchText && searchText.includes(input);
-            }
-            
+            const searchText = (row.getAttribute('data-search') || '').toLowerCase();
+            // Show row if ANY search term matches
+            const matchesSearch = searchTerms.some(term => searchText.includes(term));
             row.style.display = matchesSearch ? '' : 'none';
             if (matchesSearch) visibleCount++;
         });
@@ -4280,27 +4272,93 @@
         updateClearButtonState();
     }
     
+    // Generate all search variations for INCLUSIVE matching
+    function generateSearchVariations(searchValue) {
+        if (!searchValue) return [''];
+        
+        searchValue = searchValue.trim().toLowerCase();
+        let variations = new Set([searchValue]);
+        
+        // COMPREHENSIVE equivalences from your list
+        const equivalences = {
+            // Directions
+            'w ': 'west ', 'e ': 'east ', 'n ': 'north ', 's ': 'south ',
+            // Street types
+            ' ave': ' avenue', ' av': ' avenue', ' aveneue': ' avenue',
+            ' st': ' street', ' str': ' street',
+            ' rd': ' road', ' pl': ' place', ' plz': ' plaza',
+            ' sq': ' square', ' ct': ' court', ' ln': ' lane',
+            ' pkwy': ' parkway', ' cir': ' circle', ' blvd': ' boulevard',
+            ' dr': ' drive', ' hwy': ' highway', ' ter': ' terrace',
+            ' mt': ' mount', ' ft': ' fort',
+            // Numbers to ordinals
+            ' 1 ': ' 1st ', ' 2 ': ' 2nd ', ' 3 ': ' 3rd ',
+            ' 4 ': ' 4th ', ' 5 ': ' 5th ', ' 6 ': ' 6th ',
+            ' 7 ': ' 7th ', ' 8 ': ' 8th ', ' 9 ': ' 9th ',
+            ' 10 ': ' 10th ', ' 11 ': ' 11th ', ' 12 ': ' 12th ',
+            // Ordinals to words
+            '1st': 'first', '2nd': 'second', '3rd': 'third',
+            '4th': 'fourth', '5th': 'fifth', '6th': 'sixth',
+            '7th': 'seventh', '8th': 'eighth', '9th': 'ninth',
+            '10th': 'tenth', '11th': 'eleventh', '12th': 'twelfth',
+            // Special NYC streets
+            '6 ave': 'ave of the americas', '6th ave': 'ave of the americas',
+            'sixth ave': 'ave of the americas', 'avenue of the americas': '6 ave',
+            'park ave s': 'park avenue south',
+            // Common abbreviations
+            'lex': 'lexington', 'mad': 'madison', 'bway': 'broadway',
+            'col': 'columbus', 'cpw': 'central park west',
+            'rsd': 'riverside drive', 'fdr': 'fdr drive'
+        };
+        
+        // Apply all equivalences BOTH WAYS to be inclusive
+        // But limit iterations to avoid infinite expansion
+        const maxVariations = 20; // Reasonable limit
+        let iterations = 0;
+        let currentVariations = new Set(variations);
+        
+        while (iterations < 2) { // Only do 2 passes to avoid explosion
+            let newVariations = new Set(currentVariations);
+            currentVariations.forEach(v => {
+                if (newVariations.size > maxVariations) return; // Stop if too many
+                
+                // Apply each equivalence
+                for (let [short, full] of Object.entries(equivalences)) {
+                    // Only apply if it makes sense (word boundaries)
+                    if (v.includes(short)) {
+                        const newVar = v.replace(short, full);
+                        if (newVar !== v) newVariations.add(newVar);
+                    }
+                    if (v.includes(full)) {
+                        const newVar = v.replace(full, short);
+                        if (newVar !== v) newVariations.add(newVar);
+                    }
+                }
+            });
+            currentVariations = newVariations;
+            iterations++;
+        }
+        
+        // Special handling for numbered streets at the end
+        currentVariations.forEach(v => {
+            if (currentVariations.size > maxVariations) return; // Don't explode
+            
+            // If ends with just a number, try adding ave/st variations
+            if (v.match(/\s+\d+$/)) {
+                const num = v.match(/\s+(\d+)$/)[1];
+                currentVariations.add(v + ' ave');
+                currentVariations.add(v + ' st');
+            }
+        });
+        
+        return Array.from(currentVariations);
+    }
+    
     // Helper to normalize for comparison (removes case/spacing differences)
     function normalizeForComparison(text) {
         if (!text) return '';
-        let normalized = text.toLowerCase();
-        
-        // When searching for "#### 6" expand to search for BOTH "#### 6" AND "#### ave of the americas"
-        // This way it finds 6th Ave, 6th St, 6 Circle, whatever exists with that number
-        if (normalized.match(/^\d+\s+6\s*$/)) {
-            // User typed something like "1290 6" - search for both possibilities
-            const buildingNum = normalized.match(/^(\d+)\s+6\s*$/)[1];
-            // Return a pattern that will match either "1290 6" OR "1290 ave of the americas"
-            // We'll handle this specially in the search
-            return normalized + '|' + buildingNum + ' ave of the americas';
-        }
-        
-        // Also handle "6 ave" or "6th avenue" patterns
-        normalized = normalized.replace(/(^|\s)(sixth|6th|6)\s+(avenue|ave\.?|av)(\s|$)/gi, '$1ave of the americas$4');
-        
-        return normalized
-            .replace(/\s+/g, ' ')  // Normalize whitespace
-            .trim();
+        // SIMPLE: Just lowercase and normalize spaces
+        return text.toLowerCase().replace(/\s+/g, ' ').trim();
     }
     
     // Search functionality
@@ -5125,7 +5183,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: 5 Aug 2025 05:58:50 PM CST | Test Build
+        Build: 5 Aug 2025 10:43:43 PM CST | Test Build
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
