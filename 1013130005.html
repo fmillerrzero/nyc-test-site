@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>111 E 58th St, New York, NY 10022 - ODCV Analysis (v1754618448)</title>
+    <title>111 E 58th St, New York, NY 10022 - ODCV Analysis (v1754620379)</title>
     <link rel="icon" type="image/png" href="https://rzero.com/wp-content/themes/rzero/build/images/favicons/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -669,7 +669,7 @@
             </a>
             <div style="display: flex; flex-direction: column; justify-content: center;">
                 <div style="display: flex; align-items: baseline; gap: 1rem;">
-                    <span style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 25px; font-size: 1.6em; font-weight: 700;">#121<span class="info-tooltip" data-tooltip="Sales readiness rank based on 110-point scoring system. Lower numbers indicate better ODCV implementation opportunities considering finances, infrastructure, and decision complexity." style="display: inline-block; margin-left: 8px; width: 14px; height: 14px; background-color: rgba(255,255,255,0.8); color: #00769d; border-radius: 50%; text-align: center; line-height: 14px; font-size: 10px; cursor: help; position: relative; font-weight: normal;">i</span></span>
+                    <span style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 25px; font-size: 1.6em; font-weight: 700;">#121</span>
                     <span style="font-size: 2.5em; font-weight: 700; color: white; line-height: 1.2;">111 E 58th St, 10022</span>
                 </div>
                 <div style="margin: 0; opacity: 0.9; font-size: 1.1em; margin-left: calc(1.6em * 1.5 + 30px + 1rem); margin-top: -0.2rem;">
@@ -677,7 +677,7 @@
                 </div>
             </div>
             <div style="text-align: right; min-width: 200px; display: flex; flex-direction: column; justify-content: center;">
-                <div style="font-size: 2.5em; font-weight: 700; line-height: 1; color: white;">$169,511</div>
+                <div style="font-size: 2.5em; font-weight: 700; line-height: 1; color: white;">${total_2026_savings:,.0f}</div>
                 <div style="font-size: 1.1em; opacity: 0.9; margin-top: 0.5rem;">2026 ODCV Savings <span class="info-tooltip" data-tooltip="Combined ODCV energy savings plus LL97 penalty avoidance for 2026. Represents total first-year financial benefit from ODCV implementation." style="display: inline-block; margin-left: 5px; width: 14px; height: 14px; background-color: rgba(255,255,255,0.8); color: #00769d; border-radius: 50%; text-align: center; line-height: 14px; font-size: 10px; cursor: help; position: relative; font-weight: normal;">i</span></div>
                 
             </div>
@@ -1071,7 +1071,7 @@
                 <div class="page">
                     <div class="stat">
                         <span class="stat-label">ODCV Savings: </span>
-                        <span class="stat-value"><span style="color: #0066cc; font-weight: 600;">35.1%</span> of HVAC costs ($169,511 annually)</span>
+                        <span class="stat-value"><span style="color: #0066cc; font-weight: 600;">35.1%</span> of HVAC costs (${total_odcv_savings:,.0f} annually)</span>
                     </div>
                 </div>
                 
@@ -1177,8 +1177,11 @@
         }
     }
     
+    // Global variables
     let carouselIndex = {};
     let hiddenSlides = {};
+    let interactiveIndex = 0;
+    let tenantSortDir = {};
     
     // Handle missing images by hiding slides
     function handleImageError(img, bbl, imageType) {
@@ -1357,7 +1360,6 @@
     }
     
     // Enhanced Interactive carousel with smooth transitions
-    let interactiveIndex = 0;
     
     function moveInteractiveCarousel(bbl, direction) {
         const carousel = document.getElementById('interactive-carousel-' + bbl);
@@ -1427,24 +1429,68 @@
         moveInteractiveCarousel(bbl, 0);
     }
     
-    // Enhanced fullscreen functionality
-    function toggleFullscreen(button) {
-        const container = button.closest('.carousel-slide, .carousel-container');
-        const iframe = container.querySelector('iframe, video');
+    // Tenant table sorting
+    function sortTenantTable(col) {
+        // Find the tenant table (there should only be one per page)
+        const table = document.querySelector('[id^="tenantTable-"]');
+        if (!table) return;
         
-        if (!document.fullscreenElement) {
-            if (iframe && iframe.requestFullscreen) {
-                iframe.requestFullscreen();
-            } else if (container.requestFullscreen) {
-                container.requestFullscreen();
+        const tbody = table.querySelector('tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        
+        // Toggle sort direction
+        tenantSortDir[col] = !tenantSortDir[col];
+        
+        rows.sort((a, b) => {
+            let aVal, bVal;
+            
+            if (col === 3) {
+                // SF Occupied - parse number from formatted string
+                aVal = parseInt(a.cells[col].textContent.replace(/,/g, '') || '0');
+                bVal = parseInt(b.cells[col].textContent.replace(/,/g, '') || '0');
+            } else if (col === 4 || col === 5) {
+                // Dates - convert to sortable format
+                aVal = a.cells[col].textContent.trim();
+                bVal = b.cells[col].textContent.trim();
+                // Handle N/A values
+                if (aVal === 'N/A') aVal = '';
+                if (bVal === 'N/A') bVal = '';
+                // Convert Mon-YY to YYYY-MM for sorting
+                if (aVal && aVal !== 'N/A') {
+                    const [month, year] = aVal.split('-');
+                    const monthNum = new Date(month + ' 1, 2000').getMonth() + 1;
+                    aVal = `20${year}-${monthNum.toString().padStart(2, '0')}`;
+                }
+                if (bVal && bVal !== 'N/A') {
+                    const [month, year] = bVal.split('-');
+                    const monthNum = new Date(month + ' 1, 2000').getMonth() + 1;
+                    bVal = `20${year}-${monthNum.toString().padStart(2, '0')}`;
+                }
+            } else {
+                // Text columns (Tenant, Industry, Floor)
+                aVal = a.cells[col].textContent.toLowerCase().trim();
+                bVal = b.cells[col].textContent.toLowerCase().trim();
             }
-            button.textContent = '⛷';
-        } else {
-            if (document.exitFullscreen) {
-                document.exitFullscreen();
-                button.textContent = '⛶';
+            
+            if (tenantSortDir[col]) {
+                return aVal > bVal ? 1 : -1;
+            } else {
+                return aVal < bVal ? 1 : -1;
             }
-        }
+        });
+        
+        // Clear and rebuild tbody
+        tbody.innerHTML = '';
+        rows.forEach(row => tbody.appendChild(row));
+        
+        // Update sort indicators
+        const headers = table.querySelectorAll('th');
+        headers.forEach((th, idx) => {
+            const indicator = th.querySelector('.sort-indicator');
+            if (indicator) {
+                indicator.textContent = idx === col ? (tenantSortDir[col] ? '↑' : '↓') : '↕';
+            }
+        });
     }
     
     // Energy chart
@@ -1475,19 +1521,19 @@
     
     const steamData = {
         x: months,
-        y: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+        y: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         name: 'Steam',
         type: 'scatter',
         mode: 'lines+markers',
         line: {color: '#ffc107', width: 3},
         marker: {size: 8},
         hovertemplate: '%{x}<br>Steam: %{y:,.0f} kBtu<br>(%{customdata:,.0f} lbs)<extra></extra>',
-        customdata: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0].map(v => kBtuToLbs(v))
+        customdata: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0].map(v => kBtuToLbs(v))
     };
     
     const layout = {
         title: {
-            text: 'Monthly Usage (2023) <span class="info-tooltip" data-tooltip="From mandatory NYC energy reporting that buildings must file accurately or face penalties. Shows actual metered consumption for entire building, not estimates." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span>',
+            text: "Monthly Usage (2023) <span class='info-tooltip' data-tooltip='From mandatory NYC energy reporting that buildings must file accurately or face penalties. Shows actual metered consumption for entire building, not estimates.' style='display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;'>i</span>",
             font: {size: 20}
         },
         yaxis: {
@@ -1534,7 +1580,7 @@
     
     const officeSteamData = {
         x: months,
-        y: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+        y: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         name: 'Steam',
         type: 'bar',
         marker: {color: '#ffc107'}
@@ -1542,7 +1588,7 @@
     
     const officeLayout = {
         title: {
-            text: 'Monthly Office Usage (2023) <span class="info-tooltip" data-tooltip="Office portion of building consumption from LL84 reporting. Calculated using your office square footage percentage of total building area." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span>',
+            text: "Monthly Office Usage (2023) <span class='info-tooltip' data-tooltip='Office portion of building consumption from LL84 reporting. Calculated using your office square footage percentage of total building area.' style='display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;'>i</span>",
             font: {size: 20}
         },
         yaxis: {
@@ -1606,7 +1652,7 @@
     
     const costLayout = {
         title: {
-            text: 'Monthly Cost (2023) <span class="info-tooltip" data-tooltip="LL84 consumption multiplied by current ConEd commercial rates via Genability rate engine. Includes all charges for this building's specific tariff class." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span>',
+            text: "Monthly Cost (2023) <span class='info-tooltip' data-tooltip='LL84 consumption multiplied by current ConEd commercial rates via Genability rate engine. Includes all charges for this building\'s specific tariff class.' style='display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;'>i</span>",
             font: {size: 20}
         },
         yaxis: {
@@ -1667,7 +1713,7 @@
     
     const officeCostLayout = {
         title: {
-            text: 'Office Space Monthly Cost (2023) <span class="info-tooltip" data-tooltip="Office-specific energy costs based on your space's proportional usage. Calculated using actual utility rates including demand charges and taxes." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span>',
+            text: "Office Space Monthly Cost (2023) <span class='info-tooltip' data-tooltip='Office-specific energy costs based on your space\'s proportional usage. Calculated using actual utility rates including demand charges and taxes.' style='display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;'>i</span>",
             font: {size: 20}
         },
         yaxis: {
@@ -1775,7 +1821,7 @@
     
     const hvacLayout = {
         title: {
-            text: 'HVAC as % of Total Electricity Usage <span class="info-tooltip" data-tooltip="Found using baseline method: your lowest month reveals what's always on (lights, elevators). Everything above baseline is HVAC. Method proven across portfolio." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span>',
+            text: "HVAC as % of Total Electricity Usage <span class='info-tooltip' data-tooltip='Found using baseline method: your lowest month reveals what\'s always on (lights, elevators). Everything above baseline is HVAC. Method proven across portfolio.' style='display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;'>i</span>",
             font: {size: 20}
         },
         yaxis: {
@@ -1863,7 +1909,7 @@
 
     const hvacSteamCost = {
         x: months,
-        y: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+        y: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         name: 'HVAC Steam Cost',
         type: 'bar',
         marker: {color: '#ffc107'},
@@ -1887,7 +1933,7 @@
         [hvacElecCost, hvacGasCost, hvacSteamCost, odcvSavingsLine], 
         {
             title: {
-                text: 'Monthly HVAC Costs with ODCV Savings Potential <span class="info-tooltip" data-tooltip="Monthly HVAC costs by fuel type with ODCV savings overlaid. Shows exactly how much of each month's HVAC spend can be reduced through ventilation control." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span>',
+                text: "Monthly HVAC Costs with ODCV Savings Potential <span class='info-tooltip' data-tooltip='Monthly HVAC costs by fuel type with ODCV savings overlaid. Shows exactly how much of each month\'s HVAC spend can be reduced through ventilation control.' style='display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;'>i</span>",
                 font: {size: 20}
             },
             yaxis: {
@@ -1928,7 +1974,7 @@
     
     Plotly.newPlot('odcv_savings_chart', odcvSavingsData, {
         title: {
-            text: 'Monthly ODCV Savings <span class="info-tooltip" data-tooltip="Calculated from this building's mandatory LL84 reporting and actual BAS capabilities. Based on reducing ventilation during unoccupied hours using your specific occupancy patterns." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span>',
+            text: "Monthly ODCV Savings <span class='info-tooltip' data-tooltip='Calculated from this building\'s mandatory LL84 reporting and actual BAS capabilities. Based on reducing ventilation during unoccupied hours using your specific occupancy patterns.' style='display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;'>i</span>",
             font: {size: 20}
         },
         yaxis: {
@@ -1966,12 +2012,12 @@
         },
         text: ['35.1%'],
         textposition: 'outside',
-        hovertemplate: 'ODCV saves 35.1% of HVAC costs<br>$169,511 of $482,766<extra></extra>'
+        hovertemplate: 'ODCV saves 35.1% of HVAC costs<br>${total_odcv_savings:,.0f} of ${total_office_hvac_cost_annual:,.0f}<extra></extra>'
     }];
 
     Plotly.newPlot('odcv_percentage_chart', percentageData, {
         title: {
-            text: 'ODCV Savings as % of Total HVAC Costs <span class="info-tooltip" data-tooltip="Percentage of total HVAC costs saved through ventilation reduction. Based on this building's specific BAS capabilities and occupancy schedule from actual operations data." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span>',
+            text: "ODCV Savings as % of Total HVAC Costs <span class='info-tooltip' data-tooltip='Percentage of total HVAC costs saved through ventilation reduction. Based on this building\'s specific BAS capabilities and occupancy schedule from actual operations data.' style='display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;'>i</span>",
             font: {size: 20}
         },
         yaxis: {
@@ -2123,6 +2169,7 @@
     });
     
     // Initialize 360° panorama with Manhattan grid logic
+    // Initialize 360° panorama with Manhattan grid logic
     document.addEventListener('DOMContentLoaded', () => {
         // Manhattan grid even/odd logic for yaw
         function getBuildingYaw(address) {
@@ -2158,7 +2205,7 @@
         }
         
         // Function to initialize panorama
-        function initPanorama() {
+        window.initPanorama = function() {
             const viewerEl = document.getElementById('viewer-1013130005');
             if (!viewerEl || viewerEl._pannellumInitialized) return;
             
@@ -2205,8 +2252,11 @@
             }
         }
         
-        // If no video, initialize panorama immediately since it's the only view
-        
+        // Initialize based on whether video exists
+        const hasVideo = true;
+        if (!hasVideo) {
+            setTimeout(window.initPanorama, 500);
+        }
         
         // Don't initialize immediately if video exists - wait for user to navigate to panorama slide
         
@@ -2216,7 +2266,7 @@
             if (originalMoveCarousel) originalMoveCarousel(bbl, direction);
             if (interactiveIndex === 1) {
                 setTimeout(() => {
-                    initPanorama();
+                    window.initPanorama();
                     // Ensure rotation starts after panorama loads
                     setTimeout(() => {
                         const viewerEl = document.getElementById('viewer-1013130005');
@@ -2229,77 +2279,14 @@
         };
     });
     
-    // Tenant table sorting
-    let tenantSortDir = {};
-    function sortTenantTable(col) {
-        // Find the tenant table (there should only be one per page)
-        const table = document.querySelector('[id^="tenantTable-"]');
-        if (!table) return;
-        
-        const tbody = table.querySelector('tbody');
-        const rows = Array.from(tbody.querySelectorAll('tr'));
-        
-        // Toggle sort direction
-        tenantSortDir[col] = !tenantSortDir[col];
-        
-        rows.sort((a, b) => {
-            let aVal, bVal;
-            
-            if (col === 3) {
-                // SF Occupied - parse number from formatted string
-                aVal = parseInt(a.cells[col].textContent.replace(/,/g, '') || '0');
-                bVal = parseInt(b.cells[col].textContent.replace(/,/g, '') || '0');
-            } else if (col === 4 || col === 5) {
-                // Dates - convert to sortable format
-                aVal = a.cells[col].textContent.trim();
-                bVal = b.cells[col].textContent.trim();
-                // Handle N/A values
-                if (aVal === 'N/A') aVal = '';
-                if (bVal === 'N/A') bVal = '';
-                // Convert Mon-YY to YYYY-MM for sorting
-                if (aVal && aVal !== 'N/A') {
-                    const [month, year] = aVal.split('-');
-                    const monthNum = new Date(month + ' 1, 2000').getMonth() + 1;
-                    aVal = `20${year}-${monthNum.toString().padStart(2, '0')}`;
-                }
-                if (bVal && bVal !== 'N/A') {
-                    const [month, year] = bVal.split('-');
-                    const monthNum = new Date(month + ' 1, 2000').getMonth() + 1;
-                    bVal = `20${year}-${monthNum.toString().padStart(2, '0')}`;
-                }
-            } else {
-                // Text columns (Tenant, Industry, Floor)
-                aVal = a.cells[col].textContent.toLowerCase().trim();
-                bVal = b.cells[col].textContent.toLowerCase().trim();
-            }
-            
-            if (tenantSortDir[col]) {
-                return aVal > bVal ? 1 : -1;
-            } else {
-                return aVal < bVal ? 1 : -1;
-            }
-        });
-        
-        // Clear and rebuild tbody
-        tbody.innerHTML = '';
-        rows.forEach(row => tbody.appendChild(row));
-        
-        // Update sort indicators
-        const headers = table.querySelectorAll('th');
-        headers.forEach((th, idx) => {
-            const indicator = th.querySelector('.sort-indicator');
-            if (indicator) {
-                indicator.textContent = idx === col ? (tenantSortDir[col] ? '↑' : '↓') : '↕';
-            }
-        });
-    }
+    // sortTenantTable already defined in first script block
     
     </script>
     
     </div><!-- End of container -->
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif; border: none !important; box-shadow: none !important; background: transparent;">
-        Build: 7 Aug 2025 08:01:22 PM CST | Test Build
+        Build: 7 Aug 2025 08:34:30 PM CST | Test Build
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
