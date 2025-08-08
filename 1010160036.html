@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>1515 Broadway, New York, NY 10036 - ODCV Analysis (v1754627777)</title>
+    <title>1515 Broadway, New York, NY 10036 - ODCV Analysis (v1754629035)</title>
     <link rel="icon" type="image/png" href="https://rzero.com/wp-content/themes/rzero/build/images/favicons/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -678,7 +678,7 @@
             </div>
             <div style="text-align: right; min-width: 200px; display: flex; flex-direction: column; justify-content: center;">
                 <div style="font-size: 2.5em; font-weight: 700; line-height: 1; color: white;">$651,112</div>
-                <div style="font-size: 1.1em; opacity: 0.9; margin-top: 0.5rem;">2026 ODCV Savings <span class="info-tooltip" data-tooltip="We split monthly electricity into HVAC vs non-HVAC using your lowest-load month, season, heating type, efficiency, system type, and BMS; gas/steam are HVAC unless flagged. Your ODCV% (20–30%) is set from actual vacancy, occupancy patterns, ventilation schedule, and BMS control. We apply that to HVAC energy and price it with your real tariffs (Genability for electric; published gas/steam). If post-ODCV emissions are under LL97, we include the avoided fines. That total is your 2026 dollars." style="display: inline-block; margin-left: 5px; width: 14px; height: 14px; background-color: rgba(255,255,255,0.8); color: #00769d; border-radius: 50%; text-align: center; line-height: 14px; font-size: 10px; cursor: help; position: relative; font-weight: normal;">i</span></div>
+                <div style="font-size: 1.1em; opacity: 0.9; margin-top: 0.5rem;">2026 ODCV Savings</div>
                 
             </div>
         </div>
@@ -901,7 +901,7 @@
                     </div>
                 </div>
                 <div class="stat">
-                    <span class="stat-label">LL33 Grade: <span class="info-tooltip" data-tooltip="This is your public energy grade from Energy Star. We also use the score to gently adjust the HVAC split (higher score → slightly lower HVAC share), which flows into the ODCV dollars priced with your actual rates." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span></span>
+                    <span class="stat-label">LL33 Grade:</span>
                     <span class="stat-value"><span class="energy-grade grade-N(EXEMPT)">N (exempt)</span></span>
                 </div>
             </div>
@@ -910,7 +910,7 @@
                 <div class="page">
                     <h3 class="page-title">LL97 Compliance</h3>
                     <div class="stat">
-                        <span class="stat-label">2024-2029 Status: <span class="info-tooltip" data-tooltip="We convert your LL84 energy to emissions with NYC factors and compare to the LL97 cap for each period. Then we rerun emissions after ODCV (HVAC cut set by your vacancy, occupancy patterns, ventilation hours, and BMS). If that brings you under the cap, the avoided city fines are added to savings." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span></span>
+                        <span class="stat-label">2024-2029 Status:</span>
                         <span class="stat-value"><span class="yes">Compliant</span></span>
                     </div>
                     <div class="stat">
@@ -932,7 +932,7 @@
                 <h2 class="section-header">Energy Consumption</h2>
                 
                 <div class="page">
-                <h3 class="page-title">Usage <span class="info-tooltip" data-tooltip="These are your reported monthly kWh, therms, and steam, normalized for bill days. They feed the HVAC split, which determines how much energy can be removed by ODCV." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span></h3>
+                <h3 class="page-title">Usage</h3>
             <div class="chart-carousel">
                 <div class="chart-toggle">
                     <button class="toggle-btn active" onclick="showChart('usage', 'building')">Building</button>
@@ -948,7 +948,7 @@
         </div>
         
         <div class="page">
-            <h3 class="page-title">Cost <span class="info-tooltip" data-tooltip="We price dollars with your actual tariffs. Genability selects your exact Con Edison rate and builds a month-specific all-in $/kWh (energy, delivery, riders; demand blended when ventilation drives peaks). Gas and steam use the published NYC rates. We credit only the variable HVAC energy ODCV avoids." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span></h3>
+            <h3 class="page-title">Cost</h3>
             <div class="chart-carousel">
                 <div class="chart-toggle">
                     <button class="toggle-btn active" onclick="showChart('cost', 'building')">Building</button>
@@ -970,24 +970,23 @@
                 <h2 class="section-header">HVAC Analysis</h2>
                 
                 <div class="page">
-                    <div class="stat">
-                        <span class="stat-label">ODCV Savings: </span>
-                        <span class="stat-value"><span style="color: #0066cc; font-weight: 600;">32.5%</span> of HVAC costs (${total_odcv_savings:,.0f} annually)</span>
-                    </div>
                 </div>
                 
                 <div class="page">
-                <h3 class="page-title">Usage Disaggregation <span class="info-tooltip" data-tooltip="We find your always-on baseline from the lowest normalized month, then treat the rest as HVAC, with seasonal adjustments for cooling and heating type. We keep a small ventilation floor and tune by efficiency, system type, and BMS. The result is monthly HVAC%—the input to ODCV savings." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span></h3>
+                <h3 class="page-title">Usage Disaggregation</h3>
                 <div id="hvac_pct_chart" style="width: 100%; height: 400px;"></div>
             </div>
             
             <div class="page">
-                <h3 class="page-title">HVAC Costs & ODCV Savings % <span class="info-tooltip" data-tooltip="How we got the annual savings: (1) Monthly HVAC electricity usage (from disaggregation) × your ODCV% → priced with Genability all-in $/kWh. (2) For fuels, we assume 90% of monthly gas and steam are HVAC-heating in offices, then apply your ODCV% and price with published NYC gas/steam rates. (3) If post-ODCV emissions are under LL97, we add avoided fines. Sum across all months and fuels." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span></h3>
+                <h3 class="page-title">HVAC Costs & ODCV Savings %</h3>
                 <div id="hvac_cost_breakdown_chart" style="width: 100%; height: 400px;"></div>
+                <div style="text-align: center; margin-top: 15px; font-size: 14px; color: #666;">
+                    <strong>Average ODCV Savings: 32.5% of HVAC costs</strong>
+                </div>
             </div>
             
             <div class="page">
-                <h3 class="page-title">Cumulative ODCV Savings (Running Total) <span class="info-tooltip" data-tooltip="Cumulative savings (running total): each bar adds that month's ODCV savings to all prior months—so the bar shows savings to date, not just that month. Monthly ODCV savings come from HVAC electricity usage × your ODCV% (20–30% from vacancy, occupancy variability, and BMS controls) priced with Genability all-in $/kWh; plus gas & steam (we assume 90% is HVAC-heating in offices) × your ODCV% × published NYC rates. If post-ODCV emissions fall under the LL97 cap, we add avoided $268/ton fines. Fixed customer charges are excluded. The final bar equals the annual ODCV savings." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span></h3>
+                <h3 class="page-title">Cumulative ODCV Savings (Running Total)</h3>
                 <div id="odcv_savings_chart" style="width: 100%; height: 400px;"></div>
             </div>
             </div>
@@ -2180,7 +2179,7 @@
     </div><!-- End of container -->
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif; border: none !important; box-shadow: none !important; background: transparent;">
-        Build: 7 Aug 2025 10:36:39 PM CST | Test Build
+        Build: 7 Aug 2025 10:57:18 PM CST | Test Build
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
@@ -2192,20 +2191,11 @@
   /* small inline tooltip badge */
   .calc-tip{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;margin-left:6px;cursor:help;
             background:#eef2ff;border:1px solid #c7d2fe;font:700 11px/1 system-ui;color:#3730a3}
-  /* drawer styles */
-  details.calc-drawer{margin:10px 0 0}
-  details.calc-drawer>summary{cursor:pointer;font:600 13px/1.2 system-ui;margin-bottom:6px}
-  .calc-explainer{font:13px/1.38 system-ui;color:#0f172a;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px}
-  .calc-explainer p{margin:0 0 8px}
-  .calc-explainer strong{font-weight:700}
 </style>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  // Plain-English pricing line we reuse
-  const GEN = "Genability = the utility rate engine we use to pull your exact Con Edison tariff (service class/voltage) and all riders so we price with your real month-specific all-in $/kWh (not averages). Demand is blended when ventilation affects peak; fixed customer charges are not credited.";
-
-  // SHORT tooltips (one-liners; non-redundant with drawer)
+  // SHORT tooltips (one-liners)
   const SHORT = {
     ll97: "CO₂e vs LL97 cap; post-ODCV recheck; add avoided $268/ton fines if under cap.",
     odcv2026: "2026: HVAC electricity × ODCV% priced by your tariff + avoided LL97 fines.",
@@ -2213,25 +2203,12 @@ document.addEventListener('DOMContentLoaded', () => {
     usage: "LL84 monthly kWh/therms/steam (normalized). Feeds HVAC electricity split.",
     cost: "Priced with Genability all-in $/kWh; gas/steam use published NYC rates.",
     disagg: "Baseline (lowest month) + ~15% floor + seasonality + heat-type from winter fuels + building factors → monthly HVAC% of electricity.",
-    overlay: "Highlighted = HVAC electricity × your ODCV% (bigger in hot/cold months).",
+    overlay: "How we got the savings: Electricity: split into HVAC vs non-HVAC (lowest-use month baseline + ~15% ventilation floor; winter gas/steam tells us heat type). ODCV% (20–30%) = vacancy + control capacity (BMS can control heating, cooling, ventilation). Monthly $ = HVAC electricity × ODCV%, priced with your exact ConEd tariff via Genability (our rate calculator). Gas/steam: we treat 90% as HVAC heat, apply your ODCV%, then price with posted NYC gas ($/therm) and steam ($/klb) rates.",
     potential: "Sum: HVAC elec × ODCV% (Genability-priced) + gas/steam (90% HVAC heat) × ODCV% + avoided LL97 fines.",
-    cumulative: "Running total of ODCV savings to date; last bar = annual total."
+    cumulative: "Cumulative savings (running total): each bar adds that month's ODCV savings to all prior months—savings to date, not just that month. How we got the savings: Electricity: split into HVAC vs non-HVAC (lowest-use month baseline + ~15% ventilation floor; winter gas/steam tells us heat type). ODCV% (20–30%) = vacancy + control capacity (BMS can control heating, cooling, ventilation). Monthly $ = HVAC electricity × ODCV%, priced with your exact ConEd tariff via Genability (our rate calculator). Gas/steam: we treat 90% as HVAC heat, apply your ODCV%, then price with posted NYC gas ($/therm) and steam ($/klb) rates."
   };
 
-  // LONG drawers (full explainer per chart)
-  const COPY = {
-    ll97: "We convert your LL84 energy to CO₂e with NYC factors and compare to the LL97 cap for each period. We re-run after ODCV (HVAC reduction set from vacancy, occupancy variability, and BMS control). If that puts you under the cap, we add the avoided $268/ton fines to savings.",
-    odcv2026: "This shows 2026 ODCV dollars: HVAC electricity usage savings priced with your tariffs, plus avoided LL97 fines if post-ODCV is under the cap. ODCV% (20–30%) comes from vacancy, occupancy variability, and BMS controls (CO₂/occupancy sensors, outside-air dampers). " + GEN,
-    ll33: "Your LL33 grade comes from your Energy Star score. We lightly use the score to tune the HVAC % of electricity (higher score → slightly lower HVAC share), which flows into ODCV dollars.",
-    usage: "These are your reported LL84 monthly kWh, therms, and steam (klb), normalized for bill days. They feed the HVAC electricity split and then ODCV savings.",
-    cost: GEN + " Gas and steam are priced with published NYC rates by month.",
-    disagg: "We find your always-on baseline from the lowest normalized month and treat the rest as HVAC electricity. We detect heating type from winter gas/steam usage: fuel heat ⇒ lower winter electric HVAC (fans/pumps only); electric heat ⇒ higher winter electric HVAC. We keep a ~15% ventilation floor, apply seasonal adjustments, and tune by efficiency/EUI, system type, and BMS. Smoothed and bounded monthly HVAC% of electricity—this is the input to ODCV savings.",
-    overlay: "Bars show HVAC dollars by fuel using your tariffs. The highlighted portion is what ODCV removes: HVAC electricity usage × your ODCV% (set from vacancy, occupancy variability, and BMS). Bigger in hot/cold months when HVAC is larger.",
-    potential: "Annual savings = (monthly HVAC electricity usage × your ODCV% priced with Genability all-in $/kWh) + (monthly gas & steam where we assume 90% is HVAC-heating in offices × your ODCV% × published rates) + (avoided LL97 fines if post-ODCV is under the cap). Fixed customer charges are not credited.",
-    cumulative: "Cumulative savings (running total): each bar adds that month's ODCV savings to all prior months—savings to date, not just that month. Components: HVAC electricity usage × your ODCV% (20–30%, from vacancy, occupancy variability, BMS) priced with Genability all-in $/kWh; plus gas & steam (assume 90% HVAC heat) × your ODCV% × published NYC rates; plus avoided LL97 fines if under cap. Final bar = annual total."
-  };
-
-  // Header→key mapping (title-insensitive). Add your own if titles differ.
+  // Header→key mapping
   const MAP = [
     { re: /ll\s*97|local\s*law\s*97/i, key: 'll97' },
     { re: /2026.*odcv|total.*2026|2026 savings/i, key: 'odcv2026' },
@@ -2259,7 +2236,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 2) Add tooltip (short) + drawer (long) per chart
+  // 2) Add tooltip (short) per chart
   const headers = document.querySelectorAll('h2.section-header, h3.page-title, .chart-title, [data-chart-title]');
   headers.forEach(h => {
     const title = (h.textContent || '').trim();
@@ -2278,19 +2255,6 @@ document.addEventListener('DOMContentLoaded', () => {
       h.appendChild(tip);
     }
 
-    // Drawer: long explainer (idempotent)
-    if (!(h.nextElementSibling && h.nextElementSibling.classList && h.nextElementSibling.classList.contains('calc-drawer'))) {
-      const details = document.createElement('details');
-      details.className = 'calc-drawer';
-      const sum = document.createElement('summary');
-      sum.textContent = 'How this was calculated';
-      const wrap = document.createElement('div');
-      wrap.className = 'calc-explainer';
-      wrap.textContent = COPY[key] || '';
-      details.appendChild(sum);
-      details.appendChild(wrap);
-      h.insertAdjacentElement('afterend', details);
-    }
   });
 });
 </script>
