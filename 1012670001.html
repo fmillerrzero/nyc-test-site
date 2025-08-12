@@ -1,7 +1,10 @@
 <!DOCTYPE html>
+<!-- Generated: 2025-08-11 21:37:02 EST -->
+<!-- Last Updated: August 10, 2025 -->
+<!-- Building Report Version: 1754962614 -->
 <html>
 <head>
-    <title>1290 Ave Of The Americas, New York, NY 10104 - ODCV Analysis (v1754629390)</title>
+    <title>1290 Ave Of The Americas, New York, NY 10104 - ODCV Analysis (v1754962614)</title>
     <link rel="icon" type="image/png" href="https://rzero.com/wp-content/themes/rzero/build/images/favicons/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -560,6 +563,25 @@
             background: rgba(0, 0, 0, 0.8);
         }
         
+        /* Salesify button */
+        .salesify-btn {
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          background: linear-gradient(180deg, #0ea5e9, #0066cc);
+          color: #fff;
+          border: none;
+          padding: 10px 16px;
+          border-radius: 10px;
+          font-weight: 700;
+          letter-spacing: 0.2px;
+          cursor: pointer;
+          box-shadow: 0 8px 20px rgba(0,102,204,.25);
+          transition: transform .06s ease, filter .15s ease;
+          z-index: 100;
+          position: relative;
+        }
+        .salesify-btn:hover { filter: brightness(1.06); transform: translateY(-1px); }
+        .salesify-btn:active { transform: translateY(0); }
+        
         .class-badge {
             display: inline-flex;
             align-items: center;
@@ -678,8 +700,9 @@
             </div>
             <div style="text-align: right; min-width: 200px; display: flex; flex-direction: column; justify-content: center;">
                 <div style="font-size: 2.5em; font-weight: 700; line-height: 1; color: white;">$1,090,509</div>
-                <div style="font-size: 1.1em; opacity: 0.9; margin-top: 0.5rem;">2026 ODCV Savings <span class="info-tooltip" data-tooltip="2026: HVAC electricity × ODCV% priced by your tariff + avoided LL97 fines." style="display: inline-block; margin-left: 5px; width: 14px; height: 14px; background-color: rgba(255,255,255,0.8); color: #00769d; border-radius: 50%; text-align: center; line-height: 14px; font-size: 10px; cursor: help; position: relative; font-weight: normal;">i</span></div>
+                <div style="font-size: 1.1em; opacity: 0.9; margin-top: 0.5rem;">2026 ODCV Savings</div>
                 
+                <button id="salesifyBtn" class="salesify-btn" onclick="handleSalesify()" style="margin-top: 12px;">Salesify</button>
             </div>
         </div>
         
@@ -877,7 +900,7 @@
             <div class="section-content">
                 <h2 class="section-header">Energy Efficiency</h2>
                 
-                <!-- Page 2.0 - Efficiency -->
+                <!-- Page 2 - Performance -->
                 <div class="page">
                 <h3 class="page-title">Performance</h3>
                 <div class="stat">
@@ -901,8 +924,12 @@
                     </div>
                 </div>
                 <div class="stat">
-                    <span class="stat-label">LL33 Grade: <span class="info-tooltip" data-tooltip="Energy Star→LL33 grade; lightly tunes HVAC% of electricity." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span></span>
+                    <span class="stat-label">LL33 Grade:</span>
                     <span class="stat-value"><span class="energy-grade grade-C">C</span></span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Building EUI: <span class="info-tooltip" data-tooltip="Energy Use Intensity measures annual energy consumption per square foot. Building EUI = Total Annual Energy ÷ Total Building Area. Lower values indicate better efficiency. NYC median is ~65 kBtu/sf/year." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span></span>
+                    <span class="stat-value">0.0 kBtu/sf/year</span>
                 </div>
             </div>
             
@@ -910,7 +937,7 @@
                 <div class="page">
                     <h3 class="page-title">LL97 Compliance</h3>
                     <div class="stat">
-                        <span class="stat-label">2024-2029 Status: <span class="info-tooltip" data-tooltip="CO₂e vs LL97 cap; post-ODCV recheck; add avoided $268/ton fines if under cap." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span></span>
+                        <span class="stat-label">2024-2029 Status: <span class="info-tooltip" data-tooltip="Expected LL97 fine avoidance (if any): we compare your annual CO₂e to the LL97 cap after ODCV; any over-cap tons eliminated are calculated at $268/ton. If you're still over the cap, this is $0." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span></span>
                         <span class="stat-value"><span class="yes">Compliant</span></span>
                     </div>
                     <div class="stat">
@@ -932,7 +959,7 @@
                 <h2 class="section-header">Energy Consumption</h2>
                 
                 <div class="page">
-                <h3 class="page-title">Usage <span class="info-tooltip" data-tooltip="LL84 monthly kWh/therms/steam (normalized). Feeds HVAC electricity split." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span></h3>
+                <h3 class="page-title">Usage <span class="info-tooltip" data-tooltip="Energy usage data from building's NYC LL84 disclosure" style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span></h3>
             <div class="chart-carousel">
                 <div class="chart-toggle">
                     <button class="toggle-btn active" onclick="showChart('usage', 'building')">Building</button>
@@ -948,7 +975,7 @@
         </div>
         
         <div class="page">
-            <h3 class="page-title">Cost <span class="info-tooltip" data-tooltip="Priced with Genability all-in $/kWh; gas/steam use published NYC rates." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span></h3>
+            <h3 class="page-title">Cost <span class="info-tooltip" data-tooltip="Electricity is priced with Genability—our utility-rate engine that applies your exact Con Edison tariff, fees, and taxes—to get all-in $/kWh; gas and steam use published NYC rates." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span></h3>
             <div class="chart-carousel">
                 <div class="chart-toggle">
                     <button class="toggle-btn active" onclick="showChart('cost', 'building')">Building</button>
@@ -973,12 +1000,12 @@
                 </div>
                 
                 <div class="page">
-                <h3 class="page-title">Usage Disaggregation <span class="info-tooltip" data-tooltip="Baseline (lowest month) + ~15% floor + seasonality + heat-type from winter fuels + building factors → monthly HVAC% of electricity." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span></h3>
+                <h3 class="page-title">Usage Disaggregation <span class="info-tooltip" data-tooltip="We split each month's electricity into HVAC vs. non-HVAC by anchoring to the lowest-usage month (usually a shoulder month) and assuming 15% of that month is unavoidable ventilation/fans/pumps. Monthly HVAC is whatever sits above that baseline, tuned for season and heating type (lower in winter when heating is fuel-fired; higher in summer for cooling)." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span></h3>
                 <div id="hvac_pct_chart" style="width: 100%; height: 400px;"></div>
             </div>
             
             <div class="page">
-                <h3 class="page-title">HVAC Costs & ODCV Savings % <span class="info-tooltip" data-tooltip="How we got the savings: Electricity: split into HVAC vs non-HVAC (lowest-use month baseline + ~15% ventilation floor; winter gas/steam tells us heat type). ODCV% (20–30%) = vacancy + control capacity (BMS can control heating, cooling, ventilation). Monthly $ = HVAC electricity × ODCV%, priced with your exact ConEd tariff via Genability (our rate calculator). Gas/steam: we treat 90% as HVAC heat, apply your ODCV%, then price with posted NYC gas ($/therm) and steam ($/klb) rates." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span></h3>
+                <h3 class="page-title">HVAC Costs & ODCV Savings % <span class="info-tooltip" data-tooltip="Savings based on reduced outdoor air need from published vacancy, inferred occupancy, and LL87-reported BMS control capabilities. We turn that ventilation cut into energy savings on HVAC loads only—electric HVAC and 90% of gas/steam (the other 10% going to hot water)." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span></h3>
                 <div id="hvac_cost_breakdown_chart" style="width: 100%; height: 400px;"></div>
                 <div style="text-align: center; margin-top: 15px; font-size: 14px; color: #666;">
                     <strong>Average ODCV Savings: 32.5% of HVAC costs</strong>
@@ -986,7 +1013,7 @@
             </div>
             
             <div class="page">
-                <h3 class="page-title">Cumulative ODCV Savings (Running Total) <span class="info-tooltip" data-tooltip="Cumulative savings (running total): each bar adds that month's ODCV savings to all prior months—savings to date, not just that month. How we got the savings: Electricity: split into HVAC vs non-HVAC (lowest-use month baseline + ~15% ventilation floor; winter gas/steam tells us heat type). ODCV% (20–30%) = vacancy + control capacity (BMS can control heating, cooling, ventilation). Monthly $ = HVAC electricity × ODCV%, priced with your exact ConEd tariff via Genability (our rate calculator). Gas/steam: we treat 90% as HVAC heat, apply your ODCV%, then price with posted NYC gas ($/therm) and steam ($/klb) rates." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span></h3>
+                <h3 class="page-title">Cumulative ODCV Savings <span class="info-tooltip" data-tooltip="Each bar adds that month's ODCV savings to all prior months—savings to date, not just that month. Hover over a bar to see savings for that month alone." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span></h3>
                 <div id="odcv_savings_chart" style="width: 100%; height: 400px;"></div>
             </div>
             </div>
@@ -998,7 +1025,7 @@
                 <h2 class="section-header">Air Quality</h2>
                 
                 <div class="page">
-                <h3 class="page-title">Outdoor Pollution (M-F 8am-6pm)</h3>
+                <h3 class="page-title">Outdoor Pollution (M-F 8am-6pm) <span class="info-tooltip" data-tooltip="Outdoor concentration of fine particles (PM2.5) contributing to respiratory illness. Data from OpenWeatherMap air-quality history at this building's coordinates, filtered to business hours." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span></h3>
             
             <div class="iaq-summary" style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px solid #e9ecef;">
                 <div class="iaq-stat-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; text-align: center; max-width: 600px; margin: 0 auto;">
@@ -1077,6 +1104,12 @@
     let hiddenSlides = {};
     let interactiveIndex = 0;
     let tenantSortDir = {};
+    
+    // Salesify Configuration
+    const GAS_WEBAPP_URL = 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec'; // TODO: Replace with actual Apps Script URL
+    const PEER_CSV_URL = 'https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/data/building_office_eui.csv';
+    const CONTACTS_JSON_URL = 'https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/data/salesify_recipients.json'; // ADD THIS!
+    const totalODCVSavings = 1090509.21; // From Python variable
     
     // Handle missing images by hiding slides
     function handleImageError(img, bbl, imageType) {
@@ -1388,6 +1421,288 @@
         });
     }
     
+    // Salesify Email Draft Handler with AUTO-POPULATED CONTACTS
+    async function handleSalesify() {
+        try {
+            // GET BUILDING OWNER FOR MATCHING
+            const buildingOwner = 'Vornado Realty Trust'.toLowerCase().trim();
+            
+            // FETCH YOUR CONTACTS LIST
+            let suggestedEmails = [];
+            try {
+                const contactsResponse = await fetch(CONTACTS_JSON_URL);
+                const contactsData = await contactsResponse.json();
+                
+                // Filter contacts for this building's owner
+                if (contactsData.contacts) {
+                    const relevantContacts = contactsData.contacts.filter(c => 
+                        c.owner && c.owner.toLowerCase().includes(buildingOwner.split(' ')[0])
+                    );
+                    
+                    if (relevantContacts.length > 0) {
+                        // Found matching contacts!
+                        suggestedEmails = relevantContacts.map(c => c.email);
+                        
+                        // Show them the matches
+                        const emailList = relevantContacts.map(c => 
+                            `• ${c.email} (${c.name || 'No name'} - ${c.label})`
+                        ).join('\n');
+                        
+                        alert(`🎯 Found ${relevantContacts.length} contacts for ${buildingOwner}:\n\n${emailList}\n\nThey'll be auto-populated!`);
+                    }
+                }
+            } catch (err) {
+                console.log('Could not fetch contacts:', err);
+                // Continue without auto-population
+            }
+            
+            // PROMPT WITH PRE-FILLED EMAILS
+            const defaultEmails = suggestedEmails.join(', ');
+            const promptText = suggestedEmails.length > 0 
+                ? `Recipients (auto-filled from your contacts, edit if needed):`
+                : `Recipient email(s), comma-separated (leave blank to fill later):`;
+                
+            const to = (prompt(promptText, defaultEmails) || '').trim();
+            
+            // Collect building data
+            const addrFull = '1290 Ave Of The Americas, 10104, Midtown-Times Square';
+            const addrShort = '1290 Ave Of The Americas, 10104'.split(',')[0];
+            const eui = 0;
+            const area = 1920459;
+            const annualCost = 12116413;
+            const costPerSf = annualCost / area;
+            const odcvAnnual = 1090509;
+            const hvacPct = 32.5;
+            
+            // Capture charts as PNG (INCLUDING ODCV!)
+            const usagePng = await Plotly.toImage(document.getElementById('energy_chart'), {
+                format: 'png', width: 1100, height: 620, scale: 1.5
+            });
+            const costPng = await Plotly.toImage(document.getElementById('energy_cost_chart'), {
+                format: 'png', width: 1100, height: 620, scale: 1.5
+            });
+            const odcvPng = await Plotly.toImage(document.getElementById('odcv_savings_chart'), {
+                format: 'png', width: 1100, height: 620, scale: 1.5
+            });
+            
+            // Fetch peer comparison
+            const peers = await fetchPeerComparison(eui, costPerSf);
+            
+            // Build email
+            const subject = buildSubject(addrShort, annualCost, odcvAnnual);
+            const htmlBody = buildEmailHTML({
+                addrFull, addrShort, eui, area, annualCost, costPerSf,
+                hvacPct, odcvAnnual, peers,
+                usageCid: 'usage', costCid: 'cost', odcvCid: 'odcv'
+            });
+            
+            // Send to Apps Script
+            const payload = {
+                to, subject, htmlBody,
+                inlineImages: { usage: usagePng, cost: costPng, odcv: odcvPng }
+            };
+            
+            const res = await fetch(GAS_WEBAPP_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const json = await res.json();
+            if (!json.ok) throw new Error(json.error || 'Failed to create draft');
+            
+            // SUCCESS MESSAGE WITH RECIPIENT COUNT
+            const recipientCount = to.split(',').filter(e => e.trim()).length;
+            alert(`✅ Gmail draft created with ${recipientCount} recipient(s)!\n\nOpening Drafts folder...`);
+            window.open('https://mail.google.com/mail/u/0/#drafts', '_blank');
+            
+        } catch (err) {
+            console.error(err);
+            alert('Salesify error: ' + String(err));
+        }
+    }
+    
+    // Email builder functions
+    function buildSubject(addrShort, annualCost, odcvAnnual) {
+        const daily = Math.round(odcvAnnual/365);
+        const percent = Math.round((odcvAnnual/annualCost)*100);
+        
+        // PSYCHOLOGICAL TRIGGERS - loss aversion + social proof + curiosity
+        if (percent > 15) {
+            return `${addrShort} loses $${daily.toLocaleString()}/day (peers save ${percent}%)`;
+        } else if (odcvAnnual > 50000) {
+            return `Quick math on ${addrShort}: $${Math.round(annualCost).toLocaleString()} - $${Math.round(odcvAnnual).toLocaleString()} = your real cost`;
+        } else {
+            const costStr = annualCost ? '$' + Math.round(annualCost).toLocaleString() + '/yr' : 'energy spend';
+            const svStr = odcvAnnual ? ' + $' + Math.round(odcvAnnual).toLocaleString() + ' ODCV' : '';
+            return addrShort + ': ' + costStr + svStr + ' — did we get this right?';
+        }
+    }
+    
+    function buildEmailHTML(o) {
+        const usd = (n) => '$' + Math.round(n).toLocaleString();
+        const num = (n, d=1) => Number(n).toFixed(d);
+        
+        // CALCULATIONS THAT MATTER
+        const dailyWaste = o.odcvAnnual ? Math.round(o.odcvAnnual/365) : 0;
+        const monthlyWaste = o.odcvAnnual ? Math.round(o.odcvAnnual/12) : 0;
+        const co2Saved = o.odcvAnnual * 0.0004; // Tons CO2 per dollar saved
+        const treesEquivalent = Math.round(co2Saved * 16.5); // Trees needed to absorb same CO2
+        const carsOffRoad = Math.round(co2Saved / 4.6); // Cars worth of emissions
+        const homesYearEnergy = Math.round(o.odcvAnnual / 11000); // Homes powered for a year
+        const percentSavings = o.odcvAnnual && o.annualCost ? Math.round((o.odcvAnnual/o.annualCost)*100) : 0;
+        
+        return `
+        <div style="font-family: Inter, Arial, sans-serif; color:#0f172a;">
+            
+            <!-- IMPOSSIBLE TO IGNORE OPENER -->
+            <div style="background:linear-gradient(135deg,#dc2626,#991b1b);color:white;padding:20px;border-radius:8px;margin-bottom:16px;">
+                <h2 style="margin:0 0 8px;font-size:1.5em;">
+                    ${o.addrShort} burns $${dailyWaste.toLocaleString()} every single day
+                </h2>
+                <p style="margin:0;opacity:0.95;">
+                    That's $${monthlyWaste.toLocaleString()}/month in pure waste. Gone. Forever.
+                </p>
+            </div>
+            
+            <!-- THE MAGIC QUESTION -->
+            <div style="background:#ecfdf5;border:2px solid #10b981;padding:16px;border-radius:8px;margin:16px 0;">
+                <p style="margin:0;font-size:1.3em;font-weight:700;color:#047857;text-align:center;">
+                    "did we get this right? how much you use and spend"
+                </p>
+            </div>
+            
+            <!-- THE SHOCKING TRUTH -->
+            <p><b>Here's what's actually happening at ${o.addrFull}:</b></p>
+            
+            <div style="background:#fef3c7;padding:16px;border-radius:8px;margin:16px 0;">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                    <div>
+                        <div style="font-size:0.9em;color:#92400e;">You're spending:</div>
+                        <div style="font-size:1.8em;font-weight:700;color:#dc2626;">${usd(o.annualCost)}/yr</div>
+                    </div>
+                    <div>
+                        <div style="font-size:0.9em;color:#92400e;">You should be spending:</div>
+                        <div style="font-size:1.8em;font-weight:700;color:#059669;">${usd(o.annualCost - o.odcvAnnual)}/yr</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PEER SHAMING -->
+            ${o.peers ? `
+            <div style="background:#dbeafe;padding:12px;border-radius:8px;margin:16px 0;border-left:4px solid #2563eb;">
+                <p style="margin:0;font-weight:600;">
+                    📊 Reality check: Your EUI of ${num(o.eui,1)} beats ${o.peers.percentile}% of ${o.peers.total} Manhattan offices.
+                    ${o.peers.percentile < 75 ? `<span style="color:#dc2626;">But top performers are at ${num(o.peers.p25,1)} kBtu/sf. You're leaving money on the table.</span>` : `<span style="color:#059669;">You're already top quartile - this makes savings even easier!</span>`}
+                </p>
+            </div>` : ''}
+            
+            <!-- THE GRAPHS - WITH CONTEXT -->
+            <h3 style="color:#0f172a;margin:24px 0 8px;">📊 The Data Doesn't Lie:</h3>
+            
+            <div style="margin:16px 0;">
+                <div style="font-weight:600;margin-bottom:4px;">Your actual energy usage (see the waste?):</div>
+                <img src="cid:${o.usageCid}" alt="Usage" style="max-width:100%;border:2px solid #e5e7eb;border-radius:8px;">
+            </div>
+            
+            <div style="margin:16px 0;">
+                <div style="font-weight:600;margin-bottom:4px;">Your actual costs (this hurts to look at):</div>
+                <img src="cid:${o.costCid}" alt="Cost" style="max-width:100%;border:2px solid #e5e7eb;border-radius:8px;">
+            </div>
+            
+            <!-- THE MONEY SHOT - ODCV GRAPH -->
+            <div style="background:#f0fdf4;border:3px solid #10b981;border-radius:12px;padding:16px;margin:24px 0;">
+                <h3 style="margin:0 0 12px;color:#059669;text-align:center;font-size:1.4em;">
+                    💰 THIS IS YOUR MONEY SITTING ON THE TABLE:
+                </h3>
+                <img src="cid:${o.odcvCid}" alt="ODCV Savings" style="max-width:100%;border-radius:4px;">
+                <div style="text-align:center;margin-top:12px;font-size:1.2em;font-weight:700;color:#047857;">
+                    Total: ${usd(o.odcvAnnual)}/year (${num(o.hvacPct,1)}% of HVAC costs)
+                </div>
+            </div>
+            
+            <!-- ENVIRONMENTAL IMPACT -->
+            <div style="background:#f0f9ff;border:2px solid #0284c7;border-radius:8px;padding:16px;margin:20px 0;">
+                <h3 style="margin:0 0 8px;color:#0c4a6e;">🌍 The Planet Impact:</h3>
+                <p style="margin:4px 0;">Saving ${usd(o.odcvAnnual)} also means:</p>
+                <ul style="margin:8px 0 0 20px;padding:0;">
+                    <li>🌳 Equivalent to planting <b>${treesEquivalent.toLocaleString()} trees</b></li>
+                    <li>🚗 Like taking <b>${carsOffRoad} cars</b> off the road</li>
+                    <li>🏠 Could power <b>${homesYearEnergy} homes</b> for a year</li>
+                    <li>☁️ Prevents <b>${co2Saved.toFixed(1)} tons</b> of CO₂</li>
+                </ul>
+            </div>
+            
+            <!-- THE CLOSE -->
+            <div style="background:linear-gradient(135deg,#fbbf24,#f59e0b);padding:20px;border-radius:8px;margin:20px 0;">
+                <h3 style="margin:0 0 12px;color:#451a03;">⚡ Here's How We Fix This:</h3>
+                <ol style="margin:0 0 0 20px;padding:0;color:#451a03;">
+                    <li><b>15-minute call</b> - We validate your BMS & occupancy</li>
+                    <li><b>Lock the savings</b> - ${usd(o.odcvAnnual)} guaranteed in contract</li>
+                    <li><b>You're the hero</b> - Found ${percentSavings}% margin AND helped the planet</li>
+                </ol>
+            </div>
+            
+            <p style="font-size:1.1em;font-weight:700;color:#dc2626;">
+                Every day you wait = $${dailyWaste.toLocaleString()} burned.
+            </p>
+            
+            <p style="font-weight:600;">Ready to stop the waste?</p>
+            
+            <p>—</p>
+        </div>`;
+    }
+    
+    // Real peer comparison from your 585 buildings
+    async function fetchPeerComparison(eui, costPerSf) {
+        try {
+            const response = await fetch(PEER_CSV_URL);
+            const text = await response.text();
+            const lines = text.trim().split('
+');
+            const headers = lines[0].split(',');
+            
+            // Parse CSV to get EUI values
+            const euiCol = headers.indexOf('building_eui_kBtu_sf_year');
+            const peers = [];
+            
+            for (let i = 1; i < lines.length; i++) {
+                const cols = lines[i].split(',');
+                const peerEui = parseFloat(cols[euiCol]);
+                if (!isNaN(peerEui) && peerEui > 0) {
+                    peers.push(peerEui);
+                }
+            }
+            
+            // Sort for percentile calculation
+            peers.sort((a, b) => a - b);
+            const total = peers.length;
+            
+            // Calculate percentiles
+            const median = peers[Math.floor(total * 0.5)];
+            const p25 = peers[Math.floor(total * 0.25)];
+            const p75 = peers[Math.floor(total * 0.75)];
+            
+            // Find this building's percentile
+            let betterThan = 0;
+            for (const peerEui of peers) {
+                if (eui < peerEui) betterThan++;
+            }
+            const percentile = Math.round((betterThan / total) * 100);
+            
+            return {
+                total: total,
+                median: median,
+                p25: p25,
+                p75: p75,
+                percentile: percentile,
+                costPerSf: costPerSf // Pass through for display
+            };
+        } catch (err) {
+            console.error('Peer comparison error:', err);
+            return null;
+        }
+    }
+    
     // Energy chart
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const elecData = {
@@ -1428,7 +1743,7 @@
     
     const layout = {
         title: {
-            text: "Monthly Usage (2023)",
+            text: "Whole Building Usage (2023)",
             font: {size: 20}
         },
         yaxis: {
@@ -1483,7 +1798,7 @@
     
     const officeLayout = {
         title: {
-            text: "Monthly Office Usage (2023)",
+            text: "Office Only Usage (2023)",
             font: {size: 20}
         },
         yaxis: {
@@ -1547,7 +1862,7 @@
     
     const costLayout = {
         title: {
-            text: "Monthly Cost (2023)",
+            text: "Whole Building Cost (2023)",
             font: {size: 20}
         },
         yaxis: {
@@ -1608,7 +1923,7 @@
     
     const officeCostLayout = {
         title: {
-            text: "Office Space Monthly Cost (2023)",
+            text: "Office Only Cost (2023)",
             font: {size: 20}
         },
         yaxis: {
@@ -2001,8 +2316,8 @@
 
     // Create fill traces for areas above and below threshold
     const dates = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253];  // Use indices for x-axis
-    const values = [3.2, 5.161, 6.007, 3.085, 9.818000000000001, 5.632, 24.91, 11.882, 1.008, 1.089, 2.148, 9.116, 41.179, 36.084, 26.195, 21.349, 8.328, 2.206, 3.309, 17.544999999999998, 14.017000000000001, 8.099, 5.2, 21.092, 66.795, 67.046, 7.989999999999999, 8.925, 5.493, 3.7560000000000002, 1.7890000000000001, 4.016, 3.503, 4.5009999999999994, 4.156000000000001, 9.407, 6.99, 5.4030000000000005, 6.233, 26.665999999999997, 24.21, 11.222, 3.282, 5.64, 0.9730000000000001, 4.086, 8.138, 1.939, 1.347, 3.562, 3.499, 28.591, 51.852999999999994, 26.375999999999998, 3.5509999999999997, 5.311999999999999, 23.168, 18.592000000000002, 20.738999999999997, 20.47, 7.1739999999999995, 13.844, 9.937999999999999, 7.545999999999999, 8.788, 11.762, 4.654999999999999, 1.174, 4.8340000000000005, 13.515, 11.058, 8.062999999999999, 13.952000000000002, 31.544999999999998, 3.215, 3.7600000000000002, 10.431000000000001, 13.25, 13.614, 8.91, 5.758, 10.49, 7.987, 23.724, 4.813000000000001, 2.536, 57.88199999999999, 28.808, 5.54, 3.4270000000000005, 7.876, 16.506999999999998, 10.211, 119.21, 4.773000000000001, 12.805000000000001, 109.99600000000001, 36.105000000000004, 30.613, 51.749, 134.411, 3.569, 89.57300000000001, 8.846, 2.217, 6.125, 26.911, 2.388, 1.921, 1.6940000000000002, 5.854, 30.832, 3.136, 2.169, 14.047, 16.118000000000002, 9.851, 32.929, 46.36, 147.8, 26.006, 17.419999999999998, 5.113, 8.553, 7.524000000000001, 38.046, 83.387, 5.776999999999999, 8.126999999999999, 37.297, 4.582, 15.687000000000001, 143.74, 37.314, 49.18, 5.107, 1.718, 3.0189999999999997, 5.3549999999999995, 7.069, 2.714, 70.689, 50.452, 10.657, 34.393, 6.484999999999999, 5.761, 24.122999999999998, 3.088, 20.895, 66.154, 7.529999999999999, 7.649000000000001, 37.159000000000006, 7.447, 3.7340000000000004, 88.49600000000001, 8.306999999999999, 1.1560000000000001, 8.209, 5.369, 10.337, 3.664, 20.092, 8.987, 1.783, 1.402, 2.58, 2.727, 2.229, 7.695, 5.17, 0.5900000000000001, 2.54, 5.949, 5.107, 6.023000000000001, 11.71, 17.154, 4.348, 2.734, 2.925, 4.552, 6.598000000000001, 3.261, 2.6390000000000002, 3.41, 3.685, 8.815000000000001, 6.054, 10.727, 4.675, 5.189, 2.668, 6.189, 2.557, 3.4090000000000003, 1.3039999999999998, 1.2029999999999998, 2.038, 3.226, 7.505, 2.364, 4.504, 7.609, 5.4719999999999995, 11.971, 10.448, 9.753, 6.548, 4.2299999999999995, 5.476999999999999, 8.208, 15.418000000000001, 14.372, 4.794, 4.958, 7.077, 5.206, 3.849, 12.553999999999998, 11.648, 7.996, 18.14, 3.908, 16.624000000000002, 4.175, 5.426, 8.923, 7.147, 4.654999999999999, 12.304, 10.006, 8.154, 5.51, 2.31, 9.007000000000001, 8.139, 4.8020000000000005, 5.202, 7.147, 5.43, 3.851, 5.274, 10.019, 11.151, 14.276, 18.105, 9.524, 4.926, 11.959, 10.797, 15.36, 5.394];
-    const labels = ["Aug", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Sep", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Oct", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Nov", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Dec", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Jan", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Feb", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Mar", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Apr", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "May", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Jun", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Jul", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Aug", "", "", "", ""];  // Month labels
+    const values = [6.007, 3.085, 9.818000000000001, 5.632, 24.91, 11.882, 1.008, 1.089, 2.148, 9.116, 41.179, 36.084, 26.195, 21.349, 8.328, 2.206, 3.309, 17.544999999999998, 14.017000000000001, 8.099, 5.2, 21.092, 66.795, 67.046, 7.989999999999999, 8.925, 5.493, 3.7560000000000002, 1.7890000000000001, 4.016, 3.503, 4.5009999999999994, 4.156000000000001, 9.407, 6.99, 5.4030000000000005, 6.233, 26.665999999999997, 24.21, 11.222, 3.282, 5.64, 0.9730000000000001, 4.086, 8.138, 1.939, 1.347, 3.562, 3.499, 28.591, 51.852999999999994, 26.375999999999998, 3.5509999999999997, 5.311999999999999, 23.168, 18.592000000000002, 20.738999999999997, 20.47, 7.1739999999999995, 13.844, 9.937999999999999, 7.545999999999999, 8.788, 11.762, 4.654999999999999, 1.174, 4.8340000000000005, 13.515, 11.058, 8.062999999999999, 13.952000000000002, 31.544999999999998, 3.215, 3.7600000000000002, 10.431000000000001, 13.25, 13.614, 8.91, 5.758, 10.49, 7.987, 23.724, 4.813000000000001, 2.536, 57.88199999999999, 28.808, 5.54, 3.4270000000000005, 7.876, 16.506999999999998, 10.211, 119.21, 4.773000000000001, 12.805000000000001, 109.99600000000001, 36.105000000000004, 30.613, 51.749, 134.411, 3.569, 89.57300000000001, 8.846, 2.217, 6.125, 26.911, 2.388, 1.921, 1.6940000000000002, 5.854, 30.832, 3.136, 2.169, 14.047, 16.118000000000002, 9.851, 32.929, 46.36, 147.8, 26.006, 17.419999999999998, 5.113, 8.553, 7.524000000000001, 38.046, 83.387, 5.776999999999999, 8.126999999999999, 37.297, 4.582, 15.687000000000001, 143.74, 37.314, 49.18, 5.107, 1.718, 3.0189999999999997, 5.3549999999999995, 7.069, 2.714, 70.689, 50.452, 10.657, 34.393, 6.484999999999999, 5.761, 24.122999999999998, 3.088, 20.895, 66.154, 7.529999999999999, 7.649000000000001, 37.159000000000006, 7.447, 3.7340000000000004, 88.49600000000001, 8.306999999999999, 1.1560000000000001, 8.209, 5.369, 10.337, 3.664, 20.092, 8.987, 1.783, 1.402, 2.58, 2.727, 2.229, 7.695, 5.17, 0.5900000000000001, 2.54, 5.949, 5.107, 6.023000000000001, 11.71, 17.154, 4.348, 2.734, 2.925, 4.552, 6.598000000000001, 3.261, 2.6390000000000002, 3.41, 3.685, 8.815000000000001, 6.054, 10.727, 4.675, 5.189, 2.668, 6.189, 2.557, 3.4090000000000003, 1.3039999999999998, 1.2029999999999998, 2.038, 3.226, 7.505, 2.364, 4.504, 7.609, 5.4719999999999995, 11.971, 10.448, 9.753, 6.548, 4.2299999999999995, 5.476999999999999, 8.208, 15.418000000000001, 14.372, 4.794, 4.958, 7.077, 5.206, 3.849, 12.553999999999998, 11.648, 7.996, 18.14, 3.908, 16.624000000000002, 4.175, 5.426, 8.923, 7.147, 4.654999999999999, 12.304, 10.006, 8.154, 5.51, 2.31, 9.007000000000001, 8.139, 4.8020000000000005, 5.202, 7.147, 5.43, 3.851, 5.274, 10.019, 11.151, 14.276, 18.105, 9.524, 4.926, 11.959, 10.796000000000001, 15.358, 5.39, 2.288, 6.295];
+    const labels = ["Aug", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Sep", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Oct", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Nov", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Dec", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Jan", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Feb", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Mar", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Apr", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "May", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Jun", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Jul", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Aug", "", "", "", "", "", ""];  // Month labels
     const goodThresholdValue = 12;  // EPA Good threshold
     const badThreshold = 35.4;  // EPA Unhealthy for Sensitive Groups threshold
     
@@ -2015,14 +2330,14 @@
         line: {color: '#0066cc', width: 3},
         fill: 'tozeroy',
         fillcolor: 'rgba(0, 102, 204, 0.1)',  // Very light blue
-        name: 'Daily Business Hours PM2.5',
+        name: 'PM2.5',
         hovertemplate: 'Day %{x}<br>PM2.5: %{y:.1f} μg/m³<br>(M-F 8am-6pm)<extra></extra>'
     };
     
     // Order is important: data line and threshold
     Plotly.newPlot('pm25_chart', [pm25Line, goodThreshold], {
         title: {
-            text: 'Midtown-Times Square Air Quality (12 Months)',
+            text: 'Midtown-Times Square Air Quality',
             y: 0.95
         },
         yaxis: {
@@ -2179,7 +2494,7 @@
     </div><!-- End of container -->
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif; border: none !important; box-shadow: none !important; background: transparent;">
-        Build: 7 Aug 2025 11:03:37 PM CST | Test Build
+        Build: 11 Aug 2025 07:37:02 PM CST | Test Build
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |

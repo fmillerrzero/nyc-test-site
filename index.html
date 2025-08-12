@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<!-- Generated: 2025-08-11 21:36:54 EST -->
+<!-- Last Updated: August 10, 2025 -->
 <html>
 <head>
     <title>NYC ODCV Opportunities | R-Zero</title>
@@ -8,8 +10,8 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <meta name="description" content="NYC building ODCV savings rankings - 585 buildings analyzed for energy efficiency opportunities">
-    <meta name="keywords" content="ODCV, NYC buildings, energy efficiency, LL97 compliance, building automation">
+    <meta name="description" content="NYC building ODCV savings rankings - 585 buildings analyzed for energy efficiency opportunities - Updated November 2025">
+    <meta name="keywords" content="ODCV, NYC buildings, energy efficiency, LL97 compliance, building automation, tenant data">
     <style>
         :root {
             --rzero-primary: #0066cc;
@@ -280,77 +282,13 @@
         .bas { color: #38a169; font-weight: 600; }
         .no-bas { color: #c41e3a; font-weight: 600; }
         
-        /* Style the new PlaceAutocompleteElement */
-        gmp-place-autocomplete {
-            --gmpx-color-surface: #ffffff;
-            --gmpx-color-on-surface: #212121;
-            --gmpx-color-primary: var(--rzero-primary);
-            --gmpx-font-family: 'Inter', sans-serif;
-            width: 100%;
-            font-family: 'Inter', sans-serif;
-            position: relative;
-            z-index: 1001 !important;
-        }
-        
-        gmp-place-autocomplete input {
-            padding: 10px !important;
-            border: 1px solid #ddd !important;
-            border-radius: 4px !important;
-            font-size: 14px !important;
-            width: 100% !important;
-            box-sizing: border-box !important;
-        }
-        
-        /* Fix dropdown z-index */
-        .gmpx-autocomplete-dropdown {
-            z-index: 10000 !important;
-        }
-        
-        gmp-place-autocomplete::part(dropdown) {
-            z-index: 10000 !important;
-        }
-        .autocomplete-item {
-            padding: 10px 15px;
-            cursor: pointer;
-            border-bottom: 1px solid #f0f0f0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .autocomplete-item:hover {
-            background: #f8f9fa;
-        }
-        .autocomplete-item.selected {
-            background: #e3f2fd;
-        }
-        .autocomplete-item-type {
-            font-size: 10px;
-            padding: 2px 6px;
-            border-radius: 3px;
-            background: #e3f2fd;
-            color: #1976d2;
-            font-weight: 600;
-        }
-        .autocomplete-item-type.google {
-            background: #fff3e0;
-            color: #f57c00;
-        }
         .search-container {
             position: relative;
             flex: 1;
         }
-        
-        /* Make Google Places dropdown appear OVER sticky table headers */
-        .pac-container {
-            z-index: 10001 !important;  /* Higher than sticky headers (z-index: 100) */
-            background: white !important;
-            border: 1px solid #ccc !important;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2) !important;
-        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.js"></script>
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZfwYEVShfBun2dg5QELXS4r4WRKjVb2c&libraries=places&callback=initGooglePlaces&loading=async"></script>
 </head>
 <body>
     <div class="container">
@@ -460,7 +398,7 @@
         
         <div style="display: flex; gap: 10px; margin-bottom: 20px; align-items: center;">
             <div class="search-container" style="position: relative;">
-                <input type="text" id="search" placeholder="Search by address, owner, property manager" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;" autocomplete="off">
+                <input type="text" id="search" placeholder="Search by address, owner, property manager" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
             </div>
             <button id="clearFilterBtn" onclick="clearAllFilters()" style="background: #e0e0e0; color: #999; border: none; padding: 10px 25px; border-radius: 8px; cursor: not-allowed; font-size: 16px; font-weight: 600; transition: all 0.2s;" disabled>
                 Clear Filter
@@ -483,8 +421,9 @@
             <th onclick="sortTable(2)" style="cursor: pointer;">Building <span class="sort-indicator">↕</span></th>
             <th onclick="sortTable(3)" style="cursor: pointer;">Owner <span class="sort-indicator">↕</span></th>
             <th onclick="sortTable(4)" style="cursor: pointer;">Manager <span class="sort-indicator">↕</span></th>
-            <th onclick="sortTable(5)" style="cursor: pointer;">Savings <span class="sort-indicator">↕</span></th>
-            <th onclick="sortTable(6)" style="cursor: pointer;">Score <span class="sort-indicator">↕</span></th>
+            <th onclick="sortTable(5)" style="cursor: pointer;">Anchor Tenant <span class="sort-indicator">↕</span></th>
+            <th onclick="sortTable(6)" style="cursor: pointer;">Savings <span class="sort-indicator">↕</span></th>
+            <th onclick="sortTable(7)" style="cursor: pointer;">Score <span class="sort-indicator">↕</span></th>
             <th>Details</th>
         </tr>
         </thead>
@@ -498,9 +437,10 @@
                      onclick="window.location.href='1009950005.html'">
                 <div class="no-thumb" style="display:none;" onclick="window.location.href='1009950005.html'">No image</div></td>
             <td><span class="rzero-badge">#1</span></td>
-            <td>1472 Broadway</td>
+            <td>141-157 W 42 St</td>
             <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByOwner('Durst Organization')" class="clickable-link">Durst Organization</a></td>
             <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByManager('Durst Organization')" class="clickable-link">Durst Organization</a></td>
+            <td>-</td>
             <td class="savings-high" data-value="554335.36">$554,335</td>
             <td>98.0</td>
             <td style="text-align: center;">
@@ -516,9 +456,10 @@
                      onclick="window.location.href='1010160036.html'">
                 <div class="no-thumb" style="display:none;" onclick="window.location.href='1010160036.html'">No image</div></td>
             <td><span class="rzero-badge">#3</span></td>
-            <td>1515 Broadway</td>
+            <td>1507-1521 Broadway</td>
             <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByOwner('SL Green Realty')" class="clickable-link">SL Green Realty</a></td>
             <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByManager('SL Green Realty')" class="clickable-link">SL Green Realty</a></td>
+            <td>-</td>
             <td class="savings-high" data-value="651112.0099999999">$651,112</td>
             <td>96.7</td>
             <td style="text-align: center;">
@@ -534,9 +475,10 @@
                      onclick="window.location.href='1012670001.html'">
                 <div class="no-thumb" style="display:none;" onclick="window.location.href='1012670001.html'">No image</div></td>
             <td><span class="rzero-badge">#4</span></td>
-            <td>1290 Ave Of The Americas</td>
+            <td>38-74 W 52 St</td>
             <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByOwner('Vornado Realty Trust')" class="clickable-link">Vornado Realty Trust</a></td>
             <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByManager('Cushman & Wakefield')" class="clickable-link">Cushman & Wakefield</a></td>
+            <td>-</td>
             <td class="savings-high" data-value="1090509.21">$1,090,509</td>
             <td>96.6</td>
             <td style="text-align: center;">
@@ -552,9 +494,10 @@
                      onclick="window.location.href='1013010001.html'">
                 <div class="no-thumb" style="display:none;" onclick="window.location.href='1013010001.html'">No image</div></td>
             <td><span class="rzero-badge">#5</span></td>
-            <td>245 Park Ave</td>
+            <td>482-496 Lexington Ave</td>
             <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByOwner('SL Green Realty')" class="clickable-link">SL Green Realty</a></td>
             <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByManager('SL Green Realty')" class="clickable-link">SL Green Realty</a></td>
+            <td>-</td>
             <td class="savings-high" data-value="782678.0199999998">$782,678</td>
             <td>95.9</td>
             <td style="text-align: center;">
@@ -562,7 +505,7 @@
             </td>
         </tr>
     
-        <tr data-search="111 e 58th st, new york, ny 10022 | 111 e 58th st | 111 e 58th st | 111 e 58th st | 110 e 59 st | 110 e 59 st | 112 e 59 st | 112 e 59 st | 114 e 59 st | 114 e 59 st | 109 e 58 st | 109 e 58 st | 111 e 58 st | 111 e 58 st | 113 e 58 st | 113 e 58 st | 115 e 58 st | 115 e 58 st | 117 e 58 st | 117 e 58 st | 119 e 58 st | 119 e 58 st | 121 e 58 st | 121 e 58 st | 123 e 58 st | 123 e 58 st | 125 e 58 st | 125 e 58 st | 127 e 58 st | 127 e 58 st | jack resnick & sons | jack resnick & sons | 1013130005 | jack resnick & sons" data-occupancy="70" class="clickable-row" onclick="if (!event.target.closest('a')) window.location.href='1013130005.html'">
+        <tr data-search="111 e 58th st, new york, ny 10022 | 111 e 58th st | 111 e 58th st | 111 e 58th st | 110 e 59 st | 110 e 59 st | 112 e 59 st | 112 e 59 st | 114 e 59 st | 114 e 59 st | 109 e 58 st | 109 e 58 st | 111 e 58 st | 111 e 58 st | 113 e 58 st | 113 e 58 st | 115 e 58 st | 115 e 58 st | 117 e 58 st | 117 e 58 st | 119 e 58 st | 119 e 58 st | 121 e 58 st | 121 e 58 st | 123 e 58 st | 123 e 58 st | 125 e 58 st | 125 e 58 st | 127 e 58 st | 127 e 58 st | jack resnick & sons | jack resnick & sons | 1013130005 | jack resnick & sons | parkinson’s wellness foundation | excelsior physical therapy, pc | douglas seckendorf, dc, ccsp | cooper matthew, dc | definitions | avant-garde physical therapy | cosmetic prosthodontics pllc | yakov levy md | schweitzer & schweitzer pc | avenue medical associates p.c." data-occupancy="70" class="clickable-row" onclick="if (!event.target.closest('a')) window.location.href='1013130005.html'">
             <td><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1013130005/1013130005_hero_thumbnail.jpg" 
                      alt="111 E 58th St" 
                      class="building-thumb" 
@@ -570,9 +513,10 @@
                      onclick="window.location.href='1013130005.html'">
                 <div class="no-thumb" style="display:none;" onclick="window.location.href='1013130005.html'">No image</div></td>
             <td><span class="rzero-badge">#121</span></td>
-            <td>111 E 58th St</td>
+            <td>110-114 E 59 St</td>
             <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByOwner('Jack Resnick & Sons')" class="clickable-link">Jack Resnick & Sons</a></td>
             <td><a href="javascript:void(0)" onclick="event.stopPropagation(); filterByManager('Jack Resnick & Sons')" class="clickable-link">Jack Resnick & Sons</a></td>
+            <td>Parkinson’s Wellness Foundation</td>
             <td class="savings-medium" data-value="169510.63">$169,511</td>
             <td>75.0</td>
             <td style="text-align: center;">
@@ -588,6 +532,9 @@
     <script>
     // Global variable to track filter state
     var activeOwnerFilter = null;
+    
+    // Store tenant buildings mapping
+    var tenantBuildingsMap = {};
     
     // Local address database from CSV
     const localAddresses = [
@@ -3977,7 +3924,7 @@
         
         let normalized = address.trim();
         
-        // Remove city, state, zip suffixes that Google adds
+        // Remove city, state, zip suffixes
         normalized = normalized.split(',')[0].trim();
         
         // Check if this looks like a building name (contains "square", "plaza", "tower", "building", "center", numbers at start)
@@ -3989,7 +3936,8 @@
         const lowerAddress = normalized.toLowerCase();
         
         // Step 1: Normalize directions (must come before title case)
-        normalized = normalized.replace(/\b(west|W\.)\b/gi, 'W');
+        // Special case: Don't normalize "West St" (it's a street name in Manhattan)
+        normalized = normalized.replace(/\b(west|W\.)\b(?!\s+St\b)/gi, 'W');
         normalized = normalized.replace(/\b(east|E\.)\b/gi, 'E');
         normalized = normalized.replace(/\b(north|N\.)\b/gi, 'N');
         normalized = normalized.replace(/\b(south|S\.)\b/gi, 'S');
@@ -4098,56 +4046,11 @@
         return normalized;
     }
     
-    // Autocomplete functionality
-    
-    // Callback function for Google Maps API - EXACTLY like working example
-    function initGooglePlaces() {
-        if (typeof google !== 'undefined' && google.maps && google.maps.places) {
-            const searchInput = document.getElementById('search');
-            if (!searchInput) return;
-            
-            // Use native Autocomplete EXACTLY like working example
-            const autocomplete = new google.maps.places.Autocomplete(searchInput, {
-                types: ['address'],
-                componentRestrictions: { country: 'us' },
-                bounds: new google.maps.LatLngBounds(
-                    new google.maps.LatLng(40.70, -74.02),  // Lower Manhattan
-                    new google.maps.LatLng(40.88, -73.93)   // Upper Manhattan
-                ),
-                strictBounds: true  // STRICT Manhattan bounds
-            });
-            
-            // Listen for place selection
-            autocomplete.addListener('place_changed', function() {
-                const place = autocomplete.getPlace();
-                if (place && place.formatted_address) {
-                    // Extract ONLY the building name/address (before first comma)
-                    const cleanAddress = place.formatted_address.split(',')[0].trim();
-                    
-                    // Update search box with clean address (no city/state)
-                    searchInput.value = cleanAddress;
-                    
-                    // Filter using the comprehensive cleaning function
-                    filterTableWithValue(cleanAddress);
-                    updateClearButtonState();
-                }
-            });
-            
-            console.log('Google Places Autocomplete initialized');
-        }
-    }
-    
-    // Also setup when window loads as backup
-    window.initMap = function() {
-        initGooglePlaces();
-    }
+    // Search initialization
     
     function initAutocomplete() {
         const searchInput = document.getElementById('search');
-        
-        // For manual typing - just filter as typed, NO normalization
         if (searchInput) {
-            // Handle direct input events
             searchInput.addEventListener('input', debounce(() => {
                 const currentValue = searchInput.value || '';
                 filterTableWithValue(currentValue);
@@ -4168,10 +4071,11 @@
                 visibleCount++;
             });
         } else {
-            // Clean the search term - lowercase and strip location suffixes
-            let cleanSearch = searchValue.toLowerCase().trim();
+            // FIRST normalize the address to match database format (removes "th" from "8th Ave", etc.)
+            let normalizedSearch = normalizeAddress(searchValue, true);
+            let cleanSearch = normalizedSearch.toLowerCase().trim();
             
-            // Strip ALL location suffixes that Google adds
+            // Strip location suffixes
             cleanSearch = cleanSearch.replace(/, new york.*$/i, '');
             cleanSearch = cleanSearch.replace(/, ny.*$/i, '');
             cleanSearch = cleanSearch.replace(/, usa.*$/i, '');
@@ -4336,6 +4240,39 @@
         updateClearButtonState();
     }
     
+    function filterByTenant(tenantName, buildingBBLs) {
+        // Update active filter
+        activeOwnerFilter = tenantName;
+        
+        // Populate search bar with tenant name
+        const searchBox = document.getElementById('search');
+        if (searchBox) searchBox.value = 'Tenant: ' + tenantName;
+        
+        // Remove active styling from portfolio tiles
+        document.querySelectorAll('.portfolio-tile').forEach(tile => {
+            tile.classList.remove('selected');
+        });
+        
+        // Filter to show only buildings with this tenant in their top 10
+        const rows = document.querySelectorAll('#buildingTable tbody tr');
+        let visibleCount = 0;
+        rows.forEach(row => {
+            // Get BBL from the onclick URL
+            const onclick = row.getAttribute('onclick');
+            if (onclick) {
+                const match = onclick.match(/'(\d+)\.html'/);
+                if (match) {
+                    const rowBBL = parseInt(match[1]);
+                    const isMatch = buildingBBLs.includes(rowBBL);
+                    row.style.display = isMatch ? '' : 'none';
+                    if (isMatch) visibleCount++;
+                }
+            }
+        });
+        updateResultCounter(visibleCount);
+        updateClearButtonState();
+    }
+    
     // Removed complex generateSearchVariations function - now using simple substring matching
     
     // Helper to normalize for comparison (removes case/spacing differences)
@@ -4418,7 +4355,7 @@
         const table = document.getElementById('buildingTable');
         const rows = Array.from(table.querySelectorAll('tbody tr')).filter(row => row.style.display !== 'none');
         
-        let csv = 'Rank,Building,Owner,Manager,Savings,Score\n';
+        let csv = 'Rank,Building,Owner,Manager,Anchor Tenant,Savings,Score\n';
         
         rows.forEach(row => {
             const cells = row.cells;
@@ -4426,10 +4363,11 @@
             const building = cells[2].textContent;
             const owner = cells[3].textContent;
             const manager = cells[4].textContent;
-            const savings = cells[5].getAttribute('data-value');
-            const score = cells[6].textContent;
+            const anchor = cells[5].textContent;
+            const savings = cells[6].getAttribute('data-value');
+            const score = cells[7].textContent;
             
-            csv += `"${rank}","${building}","${owner}","${manager}","${savings}","${score}"
+            csv += `"${rank}","${building}","${owner}","${manager}","${anchor}","${savings}","${score}"
 `;
         });
         
@@ -4455,10 +4393,10 @@
             let aVal, bVal;
             
             // Use data-value for savings column
-            if (col === 5) {
+            if (col === 6) {
                 aVal = parseFloat(a.cells[col].getAttribute('data-value') || 0);
                 bVal = parseFloat(b.cells[col].getAttribute('data-value') || 0);
-            } else if (col === 1 || col === 6) {
+            } else if (col === 1 || col === 7) {
                 // Numeric columns
                 aVal = parseFloat(a.cells[col].textContent.replace(/[#$,]/g, '') || 0);
                 bVal = parseFloat(b.cells[col].textContent.replace(/[#$,]/g, '') || 0);
@@ -4480,7 +4418,7 @@
         
         // Update header arrows
         document.querySelectorAll('th').forEach((th, idx) => {
-            if (idx > 0 && idx < 7) {
+            if (idx > 0 && idx < 8) {
                 th.innerHTML = th.innerHTML.replace(/[↑↓↕]/g, idx === col ? (sortDir[col] ? '↑' : '↓') : '↕');
             }
         });
@@ -5142,6 +5080,329 @@
     document.addEventListener('DOMContentLoaded', () => {
         setTimeout(fetchAllAerialVideos, 100);
     });
+    
+    // Local Address Index Search Implementation
+    (function() {
+        const INDEX_URL = "data/addresses_index.json";
+        let addressIndex = null;
+        let dropdown = null;
+        let selectedIndex = -1;
+        
+        // Unicode normalization - similar to Python's NFKD
+        function fold(text) {
+            if (!text) return '';
+            // Normalize to NFD (decomposed form) then remove combining marks
+            return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        }
+        
+        // Strip city, state, zip suffixes
+        function stripCityStateZip(address) {
+            if (!address) return '';
+            let cleaned = address;
+            // Remove common suffixes
+            cleaned = cleaned.replace(/, (new york|ny|nyc|manhattan|brooklyn|queens|bronx|staten island).*/i, '');
+            cleaned = cleaned.replace(/, (usa|united states).*/i, '');
+            cleaned = cleaned.replace(/, \d{5}(-\d{4})?.*/i, ''); // zip codes
+            return cleaned.trim();
+        }
+        
+        // Normalize name for lookup matching
+        function normalizeName(name) {
+            if (!name) return '';
+            
+            // Apply unicode normalization
+            let normalized = fold(name);
+            
+            // Strip city/state/zip
+            normalized = stripCityStateZip(normalized);
+            
+            // Remove unit/suite/floor info
+            normalized = normalized.replace(/\s+(unit|suite|ste|apt|apartment|floor|fl|#)\s*[A-Z0-9-]+.*/i, '');
+            normalized = normalized.replace(/\s+\d+[a-z]?\s*floor.*/i, '');
+            normalized = normalized.replace(/\s+#[A-Z0-9-]+.*/i, '');
+            
+            // Convert word numbers to digits
+            const wordToNum = {
+                'first': '1', 'second': '2', 'third': '3', 'fourth': '4', 'fifth': '5',
+                'sixth': '6', 'seventh': '7', 'eighth': '8', 'ninth': '9', 'tenth': '10',
+                'eleventh': '11', 'twelfth': '12'
+            };
+            
+            for (const [word, num] of Object.entries(wordToNum)) {
+                const regex = new RegExp(`\\b${word}\\s+(street|st\\.?|avenue|ave\\.?|av)\\b`, 'gi');
+                normalized = normalized.replace(regex, `${num} $1`);
+            }
+            
+            // Remove ordinals (42nd → 42)
+            normalized = normalized.replace(/\b(\d+)(st|nd|rd|th)\b/gi, '$1');
+            
+            // Handle NYC special cases
+            normalized = normalized.replace(/\b6\s+(avenue|ave\.?|av)\b/gi, 'Ave Of The Americas');
+            normalized = normalized.replace(/\bavenue\s+of\s+the\s+americas\b/gi, 'Ave Of The Americas');
+            normalized = normalized.replace(/\bpark\s+avenue?\s+south\b/gi, 'Park Ave S');
+            normalized = normalized.replace(/\bcentral\s+park\s+west\b/gi, 'Central Park W');
+            normalized = normalized.replace(/\bcpw\b/gi, 'Central Park W');
+            normalized = normalized.replace(/\briverside\s+drive?\b/gi, 'Riverside Dr');
+            normalized = normalized.replace(/\bfdr\s+drive?\b/gi, 'FDR Dr');
+            
+            // Standardize street types
+            normalized = normalized.replace(/\b(street|str\.?)\b/gi, 'St');
+            normalized = normalized.replace(/\b(avenue|ave\.?|av)\b/gi, 'Ave');
+            normalized = normalized.replace(/\b(place|pl\.?|plc)\b/gi, 'Pl');
+            normalized = normalized.replace(/\b(boulevard|blvd\.?)\b/gi, 'Blvd');
+            normalized = normalized.replace(/\b(plaza|plz\.?)\b/gi, 'Plaza');
+            normalized = normalized.replace(/\b(square|sq\.?)\b/gi, 'Square');
+            normalized = normalized.replace(/\b(road|rd\.?)\b/gi, 'Rd');
+            normalized = normalized.replace(/\b(drive|dr\.?)\b/gi, 'Dr');
+            normalized = normalized.replace(/\b(court|ct\.?)\b/gi, 'Ct');
+            normalized = normalized.replace(/\b(terrace|ter\.?)\b/gi, 'Ter');
+            normalized = normalized.replace(/\b(parkway|pkwy\.?)\b/gi, 'Pkwy');
+            
+            // Handle directionals
+            normalized = normalized.replace(/\b(west|w\.)\b/gi, 'W');
+            normalized = normalized.replace(/\b(east|e\.)\b/gi, 'E');
+            normalized = normalized.replace(/\b(north|n\.)\b/gi, 'N');
+            normalized = normalized.replace(/\b(south|s\.)\b/gi, 'S');
+            
+            // Title case
+            normalized = normalized.replace(/\b\w+/g, function(word) {
+                // Keep certain words uppercase
+                if (['W', 'E', 'N', 'S', 'NW', 'NE', 'SW', 'SE', 'FDR', 'NYC'].includes(word.toUpperCase())) {
+                    return word.toUpperCase();
+                }
+                // Special handling for "Of The" in Ave Of The Americas
+                if (word.toLowerCase() === 'of' || word.toLowerCase() === 'the') {
+                    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+                }
+                return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+            });
+            
+            // Clean up spaces
+            return normalized.replace(/\s+/g, ' ').trim();
+        }
+        
+        // Create lookup key (lowercase, space-normalized)
+        function keyForLookup(text) {
+            if (!text) return '';
+            const normalized = normalizeName(text);
+            return normalized.toLowerCase().replace(/\s+/g, ' ').trim();
+        }
+        
+        // Extract house number
+        function extractHouseNumber(address) {
+            const match = address.match(/^(\d+[-\d]*[A-Z]?)\b/i);
+            return match ? match[1].toUpperCase() : null;
+        }
+        
+        // Suggest addresses based on input
+        function suggest(input) {
+            if (!addressIndex || !input || input.length < 2) return [];
+            
+            const key = keyForLookup(input);
+            const suggestions = [];
+            const seen = new Set();
+            
+            // 1. Try exact match
+            if (addressIndex.by_key[key]) {
+                const addr = addressIndex.by_key[key].address;
+                if (!seen.has(addr)) {
+                    suggestions.push({
+                        address: addr,
+                        bbl: addressIndex.by_key[key].bbl,
+                        match: 'exact'
+                    });
+                    seen.add(addr);
+                }
+            }
+            
+            // 2. Try house number grouping
+            const houseNum = extractHouseNumber(input);
+            if (houseNum && addressIndex.by_number[houseNum]) {
+                for (const item of addressIndex.by_number[houseNum]) {
+                    if (!seen.has(item.address) && item.address.toLowerCase().includes(key.split(' ')[0])) {
+                        suggestions.push({
+                            address: item.address,
+                            bbl: item.bbl,
+                            match: 'house'
+                        });
+                        seen.add(item.address);
+                        if (suggestions.length >= 10) break;
+                    }
+                }
+            }
+            
+            // 3. Fuzzy search fallback
+            if (suggestions.length < 5) {
+                for (const [lookupKey, value] of Object.entries(addressIndex.by_key)) {
+                    if (lookupKey.includes(key) && !seen.has(value.address)) {
+                        suggestions.push({
+                            address: value.address,
+                            bbl: value.bbl,
+                            match: 'fuzzy'
+                        });
+                        seen.add(value.address);
+                        if (suggestions.length >= 10) break;
+                    }
+                }
+            }
+            
+            return suggestions;
+        }
+        
+        // Create and show dropdown menu
+        function showMenu(suggestions, inputElement) {
+            hideMenu();
+            
+            if (suggestions.length === 0) return;
+            
+            dropdown = document.createElement('div');
+            dropdown.style.cssText = `
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                border: 1px solid #ddd;
+                border-top: none;
+                border-radius: 0 0 4px 4px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                max-height: 300px;
+                overflow-y: auto;
+                z-index: 9999;
+            `;
+            
+            suggestions.forEach((suggestion, index) => {
+                const item = document.createElement('div');
+                item.style.cssText = `
+                    padding: 10px;
+                    cursor: pointer;
+                    border-bottom: 1px solid #f0f0f0;
+                    transition: background 0.2s;
+                `;
+                item.textContent = suggestion.address;
+                item.dataset.index = index;
+                
+                item.addEventListener('mouseenter', () => {
+                    selectedIndex = index;
+                    updateSelection();
+                });
+                
+                item.addEventListener('click', () => {
+                    pick(suggestion.address);
+                });
+                
+                dropdown.appendChild(item);
+            });
+            
+            inputElement.parentElement.appendChild(dropdown);
+            selectedIndex = -1;
+        }
+        
+        // Hide dropdown menu
+        function hideMenu() {
+            if (dropdown && dropdown.parentElement) {
+                dropdown.parentElement.removeChild(dropdown);
+                dropdown = null;
+                selectedIndex = -1;
+            }
+        }
+        
+        // Update selection highlighting
+        function updateSelection() {
+            if (!dropdown) return;
+            const items = dropdown.querySelectorAll('div');
+            items.forEach((item, index) => {
+                if (index === selectedIndex) {
+                    item.style.background = '#f0f7fa';
+                } else {
+                    item.style.background = 'white';
+                }
+            });
+        }
+        
+        // Pick an address from suggestions
+        function pick(address) {
+            const searchInput = document.getElementById('search');
+            if (searchInput) {
+                searchInput.value = address;
+                filterTableWithValue(address);
+                updateClearButtonState();
+            }
+            hideMenu();
+        }
+        
+        // Load the address index
+        async function loadIndex() {
+            try {
+                const response = await fetch(INDEX_URL);
+                addressIndex = await response.json();
+                console.log(`Loaded address index: ${addressIndex.metadata.total_keys} keys`);
+            } catch (error) {
+                console.error('Failed to load address index:', error);
+            }
+        }
+        
+        // Initialize local address search
+        function initLocalSearch() {
+            const searchInput = document.getElementById('search');
+            if (!searchInput) return;
+            
+            // Set autocomplete off
+            searchInput.setAttribute('autocomplete', 'off');
+            
+            // Handle input events
+            searchInput.addEventListener('input', function(e) {
+                const value = e.target.value;
+                if (value.length >= 2) {
+                    const suggestions = suggest(value);
+                    showMenu(suggestions, searchInput);
+                } else {
+                    hideMenu();
+                }
+            });
+            
+            // Handle keyboard navigation
+            searchInput.addEventListener('keydown', function(e) {
+                if (!dropdown) return;
+                
+                const items = dropdown.querySelectorAll('div');
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    selectedIndex = Math.min(selectedIndex + 1, items.length - 1);
+                    updateSelection();
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    selectedIndex = Math.max(selectedIndex - 1, -1);
+                    updateSelection();
+                } else if (e.key === 'Enter' && selectedIndex >= 0) {
+                    e.preventDefault();
+                    const suggestions = suggest(searchInput.value);
+                    if (suggestions[selectedIndex]) {
+                        pick(suggestions[selectedIndex].address);
+                    }
+                } else if (e.key === 'Escape') {
+                    hideMenu();
+                }
+            });
+            
+            // Hide menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!searchInput.contains(e.target) && (!dropdown || !dropdown.contains(e.target))) {
+                    hideMenu();
+                }
+            });
+            
+            // Load the index
+            loadIndex();
+        }
+        
+        // Initialize on DOM ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initLocalSearch);
+        } else {
+            initLocalSearch();
+        }
+    })();
     </script>
     
     <!-- Back to Top Button -->
@@ -5167,7 +5428,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: 7 Aug 2025 11:03:10 PM CST | Test Build
+        Build: 11 Aug 2025 07:36:54 PM CST | Test Build
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
