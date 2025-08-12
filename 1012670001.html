@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<!-- Generated: 2025-08-12 00:30:48 EST -->
+<!-- Generated: 2025-08-12 00:37:23 EST -->
 <!-- Last Updated: August 10, 2025 -->
-<!-- Building Report Version: 1754973044 -->
+<!-- Building Report Version: 1754973438 -->
 <html>
 <head>
-    <title>1290 Ave Of The Americas, New York, NY 10104 - ODCV Analysis (v1754973044)</title>
+    <title>1290 Ave Of The Americas, New York, NY 10104 - ODCV Analysis (v1754973438)</title>
     <link rel="icon" type="image/png" href="https://rzero.com/wp-content/themes/rzero/build/images/favicons/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -1529,24 +1529,16 @@
                 usageCid: 'usage', costCid: 'cost', odcvCid: 'odcv'
             });
             
-            // Send to Apps Script
-            const payload = {
-                to, subject, htmlBody,
-                inlineImages: { usage: usagePng, cost: costPng, odcv: odcvPng }
-            };
-            
-            const res = await fetch(GAS_WEBAPP_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-            const json = await res.json();
-            if (!json.ok) throw new Error(json.error || 'Failed to create draft');
-            
-            // SUCCESS MESSAGE WITH RECIPIENT COUNT
+            // Open Gmail compose directly with pre-filled data
             const recipientCount = to.split(',').filter(e => e.trim()).length;
-            alert(`✅ Gmail draft created with ${recipientCount} recipient(s)!\n\nOpening Drafts folder...`);
-            window.open('https://mail.google.com/mail/u/0/#drafts', '_blank');
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(to)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(htmlBody.replace(/<[^>]*>/g, ''))}`;
+            
+            // SUCCESS MESSAGE
+            const message = to ? 
+                `✅ Opening Gmail with ${recipientCount} recipient(s) pre-filled!` :
+                `✅ Opening Gmail compose (add recipients manually)`;
+            alert(message);
+            window.open(gmailUrl, '_blank');
             
         } catch (err) {
             console.error(err);
@@ -2526,7 +2518,7 @@
     </div><!-- End of container -->
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif; border: none !important; box-shadow: none !important; background: transparent;">
-        Build: 11 Aug 2025 10:30:48 PM CST | Test Build
+        Build: 11 Aug 2025 10:37:23 PM CST | Test Build
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
