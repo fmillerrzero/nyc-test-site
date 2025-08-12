@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<!-- Generated: 2025-08-12 00:50:01 EST -->
+<!-- Generated: 2025-08-12 01:08:09 EST -->
 <!-- Last Updated: August 10, 2025 -->
-<!-- Building Report Version: 1754974192 -->
+<!-- Building Report Version: 1754975281 -->
 <html>
 <head>
-    <title>111 E 58th St, New York, NY 10022 - ODCV Analysis (v1754974192)</title>
+    <title>111 E 58th St, New York, NY 10022 - ODCV Analysis (v1754975281)</title>
     <link rel="icon" type="image/png" href="https://rzero.com/wp-content/themes/rzero/build/images/favicons/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -702,14 +702,16 @@
                 <div style="font-size: 2.5em; font-weight: 700; line-height: 1; color: white;">$169,511</div>
                 <div style="font-size: 1.1em; opacity: 0.9; margin-top: 0.5rem;">2026 ODCV Savings</div>
                 
-                <button id="salesifyBtn" class="salesify-btn" onclick="handleSalesify()" style="margin-top: 12px;">Salesify</button>
             </div>
         </div>
         
         <!-- Section 1: General -->
         <div class="section">
             <div class="section-content">
-                <h2 class="section-header">Image Gallery</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h2 class="section-header" style="margin: 0;">Image Gallery</h2>
+                    <button id="salesifyBtn" class="salesify-btn" onclick="handleSalesify()">Salesify</button>
+                </div>
                 
                 <div class="page">
                 <h3 class="page-title" id="image-gallery-title-1013130005">Static: <span style="color: #555;">Marketing</span></h3>
@@ -1585,38 +1587,46 @@
                 usageCid: 'usage', costCid: 'cost', odcvCid: 'odcv'
             });
             
-            // Convert charts to base64 images
+            // Convert charts to embedded images
             const usageImg = await Plotly.toImage(document.getElementById('energy_chart'), {format: 'png', width: 800, height: 400});
             const costImg = await Plotly.toImage(document.getElementById('energy_cost_chart'), {format: 'png', width: 800, height: 400});
             const odcvImg = await Plotly.toImage(document.getElementById('odcv_savings_chart'), {format: 'png', width: 800, height: 400});
             
-            // Create complete .eml file content
-            const emlContent = `To: ${to}
-Subject: ${subject}
-MIME-Version: 1.0
-Content-Type: multipart/related; boundary="boundary123"
+            // Create clean HTML email with embedded images
+            const cleanEmailHtml = `<!DOCTYPE html>
+<html>
+<head>
+    <title>${subject}</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; }
+        .email-info { background: #f0f0f0; padding: 15px; margin-bottom: 20px; border-radius: 5px; }
+        img { max-width: 100%; height: auto; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="email-info">
+        <strong>TO:</strong> ${to || '[Add recipients]'}<br>
+        <strong>SUBJECT:</strong> ${subject}
+    </div>
+    
+    ${htmlBody.replace('cid:usage', usageImg)
+                .replace('cid:cost', costImg)
+                .replace('cid:odcv', odcvImg)}
+</body>
+</html>`;
 
---boundary123
-Content-Type: text/html; charset=UTF-8
-
-${htmlBody.replace('cid:usage', 'data:image/png;base64,' + usageImg.split(',')[1])
-            .replace('cid:cost', 'data:image/png;base64,' + costImg.split(',')[1])
-            .replace('cid:odcv', 'data:image/png;base64,' + odcvImg.split(',')[1])}
-
---boundary123--`;
-
-            // Download .eml file
-            const blob = new Blob([emlContent], { type: 'message/rfc822' });
+            // Download clean HTML file
+            const blob = new Blob([cleanEmailHtml], { type: 'text/html' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `ODCV_Email_${'111 E 58 St'.replace(/[^a-zA-Z0-9]/g, '_')}.eml`;
+            a.download = `ODCV_Email_${'111 E 58 St'.replace(/[^a-zA-Z0-9]/g, '_')}.html`;
             a.click();
             URL.revokeObjectURL(url);
             
             // Simple instructions
             const recipientCount = to.split(',').filter(e => e.trim()).length;
-            alert(`✅ Email file downloaded!\n\n📧 TO SEND:\n1. Open the .eml file (double-click)\n2. Your email app opens with everything ready\n3. Hit Send!\n\nRecipients: ${recipientCount || 'Add manually'}`);
+            alert(`✅ Clean email HTML downloaded!\n\n📧 TO SEND:\n1. Open the HTML file in browser\n2. Select All (Ctrl+A / Cmd+A)\n3. Copy (Ctrl+C / Cmd+C)\n4. Paste into Gmail compose\n\nRecipients: ${recipientCount || 'Add manually'}`);
             
         } catch (err) {
             console.error(err);
@@ -1655,103 +1665,68 @@ ${htmlBody.replace('cid:usage', 'data:image/png;base64,' + usageImg.split(',')[1
         const percentSavings = o.odcvAnnual && o.annualCost ? Math.round((o.odcvAnnual/o.annualCost)*100) : 0;
         
         return `
-        <div style="font-family: Inter, Arial, sans-serif; color:#0f172a;">
+        <div style="font-family: Arial, sans-serif; color: #333; max-width: 700px; margin: 0 auto; line-height: 1.6;">
             
-            <!-- IMPOSSIBLE TO IGNORE OPENER -->
-            <div style="background:linear-gradient(135deg,#dc2626,#991b1b);color:white;padding:20px;border-radius:8px;margin-bottom:16px;">
-                <h2 style="margin:0 0 8px;font-size:1.5em;">
-                    ${o.addrShort} burns $${dailyWaste.toLocaleString()} every single day
-                </h2>
-                <p style="margin:0;opacity:0.95;">
-                    That's $${monthlyWaste.toLocaleString()}/month in pure waste. Gone. Forever.
-                </p>
-            </div>
+            <h2 style="color: #2c5aa0; margin-bottom: 20px; font-size: 24px;">
+                Energy Analysis for ${o.addrShort}
+            </h2>
             
-            <!-- THE MAGIC QUESTION -->
-            <div style="background:#ecfdf5;border:2px solid #10b981;padding:16px;border-radius:8px;margin:16px 0;">
-                <p style="margin:0;font-size:1.3em;font-weight:700;color:#047857;text-align:center;">
-                    "did we get this right? how much you use and spend"
-                </p>
-            </div>
+            <p>We've completed an analysis of your building's energy performance and identified significant optimization opportunities.</p>
             
-            <!-- THE SHOCKING TRUTH -->
-            <p><b>Here's what's actually happening at ${o.addrFull}:</b></p>
-            
-            <div style="background:#fef3c7;padding:16px;border-radius:8px;margin:16px 0;">
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #2c5aa0;">
+                <h3 style="margin: 0 0 15px 0; color: #2c5aa0;">Current Energy Profile</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                     <div>
-                        <div style="font-size:0.9em;color:#92400e;">You're spending:</div>
-                        <div style="font-size:1.8em;font-weight:700;color:#dc2626;">${usd(o.annualCost)}/yr</div>
+                        <div style="font-size: 14px; color: #666;">Annual Energy Cost:</div>
+                        <div style="font-size: 28px; font-weight: bold; color: #333;">${usd(o.annualCost)}</div>
                     </div>
                     <div>
-                        <div style="font-size:0.9em;color:#92400e;">You should be spending:</div>
-                        <div style="font-size:1.8em;font-weight:700;color:#059669;">${usd(o.annualCost - o.odcvAnnual)}/yr</div>
+                        <div style="font-size: 14px; color: #666;">Potential Annual Savings:</div>
+                        <div style="font-size: 28px; font-weight: bold; color: #0d7377;">${usd(o.odcvAnnual)}</div>
                     </div>
                 </div>
             </div>
             
-            <!-- PEER SHAMING -->
             ${o.peers ? `
-            <div style="background:#dbeafe;padding:12px;border-radius:8px;margin:16px 0;border-left:4px solid #2563eb;">
-                <p style="margin:0;font-weight:600;">
-                    📊 Reality check: Your EUI of ${num(o.eui,1)} beats ${o.peers.percentile}% of ${o.peers.total} Manhattan offices.
-                    ${o.peers.percentile < 75 ? `<span style="color:#dc2626;">But top performers are at ${num(o.peers.p25,1)} kBtu/sf. You're leaving money on the table.</span>` : `<span style="color:#059669;">You're already top quartile - this makes savings even easier!</span>`}
+            <div style="background: #e8f4f8; padding: 15px; border-radius: 8px; margin: 20px 0;">
+                <h4 style="margin: 0 0 10px 0; color: #2c5aa0;">Benchmarking Analysis</h4>
+                <p style="margin: 0;">
+                    Your building's EUI of ${num(o.eui,1)} kBtu/sf performs better than ${o.peers.percentile}% of similar Manhattan office buildings.
+                    ${o.peers.percentile < 75 ? `Top-performing buildings achieve ${num(o.peers.p25,1)} kBtu/sf, indicating additional optimization potential.` : `You're already in the top quartile, making these savings highly achievable.`}
                 </p>
             </div>` : ''}
             
-            <!-- THE GRAPHS - WITH CONTEXT -->
-            <h3 style="color:#0f172a;margin:24px 0 8px;">📊 The Data Doesn't Lie:</h3>
+            <h3 style="color: #2c5aa0; margin: 30px 0 15px 0;">Energy Performance Data</h3>
             
-            <div style="margin:16px 0;">
-                <div style="font-weight:600;margin-bottom:4px;">Your actual energy usage (see the waste?):</div>
-                <img src="cid:${o.usageCid}" alt="Usage" style="max-width:100%;border:2px solid #e5e7eb;border-radius:8px;">
+            <div style="margin: 20px 0;">
+                <h4 style="margin: 0 0 10px 0; color: #333;">Monthly Energy Costs</h4>
+                <img src="cid:${o.costCid}" alt="Energy Cost Chart" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;">
             </div>
             
-            <div style="margin:16px 0;">
-                <div style="font-weight:600;margin-bottom:4px;">Your actual costs (this hurts to look at):</div>
-                <img src="cid:${o.costCid}" alt="Cost" style="max-width:100%;border:2px solid #e5e7eb;border-radius:8px;">
-            </div>
-            
-            <!-- THE MONEY SHOT - ODCV GRAPH -->
-            <div style="background:#f0fdf4;border:3px solid #10b981;border-radius:12px;padding:16px;margin:24px 0;">
-                <h3 style="margin:0 0 12px;color:#059669;text-align:center;font-size:1.4em;">
-                    💰 THIS IS YOUR MONEY SITTING ON THE TABLE:
+            <div style="background: #f0f8f0; padding: 20px; border-radius: 8px; margin: 30px 0; border: 1px solid #d4edda;">
+                <h3 style="margin: 0 0 15px 0; color: #0d7377; text-align: center;">
+                    Projected ODCV Savings Opportunity
                 </h3>
-                <img src="cid:${o.odcvCid}" alt="ODCV Savings" style="max-width:100%;border-radius:4px;">
-                <div style="text-align:center;margin-top:12px;font-size:1.2em;font-weight:700;color:#047857;">
-                    Total: ${usd(o.odcvAnnual)}/year (${num(o.hvacPct,1)}% of HVAC costs)
+                <img src="cid:${o.odcvCid}" alt="ODCV Savings Chart" style="max-width: 100%; border-radius: 4px;">
+                <div style="text-align: center; margin-top: 15px; font-size: 18px; font-weight: bold; color: #0d7377;">
+                    Annual Savings: ${usd(o.odcvAnnual)} (${num(o.hvacPct,1)}% of HVAC costs)
                 </div>
             </div>
             
-            <!-- ENVIRONMENTAL IMPACT -->
-            <div style="background:#f0f9ff;border:2px solid #0284c7;border-radius:8px;padding:16px;margin:20px 0;">
-                <h3 style="margin:0 0 8px;color:#0c4a6e;">🌍 The Planet Impact:</h3>
-                <p style="margin:4px 0;">Saving ${usd(o.odcvAnnual)} also means:</p>
-                <ul style="margin:8px 0 0 20px;padding:0;">
-                    <li>🌳 Equivalent to planting <b>${treesEquivalent.toLocaleString()} trees</b></li>
-                    <li>🚗 Like taking <b>${carsOffRoad} cars</b> off the road</li>
-                    <li>🏠 Could power <b>${homesYearEnergy} homes</b> for a year</li>
-                    <li>☁️ Prevents <b>${co2Saved.toFixed(1)} tons</b> of CO₂</li>
-                </ul>
-            </div>
             
-            <!-- THE CLOSE -->
-            <div style="background:linear-gradient(135deg,#fbbf24,#f59e0b);padding:20px;border-radius:8px;margin:20px 0;">
-                <h3 style="margin:0 0 12px;color:#451a03;">⚡ Here's How We Fix This:</h3>
-                <ol style="margin:0 0 0 20px;padding:0;color:#451a03;">
-                    <li><b>15-minute call</b> - We validate your BMS & occupancy</li>
-                    <li><b>Lock the savings</b> - ${usd(o.odcvAnnual)} guaranteed in contract</li>
-                    <li><b>You're the hero</b> - Found ${percentSavings}% margin AND helped the planet</li>
+            <div style="background: #2c5aa0; color: white; padding: 20px; border-radius: 8px; margin: 30px 0;">
+                <h3 style="margin: 0 0 15px 0;">Next Steps</h3>
+                <ol style="margin: 0; padding-left: 20px;">
+                    <li>Schedule a brief consultation to validate building systems and occupancy patterns</li>
+                    <li>Develop a guaranteed savings contract based on this analysis</li>
+                    <li>Implement optimizations and begin realizing ${usd(o.odcvAnnual)} in annual savings</li>
                 </ol>
             </div>
             
-            <p style="font-size:1.1em;font-weight:700;color:#dc2626;">
-                Every day you wait = $${dailyWaste.toLocaleString()} burned.
-            </p>
+            <p style="margin: 30px 0 10px 0;">This analysis represents approximately $${Math.round(o.odcvAnnual/365).toLocaleString()} in daily savings opportunity.</p>
             
-            <p style="font-weight:600;">Ready to stop the waste?</p>
+            <p style="margin: 10px 0;">Would you like to discuss these findings?</p>
             
-            <p>—</p>
         </div>`;
     }
     
@@ -2596,7 +2571,7 @@ ${htmlBody.replace('cid:usage', 'data:image/png;base64,' + usageImg.split(',')[1
     </div><!-- End of container -->
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif; border: none !important; box-shadow: none !important; background: transparent;">
-        Build: 11 Aug 2025 10:50:01 PM CST | Test Build
+        Build: 11 Aug 2025 11:08:09 PM CST | Test Build
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
