@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<!-- Generated: 2025-08-12 00:37:23 EST -->
+<!-- Generated: 2025-08-12 00:43:43 EST -->
 <!-- Last Updated: August 10, 2025 -->
-<!-- Building Report Version: 1754973438 -->
+<!-- Building Report Version: 1754973819 -->
 <html>
 <head>
-    <title>1290 Ave Of The Americas, New York, NY 10104 - ODCV Analysis (v1754973438)</title>
+    <title>1290 Ave Of The Americas, New York, NY 10104 - ODCV Analysis (v1754973819)</title>
     <link rel="icon" type="image/png" href="https://rzero.com/wp-content/themes/rzero/build/images/favicons/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -1529,16 +1529,35 @@
                 usageCid: 'usage', costCid: 'cost', odcvCid: 'odcv'
             });
             
-            // Open Gmail compose directly with pre-filled data
-            const recipientCount = to.split(',').filter(e => e.trim()).length;
-            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(to)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(htmlBody.replace(/<[^>]*>/g, ''))}`;
+            // Create downloadable email content with embedded images
+            const canvas1 = document.createElement('canvas');
+            const canvas2 = document.createElement('canvas');
+            const canvas3 = document.createElement('canvas');
             
-            // SUCCESS MESSAGE
-            const message = to ? 
-                `✅ Opening Gmail with ${recipientCount} recipient(s) pre-filled!` :
-                `✅ Opening Gmail compose (add recipients manually)`;
-            alert(message);
-            window.open(gmailUrl, '_blank');
+            // Convert charts to data URLs for embedding
+            const usageDataUrl = await Plotly.toImage(document.getElementById('energy_chart'), {format: 'png', width: 800, height: 400});
+            const costDataUrl = await Plotly.toImage(document.getElementById('energy_cost_chart'), {format: 'png', width: 800, height: 400});
+            const odcvDataUrl = await Plotly.toImage(document.getElementById('odcv_savings_chart'), {format: 'png', width: 800, height: 400});
+            
+            // Create rich HTML email with embedded images
+            const richHtmlBody = htmlBody
+                .replace('cid:usage', usageDataUrl)
+                .replace('cid:cost', costDataUrl) 
+                .replace('cid:odcv', odcvDataUrl);
+            
+            // Create mailto link with rich content
+            const mailtoUrl = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent('Please view this email in HTML format. Charts and images included.')}`;
+            
+            // Open email client and copy rich HTML to clipboard
+            window.open(mailtoUrl, '_blank');
+            
+            // Copy rich HTML to clipboard
+            navigator.clipboard.writeText(richHtmlBody).then(() => {
+                const recipientCount = to.split(',').filter(e => e.trim()).length;
+                alert(`✅ Email opened with ${recipientCount} recipient(s)!\n\n📋 Rich HTML with charts copied to clipboard!\n\nPaste into your email composer for full formatting.`);
+            }).catch(() => {
+                alert(`✅ Email opened! Rich HTML with charts is ready.\n\nManually copy/paste the content for full formatting.`);
+            });
             
         } catch (err) {
             console.error(err);
@@ -2518,7 +2537,7 @@
     </div><!-- End of container -->
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif; border: none !important; box-shadow: none !important; background: transparent;">
-        Build: 11 Aug 2025 10:37:23 PM CST | Test Build
+        Build: 11 Aug 2025 10:43:43 PM CST | Test Build
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
