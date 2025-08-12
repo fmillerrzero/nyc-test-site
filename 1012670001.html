@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<!-- Generated: 2025-08-11 23:10:40 EST -->
+<!-- Generated: 2025-08-12 00:04:13 EST -->
 <!-- Last Updated: August 10, 2025 -->
-<!-- Building Report Version: 1754968234 -->
+<!-- Building Report Version: 1754971445 -->
 <html>
 <head>
-    <title>1290 Ave Of The Americas, New York, NY 10104 - ODCV Analysis (v1754968234)</title>
+    <title>1290 Ave Of The Americas, New York, NY 10104 - ODCV Analysis (v1754971445)</title>
     <link rel="icon" type="image/png" href="https://rzero.com/wp-content/themes/rzero/build/images/favicons/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -692,7 +692,7 @@
             <div style="display: flex; flex-direction: column; justify-content: center;">
                 <div style="display: flex; align-items: baseline; gap: 1rem;">
                     <span style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 25px; font-size: 1.6em; font-weight: 700;">#4</span>
-                    <span style="font-size: 2.5em; font-weight: 700; color: white; line-height: 1.2;">1290 Ave Of The Americas, 10104</span>
+                    <span style="font-size: 2.5em; font-weight: 700; color: white; line-height: 1.2;">1290 Ave Of The Americas</span>
                 </div>
                 <div style="margin: 0; opacity: 0.9; font-size: 1.1em; margin-left: calc(1.6em * 1.5 + 30px + 1rem); margin-top: -0.2rem;">
                     <span>Midtown-Times Square</span>
@@ -893,6 +893,49 @@
             </div>
         </div>
         
+        <!-- Major Tenants Section -->
+        <div class="section">
+            <div class="section-content">
+                <h2 class="section-header">Major Tenants</h2>
+                <div class="page">
+                <div style="overflow-x: auto;">
+                    <table id="tenantTable-1012670001" style="width: 100%; border-collapse: collapse; font-size: 0.9em;">
+                        <thead>
+                            <tr style="background: #f8f9fa; border-bottom: 2px solid #e5e7eb;">
+                                <th style="padding: 12px; text-align: left; font-weight: 600; color: #374151; cursor: pointer;" onclick="sortTenantTable(0)">Tenant* <span class="sort-indicator">↕</span></th>
+                                <th style="padding: 12px; text-align: left; font-weight: 600; color: #374151; cursor: pointer;" onclick="sortTenantTable(1)">Industry <span class="sort-indicator">↕</span></th>
+                                <th style="padding: 12px; text-align: left; font-weight: 600; color: #374151; cursor: pointer;" onclick="sortTenantTable(2)">Floor <span class="sort-indicator">↕</span></th>
+                                <th style="padding: 12px; text-align: right; font-weight: 600; color: #374151; cursor: pointer;" onclick="sortTenantTable(3)">SF Occupied <span class="sort-indicator">↕</span></th>
+                                <th style="padding: 12px; text-align: left; font-weight: 600; color: #374151; cursor: pointer;" onclick="sortTenantTable(4)">Move Date <span class="sort-indicator">↕</span></th>
+                                <th style="padding: 12px; text-align: left; font-weight: 600; color: #374151; cursor: pointer;" onclick="sortTenantTable(5)">Exp Date <span class="sort-indicator">↕</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #e5e7eb;">
+                                <td style="padding: 12px; color: #1f2937;">King & Spalding</td>
+                                <td style="padding: 12px; color: #6b7280;">Law</td>
+                                <td style="padding: 12px; color: #6b7280;">nan</td>
+                                <td style="padding: 12px; text-align: right; color: #1f2937; font-weight: 500;">180000.0</td>
+                                <td style="padding: 12px; color: #6b7280;">nan</td>
+                                <td style="padding: 12px; color: #6b7280;">nan</td>
+                            </tr><tr style="border-bottom: 1px solid #e5e7eb;">
+                                <td style="padding: 12px; color: #1f2937;">fuboTV</td>
+                                <td style="padding: 12px; color: #6b7280;">Media</td>
+                                <td style="padding: 12px; color: #6b7280;">nan</td>
+                                <td style="padding: 12px; text-align: right; color: #1f2937; font-weight: 500;">nan</td>
+                                <td style="padding: 12px; color: #6b7280;">2021</td>
+                                <td style="padding: 12px; color: #6b7280;">nan</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="margin-top: 16px; font-size: 0.85em; color: #6b7280;">
+                    * Top 2 tenants by sq ft
+                </div>
+            </div>
+            </div>
+            </div>
+        </div>
         
         
         <!-- Section 2: Building -->
@@ -929,7 +972,7 @@
                 </div>
                 <div class="stat">
                     <span class="stat-label">Building EUI: <span class="info-tooltip" data-tooltip="Energy Use Intensity measures annual energy consumption per square foot. Building EUI = Total Annual Energy ÷ Total Building Area. Lower values indicate better efficiency. NYC median is ~65 kBtu/sf/year." style="display: inline-block; margin-left: 5px; width: 16px; height: 16px; background-color: #00769d; color: white; border-radius: 50%; text-align: center; line-height: 16px; font-size: 12px; cursor: help; position: relative;">i</span></span>
-                    <span class="stat-value">0.0 kBtu/sf/year</span>
+                    <span class="stat-value">96.5 kBtu/sf/year</span>
                 </div>
             </div>
             
@@ -1465,9 +1508,9 @@
             const to = (prompt(promptText, defaultEmails) || '').trim();
             
             // Collect building data
-            const addrFull = '1290 Ave Of The Americas, 10104, Midtown-Times Square';
-            const addrShort = '1290 Ave Of The Americas, 10104'.split(',')[0];
-            const eui = 0;
+            const addrFull = '1290 Ave Of The Americas, Midtown-Times Square';
+            const addrShort = '1290 Ave Of The Americas'.split(',')[0];
+            const eui = 96.55;
             const area = 1920459;
             const annualCost = 12116413;
             const costPerSf = annualCost / area;
@@ -1657,8 +1700,7 @@
         try {
             const response = await fetch(PEER_CSV_URL);
             const text = await response.text();
-            const lines = text.trim().split('
-');
+            const lines = text.trim().split('\n');
             const headers = lines[0].split(',');
             
             // Parse CSV to get EUI values
@@ -2418,7 +2460,7 @@
             if (!viewerEl || viewerEl._pannellumInitialized) return;
             
             const buildingHeight = 568.15;
-            const address = "1290 Ave Of The Americas, 10104";
+            const address = "1290 Ave Of The Americas";
             
             // Calculate yaw based on address
             const yaw = getBuildingYaw(address);
@@ -2494,7 +2536,7 @@
     </div><!-- End of container -->
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif; border: none !important; box-shadow: none !important; background: transparent;">
-        Build: 11 Aug 2025 09:10:40 PM CST | Test Build
+        Build: 11 Aug 2025 10:04:13 PM CST | Test Build
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
