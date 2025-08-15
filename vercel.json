@@ -1,0 +1,10 @@
+{
+  "functions": {
+    "api/send-magic-link.js": {
+      "maxDuration": 10
+    },
+    "api/validate-token.js": {
+      "maxDuration": 5
+    }
+  }
+}
