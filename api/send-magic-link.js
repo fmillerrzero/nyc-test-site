@@ -51,8 +51,10 @@ export default async function handler(req, res) {
 
     if (!sendGridResponse.ok) {
       const error = await sendGridResponse.text();
-      console.error('SendGrid error:', error);
-      throw new Error('Failed to send email');
+      console.error('SendGrid error status:', sendGridResponse.status);
+      console.error('SendGrid error response:', error);
+      console.error('API Key being used:', process.env.SENDGRID_API_KEY ? 'Present' : 'Missing');
+      throw new Error(`SendGrid failed with status ${sendGridResponse.status}: ${error}`);
     }
 
     // Store token with expiration (15 minutes)
