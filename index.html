@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Generated: 2025-08-12 01:08:01 EST -->
+<!-- Generated: 2025-08-15 18:19:16 EST -->
 <!-- Last Updated: August 10, 2025 -->
 <html>
 <head>
@@ -291,7 +291,47 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.js"></script>
 </head>
 <body>
-    <div class="container">
+    <!-- Auth0 Login Overlay -->
+    <div id="loginOverlay" style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+        backdrop-filter: blur(10px);
+    ">
+        <div style="
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        ">
+            <img src="https://rzero.com/wp-content/uploads/2021/10/rzero-logo-pad.svg" alt="R-Zero Logo" style="width: 150px; margin-bottom: 20px;">
+            <h2 style="margin: 0 0 10px 0; color: #333;">NYC ODCV Prospector</h2>
+            <p style="color: #666; margin-bottom: 25px;">Sign in with your @rzero.com email</p>
+            <button id="loginButton" style="
+                width: 100%;
+                padding: 12px;
+                background: #0066cc;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+            ">Sign In</button>
+        </div>
+    </div>
+
+    <div class="container" id="mainContent" style="display: none;">
         <div class="header">
             <div class="logo-header">
                 <a href="https://rzero.com" target="_blank">
@@ -323,17 +363,17 @@
             <h2>Top Portfolios</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">
                 <div class="portfolio-tile" onclick="filterByOwner('Vornado Realty Trust')" style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid rgba(0, 118, 157, 0.2); cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; min-height: 100px;">
-                    <img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/Logos/Vornado_Realty_Trust.png" alt="Vornado Realty Trust" style="position: absolute; top: 10px; right: 15px; max-height: 60px; max-width: 120px; opacity: 0.8;">
+                    <img src="https://nyc-odcv-images.s3.us-east-2.amazonaws.com/Logos/Vornado_Realty_Trust.png" alt="Vornado Realty Trust" style="position: absolute; top: 10px; right: 15px; max-height: 60px; max-width: 120px; opacity: 0.8;">
                     <strong style="color: var(--rzero-primary); display: block; margin-bottom: 5px;">Vornado Realty Trust</strong>
                     <span style="color: #666;">37 buildings • $1.1M savings</span>
                 </div>
                 <div class="portfolio-tile" onclick="filterByOwner('SL Green Realty')" style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid rgba(0, 118, 157, 0.2); cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; min-height: 100px;">
-                    <img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/Logos/SL_Green_Realty.png" alt="SL Green Realty" style="position: absolute; top: 15px; right: 15px; max-height: 40px; max-width: 80px; opacity: 0.8;">
+                    <img src="https://nyc-odcv-images.s3.us-east-2.amazonaws.com/Logos/SL_Green_Realty.png" alt="SL Green Realty" style="position: absolute; top: 15px; right: 15px; max-height: 40px; max-width: 80px; opacity: 0.8;">
                     <strong style="color: var(--rzero-primary); display: block; margin-bottom: 5px;">SL Green Realty</strong>
                     <span style="color: #666;">26 buildings • $1.7M savings</span>
                 </div>
                 <div class="portfolio-tile" onclick="filterByOwner('Kaufman Organization')" style="background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid rgba(0, 118, 157, 0.2); cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; min-height: 100px;">
-                    <img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/Logos/Kaufman_Organization.png" alt="Kaufman Organization" style="position: absolute; top: 15px; right: 15px; max-height: 40px; max-width: 80px; opacity: 0.8;">
+                    <img src="https://nyc-odcv-images.s3.us-east-2.amazonaws.com/Logos/Kaufman_Organization.png" alt="Kaufman Organization" style="position: absolute; top: 15px; right: 15px; max-height: 40px; max-width: 80px; opacity: 0.8;">
                     <strong style="color: var(--rzero-primary); display: block; margin-bottom: 5px;">Kaufman Organization</strong>
                     <span style="color: #666;">23 buildings • $0.0M savings</span>
                 </div>
@@ -430,7 +470,7 @@
         <tbody>
 
         <tr data-search="1472 broadway | 1472 broadway | 1472 broadway | 1472 broadway | 141 w 42 st | 141 w 42 st | 143 w 42 st | 143 w 42 st | 145 w 42 st | 145 w 42 st | 147 w 42 st | 147 w 42 st | 149 w 42 st | 149 w 42 st | 151 w 42 st | 151 w 42 st | 153 w 42 st | 153 w 42 st | 155 w 42 st | 155 w 42 st | 157 w 42 st | 157 w 42 st | 1472 broadway | 1472 broadway | 1474 broadway | 1474 broadway | 1476 broadway | 1476 broadway | 1478 broadway | 1478 broadway | 1480 broadway | 1480 broadway | 1482 broadway | 1482 broadway | 1484 broadway | 1484 broadway | 1486 broadway | 1486 broadway | 1488 broadway | 1488 broadway | 1490 broadway | 1490 broadway | 4 times sq | 4 times sq | 138 w 43 st | 138 w 43 st | 140 w 43 st | 140 w 43 st | 142 w 43 st | 142 w 43 st | 144 w 43 st | 144 w 43 st | 146 w 43 st | 146 w 43 st | 148 w 43 st | 148 w 43 st | 150 w 43 st | 150 w 43 st | 152 w 43 st | 152 w 43 st | 154 w 43 st | 154 w 43 st | 156 w 43 st | 156 w 43 st | 158 w 43 st | 158 w 43 st | conde nast building | conde nast | h&m building | h&m | 4 times square | durst organization | durst organization | 1009950005 | durst organization | tiktok | bank of montreal | nasdaq | venable | rsm us llp | chicago trading company | mitsubishi corporation (americas) | atlas sp partners, l.p. | ss&c | rabobank international" data-occupancy="70" class="clickable-row" onclick="if (!event.target.closest('a')) window.location.href='1009950005.html'">
-            <td><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1009950005/1009950005_hero_thumbnail.jpg" 
+            <td><img src="https://nyc-odcv-images.s3.us-east-2.amazonaws.com/images/1009950005/1009950005_hero_thumbnail.jpg" 
                      alt="1472 Broadway" 
                      class="building-thumb" 
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
@@ -451,7 +491,7 @@
         </tr>
     
         <tr data-search="1515 broadway | 1515 broadway | 1515 broadway | 1515 broadway | 200 w 45 st | 200 w 45 st | 1507 broadway | 1507 broadway | 1509 broadway | 1509 broadway | 1511 broadway | 1511 broadway | 1513 broadway | 1513 broadway | 1515 broadway | 1515 broadway | 1517 broadway | 1517 broadway | 1519 broadway | 1519 broadway | 1521 broadway | 1521 broadway | 201 w 44 st | 201 w 44 st | 203 w 44 st | 203 w 44 st | 205 w 44 st | 205 w 44 st | 207 w 44 st | 207 w 44 st | 209 w 44 st | 209 w 44 st | 211 w 44 st | 211 w 44 st | 213 w 44 st | 213 w 44 st | 215 w 44 st | 215 w 44 st | 217 w 44 st | 217 w 44 st | 219 w 44 st | 219 w 44 st | 1523 broadway | 1523 broadway | 1525 broadway | 1525 broadway | 1 astor plaza | 1 astor plaza | one astor plaza | one astor | sl green realty | sl green realty | 1010160036 | sl green | paramount global | palladium times square | junior's | minskoff theatre | line friends" data-occupancy="70" class="clickable-row" onclick="if (!event.target.closest('a')) window.location.href='1010160036.html'">
-            <td><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1010160036/1010160036_hero_thumbnail.jpg" 
+            <td><img src="https://nyc-odcv-images.s3.us-east-2.amazonaws.com/images/1010160036/1010160036_hero_thumbnail.jpg" 
                      alt="1515 Broadway" 
                      class="building-thumb" 
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
@@ -472,7 +512,7 @@
         </tr>
     
         <tr data-search="1290 ave of the americas | 1290 ave of the americas | 1290 ave of the americas | 1290 ave of the americas | 38 w 52 st | 38 w 52 st | 40 w 52 st | 40 w 52 st | 42 w 52 st | 42 w 52 st | 44 w 52 st | 44 w 52 st | 46 w 52 st | 46 w 52 st | 48 w 52 st | 48 w 52 st | 50 w 52 st | 50 w 52 st | 52 w 52 st | 52 w 52 st | 54 w 52 st | 54 w 52 st | 56 w 52 st | 56 w 52 st | 58 w 52 st | 58 w 52 st | 60 w 52 st | 60 w 52 st | 62 w 52 st | 62 w 52 st | 64 w 52 st | 64 w 52 st | 66 w 52 st | 66 w 52 st | 68 w 52 st | 68 w 52 st | 70 w 52 st | 70 w 52 st | 72 w 52 st | 72 w 52 st | 74 w 52 st | 74 w 52 st | 1280 ave of the americas | 1280 ave of the americas | 1282 ave of the americas | 1282 ave of the americas | 1284 ave of the americas | 1284 ave of the americas | 1286 ave of the americas | 1286 ave of the americas | 1288 ave of the americas | 1288 ave of the americas | 1290 ave of the americas | 1290 ave of the americas | 1292 ave of the americas | 1292 ave of the americas | 1294 ave of the americas | 1294 ave of the americas | 1296 ave of the americas | 1296 ave of the americas | 31 w 51 st | 31 w 51 st | 33 w 51 st | 33 w 51 st | 35 w 51 st | 35 w 51 st | 37 w 51 st | 37 w 51 st | 39 w 51 st | 39 w 51 st | 41 w 51 st | 41 w 51 st | 43 w 51 st | 43 w 51 st | 45 w 51 st | 45 w 51 st | 47 w 51 st | 47 w 51 st | 49 w 51 st | 49 w 51 st | 51 w 51 st | 51 w 51 st | 53 w 51 st | 53 w 51 st | 55 w 51 st | 55 w 51 st | 57 w 51 st | 57 w 51 st | 59 w 51 st | 59 w 51 st | 61 w 51 st | 61 w 51 st | 63 w 51 st | 63 w 51 st | 65 w 51 st | 65 w 51 st | 67 w 51 st | 67 w 51 st | 69 w 51 st | 69 w 51 st | 71 w 51 st | 71 w 51 st | 73 w 51 st | 73 w 51 st | vornado realty trust | cushman & wakefield | 1012670001 | vornado | king & spalding | fubotv" data-occupancy="70" class="clickable-row" onclick="if (!event.target.closest('a')) window.location.href='1012670001.html'">
-            <td><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1012670001/1012670001_hero_thumbnail.jpg" 
+            <td><img src="https://nyc-odcv-images.s3.us-east-2.amazonaws.com/images/1012670001/1012670001_hero_thumbnail.jpg" 
                      alt="1290 Ave Of The Americas" 
                      class="building-thumb" 
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
@@ -493,7 +533,7 @@
         </tr>
     
         <tr data-search="245 park ave | 245 park ave | 245 park ave | 245 park ave | 482 lexington ave | 482 lexington ave | 484 lexington ave | 484 lexington ave | 486 lexington ave | 486 lexington ave | 488 lexington ave | 488 lexington ave | 490 lexington ave | 490 lexington ave | 492 lexington ave | 492 lexington ave | 494 lexington ave | 494 lexington ave | 496 lexington ave | 496 lexington ave | 121 e 46 st | 121 e 46 st | 480 lexington ave | 480 lexington ave | 101 e 46 st | 101 e 46 st | 103 e 46 st | 103 e 46 st | 105 e 46 st | 105 e 46 st | 107 e 46 st | 107 e 46 st | 109 e 46 st | 109 e 46 st | 111 e 46 st | 111 e 46 st | 113 e 46 st | 113 e 46 st | 115 e 46 st | 115 e 46 st | 117 e 46 st | 117 e 46 st | 119 e 46 st | 119 e 46 st | 125 e 46 st | 125 e 46 st | 108 e 47 st | 108 e 47 st | 245a park ave | 245a park ave | 118 e 47 st | 118 e 47 st | 247 park ave | 247 park ave | 249 park ave | 249 park ave | 251 park ave | 251 park ave | 253 park ave | 253 park ave | 255 park ave | 255 park ave | 257 park ave | 257 park ave | 480a lexington ave | 480a lexington ave | 112 e 47 st | 112 e 47 st | 245 park ave | 245 park ave | 100 e 47 st | 100 e 47 st | 102 e 47 st | 102 e 47 st | 104 e 47 st | 104 e 47 st | 106 e 47 st | 106 e 47 st | sl green realty | sl green realty | 1013010001 | sl green | société générale | ares management | houlihan lokey | tpg angelo gordon & co., l.p. | stonepeak partners llc | tradeweb markets inc. | eqt partners | ares commercial real estate corporation | the norinchukin bank | verition fund management llc" data-occupancy="70" class="clickable-row" onclick="if (!event.target.closest('a')) window.location.href='1013010001.html'">
-            <td><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1013010001/1013010001_hero_thumbnail.jpg" 
+            <td><img src="https://nyc-odcv-images.s3.us-east-2.amazonaws.com/images/1013010001/1013010001_hero_thumbnail.jpg" 
                      alt="245 Park Ave" 
                      class="building-thumb" 
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
@@ -514,7 +554,7 @@
         </tr>
     
         <tr data-search="111 e 58 st | 111 e 58 st | 111 e 58 st | 111 e 58 st | 110 e 59 st | 110 e 59 st | 112 e 59 st | 112 e 59 st | 114 e 59 st | 114 e 59 st | 109 e 58 st | 109 e 58 st | 111 e 58 st | 111 e 58 st | 113 e 58 st | 113 e 58 st | 115 e 58 st | 115 e 58 st | 117 e 58 st | 117 e 58 st | 119 e 58 st | 119 e 58 st | 121 e 58 st | 121 e 58 st | 123 e 58 st | 123 e 58 st | 125 e 58 st | 125 e 58 st | 127 e 58 st | 127 e 58 st | jack resnick & sons | jack resnick & sons | 1013130005 | jack resnick & sons | parkinson’s wellness foundation | douglas seckendorf, dc, ccsp | cooper matthew, dc | excelsior physical therapy, pc | definitions | avant-garde physical therapy | cosmetic prosthodontics pllc | yakov levy md | schweitzer & schweitzer pc | avenue medical associates p.c." data-occupancy="70" class="clickable-row" onclick="if (!event.target.closest('a')) window.location.href='1013130005.html'">
-            <td><img src="https://raw.githubusercontent.com/fmillerrzero/nyc-test-site/main/images/1013130005/1013130005_hero_thumbnail.jpg" 
+            <td><img src="https://nyc-odcv-images.s3.us-east-2.amazonaws.com/images/1013130005/1013130005_hero_thumbnail.jpg" 
                      alt="111 E 58 St" 
                      class="building-thumb" 
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
@@ -539,7 +579,45 @@
         </div>
     </div>
     
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
     <script>
+    let auth0Client = null;
+    
+    // Initialize Auth0
+    async function initAuth0() {
+        auth0Client = await auth0.createAuth0Client({
+            domain: 'dev-g208lwikz3nnk4wg.us.auth0.com',
+            clientId: 'DurN7UUhKV7ng2VopGbCzH9esb2pi7ud',
+            authorizationParams: {
+                redirect_uri: window.location.origin
+            }
+        });
+        
+        // Check if user is returning from login
+        if (location.search.includes('code=') && location.search.includes('state=')) {
+            await auth0Client.handleRedirectCallback();
+            window.history.replaceState({}, document.title, '/');
+        }
+        
+        // Check if user is authenticated
+        const isAuthenticated = await auth0Client.isAuthenticated();
+        if (isAuthenticated) {
+            document.getElementById('loginOverlay').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+        } else {
+            // Show login overlay
+            document.getElementById('loginButton').addEventListener('click', login);
+        }
+    }
+    
+    // Login function
+    async function login() {
+        await auth0Client.loginWithRedirect();
+    }
+    
+    // Initialize on page load
+    window.addEventListener('load', initAuth0);
+    
     // Global variable to track filter state
     var activeOwnerFilter = null;
     
@@ -4726,7 +4804,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: 11 Aug 2025 11:08:01 PM CST | Test Build
+        Build: 15 Aug 2025 04:19:16 PM CST | Test Build
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
