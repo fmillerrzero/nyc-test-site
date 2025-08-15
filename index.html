@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Generated: 2025-08-15 18:27:29 EST -->
+<!-- Generated: 2025-08-15 18:32:18 EST -->
 <!-- Last Updated: August 10, 2025 -->
 <html>
 <head>
@@ -654,15 +654,23 @@
         button.textContent = 'Sending...';
         
         try {
-            // TODO: Replace with actual API call
-            // For now, simulate success
-            await new Promise(resolve => setTimeout(resolve, 1500));
+            // Call API to send magic link
+            const response = await fetch('/api/send-magic-link', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email })
+            });
             
-            successEl.textContent = `Magic link sent to ${email}! Check your inbox.`;
-            successEl.style.display = 'block';
+            const data = await response.json();
             
-            // TODO: Make actual API call to send email
-            console.log('Would send magic link to:', email);
+            if (response.ok) {
+                successEl.textContent = `Magic link sent to ${email}! Check your inbox.`;
+                successEl.style.display = 'block';
+            } else {
+                showError(data.error || 'Failed to send magic link');
+            }
             
         } catch (error) {
             showError('Failed to send magic link. Please try again.');
@@ -675,13 +683,22 @@
     // Validate magic link token
     async function validateMagicLink(token) {
         try {
-            // TODO: Replace with actual API call to validate token
-            // For now, simulate validation
-            await new Promise(resolve => setTimeout(resolve, 500));
+            // Call API to validate token
+            const response = await fetch('/api/validate-token', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ token })
+            });
             
-            // TODO: Make actual API call to validate token
-            // If valid, get user email and store session
-            const userEmail = 'demo@rzero.com'; // This would come from API
+            const data = await response.json();
+            
+            if (!response.ok) {
+                throw new Error(data.error || 'Invalid token');
+            }
+            
+            const userEmail = data.email;
             
             // Store authentication data
             const authData = {
@@ -4901,7 +4918,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: 15 Aug 2025 04:27:29 PM CST | Test Build
+        Build: 15 Aug 2025 04:32:18 PM CST | Test Build
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
