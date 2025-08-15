@@ -33,7 +33,7 @@ export default async function handler(req, res) {
           }
         ],
         from: {
-          email: 'noreply@rzero.com',
+          email: 'rzrobot+customerportal-prod@rzerosystems.com',
           name: 'R-Zero NYC Prospector'
         },
         content: [{
