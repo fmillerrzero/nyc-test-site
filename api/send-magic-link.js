@@ -26,12 +26,16 @@ export default async function handler(req, res) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
+        personalizations: [
+          {
+            to: [{ email: email }],
+            subject: 'Your NYC ODCV Prospector Access Link'
+          }
+        ],
         from: {
           email: 'noreply@rzero.com',
           name: 'R-Zero NYC Prospector'
         },
-        to: [{ email: email }],
-        subject: 'Your NYC ODCV Prospector Access Link',
         content: [{
           type: 'text/html',
           value: `
