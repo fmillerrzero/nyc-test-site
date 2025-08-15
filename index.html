@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Generated: 2025-08-15 18:24:31 EST -->
+<!-- Generated: 2025-08-15 18:27:29 EST -->
 <!-- Last Updated: August 10, 2025 -->
 <html>
 <head>
@@ -291,7 +291,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.js"></script>
 </head>
 <body>
-    <!-- Auth0 Login Overlay -->
+    <!-- Magic Link Login Overlay -->
     <div id="loginOverlay" style="
         position: fixed;
         top: 0;
@@ -305,7 +305,7 @@
         z-index: 10000;
         backdrop-filter: blur(10px);
     ">
-        <div style="
+        <div id="emailForm" style="
             background: white;
             padding: 40px;
             border-radius: 12px;
@@ -316,8 +316,17 @@
         ">
             <img src="https://rzero.com/wp-content/uploads/2021/10/rzero-logo-pad.svg" alt="R-Zero Logo" style="width: 150px; margin-bottom: 20px;">
             <h2 style="margin: 0 0 10px 0; color: #333;">NYC ODCV Prospector</h2>
-            <p style="color: #666; margin-bottom: 25px;">Sign in with your @rzero.com email</p>
-            <button id="loginButton" style="
+            <p style="color: #666; margin-bottom: 25px;">Enter your @rzero.com email</p>
+            <input type="email" id="emailInput" placeholder="your.name@rzero.com" style="
+                width: 100%;
+                padding: 12px;
+                border: 2px solid #ddd;
+                border-radius: 6px;
+                font-size: 16px;
+                margin-bottom: 20px;
+                box-sizing: border-box;
+            " onkeypress="if(event.key==='Enter') sendMagicLink()">
+            <button id="sendLinkButton" onclick="sendMagicLink()" style="
                 width: 100%;
                 padding: 12px;
                 background: #0066cc;
@@ -327,7 +336,9 @@
                 font-size: 16px;
                 font-weight: 600;
                 cursor: pointer;
-            ">Sign In</button>
+            ">Send Magic Link</button>
+            <p id="errorMessage" style="color: #c41e3a; margin-top: 15px; display: none;"></p>
+            <p id="successMessage" style="color: #38a169; margin-top: 15px; display: none;"></p>
         </div>
     </div>
 
@@ -579,44 +590,130 @@
         </div>
     </div>
     
-    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
     <script>
-    let auth0Client = null;
+    // Magic Link Authentication
     
-    // Initialize Auth0
-    async function initAuth0() {
-        auth0Client = await auth0.createAuth0Client({
-            domain: 'dev-g208lwikz3nnk4wg.us.auth0.com',
-            clientId: 'DurN7UUhKV7ng2VopGbCzH9esb2pi7ud',
-            authorizationParams: {
-                redirect_uri: window.location.href.split('?')[0]
-            }
-        });
+    // Check if user is already authenticated or returning from magic link
+    function checkAuth() {
+        // Check for magic link token in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
         
-        // Check if user is returning from login
-        if (location.search.includes('code=') && location.search.includes('state=')) {
-            await auth0Client.handleRedirectCallback();
-            window.history.replaceState({}, document.title, '/');
+        if (token) {
+            // Validate magic link token
+            validateMagicLink(token);
+            return;
         }
         
-        // Check if user is authenticated
-        const isAuthenticated = await auth0Client.isAuthenticated();
-        if (isAuthenticated) {
-            document.getElementById('loginOverlay').style.display = 'none';
-            document.getElementById('mainContent').style.display = 'block';
-        } else {
-            // Show login overlay
-            document.getElementById('loginButton').addEventListener('click', login);
+        // Check for existing session
+        const authData = localStorage.getItem('magicLinkAuth');
+        if (authData) {
+            try {
+                const auth = JSON.parse(authData);
+                const now = Date.now();
+                
+                // Check if session is still valid (24 hours)
+                if (auth.expires > now) {
+                    showMainContent();
+                    return;
+                }
+            } catch (e) {
+                localStorage.removeItem('magicLinkAuth');
+            }
+        }
+        
+        // Show login form
+        document.getElementById('emailInput').focus();
+    }
+    
+    // Send magic link
+    async function sendMagicLink() {
+        const email = document.getElementById('emailInput').value.trim().toLowerCase();
+        const errorEl = document.getElementById('errorMessage');
+        const successEl = document.getElementById('successMessage');
+        const button = document.getElementById('sendLinkButton');
+        
+        // Hide previous messages
+        errorEl.style.display = 'none';
+        successEl.style.display = 'none';
+        
+        // Validate email format
+        if (!email || !email.includes('@')) {
+            showError('Please enter a valid email address');
+            return;
+        }
+        
+        // Check if email is @rzero.com
+        if (!email.endsWith('@rzero.com')) {
+            showError('Only @rzero.com email addresses are allowed');
+            return;
+        }
+        
+        // Disable button and show loading
+        button.disabled = true;
+        button.textContent = 'Sending...';
+        
+        try {
+            // TODO: Replace with actual API call
+            // For now, simulate success
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            successEl.textContent = `Magic link sent to ${email}! Check your inbox.`;
+            successEl.style.display = 'block';
+            
+            // TODO: Make actual API call to send email
+            console.log('Would send magic link to:', email);
+            
+        } catch (error) {
+            showError('Failed to send magic link. Please try again.');
+        } finally {
+            button.disabled = false;
+            button.textContent = 'Send Magic Link';
         }
     }
     
-    // Login function
-    async function login() {
-        await auth0Client.loginWithRedirect();
+    // Validate magic link token
+    async function validateMagicLink(token) {
+        try {
+            // TODO: Replace with actual API call to validate token
+            // For now, simulate validation
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            // TODO: Make actual API call to validate token
+            // If valid, get user email and store session
+            const userEmail = 'demo@rzero.com'; // This would come from API
+            
+            // Store authentication data
+            const authData = {
+                email: userEmail,
+                expires: Date.now() + (24 * 60 * 60 * 1000) // 24 hours
+            };
+            localStorage.setItem('magicLinkAuth', JSON.stringify(authData));
+            
+            // Clean URL and show content
+            window.history.replaceState({}, document.title, window.location.pathname);
+            showMainContent();
+            
+        } catch (error) {
+            showError('Invalid or expired magic link');
+        }
+    }
+    
+    // Show main content
+    function showMainContent() {
+        document.getElementById('loginOverlay').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+    }
+    
+    // Show error message
+    function showError(message) {
+        const errorEl = document.getElementById('errorMessage');
+        errorEl.textContent = message;
+        errorEl.style.display = 'block';
     }
     
     // Initialize on page load
-    window.addEventListener('load', initAuth0);
+    window.addEventListener('load', checkAuth);
     
     // Global variable to track filter state
     var activeOwnerFilter = null;
@@ -4804,7 +4901,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: 15 Aug 2025 04:24:31 PM CST | Test Build
+        Build: 15 Aug 2025 04:27:29 PM CST | Test Build
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
