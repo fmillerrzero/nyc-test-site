@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Generated: 2025-08-15 18:45:00 EST -->
+<!-- Generated: 2025-08-15 23:36:50 EST -->
 <!-- Last Updated: August 10, 2025 -->
 <html>
 <head>
@@ -289,23 +289,22 @@
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.js"></script>
-</head>
+    <script src="https://accounts.google.com/gsi/client" async defer></script></head>
 <body>
-    <!-- Magic Link Login Overlay -->
+    <!-- Google Sign-In Overlay -->
     <div id="loginOverlay" style="
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #0066cc 0%, #004494 100%);
         display: flex;
         justify-content: center;
         align-items: center;
         z-index: 10000;
-        backdrop-filter: blur(10px);
     ">
-        <div id="emailForm" style="
+        <div style="
             background: white;
             padding: 40px;
             border-radius: 12px;
@@ -316,32 +315,23 @@
         ">
             <img src="https://rzero.com/wp-content/uploads/2021/10/rzero-logo-pad.svg" alt="R-Zero Logo" style="width: 150px; margin-bottom: 20px;">
             <h2 style="margin: 0 0 10px 0; color: #333;">NYC ODCV Prospector</h2>
-            <p style="color: #666; margin-bottom: 25px;">Enter your @rzero.com email</p>
-            <input type="email" id="emailInput" placeholder="your.name@rzero.com" style="
-                width: 100%;
-                padding: 12px;
-                border: 2px solid #ddd;
-                border-radius: 6px;
-                font-size: 16px;
-                margin-bottom: 20px;
-                box-sizing: border-box;
-            " onkeypress="if(event.key==='Enter') sendMagicLink()">
-            <button id="sendLinkButton" onclick="sendMagicLink()" style="
-                width: 100%;
-                padding: 12px;
-                background: #0066cc;
-                color: white;
-                border: none;
-                border-radius: 6px;
-                font-size: 16px;
-                font-weight: 600;
-                cursor: pointer;
-            ">Send Magic Link</button>
-            <p id="errorMessage" style="color: #c41e3a; margin-top: 15px; display: none;"></p>
-            <p id="successMessage" style="color: #38a169; margin-top: 15px; display: none;"></p>
+            <p style="color: #666; margin-bottom: 25px;">Sign in with your R-Zero account</p>
+            
+            <div id="g_id_onload"
+                 data-client_id="440202882694-0f45tilrene0hs8cosk300m86kq79gtk.apps.googleusercontent.com"
+                 data-callback="handleCredentialResponse"
+                 data-auto_prompt="false">
+            </div>
+            <div class="g_id_signin"
+                 data-type="standard"
+                 data-size="large"
+                 data-theme="outline"
+                 data-text="sign_in_with"
+                 data-shape="rectangular"
+                 data-logo_alignment="left">
+            </div>
         </div>
     </div>
-
     <div class="container" id="mainContent" style="display: none;">
         <div class="header">
             <div class="logo-header">
@@ -591,147 +581,64 @@
     </div>
     
     <script>
-    // Magic Link Authentication
+    // Google Sign-In Authentication
     
-    // Check if user is already authenticated or returning from magic link
-    function checkAuth() {
-        // Check for magic link token in URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const token = urlParams.get('token');
+    // Handle the credential response from Google
+    function handleCredentialResponse(response) {
+        // Decode JWT to get user email
+        const base64Url = response.credential.split(".")[1];
+        const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+        const jsonPayload = decodeURIComponent(atob(base64).split("").map(function(c) {
+            return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(""));
+        const userData = JSON.parse(jsonPayload);
         
-        if (token) {
-            // Validate magic link token
-            validateMagicLink(token);
-            return;
-        }
-        
-        // Check for existing session
-        const authData = localStorage.getItem('magicLinkAuth');
-        if (authData) {
-            try {
-                const auth = JSON.parse(authData);
-                const now = Date.now();
-                
-                // Check if session is still valid (24 hours)
-                if (auth.expires > now) {
-                    showMainContent();
-                    return;
-                }
-            } catch (e) {
-                localStorage.removeItem('magicLinkAuth');
-            }
-        }
-        
-        // Show login form
-        document.getElementById('emailInput').focus();
-    }
-    
-    // Send magic link
-    async function sendMagicLink() {
-        const email = document.getElementById('emailInput').value.trim().toLowerCase();
-        const errorEl = document.getElementById('errorMessage');
-        const successEl = document.getElementById('successMessage');
-        const button = document.getElementById('sendLinkButton');
-        
-        // Hide previous messages
-        errorEl.style.display = 'none';
-        successEl.style.display = 'none';
-        
-        // Validate email format
-        if (!email || !email.includes('@')) {
-            showError('Please enter a valid email address');
-            return;
-        }
-        
-        // Check if email is @rzero.com
-        if (!email.endsWith('@rzero.com')) {
-            showError('Only @rzero.com email addresses are allowed');
-            return;
-        }
-        
-        // Disable button and show loading
-        button.disabled = true;
-        button.textContent = 'Sending...';
-        
-        try {
-            // Call API to send magic link
-            const response = await fetch('/api/send-magic-link', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email })
-            });
-            
-            const data = await response.json();
-            
-            if (response.ok) {
-                successEl.textContent = `Magic link sent to ${email}! Check your inbox.`;
-                successEl.style.display = 'block';
-            } else {
-                showError(data.error || 'Failed to send magic link');
-            }
-            
-        } catch (error) {
-            showError('Failed to send magic link. Please try again.');
-        } finally {
-            button.disabled = false;
-            button.textContent = 'Send Magic Link';
-        }
-    }
-    
-    // Validate magic link token
-    async function validateMagicLink(token) {
-        try {
-            // Call API to validate token
-            const response = await fetch('/api/validate-token', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ token })
-            });
-            
-            const data = await response.json();
-            
-            if (!response.ok) {
-                throw new Error(data.error || 'Invalid token');
-            }
-            
-            const userEmail = data.email;
-            
-            // Store authentication data
-            const authData = {
-                email: userEmail,
-                expires: Date.now() + (24 * 60 * 60 * 1000) // 24 hours
-            };
-            localStorage.setItem('magicLinkAuth', JSON.stringify(authData));
-            
-            // Clean URL and show content
-            window.history.replaceState({}, document.title, window.location.pathname);
+        // Check if email ends with @rzero.com
+        if (userData.email && userData.email.endsWith("@rzero.com")) {
+            // Store auth and show content
+            localStorage.setItem("rzeroAuth", JSON.stringify({
+                email: userData.email,
+                name: userData.name,
+                expires: Date.now() + 86400000 // 24 hours
+            }));
             showMainContent();
-            
-        } catch (error) {
-            showError('Invalid or expired magic link');
+        } else {
+            alert("Access restricted to R-Zero employees only (@rzero.com emails)");
+            google.accounts.id.disableAutoSelect();
         }
     }
     
-    // Show main content
-    function showMainContent() {
-        document.getElementById('loginOverlay').style.display = 'none';
-        document.getElementById('mainContent').style.display = 'block';
+    // Check existing auth on load
+    function checkAuth() {
+        const auth = localStorage.getItem("rzeroAuth");
+        if (auth) {
+            const authData = JSON.parse(auth);
+            if (Date.now() < authData.expires) {
+                showMainContent();
+                return;
+            } else {
+                localStorage.removeItem("rzeroAuth");
+            }
+        }
+        // Initialize Google Sign-In
+        google.accounts.id.initialize({
+            client_id: "440202882694-0f45tilrene0hs8cosk300m86kq79gtk.apps.googleusercontent.com",
+            callback: handleCredentialResponse
+        });
+        google.accounts.id.renderButton(
+            document.querySelector(".g_id_signin"),
+            { theme: "outline", size: "large" }
+        );
     }
     
-    // Show error message
-    function showError(message) {
-        const errorEl = document.getElementById('errorMessage');
-        errorEl.textContent = message;
-        errorEl.style.display = 'block';
+    // Show main content after successful auth
+    function showMainContent() {
+        document.getElementById("loginOverlay").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
     }
     
     // Initialize on page load
-    window.addEventListener('load', checkAuth);
-    
+    window.addEventListener("load", checkAuth);    
     // Global variable to track filter state
     var activeOwnerFilter = null;
     
@@ -4918,7 +4825,7 @@
     </button>
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0;">
-        Build: 15 Aug 2025 04:45:00 PM CST | Test Build
+        Build: 15 Aug 2025 09:36:50 PM CST | Test Build
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
