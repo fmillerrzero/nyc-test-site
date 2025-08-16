@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<!-- Generated: 2025-08-15 23:37:00 EST -->
+<!-- Generated: 2025-08-15 23:45:36 EST -->
 <!-- Last Updated: August 13, 2025 - Clean Contacts -->
-<!-- Building Report Version: 1755315410 -->
+<!-- Building Report Version: 1755315927 -->
 <html>
 <head>
-    <title>111 E 58th St, New York, NY 10022 - ODCV Analysis (v1755315410)</title>
+    <title>111 E 58th St, New York, NY 10022 - ODCV Analysis (v1755315927)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="https://rzero.com/wp-content/themes/rzero/build/images/favicons/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -737,21 +737,20 @@
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
     <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
-</head>
+    <script src="https://accounts.google.com/gsi/client" async defer></script></head>
 <body>
-    <!-- Password Protection Overlay -->
-    <div id="passwordOverlay" style="
+    <!-- Google Sign-In Overlay -->
+    <div id="loginOverlay" style="
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #0066cc 0%, #004494 100%);
         display: flex;
         justify-content: center;
         align-items: center;
         z-index: 10000;
-        backdrop-filter: blur(10px);
     ">
         <div style="
             background: white;
@@ -764,31 +763,23 @@
         ">
             <img src="https://rzero.com/wp-content/uploads/2021/10/rzero-logo-pad.svg" alt="R-Zero Logo" style="width: 150px; margin-bottom: 20px;">
             <h2 style="margin: 0 0 10px 0; color: #333;">NYC ODCV Prospector</h2>
-            <p style="color: #666; margin-bottom: 25px;">Enter password to access</p>
-            <input type="password" id="passwordInput" placeholder="Password" style="
-                width: 100%;
-                padding: 12px;
-                border: 2px solid #ddd;
-                border-radius: 6px;
-                font-size: 16px;
-                margin-bottom: 20px;
-                box-sizing: border-box;
-            " onkeypress="if(event.key==='Enter') checkPassword()">
-            <button onclick="checkPassword()" style="
-                width: 100%;
-                padding: 12px;
-                background: #0066cc;
-                color: white;
-                border: none;
-                border-radius: 6px;
-                font-size: 16px;
-                font-weight: 600;
-                cursor: pointer;
-            ">Access Site</button>
-            <p id="errorMessage" style="color: #c41e3a; margin-top: 15px; display: none;">Incorrect password</p>
+            <p style="color: #666; margin-bottom: 25px;">Sign in with your R-Zero account</p>
+            
+            <div id="g_id_onload"
+                 data-client_id="440202882694-0f45tilrene0hs8cosk300m86kq79gtk.apps.googleusercontent.com"
+                 data-callback="handleCredentialResponse"
+                 data-auto_prompt="false">
+            </div>
+            <div class="g_id_signin"
+                 data-type="standard"
+                 data-size="large"
+                 data-theme="outline"
+                 data-text="sign_in_with"
+                 data-shape="rectangular"
+                 data-logo_alignment="left">
+            </div>
         </div>
     </div>
-
     <div class="container" id="mainContent" style="display: none;">
         <!-- Navigation Bar -->
         <!-- Section 0.0 - Title -->
@@ -1261,44 +1252,58 @@
         </div>
         
     <script>
-    // Password protection
-    function checkPassword() {
-        const password = document.getElementById('passwordInput').value;
-        const correctPassword = 'nycgoldmine22';
+    // Google Sign-In Authentication
+    function handleCredentialResponse(response) {
+        // Decode JWT to get user email
+        const base64Url = response.credential.split(".")[1];
+        const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+        const jsonPayload = decodeURIComponent(atob(base64).split("").map(function(c) {
+            return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(""));
+        const userData = JSON.parse(jsonPayload);
         
-        if (password === correctPassword) {
-            document.getElementById('passwordOverlay').style.display = 'none';
-            document.getElementById('mainContent').style.display = 'block';
-            localStorage.setItem('authTimestamp', Date.now().toString());
+        // Check if email ends with @rzero.com
+        if (userData.email && userData.email.endsWith("@rzero.com")) {
+            // Store auth and show content
+            localStorage.setItem("rzeroAuth", JSON.stringify({
+                email: userData.email,
+                name: userData.name,
+                expires: Date.now() + 86400000 // 24 hours
+            }));
+            document.getElementById("loginOverlay").style.display = "none";
+            document.getElementById("mainContent").style.display = "block";
         } else {
-            document.getElementById('errorMessage').style.display = 'block';
-            document.getElementById('passwordInput').value = '';
-            document.getElementById('passwordInput').focus();
+            alert("Access restricted to R-Zero employees only (@rzero.com emails)");
+            google.accounts.id.disableAutoSelect();
         }
     }
     
-    // Check if user is already authenticated (session expires after 24 hours)
+    // Check existing auth on load
     function checkAuth() {
-        const authTime = localStorage.getItem('authTimestamp');
-        if (authTime) {
-            const timeDiff = Date.now() - parseInt(authTime);
-            const hoursElapsed = timeDiff / (1000 * 60 * 60);
-            
-            if (hoursElapsed < 24) {
-                document.getElementById('passwordOverlay').style.display = 'none';
-                document.getElementById('mainContent').style.display = 'block';
+        const auth = localStorage.getItem("rzeroAuth");
+        if (auth) {
+            const authData = JSON.parse(auth);
+            if (Date.now() < authData.expires) {
+                document.getElementById("loginOverlay").style.display = "none";
+                document.getElementById("mainContent").style.display = "block";
                 return;
             } else {
-                localStorage.removeItem('authTimestamp');
+                localStorage.removeItem("rzeroAuth");
             }
         }
-        
-        // Focus password input
-        document.getElementById('passwordInput').focus();
+        // Initialize Google Sign-In
+        google.accounts.id.initialize({
+            client_id: "440202882694-0f45tilrene0hs8cosk300m86kq79gtk.apps.googleusercontent.com",
+            callback: handleCredentialResponse
+        });
+        google.accounts.id.renderButton(
+            document.querySelector(".g_id_signin"),
+            { theme: "outline", size: "large" }
+        );
     }
     
-    // Call checkAuth on page load
-    window.addEventListener('load', checkAuth);
+    // Initialize on page load
+    window.addEventListener("load", checkAuth);
     
     // Unit conversion functions
     function kBtuToKwh(kbtu) { return kbtu / 3.412; }
@@ -2780,7 +2785,7 @@
     </div><!-- End of container -->
     
     <div style="text-align: center; color: black; font-size: 14px; padding: 20px 0; font-family: 'Inter', sans-serif; border: none !important; box-shadow: none !important; background: transparent;">
-        Build: 15 Aug 2025 09:37:00 PM CST | Test Build
+        Build: 15 Aug 2025 09:45:36 PM CST | Google Sign-In Complete - Fixed Braces
         <div style="margin-top: 10px;">
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=0#gid=0" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Report an issue</a> |
             <a href="https://docs.google.com/spreadsheets/d/1efvF54Fy_155wnrN0lcAUJhCPoosX9bAHzt-W1HDRBI/edit?gid=2092445270#gid=2092445270" target="_blank" style="color: #0066cc; text-decoration: none; margin: 0 10px;">Request a feature</a> |
